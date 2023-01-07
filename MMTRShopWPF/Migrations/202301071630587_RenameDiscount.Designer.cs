@@ -13,7 +13,7 @@ namespace MMTRShopWPF.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202301071601177_RenameDiscount"; }
+            get { return "202301071630587_RenameDiscount"; }
         }
         
         string IMigrationMetadata.Source

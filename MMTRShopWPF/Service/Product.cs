@@ -15,7 +15,7 @@ namespace MMTRShopWPF.Service
 
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public float Diccount { get; set; }
+        public float Discount { get; set; }
         public string Photo { get; set; }
         public int CategoryID { get; set; }
 
