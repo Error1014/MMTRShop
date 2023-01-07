@@ -18,5 +18,16 @@ namespace MMTRShopWPF.Service
         public int ValueProduct { get; set; }
 
         public virtual User User { get; set; }
+
+        public Korzine()
+        {
+
+        }
+        public Korzine(int userID, int productID, int value)
+        {
+            UserID = userID;
+            ProductID = productID;
+            ValueProduct = value;
+        }
     }
 }

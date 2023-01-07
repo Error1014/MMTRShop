@@ -65,13 +65,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\202301071333205_InitialCreate.cs" />
+    <Compile Include="Migrations\202301071333205_InitialCreate.designer.cs">
+      <DependentUpon>202301071333205_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Service\Admin.cs" />
     <Compile Include="Service\Category.cs" />
     <Compile Include="Service\Korzine.cs" />
     <Compile Include="Service\Product.cs" />
     <Compile Include="Service\ShopContext.cs" />
     <Compile Include="Service\User.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="ViewModel\AutorizationViewModel.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Commands.cs" />
+    <Compile Include="ViewModel\KatalogViewModel.cs" />
+    <Compile Include="ViewModel\KorzinaViewModel.cs" />
+    <Compile Include="ViewModel\NavigationViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="View\Pages\AutorizationPage.xaml.cs">
+      <DependentUpon>AutorizationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\EditInfoProductPage.xaml.cs">
+      <DependentUpon>EditInfoProductPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\InfoProductPage.xaml.cs">
+      <DependentUpon>InfoProductPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\KatalogPage.xaml.cs">
+      <DependentUpon>KatalogPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\KorzinaPage.xaml.cs">
+      <DependentUpon>KorzinaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -79,10 +109,34 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Pages\AutorizationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\EditInfoProductPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\InfoProductPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\KatalogPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\KorzinaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -98,6 +152,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202301071333205_InitialCreate.resx">
+      <DependentUpon>202301071333205_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -111,6 +168,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

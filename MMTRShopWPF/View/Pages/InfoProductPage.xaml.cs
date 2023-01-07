@@ -1,7 +1,7 @@
 ﻿using MMTRShopWPF.Service;
+using MMTRShopWPF.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,24 +15,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MMTRShopWPF
+namespace MMTRShopWPF.View.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для InfoProductPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class InfoProductPage : Page
     {
-        public MainWindow()
+        public InfoProductPage()
         {
             InitializeComponent();
-            //using (var db = new ShopContext())
-            //{
-            //    var c = new Category();
-            //    db.Category.Add(c);
-            //    db.SaveChanges();
-            //    db.Category.Remove(c);
-            //    db.SaveChanges();
-            //}
+        }
+        public InfoProductPage(Product product)
+        {
+            InitializeComponent();
+            ProductVievModel productVievModel = new ProductVievModel(product);
+            DataContext = productVievModel;
         }
     }
 }
