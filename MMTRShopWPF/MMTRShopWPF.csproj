@@ -196,6 +196,123 @@
   <ItemGroup>
     <Resource Include="Resources\Phone.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Acer1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Acer2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Acer3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Acer4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Honor1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Honor2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Honor3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Honor4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Honor5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Honor6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Huawei1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Huawei2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Huawei3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Huawei4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Huawei5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IPhone1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IPhone2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IPhone3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IPhone4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Lenovo1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Lenovo2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Lenovo3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Xiaomi1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Xiaomi2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Xiaomi3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Xiaomi4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Xiaomi5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Xiaomi6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Xiaomi7.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Xiaomi8.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Xiaomi9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Xiaomi10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Xiaomi11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ZTE1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ZTE2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ZTE3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ZTE4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ZTE5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ZTE6.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
