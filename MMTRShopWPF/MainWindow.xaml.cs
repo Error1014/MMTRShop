@@ -25,12 +25,14 @@ namespace MMTRShopWPF
         public MainWindow()
         {
             InitializeComponent();
-            using (var db = new ShopContext())
-            {
-                var c = new Category();
-                db.Category.Add(c);
-                db.SaveChanges();
-            }
+            //using (var db = new ShopContext())
+            //{
+            //    var c = new Category();
+            //    db.Category.Add(c);
+            //    db.SaveChanges();
+            //    db.Category.Remove(c);
+            //    db.SaveChanges();
+            //}
         }
     }
 }
