@@ -74,8 +74,13 @@
     <Compile Include="Migrations\202301071630587_RenameDiscount.designer.cs">
       <DependentUpon>202301071630587_RenameDiscount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301071912491_AddTableBrand.cs" />
+    <Compile Include="Migrations\202301071912491_AddTableBrand.designer.cs">
+      <DependentUpon>202301071912491_AddTableBrand.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Service\Admin.cs" />
+    <Compile Include="Service\Brand.cs" />
     <Compile Include="Service\Category.cs" />
     <Compile Include="Service\Korzine.cs" />
     <Compile Include="Service\Product.cs" />
@@ -162,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301071630587_RenameDiscount.resx">
       <DependentUpon>202301071630587_RenameDiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301071912491_AddTableBrand.resx">
+      <DependentUpon>202301071912491_AddTableBrand.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

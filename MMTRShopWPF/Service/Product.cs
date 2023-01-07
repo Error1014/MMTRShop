@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,8 +19,10 @@ namespace MMTRShopWPF.Service
         public float Discount { get; set; }
         public string Photo { get; set; }
         public int CategoryID { get; set; }
-
         public virtual Category Category { get; set; }
+        public int? BrandID { get; set; }
+        [ForeignKey("BrandID")]
+        public virtual Brand Brand { get; set; }
         public virtual List<Korzine> Korzine { get; set; }
     }
 }
