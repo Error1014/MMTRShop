@@ -9,19 +9,19 @@
       Title="KorzinaPage">
 
     <Grid Background="White">
-        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" x:Name="ListProducts"  ItemsSource="{Binding Korzine}" HorizontalAlignment="Center">
+        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListProducts"  ItemsSource="{Binding Korzine}" HorizontalAlignment="Center">
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel></StackPanel>
+                    <StackPanel Width="700"></StackPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Background="White" >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image Margin="10" Width="200" Height="200" Source="{Binding Product.Photo}">
                         </Image>
@@ -35,7 +35,7 @@
                                 </TextBlock>
                                 <TextBlock Margin="10" FontSize="30">
                                     <Run Text="Скидка: "/>
-                                    <Run Text="{Binding Product.Discount}"/>
+                                    <Run Text="{Binding Product.Diccount}"/>
                                     <Run Text="%"/>
                                 </TextBlock>
                             </DockPanel>

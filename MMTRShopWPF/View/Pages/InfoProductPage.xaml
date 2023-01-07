@@ -31,7 +31,7 @@
                 <Run Text=" руб."/>
             </TextBlock>
             <TextBlock Text="{Binding Product.Discount}">
-                <Run Text="{Binding Product.Discount}"/>
+                <Run Text="{Binding Product.Diccount}"/>
                 <Run Text="%"/>
             </TextBlock>
             <TextBlock Text="{Binding Product.Description}"/>
