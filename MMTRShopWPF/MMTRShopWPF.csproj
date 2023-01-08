@@ -66,6 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\BindingPassword.xaml.cs">
+      <DependentUpon>BindingPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202301071333205_InitialCreate.cs" />
     <Compile Include="Migrations\202301071333205_InitialCreate.designer.cs">
       <DependentUpon>202301071333205_InitialCreate.cs</DependentUpon>
@@ -113,6 +116,10 @@
     <Compile Include="View\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Components\BindingPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
