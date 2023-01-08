@@ -45,7 +45,7 @@
                             <TextBlock Text="{Binding Product.Category.Title}"/>
                             <TextBlock Text="{Binding Product.Description}" TextWrapping="Wrap" MaxHeight="50"/>
 
-                            <DockPanel HorizontalAlignment="Left">
+                            <DockPanel HorizontalAlignment="Center" Margin="10">
                                 <!--<TextBlock TextAlignment="Center" Height="20" Text="Количество"/>-->
                                 <Button Width="30" Height="30" Command="{Binding ElementName=ListProducts, Path=DataContext.ProductMinus}" CommandParameter="{Binding ID}">
                                     <TextBlock Text="-" />
