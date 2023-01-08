@@ -142,33 +142,28 @@ namespace MMTRShopWPF.ViewModel
             {
                 return new Commands((obj) =>
                 {
-                    bool isCheckUserDB = true;
+  
                     var users = ShopContext.GetContext().User.ToList();
                     foreach (var user in users)
                     {
                         if (user.Login == User.Login)
                         {
                             MessageBox.Show("Пользователь с таким логином уже существует");
-                            isRegistration = false;
-                            break;
+                            return;
                         }
                     }
-                    if (isCheckUserDB)
+                    if (CheckTwoPassword())
                     {
-                        if (CheckTwoPassword())
-                        {
-                            ShopContext.GetContext().User.Add(new User(User.Login, User.Password, User.LastName, User.FirstName, User.Patronymic));
-                            ShopContext.GetContext().SaveChanges();
-                            MessageBox.Show("Регистрация прошла успешно");
-                            User = new User();
-                            Password2 = "";
-                            SelectRejim();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Пароли должны совпадать!");
-                        }
-                       
+                        ShopContext.GetContext().User.Add(new User(User.Login, User.Password, User.LastName, User.FirstName, User.Patronymic));
+                        ShopContext.GetContext().SaveChanges();
+                        MessageBox.Show("Регистрация прошла успешно");
+                        User = new User();
+                        Password2 = "";
+                        SelectRejim();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пароли должны совпадать!");
                     }
                 });
             }
