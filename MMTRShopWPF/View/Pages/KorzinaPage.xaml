@@ -45,13 +45,13 @@
                             <TextBlock Text="{Binding Product.Category.Title}"/>
                             <TextBlock Text="{Binding Product.Description}" TextWrapping="Wrap" MaxHeight="50"/>
 
-                            <DockPanel HorizontalAlignment="Center" Margin="10">
+                            <DockPanel HorizontalAlignment="Center">
                                 <!--<TextBlock TextAlignment="Center" Height="20" Text="Количество"/>-->
-                                <Button Width="30" Height="30" Command="{Binding ElementName=ListProducts, Path=DataContext.ProductMinus}" CommandParameter="{Binding ID}">
+                                <Button Width="30" Height="30" Command="{Binding ElementName=ListProducts, Path=DataContext.ProductMinus}" Click="ClickButton" CommandParameter="{Binding ID}" >
                                     <TextBlock Text="-" />
                                 </Button>
                                 <TextBlock TextAlignment="Center" Width="60" Height="20"  Text="{Binding ValueProduct}"/>
-                                <Button Width="30" Height="30" Command="{Binding ElementName=ListProducts, Path=DataContext.ProductPlus}" CommandParameter="{Binding ID}">
+                                <Button Width="30" Height="30" Command="{Binding ElementName=ListProducts, Path=DataContext.ProductPlus}" Click="ClickButton" CommandParameter="{Binding ID}" >
                                     <TextBlock Text="+" />
                                 </Button>
                             </DockPanel>

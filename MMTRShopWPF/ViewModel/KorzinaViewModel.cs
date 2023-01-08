@@ -1,13 +1,7 @@
 ﻿using MMTRShopWPF.Service;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows;
-using System.Windows.Controls;
 using System.Collections.ObjectModel;
 
 namespace MMTRShopWPF.ViewModel
@@ -24,7 +18,7 @@ namespace MMTRShopWPF.ViewModel
                         join p in ShopContext.GetContext().Product.ToList() on k.ProductID equals p.ID
                         select p).ToList();
         }
-        private static User user;
+        private User user;
         public User User
         {
             get
@@ -37,7 +31,7 @@ namespace MMTRShopWPF.ViewModel
                 OnPropertyChanged(nameof(User));
             }
         }
-        private static ObservableCollection<Korzine> korzine;
+        private ObservableCollection<Korzine> korzine;
         public ObservableCollection<Korzine> Korzine
         {
             get
@@ -47,7 +41,7 @@ namespace MMTRShopWPF.ViewModel
             set
             {
                 korzine = value;
-                OnPropertyChanged(nameof(User));
+                OnPropertyChanged(nameof(Korzine));
             }
         }
 
@@ -73,7 +67,10 @@ namespace MMTRShopWPF.ViewModel
                     int id  = int.Parse(obj.ToString());
                     var item = Korzine.First(i => i.ID == id);
                     item.ValueProduct--;
-                    
+                    if (item.ValueProduct==0)
+                    {
+                        ShopContext.GetContext().Korzine.Remove(item);
+                    }
                     ShopContext.GetContext().SaveChanges();
                 });
             }

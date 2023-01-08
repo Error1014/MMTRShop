@@ -22,10 +22,19 @@ namespace MMTRShopWPF.View.Pages
     /// </summary>
     public partial class KorzinaPage : Page
     {
+        public static KorzinaViewModel korzinaViewModel;
+        private User user;
         public KorzinaPage(User user)
         {
             InitializeComponent();
-            KorzinaViewModel korzinaViewModel = new KorzinaViewModel(user);
+            korzinaViewModel = new KorzinaViewModel(user);
+            this.user=user;
+            DataContext = korzinaViewModel;
+        }
+
+        private void ClickButton(object sender, RoutedEventArgs e)
+        {
+            korzinaViewModel = new KorzinaViewModel(user);
             DataContext = korzinaViewModel;
         }
     }
