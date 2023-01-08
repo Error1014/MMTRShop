@@ -12,8 +12,6 @@ namespace MMTRShopWPF.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-
         public void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
