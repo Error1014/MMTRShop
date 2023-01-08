@@ -14,10 +14,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <StackPanel>
+        <StackPanel Grid.Row="1">
             <Image Width="300" Height="300">
                 <Image.Source>
                     <Binding Path="Product.Photo"/>
@@ -25,35 +26,39 @@
             </Image>
 
         </StackPanel>
-        <Grid Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="0*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.ColumnSpan="2">
-                <TextBlock FontSize="15" Height="30" Text="Название: "/>
-                <TextBlock FontSize="15" Height="30" Text="Цена: "/>
-                <TextBlock FontSize="15" Height="30" Text="Скидка"/>
-                <TextBlock FontSize="15" Height="30" Text="Описание:"/>
-                <TextBlock FontSize="15" Height="30" Text="Категория: "/>
-            </StackPanel>
-            <StackPanel Grid.Column="2" HorizontalAlignment="Left" Width="300">
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <DockPanel Margin="0,10">
+                <TextBlock Style="{StaticResource TextInfo}" Text="Название: "/>
                 <TextBox MaxLength="50" HorizontalAlignment="Left" FontSize="15" Height="30" Width="220" Text="{Binding Product.Title}"/>
-                <DockPanel HorizontalAlignment="Left" Height="30" Width="250">
-                    <TextBox PreviewTextInput="ItputNumber"  TextAlignment="Right" FontSize="15" Width="200" Text="{Binding Product.Price}"/>
+            </DockPanel>
+            <DockPanel Margin="0,10">
+                <TextBlock Style="{StaticResource TextInfo}" Text="Цена: "/>
+                <DockPanel HorizontalAlignment="Left" Height="30">
+                    <TextBox PreviewTextInput="ItputNumber"  TextAlignment="Right" FontSize="15" Width="220" Text="{Binding Product.Price}"/>
                     <TextBlock FontSize="15" Text="Руб."/>
                 </DockPanel >
-                <DockPanel HorizontalAlignment="Left"  Height="30" Width="250">
-                    <TextBox PreviewTextInput="ItputNumber" MaxLength="2" TextAlignment="Right" FontSize="15" Width="200" Text="{Binding Product.Discount}"/>
+            </DockPanel>
+            <DockPanel Margin="0,10">
+                <TextBlock Style="{StaticResource TextInfo}" Text="Скидка"/>
+                <DockPanel HorizontalAlignment="Left"  Height="30" >
+                    <TextBox PreviewTextInput="ItputNumber" MaxLength="2" TextAlignment="Right" FontSize="15" Width="220" Text="{Binding Product.Discount}"/>
                     <TextBlock FontSize="15" Text="%"/>
                 </DockPanel>
-                <TextBox MaxLength="500" HorizontalAlignment="Left" FontSize="15" Height="30" Width="220"   Text="{Binding Product.Description}" TextWrapping="Wrap"/>
+            </DockPanel>
+            <DockPanel Margin="0,10">
+                <TextBlock VerticalAlignment="Top" Style="{StaticResource TextInfo}" Text="Описание:"/>
+                <TextBox MaxLength="500" AcceptsReturn="True" HorizontalAlignment="Left" FontSize="15" MinWidth="220"  Width="Auto"   Text="{Binding Product.Description}" TextWrapping="Wrap"/>
+            </DockPanel>
+            <DockPanel Margin="0,10">
+                <TextBlock Style="{StaticResource TextInfo}" Text="Категория: " />
                 <ComboBox HorizontalAlignment="Left" FontSize="15" Height="30" Width="220"  ItemsSource="{Binding AllCategory}" SelectedItem="{Binding SelectCategory}" DisplayMemberPath="Title" />
-            </StackPanel>
-        </Grid>
-
-        <DockPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            </DockPanel>
+            <DockPanel Margin="0,10">
+                <TextBlock Style="{StaticResource TextInfo}" Text="Производитель: " />
+                <ComboBox HorizontalAlignment="Left" FontSize="15" Height="30" Width="220"  ItemsSource="{Binding AllBrand}" SelectedItem="{Binding SelectBrand}" DisplayMemberPath="Name" />
+            </DockPanel>
+        </StackPanel>
+        <DockPanel  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Button Content="Удалить" Width="200" Height="50" Margin="10" Command="{Binding Delete}"/>
             <Button Content="Сохранить" Width="200" Height="50" Margin="10" Command="{Binding SaveResult}"/>
         </DockPanel>

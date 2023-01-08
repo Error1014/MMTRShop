@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:MMTRShopWPF"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="TextInfo">
+            <Setter Property="TextBlock.FontSize" Value="15"/>
+            <Setter Property="TextBlock.Height" Value="30"/>
+            <Setter Property="TextBlock.Width" Value="150"/>
+        </Style>
     </Application.Resources>
 </Application>

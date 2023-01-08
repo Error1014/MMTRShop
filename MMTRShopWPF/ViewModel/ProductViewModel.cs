@@ -18,13 +18,15 @@ namespace MMTRShopWPF.ViewModel
             if (product == null)
             {
                 isAdd = true;
-                selectCategory = AllCategory.First();
+                SelectCategory = AllCategory.First();
+                SelectBrand = AllBrand.First();
                 Product = new Product();
             }
             else
             {
                 isAdd = false;
-                selectCategory = ShopContext.GetContext().Category.Where(category => category.ID == product.CategoryID).First();
+                SelectCategory = ShopContext.GetContext().Category.Where(category => category.ID == product.CategoryID).First();
+                SelectBrand = ShopContext.GetContext().Brand.Where(brand => brand.ID == product.BrandID).First();
                 Product = product;
             }
 
@@ -88,6 +90,7 @@ namespace MMTRShopWPF.ViewModel
                 return new Commands((obj) =>
                 {
                     product.CategoryID = SelectCategory.ID;
+                    product.BrandID = SelectBrand.ID;
                     if (isAdd)
                     {
                         ShopContext.GetContext().Product.Add(product);
@@ -122,7 +125,19 @@ namespace MMTRShopWPF.ViewModel
             set
             {
                 selectCategory = value;
-                OnPropertyChanged(nameof(Category));
+                OnPropertyChanged(nameof(SelectCategory));
+            }
+        }
+
+        public List<Brand> AllBrand { get; private set; } = ShopContext.GetContext().Brand.ToList();
+        private Brand selectBrand;
+        public Brand SelectBrand
+        {
+            get { return selectBrand; }
+            set
+            {
+                selectBrand = value;
+                OnPropertyChanged(nameof(SelectBrand));
             }
         }
     }

@@ -28,6 +28,7 @@ namespace MMTRShopWPF.Service
         public DbSet<User> User { get; set; }
         public DbSet<Admin> Admin { get; set; }
         public DbSet<Korzine> Korzine { get; set; }
+        public DbSet<Brand> Brand { get; set; }
 
 
     }

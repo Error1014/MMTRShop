@@ -13,7 +13,7 @@
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Width="700"></StackPanel>
+                    <StackPanel Width="800"></StackPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
@@ -25,10 +25,13 @@
                         </Grid.ColumnDefinitions>
                         <Image Margin="10" Width="200" Height="200" Source="{Binding Product.Photo}">
                         </Image>
-                        <StackPanel Grid.Column="1">
-                            <TextBlock FontSize="24" Text="{Binding Product.Title}"/>
+                        <StackPanel Grid.Column="1" Width="600">
+                            <TextBlock FontSize="32">
+                                <Run Text="{Binding Product.Brand.Name}"/>
+                                <Run Text="{Binding Product.Title}"/>
+                            </TextBlock>
                             <DockPanel>
-                                <TextBlock  Margin="0,10,10,10" FontSize="30">
+                                <TextBlock  Margin="0,10,10,10" FontSize="28">
                                     <Run Text="Цена: "/>
                                     <Run Text="{Binding Product.Price}"/>
                                     <Run Text=" руб."/>
@@ -40,7 +43,7 @@
                                 </TextBlock>
                             </DockPanel>
                             <TextBlock Text="{Binding Product.Category.Title}"/>
-                            <TextBlock Text="{Binding Product.Description}"/>
+                            <TextBlock Text="{Binding Product.Description}" TextWrapping="Wrap" MaxHeight="50"/>
 
                             <DockPanel HorizontalAlignment="Left">
                                 <TextBlock TextAlignment="Center" Height="20" Text="Количество"/>
