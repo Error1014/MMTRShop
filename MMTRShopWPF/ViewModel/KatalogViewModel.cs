@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MMTRShopWPF.ViewModel
@@ -59,6 +60,17 @@ namespace MMTRShopWPF.ViewModel
             {
                 productsPage = value;
                 OnPropertyChanged(nameof(ProductsPage));
+            }
+        }
+
+        private Visibility discountVisible = Visibility.Collapsed;
+        public Visibility DiscountVisible 
+        {
+            get { return discountVisible; }
+            set
+            {
+                discountVisible = value;
+                OnPropertyChanged(nameof(DiscountVisible));
             }
         }
 

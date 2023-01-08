@@ -33,7 +33,7 @@
                                     <Run Text=" руб."/>
                                 </TextBlock>
                                 <TextBlock />
-                                <TextBlock Foreground="Red">
+                                <TextBlock Foreground="Red" Visibility="{Binding DiscountVisible}">
                                     <Run Text=" -"/>
                                     <Run Text="{Binding Discount}"/>
                                     <Run Text="%"/>

@@ -7,15 +7,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using System.Windows.Controls;
+using System.Collections.ObjectModel;
 
 namespace MMTRShopWPF.ViewModel
 {
     public class KorzinaViewModel : BaseViewModel
-{
-public KorzinaViewModel(User myUser)
-{
+    {
+        public KorzinaViewModel(User myUser)
+        {
             user = myUser;
-            Korzine = ShopContext.GetContext().Korzine.Where(korzine => korzine.UserID == user.ID).ToList();
+            
+            var korzins= ShopContext.GetContext().Korzine.Where(korzine => korzine.UserID == user.ID).ToList();
+            Korzine = new ObservableCollection<Korzine>(korzins);
             Products = (from k in korzine
                         join p in ShopContext.GetContext().Product.ToList() on k.ProductID equals p.ID
                         select p).ToList();
@@ -33,8 +37,8 @@ public KorzinaViewModel(User myUser)
                 OnPropertyChanged(nameof(User));
             }
         }
-        private static List<Korzine> korzine;
-        public List<Korzine> Korzine
+        private static ObservableCollection<Korzine> korzine;
+        public ObservableCollection<Korzine> Korzine
         {
             get
             {
@@ -66,7 +70,11 @@ public KorzinaViewModel(User myUser)
             {
                 return new Commands((obj) =>
                 {
-                    MessageBox.Show("-");
+                    int id  = int.Parse(obj.ToString());
+                    var item = Korzine.First(i => i.ID == id);
+                    item.ValueProduct--;
+                    
+                    ShopContext.GetContext().SaveChanges();
                 });
             }
         }
@@ -76,7 +84,10 @@ public KorzinaViewModel(User myUser)
             {
                 return new Commands((obj) =>
                 {
-                    MessageBox.Show("+");
+                    int id = int.Parse(obj.ToString());
+                    var item = Korzine.First(i => i.ID == id);
+                    item.ValueProduct++;
+                    ShopContext.GetContext().SaveChanges();
                 });
             }
         }
