@@ -1,4 +1,5 @@
-﻿using MMTRShopWPF.Service;
+﻿using MMTRShopWPF.Repositoryes;
+using MMTRShopWPF.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace MMTRShopWPF.ViewModel
 {
     public class KatalogViewModel : BaseViewModel
     {
+        private UnitOfWork unitOfWork = new UnitOfWork(new ShopContext());
         private int valuePage = 0;
         private int numPage = 1;
         public int NumPage
@@ -46,7 +48,7 @@ namespace MMTRShopWPF.ViewModel
 
         public List<Product> GetPageProduct()
         {
-            return ShopContext.GetContext().Product.OrderBy(product => product.ID).Skip((numPage - 1) * SizePage).Take(SizePage).ToList();
+            return unitOfWork.Products.GetProductsPage(NumPage, SizePage);
         }
 
         private List<Product> productsPage;

@@ -9,6 +9,6 @@ namespace MMTRShopWPF.Repositoryes
 {
     public interface IProductRepository: IRepository<Product>
     {
-
+        List<Product> GetProductsPage(int numPage, int sizePage);
     }
 }
