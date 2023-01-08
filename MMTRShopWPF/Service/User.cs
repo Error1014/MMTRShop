@@ -19,6 +19,17 @@ namespace MMTRShopWPF.Service
 
         public virtual Admin Admin { get; set; }
         public virtual List<Korzine> Korzine { get; set; }
+        public User()
+        {
 
+        }
+        public User(string login, string password,string lastName,string firstName,string patronymic)
+        {
+            Login = login;
+            Password = password;
+            LastName = lastName;
+            FirstName = firstName;
+            Patronymic = patronymic;
+        }
     }
 }

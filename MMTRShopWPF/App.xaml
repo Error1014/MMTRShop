@@ -9,5 +9,13 @@
             <Setter Property="TextBlock.Height" Value="30"/>
             <Setter Property="TextBlock.Width" Value="150"/>
         </Style>
+        <Style x:Key="AutorizationStyle">
+            <Setter Property="TextBlock.FontSize" Value="20"/>
+            <Setter Property="TextBlock.Width" Value="200"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Right"/>
+            <Setter Property="TextBox.FontSize" Value="20"/>
+            <Setter Property="TextBox.Width" Value="300"/>
+            <Setter Property="TextBox.TextAlignment" Value="Left"/>
+        </Style>
     </Application.Resources>
 </Application>

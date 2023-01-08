@@ -11,25 +11,46 @@
 
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="22*"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Button Content="Назад" Width="100" Height="30" Margin="10" HorizontalAlignment="Left" Command="{Binding KatalogNavigate}"/>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="310">
-            <DockPanel Margin="20">
-                <TextBlock FontSize="20" Width="70" Text="Логин:"/>
-                <TextBox FontSize="20" Width="200" Text="{Binding Login}"/>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">
+            <DockPanel Margin="0,10">
+                <TextBlock Style="{StaticResource AutorizationStyle}" Text="Логин: "/>
+                <TextBox Style="{StaticResource AutorizationStyle}" Text="{Binding User.Login}"/>
             </DockPanel>
-            <DockPanel>
-                <TextBlock FontSize="20" Width="70" Text="Пароль:"/>
-                <components:BindingPassword FontSize="20" Width="200" Password ="{Binding Password,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+            <DockPanel Margin="0,10">
+                <TextBlock Style="{StaticResource AutorizationStyle}" Text="Пароль: "/>
+                <components:BindingPassword FontSize="20" Width="300" Password ="{Binding User.Password,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             </DockPanel>
-            <StackPanel>
-                <Button FontSize="20" Margin="10" Content="Войти" Command="{Binding AutorizationUser}"/>
-                <!--<Button FontSize="20" Margin="10" Content="Войти за админа" Command="{Binding AutorizationAdmin}"/>-->
-                <Button FontSize="20" Margin="10" Content="Зарегистрироваться" Opacity="0.3" Focusable="False"/>
-
+            <StackPanel Visibility="{Binding VisibilityRejimRegistration}">
+                <DockPanel Margin="0,10">
+                    <TextBlock Style="{StaticResource AutorizationStyle}" Text="Подтвердите Пароль: "/>
+                    <components:BindingPassword FontSize="20" Width="300" Password ="{Binding Password2,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </DockPanel>
+                <DockPanel Margin="0,10">
+                    <TextBlock Style="{StaticResource AutorizationStyle}" Text="Фамилия: "/>
+                    <TextBox Style="{StaticResource AutorizationStyle}" Text="{Binding User.LastName}"/>
+                </DockPanel>
+                <DockPanel Margin="0,10">
+                    <TextBlock Style="{StaticResource AutorizationStyle}" Text="Имя: "/>
+                    <TextBox Style="{StaticResource AutorizationStyle}" Text="{Binding User.FirstName}"/>
+                </DockPanel>
+                <DockPanel Margin="0,10">
+                    <TextBlock Style="{StaticResource AutorizationStyle}" Text="Отчество: "/>
+                    <TextBox Style="{StaticResource AutorizationStyle}" Text="{Binding User.Patronymic}"/>
+                </DockPanel>
             </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Width="300">
+
+            
+            <Button FontSize="20" Margin="10" Visibility="{Binding VisibilityRejimAutorization}" Content="Войти" Command="{Binding AutorizationUser}"/>
+            <Button FontSize="20" Margin="10" Content="{Binding TextBtnRegistration}" Command="{Binding OpenRegistrationPanel}"/>
+            <Button FontSize="20" Margin="10" Visibility="{Binding VisibilityRejimRegistration}" Content="Зарегистрироваться" Command="{Binding RegistrationUser}"/>
+
         </StackPanel>
     </Grid>
 </Page>
