@@ -82,7 +82,9 @@
       <DependentUpon>202301071912491_AddTableBrand.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repositoryes\BrandRepository.cs" />
     <Compile Include="Repositoryes\CategoryRepository.cs" />
+    <Compile Include="Repositoryes\IBrandRepository.cs" />
     <Compile Include="Repositoryes\ICategoryRepository.cs" />
     <Compile Include="Repositoryes\IKorzineRepository.cs" />
     <Compile Include="Repositoryes\IProductRepository.cs" />

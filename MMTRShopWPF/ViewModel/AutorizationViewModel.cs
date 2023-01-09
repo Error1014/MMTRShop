@@ -170,7 +170,7 @@ namespace MMTRShopWPF.ViewModel
         }
         private bool CheckTwoPassword()
         {
-            return User.Password == Password2;
+            return User.Password != Password2;
         }
         
         public ICommand KatalogNavigate

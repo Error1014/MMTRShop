@@ -17,6 +17,7 @@ namespace MMTRShopWPF.Repositoryes
             Products = new ProductRepository(_context);
             Korzins = new KorzineRopository(_context);
             Categorys = new CategoryRepository(_context);
+            Brands = new BrandRepository(_context);
         }
 
         public IProductRepository Products { get;private set; }
@@ -24,6 +25,8 @@ namespace MMTRShopWPF.Repositoryes
         public IKorzineRepository Korzins { get; private set; }
 
         public ICategoryRepository Categorys { get; private set; }
+
+        public IBrandRepository Brands { get; private set; }
 
         public int Complete()
         {

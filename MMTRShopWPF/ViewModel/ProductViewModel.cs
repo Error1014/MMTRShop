@@ -1,4 +1,5 @@
-﻿using MMTRShopWPF.Service;
+﻿using MMTRShopWPF.Repositoryes;
+using MMTRShopWPF.Service;
 using MMTRShopWPF.View.Pages;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace MMTRShopWPF.ViewModel
         public ProductVievModel(Product product)
         {
             AllCategory = UnitOfWork.Categorys.GetAll().ToList();
+            AllBrand = UnitOfWork.Brands.GetAll().ToList();
             if (product == null)
             {
                 isAdd = true;
@@ -27,8 +29,8 @@ namespace MMTRShopWPF.ViewModel
             {
                 isAdd = false;
                 SelectCategory = AllCategory.Where(category => category.ID == product.CategoryID).First();
-                SelectBrand = ShopContext.GetContext().Brand.Where(brand => brand.ID == product.BrandID).First();
-                Product = product;
+                SelectBrand = AllBrand.Where(brand => brand.ID == product.BrandID).First();
+                Product = UnitOfWork.Products.GetById(product.ID);
             }
 
         }
@@ -63,7 +65,7 @@ namespace MMTRShopWPF.ViewModel
                     }
                     else
                     {
-                        var myKorzine = ShopContext.GetContext().Korzine.Where(korzine => korzine.UserID == user.ID).ToList();
+                        var myKorzine = UnitOfWork.Korzins.GetKorzineByIDUser(user.ID);
                         bool isNew = true;
                         for (int i = 0; i < myKorzine.Count; i++)
                         {
@@ -75,9 +77,9 @@ namespace MMTRShopWPF.ViewModel
                         }
                         if (isNew)
                         {
-                            ShopContext.GetContext().Korzine.Add(new Korzine(user.ID, Product.ID, 1));
+                            UnitOfWork.Korzins.Add(new Korzine(user.ID, Product.ID, 1));
                         }
-                        ShopContext.GetContext().SaveChanges();
+                        UnitOfWork.Korzins.Save();
                         MessageBox.Show("Успешно");
                     }
                 });
@@ -94,10 +96,10 @@ namespace MMTRShopWPF.ViewModel
                     product.BrandID = SelectBrand.ID;
                     if (isAdd)
                     {
-                        ShopContext.GetContext().Product.Add(product);
+                        UnitOfWork.Products.Add(Product);
                         isAdd = false;
                     }
-                    ShopContext.GetContext().SaveChanges();
+                    UnitOfWork.Products.Save();
                     MessageBox.Show("Успешно");
                 });
             }
@@ -110,10 +112,10 @@ namespace MMTRShopWPF.ViewModel
                 {
                     if (!isAdd)
                     {
-                        ShopContext.GetContext().Product.Remove(product);
+                        UnitOfWork.Products.Remove(Product);
                         isAdd = true;
                     }
-                    ShopContext.GetContext().SaveChanges();
+                    UnitOfWork.Products.Save();
                     MessageBox.Show("Успешно");
                 });
             }
@@ -130,7 +132,7 @@ namespace MMTRShopWPF.ViewModel
             }
         }
 
-        public List<Brand> AllBrand { get; private set; } = ShopContext.GetContext().Brand.ToList();
+        public List<Brand> AllBrand { get; private set; }
         private Brand selectBrand;
         public Brand SelectBrand
         {

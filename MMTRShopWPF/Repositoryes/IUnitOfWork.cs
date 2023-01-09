@@ -11,6 +11,7 @@ namespace MMTRShopWPF.Repositoryes
         IProductRepository Products { get; }
         IKorzineRepository Korzins { get; }
         ICategoryRepository Categorys { get; }
+        IBrandRepository Brands { get; }
         int Complete();
     }
 }
