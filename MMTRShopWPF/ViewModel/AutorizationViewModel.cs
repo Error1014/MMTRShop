@@ -85,7 +85,7 @@ namespace MMTRShopWPF.ViewModel
         {
                 return new Commands((obj) =>
                 {
-                    var users = ShopContext.GetContext().User.ToList();
+                    var users = UnitOfWork.Users.GetAll();
                     foreach (var user in users)
                     {
                         if (user.Login == User.Login && user.Password == User.Password)
@@ -143,7 +143,7 @@ namespace MMTRShopWPF.ViewModel
                 return new Commands((obj) =>
                 {
   
-                    var users = ShopContext.GetContext().User.ToList();
+                    var users = UnitOfWork.Users.GetAll();
                     foreach (var user in users)
                     {
                         if (user.Login == User.Login)
@@ -154,8 +154,8 @@ namespace MMTRShopWPF.ViewModel
                     }
                     if (CheckTwoPassword())
                     {
-                        ShopContext.GetContext().User.Add(new User(User.Login, User.Password, User.LastName, User.FirstName, User.Patronymic));
-                        ShopContext.GetContext().SaveChanges();
+                        UnitOfWork.Users.Add(new User(User.Login, User.Password, User.LastName, User.FirstName, User.Patronymic));
+                        UnitOfWork.Users.Save();
                         MessageBox.Show("Регистрация прошла успешно");
                         User = new User();
                         Password2 = "";

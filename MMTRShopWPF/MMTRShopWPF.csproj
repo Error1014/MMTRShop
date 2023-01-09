@@ -90,10 +90,12 @@
     <Compile Include="Repositoryes\IProductRepository.cs" />
     <Compile Include="Repositoryes\IRepository.cs" />
     <Compile Include="Repositoryes\IUnitOfWork.cs" />
+    <Compile Include="Repositoryes\IUserRepository.cs" />
     <Compile Include="Repositoryes\KorzineRopository.cs" />
     <Compile Include="Repositoryes\ProductRepository.cs" />
     <Compile Include="Repositoryes\Repository.cs" />
     <Compile Include="Repositoryes\UnitOfWork.cs" />
+    <Compile Include="Repositoryes\UserRepository.cs" />
     <Compile Include="Service\Admin.cs" />
     <Compile Include="Service\Brand.cs" />
     <Compile Include="Service\Category.cs" />
