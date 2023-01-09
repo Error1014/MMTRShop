@@ -18,5 +18,7 @@ namespace MMTRShopWPF.Repositoryes
 
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
+
+        void Save();
     }
 }

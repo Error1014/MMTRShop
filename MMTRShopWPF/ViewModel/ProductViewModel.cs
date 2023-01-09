@@ -15,6 +15,7 @@ namespace MMTRShopWPF.ViewModel
         private bool isAdd;
         public ProductVievModel(Product product)
         {
+            AllCategory = UnitOfWork.Categorys.GetAll().ToList();
             if (product == null)
             {
                 isAdd = true;
@@ -25,7 +26,7 @@ namespace MMTRShopWPF.ViewModel
             else
             {
                 isAdd = false;
-                SelectCategory = ShopContext.GetContext().Category.Where(category => category.ID == product.CategoryID).First();
+                SelectCategory = AllCategory.Where(category => category.ID == product.CategoryID).First();
                 SelectBrand = ShopContext.GetContext().Brand.Where(brand => brand.ID == product.BrandID).First();
                 Product = product;
             }
@@ -117,7 +118,7 @@ namespace MMTRShopWPF.ViewModel
                 });
             }
         }
-        public List<Category> AllCategory { get; private set; } = ShopContext.GetContext().Category.ToList();
+        public List<Category> AllCategory { get; private set; }
         private Category selectCategory;
         public Category SelectCategory
         {
