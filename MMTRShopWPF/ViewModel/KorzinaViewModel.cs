@@ -14,10 +14,10 @@ namespace MMTRShopWPF.ViewModel
         {
             user = myUser;
             this.page = page;
-            Korzine = ShopContext.GetContext().Korzine.Where(korzine => korzine.UserID == user.ID).ToList();
+            Korzine = UnitOfWork.Korzins.GetKorzineByIDUser(user.ID);
 
             Products = (from k in Korzine
-                        join p in ShopContext.GetContext().Product.ToList() on k.ProductID equals p.ID
+                        join p in UnitOfWork.Products.GetAll() on k.ProductID equals p.ID
                         select p).ToList();
         }
         private User user;
@@ -67,16 +67,16 @@ namespace MMTRShopWPF.ViewModel
                 return new Commands((obj) =>
                 {
                     int id  = int.Parse(obj.ToString());
-                    var item = Korzine.First(i => i.ID == id);
+                    var item = UnitOfWork.Korzins.GetById(id);
                     if (item.ValueProduct>0)
                     {
                         item.ValueProduct--;
                     }
                     if (item.ValueProduct==0)
                     {
-                        ShopContext.GetContext().Korzine.Remove(item);
+                        UnitOfWork.Korzins.Remove(item);
                     }
-                    ShopContext.GetContext().SaveChanges();
+                    UnitOfWork.Korzins.Save();
                     page.UpdateDataContext();
                 });
             }
@@ -88,10 +88,10 @@ namespace MMTRShopWPF.ViewModel
                 return new Commands((obj) =>
                 {
                     int id = int.Parse(obj.ToString());
-                    var item = Korzine.First(i => i.ID == id);
+                    var item = UnitOfWork.Korzins.GetById(id);
                     item.ValueProduct++;
-                    
-                    ShopContext.GetContext().SaveChanges();
+
+                    UnitOfWork.Korzins.Save();
                     page.UpdateDataContext();
                 });
             }
@@ -103,10 +103,10 @@ namespace MMTRShopWPF.ViewModel
                 return new Commands((obj) =>
                 {
                     int id = int.Parse(obj.ToString());
-                    var item = Korzine.First(i => i.ID == id);
-                    ShopContext.GetContext().Korzine.Remove(item);
-                   
-                    ShopContext.GetContext().SaveChanges();
+                    var item = UnitOfWork.Korzins.GetById(id);
+                    UnitOfWork.Korzins.Remove(item);
+
+                    UnitOfWork.Korzins.Save();
                     page.UpdateDataContext();
                 });
             }
