@@ -15,9 +15,12 @@ namespace MMTRShopWPF.Repositoryes
         {
             _context = context;
             Products = new ProductRepository(_context);
+            Korzins = new KorzineRopository(_context);
         }
 
         public IProductRepository Products { get;private set; }
+
+        public IKorzineRepository Korzins { get; private set; }
 
         public int Complete()
         {

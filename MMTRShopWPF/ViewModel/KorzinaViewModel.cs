@@ -14,9 +14,9 @@ namespace MMTRShopWPF.ViewModel
         {
             user = myUser;
             this.page = page;
-            var korzins= ShopContext.GetContext().Korzine.Where(korzine => korzine.UserID == user.ID).ToList();
-            Korzine = new ObservableCollection<Korzine>(korzins);
-            Products = (from k in korzine
+            Korzine = ShopContext.GetContext().Korzine.Where(korzine => korzine.UserID == user.ID).ToList();
+
+            Products = (from k in Korzine
                         join p in ShopContext.GetContext().Product.ToList() on k.ProductID equals p.ID
                         select p).ToList();
         }
@@ -33,8 +33,8 @@ namespace MMTRShopWPF.ViewModel
                 OnPropertyChanged(nameof(User));
             }
         }
-        private ObservableCollection<Korzine> korzine;
-        public ObservableCollection<Korzine> Korzine
+        private List<Korzine> korzine;
+        public List<Korzine> Korzine
         {
             get
             {

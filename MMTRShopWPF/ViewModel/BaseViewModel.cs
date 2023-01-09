@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MMTRShopWPF.Repositoryes;
+using MMTRShopWPF.Service;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -10,6 +12,7 @@ namespace MMTRShopWPF.ViewModel
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        protected UnitOfWork UnitOfWork = new UnitOfWork(new ShopContext());
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string propertyName)

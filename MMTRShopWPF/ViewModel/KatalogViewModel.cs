@@ -12,7 +12,6 @@ namespace MMTRShopWPF.ViewModel
 {
     public class KatalogViewModel : BaseViewModel
     {
-        private UnitOfWork unitOfWork = new UnitOfWork(new ShopContext());
         private int valuePage = 0;
         private int numPage = 1;
         public int NumPage
@@ -48,7 +47,7 @@ namespace MMTRShopWPF.ViewModel
 
         public List<Product> GetPageProduct()
         {
-            return unitOfWork.Products.GetProductsPage(NumPage, SizePage);
+            return UnitOfWork.Products.GetProductsPage(NumPage, SizePage);
         }
 
         private List<Product> productsPage;
