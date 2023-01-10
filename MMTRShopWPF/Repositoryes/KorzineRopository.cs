@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Repositoryes
 {
-    public class KorzineRopository : Repository<Korzine>, IKorzineRepository
+    public class KorzineRopository : Repository<Cart>, IKorzineRepository
     {
         public KorzineRopository(ShopContext context) : base(context)
         {
@@ -21,7 +21,7 @@ namespace MMTRShopWPF.Repositoryes
 
         
 
-        public List<Korzine> GetKorzineByIDUser(int id)
+        public List<Cart> GetKorzineByIDUser(int id)
         {
             return ShopContext.Korzine.Where(k=>k.UserID==id).ToList();
         }

@@ -99,7 +99,7 @@
     <Compile Include="Service\Admin.cs" />
     <Compile Include="Service\Brand.cs" />
     <Compile Include="Service\Category.cs" />
-    <Compile Include="Service\Korzine.cs" />
+    <Compile Include="Service\Cart.cs" />
     <Compile Include="Service\Product.cs" />
     <Compile Include="Service\ShopContext.cs" />
     <Compile Include="Service\User.cs" />

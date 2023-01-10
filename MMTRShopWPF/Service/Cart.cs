@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Service
 {
-    public class Korzine
+    public class Cart
     {
         [Key()]
         public int ID { get; set; }
@@ -19,11 +19,11 @@ namespace MMTRShopWPF.Service
 
         public virtual User User { get; set; }
 
-        public Korzine()
+        public Cart()
         {
 
         }
-        public Korzine(int userID, int productID, int value)
+        public Cart(int userID, int productID, int value)
         {
             UserID = userID;
             ProductID = productID;

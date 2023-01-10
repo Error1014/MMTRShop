@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Repositoryes
 {
-    public interface IKorzineRepository:IRepository<Korzine>
+    public interface IKorzineRepository:IRepository<Cart>
     {
         //List<Korzine> EditValueProduct(int id, int number);
-        List<Korzine> GetKorzineByIDUser(int id);
+        List<Cart> GetKorzineByIDUser(int id);
     }
 }

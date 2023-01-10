@@ -18,7 +18,7 @@ namespace MMTRShopWPF.Service
         public string Patronymic { get; set; }
 
         public virtual Admin Admin { get; set; }
-        public virtual List<Korzine> Korzine { get; set; }
+        public virtual List<Cart> Cart { get; set; }
         public User()
         {
 

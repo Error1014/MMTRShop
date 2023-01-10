@@ -33,8 +33,8 @@ namespace MMTRShopWPF.ViewModel
                 OnPropertyChanged(nameof(User));
             }
         }
-        private List<Korzine> korzine;
-        public List<Korzine> Korzine
+        private List<Cart> korzine;
+        public List<Cart> Korzine
         {
             get
             {

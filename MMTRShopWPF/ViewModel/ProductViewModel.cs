@@ -77,7 +77,7 @@ namespace MMTRShopWPF.ViewModel
                         }
                         if (isNew)
                         {
-                            UnitOfWork.Korzins.Add(new Korzine(user.ID, Product.ID, 1));
+                            UnitOfWork.Korzins.Add(new Cart(user.ID, Product.ID, 1));
                         }
                         UnitOfWork.Korzins.Save();
                         MessageBox.Show("Успешно");
@@ -101,6 +101,7 @@ namespace MMTRShopWPF.ViewModel
                     }
                     UnitOfWork.Products.Save();
                     MessageBox.Show("Успешно");
+
                 });
             }
         }

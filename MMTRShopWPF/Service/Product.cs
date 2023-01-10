@@ -23,6 +23,6 @@ namespace MMTRShopWPF.Service
         public int? BrandID { get; set; }
         [ForeignKey("BrandID")]
         public virtual Brand Brand { get; set; }
-        public virtual List<Korzine> Korzine { get; set; }
+        public virtual List<Cart> Cart { get; set; }
     }
 }
