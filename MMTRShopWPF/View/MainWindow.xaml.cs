@@ -1,4 +1,6 @@
-﻿using MMTRShopWPF.View.Pages;
+﻿using MMTRShopWPF.Service;
+using MMTRShopWPF.View.Pages;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,14 +17,12 @@ namespace MMTRShopWPF
             InitializeComponent();
             MainWindowFrame = MainFrame;
             MainWindowFrame.Content = new MainPage();
-            //using (var db = new ShopContext())
-            //{
-            //    var c = new Category();
-            //    db.Category.Add(c);
-            //    db.SaveChanges();
-            //    db.Category.Remove(c);
-            //    db.SaveChanges();
-            //}
+            using (var db = new ShopContext())
+            {
+                var user = new User("1", "2", "3", "4", "5");
+                db.User.Add(user);
+                db.SaveChanges();
+            }
         }
     }
 }

@@ -7,13 +7,13 @@ namespace MMTRShopWPF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddTableBrand : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddTableBrand));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202301071912491_AddTableBrand"; }
+            get { return "202301101256573_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

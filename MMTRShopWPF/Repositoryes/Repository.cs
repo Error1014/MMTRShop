@@ -38,7 +38,7 @@ namespace MMTRShopWPF.Repositoryes
             return Context.Set<TEntity>().ToList();
         }
 
-        public TEntity GetById(int id)
+        public TEntity GetById(Guid id)
         {
             return Context.Set<TEntity>().Find(id);
         }

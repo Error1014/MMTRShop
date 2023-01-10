@@ -69,29 +69,9 @@
     <Compile Include="Components\BindingPassword.xaml.cs">
       <DependentUpon>BindingPassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202301071333205_InitialCreate.cs" />
-    <Compile Include="Migrations\202301071333205_InitialCreate.designer.cs">
-      <DependentUpon>202301071333205_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301071630587_RenameDiscount.cs" />
-    <Compile Include="Migrations\202301071630587_RenameDiscount.designer.cs">
-      <DependentUpon>202301071630587_RenameDiscount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301071912491_AddTableBrand.cs" />
-    <Compile Include="Migrations\202301071912491_AddTableBrand.designer.cs">
-      <DependentUpon>202301071912491_AddTableBrand.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301100831318_RenameCart.cs" />
-    <Compile Include="Migrations\202301100831318_RenameCart.designer.cs">
-      <DependentUpon>202301100831318_RenameCart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301100841479_RenameVariables.cs" />
-    <Compile Include="Migrations\202301100841479_RenameVariables.designer.cs">
-      <DependentUpon>202301100841479_RenameVariables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301101157516_qqq.cs" />
-    <Compile Include="Migrations\202301101157516_qqq.designer.cs">
-      <DependentUpon>202301101157516_qqq.cs</DependentUpon>
+    <Compile Include="Migrations\202301101256573_InitialCreate.cs" />
+    <Compile Include="Migrations\202301101256573_InitialCreate.designer.cs">
+      <DependentUpon>202301101256573_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositoryes\BrandRepository.cs" />
@@ -195,23 +175,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202301071333205_InitialCreate.resx">
-      <DependentUpon>202301071333205_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301071630587_RenameDiscount.resx">
-      <DependentUpon>202301071630587_RenameDiscount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301071912491_AddTableBrand.resx">
-      <DependentUpon>202301071912491_AddTableBrand.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301100831318_RenameCart.resx">
-      <DependentUpon>202301100831318_RenameCart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301100841479_RenameVariables.resx">
-      <DependentUpon>202301100841479_RenameVariables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301101157516_qqq.resx">
-      <DependentUpon>202301101157516_qqq.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202301101256573_InitialCreate.resx">
+      <DependentUpon>202301101256573_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

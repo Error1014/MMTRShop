@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using MMTRShopWPF.View.Pages;
+using System;
 
 namespace MMTRShopWPF.ViewModel
 {
@@ -66,7 +67,7 @@ namespace MMTRShopWPF.ViewModel
             {
                 return new Commands((obj) =>
                 {
-                    int id  = int.Parse(obj.ToString());
+                    Guid id = Guid.Parse(obj.ToString());
                     var item = UnitOfWork.Carts.GetById(id);
                     if (item.ProductCount>0)
                     {
@@ -87,7 +88,7 @@ namespace MMTRShopWPF.ViewModel
             {
                 return new Commands((obj) =>
                 {
-                    int id = int.Parse(obj.ToString());
+                    Guid id = Guid.Parse(obj.ToString());
                     var item = UnitOfWork.Carts.GetById(id);
                     item.ProductCount++;
 
@@ -102,7 +103,7 @@ namespace MMTRShopWPF.ViewModel
             {
                 return new Commands((obj) =>
                 {
-                    int id = int.Parse(obj.ToString());
+                    Guid id = Guid.Parse(obj.ToString());
                     var item = UnitOfWork.Carts.GetById(id);
                     UnitOfWork.Carts.Remove(item);
 
