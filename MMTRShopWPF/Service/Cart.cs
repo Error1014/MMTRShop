@@ -10,10 +10,10 @@ namespace MMTRShopWPF.Service
     public class Cart
     {
         [Key()]
-        public int Id { get; set; }
-        
-        public int UserId { get; set; }
-        public int ProductId { get; set; }
+        public Guid Id2 { get; set; }
+
+        public Guid UserId2 { get; set; }
+        public Guid ProductId2 { get; set; }
         public virtual Product Product { get; set; }
         public int ProductCount { get; set; }
 
@@ -23,10 +23,10 @@ namespace MMTRShopWPF.Service
         {
 
         }
-        public Cart(int userID, int productId, int count)
+        public Cart(Guid userID, Guid productId, int count)
         {
-            UserId = userID;
-            ProductId = productId;
+            UserId2 = userID;
+            ProductId2 = productId;
             ProductCount = count;
         }
     }

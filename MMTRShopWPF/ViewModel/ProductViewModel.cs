@@ -28,9 +28,9 @@ namespace MMTRShopWPF.ViewModel
             else
             {
                 isAdd = false;
-                SelectCategory = AllCategory.Where(category => category.Id == product.CategoryId).First();
-                SelectBrand = AllBrand.Where(brand => brand.Id == product.BrandId).First();
-                Product = UnitOfWork.Products.GetById(product.Id);
+                //SelectCategory = AllCategory.Where(category => category.Id == product.CategoryId).First();
+                //SelectBrand = AllBrand.Where(brand => brand.Id == product.BrandId).First();
+                //Product = UnitOfWork.Products.GetById(product.Id);
             }
 
         }
@@ -65,20 +65,20 @@ namespace MMTRShopWPF.ViewModel
                     }
                     else
                     {
-                        var myKorzine = UnitOfWork.Carts.GetKorzineByIDUser(user.Id);
-                        bool isNew = true;
-                        for (int i = 0; i < myKorzine.Count; i++)
-                        {
-                            if (myKorzine[i].ProductId == Product.Id)
-                            {
-                                isNew = false;
-                                myKorzine[i].ProductCount++;
-                            }
-                        }
-                        if (isNew)
-                        {
-                            UnitOfWork.Carts.Add(new Cart(user.Id, Product.Id, 1));
-                        }
+                        //var myKorzine = UnitOfWork.Carts.GetKorzineByIDUser(user.Id);
+                        //bool isNew = true;
+                        //for (int i = 0; i < myKorzine.Count; i++)
+                        //{
+                        //    //if (myKorzine[i].ProductId == Product.Id)
+                        //    //{
+                        //    //    isNew = false;
+                        //    //    myKorzine[i].ProductCount++;
+                        //    //}
+                        //}
+                        //if (isNew)
+                        //{
+                        //    //UnitOfWork.Carts.Add(new Cart(user.Id, Product.Id, 1));
+                        //}
                         UnitOfWork.Carts.Save();
                         MessageBox.Show("Успешно");
                     }
@@ -92,13 +92,13 @@ namespace MMTRShopWPF.ViewModel
             {
                 return new Commands((obj) =>
                 {
-                    product.CategoryId = SelectCategory.Id;
-                    product.BrandId = SelectBrand.Id;
-                    if (isAdd)
-                    {
-                        UnitOfWork.Products.Add(Product);
-                        isAdd = false;
-                    }
+                    //product.CategoryId = SelectCategory.Id;
+                    //product.BrandId = SelectBrand.Id;
+                    //if (isAdd)
+                    //{
+                    //    UnitOfWork.Products.Add(Product);
+                    //    isAdd = false;
+                    //}
                     UnitOfWork.Products.Save();
                     MessageBox.Show("Успешно");
 

@@ -94,11 +94,11 @@ namespace MMTRShopWPF.ViewModel
                             var admins = ShopContext.GetContext().Admin.ToList();
                             foreach (var admin in admins)
                             {
-                                if (admin.Id == user.Id)
-                                {
-                                    MainWindow.MainWindowFrame.Content = new MainPage(admin);
-                                    return;
-                                }
+                                //if (admin.Id == user.Id)
+                                //{
+                                //    MainWindow.MainWindowFrame.Content = new MainPage(admin);
+                                //    return;
+                                //}
                             }
                             MainWindow.MainWindowFrame.Content = new MainPage(user);
                         }

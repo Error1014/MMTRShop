@@ -89,6 +89,14 @@
     <Compile Include="Migrations\202301100841479_RenameVariables.designer.cs">
       <DependentUpon>202301100841479_RenameVariables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301101143135_AddNewGuidId.cs" />
+    <Compile Include="Migrations\202301101143135_AddNewGuidId.designer.cs">
+      <DependentUpon>202301101143135_AddNewGuidId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301101147069_ChangeIdIntToGuid.cs" />
+    <Compile Include="Migrations\202301101147069_ChangeIdIntToGuid.designer.cs">
+      <DependentUpon>202301101147069_ChangeIdIntToGuid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositoryes\BrandRepository.cs" />
     <Compile Include="Repositoryes\CategoryRepository.cs" />
@@ -205,6 +213,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301100841479_RenameVariables.resx">
       <DependentUpon>202301100841479_RenameVariables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301101143135_AddNewGuidId.resx">
+      <DependentUpon>202301101143135_AddNewGuidId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301101147069_ChangeIdIntToGuid.resx">
+      <DependentUpon>202301101147069_ChangeIdIntToGuid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

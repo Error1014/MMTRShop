@@ -10,7 +10,7 @@ namespace MMTRShopWPF.Service
     public class Category
     {
         [Key()]
-        public int Id { get; set; }
+        public Guid Id2 { get; set; }
         public string Title { get; set; }
         public virtual List<Product> Product { get; set; }
     }

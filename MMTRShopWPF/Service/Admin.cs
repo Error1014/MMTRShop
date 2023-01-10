@@ -11,6 +11,7 @@ namespace MMTRShopWPF.Service
     {
         [Key()]
         public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         public virtual User User { get; set; }
     }
