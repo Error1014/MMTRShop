@@ -67,7 +67,7 @@ namespace MMTRShopWPF.ViewModel
             {
                 return new Commands((obj) =>
                 {
-                    Guid id = Guid.Parse(obj.ToString());
+                    System.Guid id = System.Guid.Parse(obj.ToString());
                     var item = UnitOfWork.Carts.GetById(id);
                     if (item.ProductCount>0)
                     {
@@ -88,7 +88,7 @@ namespace MMTRShopWPF.ViewModel
             {
                 return new Commands((obj) =>
                 {
-                    Guid id = Guid.Parse(obj.ToString());
+                    System.Guid id = System.Guid.Parse(obj.ToString());
                     var item = UnitOfWork.Carts.GetById(id);
                     item.ProductCount++;
 
@@ -103,7 +103,7 @@ namespace MMTRShopWPF.ViewModel
             {
                 return new Commands((obj) =>
                 {
-                    Guid id = Guid.Parse(obj.ToString());
+                    System.Guid id = System.Guid.Parse(obj.ToString());
                     var item = UnitOfWork.Carts.GetById(id);
                     UnitOfWork.Carts.Remove(item);
 

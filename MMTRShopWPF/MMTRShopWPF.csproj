@@ -73,21 +73,25 @@
     <Compile Include="Migrations\202301101256573_InitialCreate.designer.cs">
       <DependentUpon>202301101256573_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301101404541_Q.cs" />
+    <Compile Include="Migrations\202301101404541_Q.designer.cs">
+      <DependentUpon>202301101404541_Q.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Repositoryes\BrandRepository.cs" />
-    <Compile Include="Repositoryes\CategoryRepository.cs" />
-    <Compile Include="Repositoryes\IBrandRepository.cs" />
-    <Compile Include="Repositoryes\ICategoryRepository.cs" />
-    <Compile Include="Repositoryes\ICartRepository.cs" />
-    <Compile Include="Repositoryes\IProductRepository.cs" />
-    <Compile Include="Repositoryes\IRepository.cs" />
-    <Compile Include="Repositoryes\IUnitOfWork.cs" />
-    <Compile Include="Repositoryes\IUserRepository.cs" />
-    <Compile Include="Repositoryes\CartRopository.cs" />
-    <Compile Include="Repositoryes\ProductRepository.cs" />
-    <Compile Include="Repositoryes\Repository.cs" />
-    <Compile Include="Repositoryes\UnitOfWork.cs" />
-    <Compile Include="Repositoryes\UserRepository.cs" />
+    <Compile Include="Repositories\BrandRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\IBrandRepository.cs" />
+    <Compile Include="Repositories\ICategoryRepository.cs" />
+    <Compile Include="Repositories\ICartRepository.cs" />
+    <Compile Include="Repositories\IProductRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IUnitOfWork.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\CartRopository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Service\Admin.cs" />
     <Compile Include="Service\Brand.cs" />
     <Compile Include="Service\Category.cs" />
@@ -177,6 +181,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\202301101256573_InitialCreate.resx">
       <DependentUpon>202301101256573_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301101404541_Q.resx">
+      <DependentUpon>202301101404541_Q.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

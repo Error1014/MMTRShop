@@ -10,8 +10,8 @@ namespace MMTRShopWPF.Service
 {
     public class User
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key()]
+        
+        [Key(),DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }

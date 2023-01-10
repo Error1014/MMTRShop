@@ -10,6 +10,6 @@ namespace MMTRShopWPF.Repositoryes
     public interface ICartRepository:IRepository<Cart>
     {
         //List<Korzine> EditValueProduct(int id, int number);
-        List<Cart> GetKorzineByIDUser(Guid id);
+        List<Cart> GetKorzineByIDUser(System.Guid id);
     }
 }

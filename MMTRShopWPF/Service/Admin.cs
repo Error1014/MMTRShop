@@ -10,9 +10,8 @@ namespace MMTRShopWPF.Service
 {
     public class Admin
     {
-        [Key(), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key(), DatabaseGenerated(DatabaseGeneratedOption.Identity), ForeignKey("User")]
         public Guid Id { get; set; }
-        [Required]
         public virtual User User { get; set; }
     }
 }
