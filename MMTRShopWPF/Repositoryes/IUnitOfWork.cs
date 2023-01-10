@@ -9,7 +9,7 @@ namespace MMTRShopWPF.Repositoryes
     internal interface IUnitOfWork:IDisposable
     {
         IProductRepository Products { get; }
-        IKorzineRepository Korzins { get; }
+        ICartRepository Carts { get; }
         ICategoryRepository Categorys { get; }
         IBrandRepository Brands { get; }
         IUserRepository Users { get; }

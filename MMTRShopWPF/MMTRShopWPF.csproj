@@ -94,12 +94,12 @@
     <Compile Include="Repositoryes\CategoryRepository.cs" />
     <Compile Include="Repositoryes\IBrandRepository.cs" />
     <Compile Include="Repositoryes\ICategoryRepository.cs" />
-    <Compile Include="Repositoryes\IKorzineRepository.cs" />
+    <Compile Include="Repositoryes\ICartRepository.cs" />
     <Compile Include="Repositoryes\IProductRepository.cs" />
     <Compile Include="Repositoryes\IRepository.cs" />
     <Compile Include="Repositoryes\IUnitOfWork.cs" />
     <Compile Include="Repositoryes\IUserRepository.cs" />
-    <Compile Include="Repositoryes\KorzineRopository.cs" />
+    <Compile Include="Repositoryes\CartRopository.cs" />
     <Compile Include="Repositoryes\ProductRepository.cs" />
     <Compile Include="Repositoryes\Repository.cs" />
     <Compile Include="Repositoryes\UnitOfWork.cs" />

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Repositoryes
 {
-    public class KorzineRopository : Repository<Cart>, IKorzineRepository
+    public class CartRopository : Repository<Cart>, ICartRepository
     {
-        public KorzineRopository(ShopContext context) : base(context)
+        public CartRopository(ShopContext context) : base(context)
         {
 
         }

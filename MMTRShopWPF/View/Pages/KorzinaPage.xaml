@@ -9,7 +9,7 @@
       Title="KorzinaPage">
 
     <Grid Background="White">
-        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListProducts"  ItemsSource="{Binding Korzine}" HorizontalAlignment="Center">
+        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListProducts"  ItemsSource="{Binding Cart}" HorizontalAlignment="Center">
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -47,14 +47,14 @@
 
                             <DockPanel HorizontalAlignment="Center">
                                 <!--<TextBlock TextAlignment="Center" Height="20" Text="Количество"/>-->
-                                <Button Width="30" Height="30" Command="{Binding ElementName=ListProducts, Path=DataContext.ProductMinus}" CommandParameter="{Binding ID}" >
+                                <Button Width="30" Height="30" Command="{Binding ElementName=ListProducts, Path=DataContext.ProductMinus}" CommandParameter="{Binding Id}" >
                                     <TextBlock Text="-" />
                                 </Button>
-                                <TextBlock TextAlignment="Center" Width="60" Height="20"  Text="{Binding ValueProduct}"/>
-                                <Button Width="30" Height="30" Command="{Binding ElementName=ListProducts, Path=DataContext.ProductPlus}" CommandParameter="{Binding ID}" >
+                                <TextBlock TextAlignment="Center" Width="60" Height="20"  Text="{Binding ProductCount}"/>
+                                <Button Width="30" Height="30" Command="{Binding ElementName=ListProducts, Path=DataContext.ProductPlus}" CommandParameter="{Binding Id}" >
                                     <TextBlock Text="+" />
                                 </Button>
-                                <Button Margin="50,0" Height="30" Command="{Binding ElementName=ListProducts, Path=DataContext.ProductRemove}" CommandParameter="{Binding ID}" >
+                                <Button Margin="50,0" Height="30" Command="{Binding ElementName=ListProducts, Path=DataContext.ProductRemove}" CommandParameter="{Binding Id}" >
                                     <TextBlock Text="Удалить из корзины" />
                                 </Button>
                             </DockPanel>

@@ -65,7 +65,7 @@ namespace MMTRShopWPF.ViewModel
                     }
                     else
                     {
-                        var myKorzine = UnitOfWork.Korzins.GetKorzineByIDUser(user.Id);
+                        var myKorzine = UnitOfWork.Carts.GetKorzineByIDUser(user.Id);
                         bool isNew = true;
                         for (int i = 0; i < myKorzine.Count; i++)
                         {
@@ -77,9 +77,9 @@ namespace MMTRShopWPF.ViewModel
                         }
                         if (isNew)
                         {
-                            UnitOfWork.Korzins.Add(new Cart(user.Id, Product.Id, 1));
+                            UnitOfWork.Carts.Add(new Cart(user.Id, Product.Id, 1));
                         }
-                        UnitOfWork.Korzins.Save();
+                        UnitOfWork.Carts.Save();
                         MessageBox.Show("Успешно");
                     }
                 });

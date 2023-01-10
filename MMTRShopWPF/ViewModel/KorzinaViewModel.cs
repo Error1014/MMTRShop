@@ -14,9 +14,9 @@ namespace MMTRShopWPF.ViewModel
         {
             user = myUser;
             this.page = page;
-            Korzine = UnitOfWork.Korzins.GetKorzineByIDUser(user.Id);
+            Cart = UnitOfWork.Carts.GetKorzineByIDUser(user.Id);
 
-            Products = (from k in Korzine
+            Products = (from k in Cart
                         join p in UnitOfWork.Products.GetAll() on k.ProductId equals p.Id
                         select p).ToList();
         }
@@ -33,17 +33,17 @@ namespace MMTRShopWPF.ViewModel
                 OnPropertyChanged(nameof(User));
             }
         }
-        private List<Cart> korzine;
-        public List<Cart> Korzine
+        private List<Cart> cart;
+        public List<Cart> Cart
         {
             get
             {
-                return korzine;
+                return cart;
             }
             set
             {
-                korzine = value;
-                OnPropertyChanged(nameof(Korzine));
+                cart = value;
+                OnPropertyChanged(nameof(Cart));
             }
         }
 
@@ -67,16 +67,16 @@ namespace MMTRShopWPF.ViewModel
                 return new Commands((obj) =>
                 {
                     int id  = int.Parse(obj.ToString());
-                    var item = UnitOfWork.Korzins.GetById(id);
+                    var item = UnitOfWork.Carts.GetById(id);
                     if (item.ProductCount>0)
                     {
                         item.ProductCount--;
                     }
                     if (item.ProductCount==0)
                     {
-                        UnitOfWork.Korzins.Remove(item);
+                        UnitOfWork.Carts.Remove(item);
                     }
-                    UnitOfWork.Korzins.Save();
+                    UnitOfWork.Carts.Save();
                     page.UpdateDataContext();
                 });
             }
@@ -88,10 +88,10 @@ namespace MMTRShopWPF.ViewModel
                 return new Commands((obj) =>
                 {
                     int id = int.Parse(obj.ToString());
-                    var item = UnitOfWork.Korzins.GetById(id);
+                    var item = UnitOfWork.Carts.GetById(id);
                     item.ProductCount++;
 
-                    UnitOfWork.Korzins.Save();
+                    UnitOfWork.Carts.Save();
                     page.UpdateDataContext();
                 });
             }
@@ -103,10 +103,10 @@ namespace MMTRShopWPF.ViewModel
                 return new Commands((obj) =>
                 {
                     int id = int.Parse(obj.ToString());
-                    var item = UnitOfWork.Korzins.GetById(id);
-                    UnitOfWork.Korzins.Remove(item);
+                    var item = UnitOfWork.Carts.GetById(id);
+                    UnitOfWork.Carts.Remove(item);
 
-                    UnitOfWork.Korzins.Save();
+                    UnitOfWork.Carts.Save();
                     page.UpdateDataContext();
                 });
             }
