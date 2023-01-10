@@ -10,7 +10,7 @@ namespace MMTRShopWPF.Service
     public class Admin
     {
         [Key()]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [Required]
         public virtual User User { get; set; }
     }

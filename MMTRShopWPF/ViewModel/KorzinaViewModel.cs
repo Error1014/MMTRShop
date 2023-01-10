@@ -17,7 +17,7 @@ namespace MMTRShopWPF.ViewModel
             Korzine = UnitOfWork.Korzins.GetKorzineByIDUser(user.ID);
 
             Products = (from k in Korzine
-                        join p in UnitOfWork.Products.GetAll() on k.ProductID equals p.ID
+                        join p in UnitOfWork.Products.GetAll() on k.ProductId equals p.Id
                         select p).ToList();
         }
         private User user;
@@ -68,11 +68,11 @@ namespace MMTRShopWPF.ViewModel
                 {
                     int id  = int.Parse(obj.ToString());
                     var item = UnitOfWork.Korzins.GetById(id);
-                    if (item.ValueProduct>0)
+                    if (item.ProductCount>0)
                     {
-                        item.ValueProduct--;
+                        item.ProductCount--;
                     }
-                    if (item.ValueProduct==0)
+                    if (item.ProductCount==0)
                     {
                         UnitOfWork.Korzins.Remove(item);
                     }
@@ -89,7 +89,7 @@ namespace MMTRShopWPF.ViewModel
                 {
                     int id = int.Parse(obj.ToString());
                     var item = UnitOfWork.Korzins.GetById(id);
-                    item.ValueProduct++;
+                    item.ProductCount++;
 
                     UnitOfWork.Korzins.Save();
                     page.UpdateDataContext();

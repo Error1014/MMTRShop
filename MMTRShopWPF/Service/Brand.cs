@@ -10,7 +10,7 @@ namespace MMTRShopWPF.Service
     public class Brand
     {
         [Key()]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public virtual List<Product> Products { get; set; }

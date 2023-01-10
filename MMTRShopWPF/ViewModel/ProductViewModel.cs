@@ -28,9 +28,9 @@ namespace MMTRShopWPF.ViewModel
             else
             {
                 isAdd = false;
-                SelectCategory = AllCategory.Where(category => category.ID == product.CategoryID).First();
-                SelectBrand = AllBrand.Where(brand => brand.ID == product.BrandID).First();
-                Product = UnitOfWork.Products.GetById(product.ID);
+                SelectCategory = AllCategory.Where(category => category.Id == product.CategoryId).First();
+                SelectBrand = AllBrand.Where(brand => brand.ID == product.BrandId).First();
+                Product = UnitOfWork.Products.GetById(product.Id);
             }
 
         }
@@ -69,15 +69,15 @@ namespace MMTRShopWPF.ViewModel
                         bool isNew = true;
                         for (int i = 0; i < myKorzine.Count; i++)
                         {
-                            if (myKorzine[i].ProductID == Product.ID)
+                            if (myKorzine[i].ProductId == Product.Id)
                             {
                                 isNew = false;
-                                myKorzine[i].ValueProduct++;
+                                myKorzine[i].ProductCount++;
                             }
                         }
                         if (isNew)
                         {
-                            UnitOfWork.Korzins.Add(new Cart(user.ID, Product.ID, 1));
+                            UnitOfWork.Korzins.Add(new Cart(user.ID, Product.Id, 1));
                         }
                         UnitOfWork.Korzins.Save();
                         MessageBox.Show("Успешно");
@@ -92,8 +92,8 @@ namespace MMTRShopWPF.ViewModel
             {
                 return new Commands((obj) =>
                 {
-                    product.CategoryID = SelectCategory.ID;
-                    product.BrandID = SelectBrand.ID;
+                    product.CategoryId = SelectCategory.Id;
+                    product.BrandId = SelectBrand.ID;
                     if (isAdd)
                     {
                         UnitOfWork.Products.Add(Product);

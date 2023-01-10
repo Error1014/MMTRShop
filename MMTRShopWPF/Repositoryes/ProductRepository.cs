@@ -21,7 +21,7 @@ namespace MMTRShopWPF.Repositoryes
 
         public List<Product> GetProductsPage(int numPage, int sizePage)
         {
-            return ShopContext.Product.OrderBy(product=> product.ID).Skip((numPage-1)*sizePage).Take(sizePage).ToList();
+            return ShopContext.Product.OrderBy(product=> product.Id).Skip((numPage-1)*sizePage).Take(sizePage).ToList();
         }
     }
 }
