@@ -10,7 +10,7 @@ namespace MMTRShopWPF.Service
     public class User
     {
         [Key()]
-        public Guid Id2 { get; set; }
+        public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string LastName { get; set; }

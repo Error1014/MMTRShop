@@ -11,18 +11,17 @@ namespace MMTRShopWPF.Service
     public class Product
     {
         [Key()]
-        public Guid Id2 { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
 
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int Discount { get; set; }
         public string Photo { get; set; }
-
-        public Guid CategoryId2 { get; set; }
+        public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
-        public Guid BrandId2 { get; set; }
-        [ForeignKey("BrandId2")]
+        public int? BrandId { get; set; }
+        [ForeignKey("BrandId")]
         public virtual Brand Brand { get; set; }
         public virtual List<Cart> Cart { get; set; }
     }

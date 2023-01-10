@@ -7,13 +7,13 @@ namespace MMTRShopWPF.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class ChangeIdIntToGuid : IMigrationMetadata
+    public sealed partial class qqq : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeIdIntToGuid));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(qqq));
         
         string IMigrationMetadata.Id
         {
-            get { return "202301101147069_ChangeIdIntToGuid"; }
+            get { return "202301101157516_qqq"; }
         }
         
         string IMigrationMetadata.Source
