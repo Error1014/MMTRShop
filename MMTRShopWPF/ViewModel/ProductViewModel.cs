@@ -29,7 +29,7 @@ namespace MMTRShopWPF.ViewModel
             {
                 isAdd = false;
                 SelectCategory = AllCategory.Where(category => category.Id == product.CategoryId).First();
-                SelectBrand = AllBrand.Where(brand => brand.ID == product.BrandId).First();
+                SelectBrand = AllBrand.Where(brand => brand.Id == product.BrandId).First();
                 Product = UnitOfWork.Products.GetById(product.Id);
             }
 
@@ -65,7 +65,7 @@ namespace MMTRShopWPF.ViewModel
                     }
                     else
                     {
-                        var myKorzine = UnitOfWork.Korzins.GetKorzineByIDUser(user.ID);
+                        var myKorzine = UnitOfWork.Korzins.GetKorzineByIDUser(user.Id);
                         bool isNew = true;
                         for (int i = 0; i < myKorzine.Count; i++)
                         {
@@ -77,7 +77,7 @@ namespace MMTRShopWPF.ViewModel
                         }
                         if (isNew)
                         {
-                            UnitOfWork.Korzins.Add(new Cart(user.ID, Product.Id, 1));
+                            UnitOfWork.Korzins.Add(new Cart(user.Id, Product.Id, 1));
                         }
                         UnitOfWork.Korzins.Save();
                         MessageBox.Show("Успешно");
@@ -93,7 +93,7 @@ namespace MMTRShopWPF.ViewModel
                 return new Commands((obj) =>
                 {
                     product.CategoryId = SelectCategory.Id;
-                    product.BrandId = SelectBrand.ID;
+                    product.BrandId = SelectBrand.Id;
                     if (isAdd)
                     {
                         UnitOfWork.Products.Add(Product);

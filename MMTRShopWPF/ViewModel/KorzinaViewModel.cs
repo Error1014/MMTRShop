@@ -14,7 +14,7 @@ namespace MMTRShopWPF.ViewModel
         {
             user = myUser;
             this.page = page;
-            Korzine = UnitOfWork.Korzins.GetKorzineByIDUser(user.ID);
+            Korzine = UnitOfWork.Korzins.GetKorzineByIDUser(user.Id);
 
             Products = (from k in Korzine
                         join p in UnitOfWork.Products.GetAll() on k.ProductId equals p.Id
