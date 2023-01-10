@@ -85,6 +85,10 @@
     <Compile Include="Migrations\202301100831318_RenameCart.designer.cs">
       <DependentUpon>202301100831318_RenameCart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301100841479_RenameVariables.cs" />
+    <Compile Include="Migrations\202301100841479_RenameVariables.designer.cs">
+      <DependentUpon>202301100841479_RenameVariables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositoryes\BrandRepository.cs" />
     <Compile Include="Repositoryes\CategoryRepository.cs" />
@@ -198,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301100831318_RenameCart.resx">
       <DependentUpon>202301100831318_RenameCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301100841479_RenameVariables.resx">
+      <DependentUpon>202301100841479_RenameVariables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
