@@ -34,7 +34,7 @@ public NavigationViewModel(Admin admin)
 {
             SelectPage = new KatalogPage(this);
             Admin = admin;
-            //User = ShopContext.GetContext().User.Where(user => user.Id == Admin.Id).FirstOrDefault();
+            User = ShopContext.GetContext().User.Where(user => user.Id == Admin.Id).FirstOrDefault();
             VisibilityButtonClient = Visibility.Collapsed;
             VisibilityButtonAdmin = Visibility.Visible;
             TextButton = "Выйти";

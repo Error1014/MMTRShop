@@ -14,11 +14,11 @@ namespace MMTRShopWPF.ViewModel
         {
             user = myUser;
             this.page = page;
-            //Cart = UnitOfWork.Carts.GetKorzineByIDUser(user.Id);
+            Cart = UnitOfWork.Carts.GetKorzineByIDUser(user.Id);
 
-            //Products = (from k in Cart
-            //            join p in UnitOfWork.Products.GetAll() on k.ProductId equals p.Id
-            //            select p).ToList();
+            Products = (from k in Cart
+                        join p in UnitOfWork.Products.GetAll() on k.ProductId equals p.Id
+                        select p).ToList();
         }
         private User user;
         public User User
