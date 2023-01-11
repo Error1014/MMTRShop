@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMTRShopWPF.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace MMTRShopWPF.Repositoryes
         ICategoryRepository Categorys { get; }
         IBrandRepository Brands { get; }
         IUserRepository Users { get; }
+        IClientRepository  Clients { get; }
         int Complete();
     }
 }

@@ -13,7 +13,7 @@ namespace MMTRShopWPF.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202301110846166_InitialCreate"; }
+            get { return "202301111132497_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

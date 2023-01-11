@@ -1,4 +1,5 @@
-﻿using MMTRShopWPF.Service;
+﻿using MMTRShopWPF.Repositories;
+using MMTRShopWPF.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace MMTRShopWPF.Repositoryes
             Categorys = new CategoryRepository(_context);
             Brands = new BrandRepository(_context);
             Users = new UserRepository(_context);
+            Clients = new ClientRepository(_context);
         }
 
         public IProductRepository Products { get;private set; }
@@ -30,6 +32,8 @@ namespace MMTRShopWPF.Repositoryes
         public IBrandRepository Brands { get; private set; }
 
         public IUserRepository Users { get; private set; }
+
+        public IClientRepository Clients { get; private set; }
 
         public int Complete()
         {

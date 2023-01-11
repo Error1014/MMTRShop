@@ -12,20 +12,20 @@ namespace MMTRShopWPF.Service
     public class Cart : BaseEntity<Guid>
     {
         
-        public Guid UserId { get; set; }
+        public Guid ClientId { get; set; }
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; }
         public int ProductCount { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual Client Client { get; set; }
 
         public Cart()
         {
 
         }
-        public Cart(Guid userID, Guid productId, int count)
+        public Cart(Guid clientId, Guid productId, int count)
         {
-            UserId = userID;
+            ClientId = clientId;
             ProductId = productId;
             ProductCount = count;
         }

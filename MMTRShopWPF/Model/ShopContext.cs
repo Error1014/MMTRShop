@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMTRShopWPF.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -29,6 +30,8 @@ namespace MMTRShopWPF.Service
         public DbSet<Admin> Admin { get; set; }
         public DbSet<Cart> Cart { get; set; }
         public DbSet<Brand> Brand { get; set; }
+        public DbSet<Operator> Operator { get; set; }
+        public DbSet<Client> Client { get; set; }
 
 
     }

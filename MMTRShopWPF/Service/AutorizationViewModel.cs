@@ -1,4 +1,5 @@
-﻿using MMTRShopWPF.Service;
+﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Service;
 using MMTRShopWPF.View.Pages;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace MMTRShopWPF.ViewModel
             TextBtnRegistration = "Зарегистрироваться";
         }
 
-        private User user = new User();
+        private User user = null; /*= new User()*/
         public User User
         {
             get { return user; }
@@ -154,10 +155,10 @@ namespace MMTRShopWPF.ViewModel
                     }
                     if (CheckTwoPassword())
                     {
-                        UnitOfWork.Users.Add(new User(User.Login, User.Password, User.LastName, User.FirstName, User.Patronymic));
-                        UnitOfWork.Users.Save();
+                        UnitOfWork.Clients.Add(new Client());//User.Login, User.Password, User.LastName, User.FirstName, User.Patronymic
+                        UnitOfWork.Clients.Save();
                         MessageBox.Show("Регистрация прошла успешно");
-                        User = new User();
+                        User = null;
                         Password2 = "";
                         SelectRejim();
                     }
