@@ -1,4 +1,5 @@
-﻿using MMTRShopWPF.Service;
+﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Service;
 using MMTRShopWPF.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,14 @@ namespace MMTRShopWPF.View.Pages
             InitializeComponent();
             MainFrame = MyFrame;
             NavigationViewModel NavigationViewModel = new NavigationViewModel(user);
+            DataContext = NavigationViewModel;
+        }
+
+        public MainPage(Client client)
+        {
+            InitializeComponent();
+            MainFrame = MyFrame;
+            NavigationViewModel NavigationViewModel = new NavigationViewModel(client);
             DataContext = NavigationViewModel;
         }
 

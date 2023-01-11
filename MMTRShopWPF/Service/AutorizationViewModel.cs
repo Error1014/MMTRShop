@@ -20,8 +20,8 @@ namespace MMTRShopWPF.ViewModel
             VisibilityRejimRegistration = Visibility.Collapsed;
             TextBtnRegistration = "Зарегистрироваться";
         }
-
-        private User user = null; /*= new User()*/
+        private Client client = new Client();
+        private User user = new User();
         public User User
         {
             get { return user; }
@@ -92,16 +92,17 @@ namespace MMTRShopWPF.ViewModel
                         if (user.Login == User.Login && user.Password == User.Password)
 {
                             User = user;
+                            client = UnitOfWork.Clients.GetAll().Where(c => c.UserId == user.Id).FirstOrDefault();
                             var admins = ShopContext.GetContext().Admin.ToList();
                             foreach (var admin in admins)
                             {
-                                if (admin.Id == user.Id)
+                                if (admin.UserId == user.Id)
                                 {
                                     MainWindow.MainWindowFrame.Content = new MainPage(admin);
                                     return;
                                 }
                             }
-                            MainWindow.MainWindowFrame.Content = new MainPage(user);
+                            MainWindow.MainWindowFrame.Content = new MainPage(client);
                         }
                     }
                 });
@@ -160,7 +161,7 @@ namespace MMTRShopWPF.ViewModel
                         UnitOfWork.Clients.Add(new Client());//Добавить поля клиента
                         UnitOfWork.Clients.Save();
                         MessageBox.Show("Регистрация прошла успешно");
-                        User = null;
+                        User = new User();
                         Password2 = "";
                         SelectRejim();
                     }

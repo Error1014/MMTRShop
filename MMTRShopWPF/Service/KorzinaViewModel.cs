@@ -5,15 +5,16 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using MMTRShopWPF.View.Pages;
 using System;
+using MMTRShopWPF.Model;
 
 namespace MMTRShopWPF.ViewModel
 {
     public class KorzinaViewModel : BaseViewModel
     {
         private KorzinaPage page;
-        public KorzinaViewModel(User myUser, KorzinaPage page)
+        public KorzinaViewModel(Client client, KorzinaPage page)
         {
-            user = myUser;
+            user = client;
             this.page = page;
             Cart = UnitOfWork.Carts.GetKorzineByIDUser(user.Id);
 
@@ -22,8 +23,8 @@ namespace MMTRShopWPF.ViewModel
             p => p.Id,(k,p)=>new { k,p}).Select(x=>x.p).ToList();
 
         }
-        private User user;
-        public User User
+        private Client user;
+        public Client User
         {
             get
             {

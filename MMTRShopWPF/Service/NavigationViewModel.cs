@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using MMTRShopWPF.View.Pages;
+using MMTRShopWPF.Model;
 
 namespace MMTRShopWPF.ViewModel
 {
@@ -29,17 +30,27 @@ namespace MMTRShopWPF.ViewModel
             VisibilityButtonClient = Visibility.Visible;
             VisibilityButtonAdmin = Visibility.Collapsed;
             TextButton = "Выйти";
-}
+        }
+        public NavigationViewModel(Client client)
+        {
+            SelectPage = new KatalogPage(this);
+            Client = client;
+            User = ShopContext.GetContext().User.Where(user => user.Id == Client.UserId).FirstOrDefault();
+            VisibilityButtonClient = Visibility.Visible;
+            VisibilityButtonAdmin = Visibility.Collapsed;
+            TextButton = "Выйти";
+        }
         public NavigationViewModel(Admin admin)
         {
-                    SelectPage = new KatalogPage(this);
+            SelectPage = new KatalogPage(this);
             Admin = admin;
-            User = ShopContext.GetContext().User.Where(user => user.Id == Admin.Id).FirstOrDefault();
+            User = ShopContext.GetContext().User.Where(user => user.Id == Admin.UserId).FirstOrDefault();
             VisibilityButtonClient = Visibility.Collapsed;
             VisibilityButtonAdmin = Visibility.Visible;
             TextButton = "Выйти";
         }
         public static User User { get; private set; }
+        public static Client Client { get; private set; }
         public Admin Admin { get; private set; }
 
         private Page selectPage;
@@ -71,14 +82,14 @@ namespace MMTRShopWPF.ViewModel
             {
                 return new Commands((obj) =>
                 {
-                    if (User == null)
+                    if (Client == null)
                     {
                         MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
                         MainWindow.MainWindowFrame.Content = new AutorizationPage();
                     }
                     else
                     {
-                        SelectPage = new KorzinaPage(User);
+                        SelectPage = new KorzinaPage(Client);
                     }
 
                 });

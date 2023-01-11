@@ -1,4 +1,5 @@
-﻿using MMTRShopWPF.Service;
+﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Service;
 using MMTRShopWPF.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,8 @@ namespace MMTRShopWPF.View.Pages
     public partial class KorzinaPage : Page
     {
         public static KorzinaViewModel korzinaViewModel;
-        private  User user;
-        public KorzinaPage(User user)
+        private  Client user;
+        public KorzinaPage(Client user)
         {
             InitializeComponent();
             this.user = user;

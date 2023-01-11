@@ -1,4 +1,5 @@
-﻿using MMTRShopWPF.Repositoryes;
+﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Repositoryes;
 using MMTRShopWPF.Service;
 using MMTRShopWPF.View.Pages;
 using System;
@@ -16,6 +17,7 @@ namespace MMTRShopWPF.ViewModel
         private bool isAdd;
         public ProductVievModel(Product product)
         {
+            client = NavigationViewModel.Client;
             AllCategory = UnitOfWork.Categorys.GetAll().ToList();
             AllBrand = UnitOfWork.Brands.GetAll().ToList();
             if (product == null)
@@ -35,7 +37,7 @@ namespace MMTRShopWPF.ViewModel
 
         }
 
-        private User user = NavigationViewModel.User;
+        private Client client;
 
 
         private Product product;
@@ -58,14 +60,14 @@ namespace MMTRShopWPF.ViewModel
             {
                 return new Commands((obj) =>
                 {
-                    if (user == null)
+                    if (client == null)
                     {
                         MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
                         MainWindow.MainWindowFrame.Content = new AutorizationPage();
                     }
                     else
                     {
-                        var myKorzine = UnitOfWork.Carts.GetKorzineByIDUser(user.Id);
+                        var myKorzine = UnitOfWork.Carts.GetKorzineByIDUser(client.Id);
                         bool isNew = true;
                         for (int i = 0; i < myKorzine.Count; i++)
                         {
@@ -77,7 +79,7 @@ namespace MMTRShopWPF.ViewModel
                         }
                         if (isNew)
                         {
-                            UnitOfWork.Carts.Add(new Cart(user.Id, Product.Id, 1));
+                            UnitOfWork.Carts.Add(new Cart(client.Id, Product.Id, 1));
                         }
                         UnitOfWork.Carts.Save();
                         MessageBox.Show("Успешно");
