@@ -1,20 +1,18 @@
 ﻿namespace MMTRShopWPF.Migrations
 {
-    using MMTRShopWPF.Model;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ShopContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<MMTRShopWPF.Model.ShopContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "MMTRShopWPF.Service.ShopContext";
         }
 
-        protected override void Seed(ShopContext context)
+        protected override void Seed(MMTRShopWPF.Model.ShopContext context)
         {
             //  This method will be called after migrating to the latest version.
 

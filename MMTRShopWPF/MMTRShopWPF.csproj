@@ -69,21 +69,9 @@
     <Compile Include="Components\BindingPassword.xaml.cs">
       <DependentUpon>BindingPassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202301111132497_InitialCreate.cs" />
-    <Compile Include="Migrations\202301111132497_InitialCreate.designer.cs">
-      <DependentUpon>202301111132497_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301111327265_e.cs" />
-    <Compile Include="Migrations\202301111327265_e.designer.cs">
-      <DependentUpon>202301111327265_e.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301111744307_AddNewTables.cs" />
-    <Compile Include="Migrations\202301111744307_AddNewTables.designer.cs">
-      <DependentUpon>202301111744307_AddNewTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301111820041_AddNewTables2.cs" />
-    <Compile Include="Migrations\202301111820041_AddNewTables2.designer.cs">
-      <DependentUpon>202301111820041_AddNewTables2.cs</DependentUpon>
+    <Compile Include="Migrations\202301112033136_Q.cs" />
+    <Compile Include="Migrations\202301112033136_Q.designer.cs">
+      <DependentUpon>202301112033136_Q.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseEntiti.cs" />
@@ -197,17 +185,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202301111132497_InitialCreate.resx">
-      <DependentUpon>202301111132497_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301111327265_e.resx">
-      <DependentUpon>202301111327265_e.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301111744307_AddNewTables.resx">
-      <DependentUpon>202301111744307_AddNewTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301111820041_AddNewTables2.resx">
-      <DependentUpon>202301111820041_AddNewTables2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202301112033136_Q.resx">
+      <DependentUpon>202301112033136_Q.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
