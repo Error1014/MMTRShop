@@ -92,20 +92,20 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Service\Admin.cs" />
-    <Compile Include="Service\Brand.cs" />
-    <Compile Include="Service\Category.cs" />
-    <Compile Include="Service\Cart.cs" />
-    <Compile Include="Service\Product.cs" />
-    <Compile Include="Service\ShopContext.cs" />
-    <Compile Include="Service\User.cs" />
-    <Compile Include="ViewModel\AutorizationViewModel.cs" />
-    <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\Commands.cs" />
-    <Compile Include="ViewModel\KatalogViewModel.cs" />
-    <Compile Include="ViewModel\KorzinaViewModel.cs" />
-    <Compile Include="ViewModel\NavigationViewModel.cs" />
-    <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="Model\Admin.cs" />
+    <Compile Include="Model\Brand.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Cart.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\ShopContext.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Service\AutorizationViewModel.cs" />
+    <Compile Include="Service\BaseViewModel.cs" />
+    <Compile Include="Service\Commands.cs" />
+    <Compile Include="Service\KatalogViewModel.cs" />
+    <Compile Include="Service\KorzinaViewModel.cs" />
+    <Compile Include="Service\NavigationViewModel.cs" />
+    <Compile Include="Service\ProductViewModel.cs" />
     <Compile Include="View\Pages\AutorizationPage.xaml.cs">
       <DependentUpon>AutorizationPage.xaml</DependentUpon>
     </Compile>

@@ -17,9 +17,10 @@ namespace MMTRShopWPF.ViewModel
             this.page = page;
             Cart = UnitOfWork.Carts.GetKorzineByIDUser(user.Id);
 
-            Products = (from k in Cart
-                        join p in UnitOfWork.Products.GetAll() on k.ProductId equals p.Id
-                        select p).ToList();
+            Products = Cart.Join(UnitOfWork.Products.GetAll(),
+            k => k.ProductId,
+            p => p.Id,(k,p)=>new { k,p}).Select(x=>x.p).ToList();
+
         }
         private User user;
         public User User
