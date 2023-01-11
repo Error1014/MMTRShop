@@ -69,15 +69,12 @@
     <Compile Include="Components\BindingPassword.xaml.cs">
       <DependentUpon>BindingPassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202301101256573_InitialCreate.cs" />
-    <Compile Include="Migrations\202301101256573_InitialCreate.designer.cs">
-      <DependentUpon>202301101256573_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301101404541_Q.cs" />
-    <Compile Include="Migrations\202301101404541_Q.designer.cs">
-      <DependentUpon>202301101404541_Q.cs</DependentUpon>
+    <Compile Include="Migrations\202301110846166_InitialCreate.cs" />
+    <Compile Include="Migrations\202301110846166_InitialCreate.designer.cs">
+      <DependentUpon>202301110846166_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\BaseEntiti.cs" />
     <Compile Include="Repositories\BrandRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\IBrandRepository.cs" />
@@ -179,11 +176,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202301101256573_InitialCreate.resx">
-      <DependentUpon>202301101256573_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301101404541_Q.resx">
-      <DependentUpon>202301101404541_Q.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202301110846166_InitialCreate.resx">
+      <DependentUpon>202301110846166_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

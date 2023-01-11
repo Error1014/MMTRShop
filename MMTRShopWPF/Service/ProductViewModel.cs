@@ -21,8 +21,8 @@ namespace MMTRShopWPF.ViewModel
             if (product == null)
             {
                 isAdd = true;
-                SelectCategory = AllCategory.First();
-                SelectBrand = AllBrand.First();
+                SelectCategory = AllCategory.FirstOrDefault();
+                SelectBrand = AllBrand.FirstOrDefault();
                 Product = new Product();
             }
             else
