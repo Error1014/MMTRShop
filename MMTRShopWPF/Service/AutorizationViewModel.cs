@@ -155,7 +155,9 @@ namespace MMTRShopWPF.ViewModel
                     }
                     if (CheckTwoPassword())
                     {
-                        UnitOfWork.Clients.Add(new Client());//User.Login, User.Password, User.LastName, User.FirstName, User.Patronymic
+                        UnitOfWork.Users.Add(new User(User.Login, User.Password, User.LastName, User.FirstName, User.Patronymic));
+                        UnitOfWork.Users.Save();
+                        UnitOfWork.Clients.Add(new Client());//Добавить поля клиента
                         UnitOfWork.Clients.Save();
                         MessageBox.Show("Регистрация прошла успешно");
                         User = null;

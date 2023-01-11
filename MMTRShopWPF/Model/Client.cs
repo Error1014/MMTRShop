@@ -15,5 +15,16 @@ namespace MMTRShopWPF.Model
         public string Phone { get; set; }
         public string Address { get; set; }
         
+        public Client()
+        {
+
+        }
+
+        public Client(string emain, string phone, string address)
+        {
+            Emain = emain;
+            Phone = phone;
+            Address = address;
+        }
     }
 }

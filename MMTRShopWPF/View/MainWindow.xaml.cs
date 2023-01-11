@@ -18,12 +18,12 @@ namespace MMTRShopWPF
             InitializeComponent();
             MainWindowFrame = MainFrame;
             MainWindowFrame.Content = new MainPage();
-            using (var db = new ShopContext())
-            {
-                var user = new User();
-                db.User.Add(user);
-                db.SaveChanges();
-            }
+            //using (var db = new ShopContext())
+            //{
+            //    var user = new User();
+            //    db.User.Add(user);
+            //    db.SaveChanges();
+            //}
         }
     }
 }
