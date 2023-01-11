@@ -73,6 +73,14 @@
     <Compile Include="Migrations\202301112033136_Q.designer.cs">
       <DependentUpon>202301112033136_Q.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301112041256_w.cs" />
+    <Compile Include="Migrations\202301112041256_w.designer.cs">
+      <DependentUpon>202301112041256_w.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301112045059_AddountProduct.cs" />
+    <Compile Include="Migrations\202301112045059_AddountProduct.designer.cs">
+      <DependentUpon>202301112045059_AddountProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseEntiti.cs" />
     <Compile Include="Model\CartOrder.cs" />
@@ -187,6 +195,12 @@
     </Compile>
     <EmbeddedResource Include="Migrations\202301112033136_Q.resx">
       <DependentUpon>202301112033136_Q.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301112041256_w.resx">
+      <DependentUpon>202301112041256_w.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301112045059_AddountProduct.resx">
+      <DependentUpon>202301112045059_AddountProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

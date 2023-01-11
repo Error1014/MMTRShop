@@ -8,6 +8,6 @@ namespace MMTRShopWPF.Model
 {
     public class Status:BaseEntity<Guid>
     {
-        public string Title { get; }
+        public string Title { get; set; }
     }
 }
