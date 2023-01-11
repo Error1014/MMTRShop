@@ -17,11 +17,16 @@ namespace MMTRShopWPF.Model
         public decimal Price { get; set; }
         public int Discount { get; set; }
         public string Photo { get; set; }
+
+        public int CountInStorage { get; set; }
         public Guid CategoryId { get; set; }
         public virtual Category Category { get; set; }
         public Guid BrandId { get; set; }
         [ForeignKey("BrandId")]
         public virtual Brand Brand { get; set; }
         public virtual List<Cart> Cart { get; set; }
+
+        public virtual List<Feedback> Feedback { get; set; }
+
     }
 }

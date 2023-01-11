@@ -77,10 +77,23 @@
     <Compile Include="Migrations\202301111327265_e.designer.cs">
       <DependentUpon>202301111327265_e.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301111744307_AddNewTables.cs" />
+    <Compile Include="Migrations\202301111744307_AddNewTables.designer.cs">
+      <DependentUpon>202301111744307_AddNewTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301111820041_AddNewTables2.cs" />
+    <Compile Include="Migrations\202301111820041_AddNewTables2.designer.cs">
+      <DependentUpon>202301111820041_AddNewTables2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseEntiti.cs" />
+    <Compile Include="Model\CartOrder.cs" />
     <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\Favourites.cs" />
+    <Compile Include="Model\Feedback.cs" />
     <Compile Include="Model\Operator.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\Status.cs" />
     <Compile Include="Repositories\BrandRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
@@ -189,6 +202,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301111327265_e.resx">
       <DependentUpon>202301111327265_e.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301111744307_AddNewTables.resx">
+      <DependentUpon>202301111744307_AddNewTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301111820041_AddNewTables2.resx">
+      <DependentUpon>202301111820041_AddNewTables2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -17,7 +17,6 @@ namespace MMTRShopWPF.Model
         public string FirstName { get; set; }
         public string Patronymic { get; set; }
 
-        public virtual List<Cart> Cart { get; set; }
         public User()
         {
 

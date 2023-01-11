@@ -33,6 +33,11 @@ namespace MMTRShopWPF.Model
         public DbSet<Operator> Operator { get; set; }
         public DbSet<Client> Client { get; set; }
 
+        public DbSet<Status> Status { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<CartOrder> CartOrder { get; set; }
+        public DbSet<Feedback> Feedback { get; set; }
+
 
     }
 }

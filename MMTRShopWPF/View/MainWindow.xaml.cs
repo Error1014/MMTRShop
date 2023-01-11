@@ -1,7 +1,4 @@
-﻿using MMTRShopWPF.Model;
-using MMTRShopWPF.Model;
-using MMTRShopWPF.View.Pages;
-using System;
+﻿using MMTRShopWPF.View.Pages;
 using System.Windows;
 using System.Windows.Controls;
 

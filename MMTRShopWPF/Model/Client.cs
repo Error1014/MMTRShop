@@ -14,7 +14,10 @@ namespace MMTRShopWPF.Model
         public string Emain { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        
+
+        public virtual List<Cart> Cart { get; set; }
+        public virtual List<Feedback> Feedback { get; set; }
+
         public Client()
         {
 
