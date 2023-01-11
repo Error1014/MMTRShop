@@ -92,7 +92,7 @@ namespace MMTRShopWPF.Service
                         if (user.Login == User.Login && user.Password == User.Password)
 {
                             User = user;
-                            client = UnitOfWork.Clients.GetAll().Where(c => c.UserId == user.Id).FirstOrDefault();
+                            client = UnitOfWork.Clients.GetAll().Where(c => c.UserId == User.Id).FirstOrDefault();
                             var admins = ShopContext.GetContext().Admin.ToList();
                             foreach (var admin in admins)
                             {
@@ -156,9 +156,12 @@ namespace MMTRShopWPF.Service
                     }
                     if (CheckTwoPassword())
                     {
-                        UnitOfWork.Users.Add(new User(User.Login, User.Password, User.LastName, User.FirstName, User.Patronymic));
+                        User = new User(User.Login, User.Password, User.LastName, User.FirstName, User.Patronymic);
+                        UnitOfWork.Users.Add(User);
                         UnitOfWork.Users.Save();
-                        UnitOfWork.Clients.Add(new Client());//Добавить поля клиента
+                        client = new Client(User.Id,"","","");//Добавить поля клиента
+                        MessageBox.Show(client.UserId.ToString());
+                        UnitOfWork.Clients.Add(client);
                         UnitOfWork.Clients.Save();
                         MessageBox.Show("Регистрация прошла успешно");
                         User = new User();

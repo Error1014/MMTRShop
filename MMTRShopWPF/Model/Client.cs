@@ -20,8 +20,9 @@ namespace MMTRShopWPF.Model
 
         }
 
-        public Client(string emain, string phone, string address)
+        public Client(Guid userId,string emain, string phone, string address)
         {
+            UserId = userId;
             Emain = emain;
             Phone = phone;
             Address = address;

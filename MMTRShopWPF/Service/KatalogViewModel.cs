@@ -42,7 +42,6 @@ namespace MMTRShopWPF.Service
             {
                 valuePage = ShopContext.GetContext().Product.Count() / SizePage + 1;
             }
-
         }
 
         public List<Product> GetPageProduct()
