@@ -1,4 +1,4 @@
-﻿using MMTRShopWPF.Service;
+﻿using MMTRShopWPF.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -7,7 +7,7 @@ using MMTRShopWPF.View.Pages;
 using System;
 using MMTRShopWPF.Model;
 
-namespace MMTRShopWPF.ViewModel
+namespace MMTRShopWPF.Service
 {
     public class KorzinaViewModel : BaseViewModel
     {

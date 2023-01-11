@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMTRShopWPF.Service
+namespace MMTRShopWPF.Model
 {
     public class User : BaseEntity<Guid>
     {

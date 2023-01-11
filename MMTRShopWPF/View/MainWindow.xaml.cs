@@ -1,5 +1,5 @@
 ﻿using MMTRShopWPF.Model;
-using MMTRShopWPF.Service;
+using MMTRShopWPF.Model;
 using MMTRShopWPF.View.Pages;
 using System;
 using System.Windows;

@@ -1,4 +1,4 @@
-﻿using MMTRShopWPF.Service;
+﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.View;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Windows;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.Model;
 
-namespace MMTRShopWPF.ViewModel
+namespace MMTRShopWPF.Service
 {
     public class NavigationViewModel : BaseViewModel
     {

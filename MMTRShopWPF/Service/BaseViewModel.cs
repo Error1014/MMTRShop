@@ -1,5 +1,5 @@
 ﻿using MMTRShopWPF.Repositoryes;
-using MMTRShopWPF.Service;
+using MMTRShopWPF.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMTRShopWPF.ViewModel
+namespace MMTRShopWPF.Service
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
