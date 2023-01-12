@@ -21,6 +21,6 @@
             
             <Button Content="{Binding TextButton}" HorizontalAlignment="Right" Margin="10" Command="{Binding AutorizationNavigate}"/>
         </DockPanel>
-        <Frame Grid.Row="1" x:Name="MyFrame" Content="{Binding SelectPage}"/>
+        <Frame Grid.Row="1" x:Name="MyFrame"/>
     </Grid>
 </Page>

@@ -1,8 +1,10 @@
 ﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.Repositories;
+using MMTRShopWPF.View.Pages;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace MMTRShopWPF.Service
@@ -71,6 +73,13 @@ namespace MMTRShopWPF.Service
                 discountVisible = value;
                 OnPropertyChanged(nameof(DiscountVisible));
             }
+        }
+
+        public void SelectProduct(object sender)
+        {
+            var item = ((ListView)sender);
+            if (AccountManager.Admin == null) NavigarionManager.MainFrame.Content = new InfoProductPage((Product)item.SelectedItem);
+            else NavigarionManager.MainFrame.Content = new EditInfoProductPage((Product)item.SelectedItem);
         }
 
         public ICommand PagePlus

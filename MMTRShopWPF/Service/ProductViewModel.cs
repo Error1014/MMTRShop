@@ -12,7 +12,6 @@ namespace MMTRShopWPF.Service
         private bool isAdd;
         public ProductVievModel(Product product)
         {
-            client = NavigationViewModel.Client;
             AllCategory = UnitOfWork.Categorys.GetAll().ToList();
             AllBrand = UnitOfWork.Brands.GetAll().ToList();
             if (product == null)
@@ -29,13 +28,13 @@ namespace MMTRShopWPF.Service
                 SelectBrand = AllBrand.Where(brand => brand.Id == product.BrandId).First();
                 Product = UnitOfWork.Products.GetById(product.Id);
             }
-            if (client==null)
+            if (AccountManager.Client == null)
             {
                 isLikePath = "/Resources/NoLike.png";
             }
             else
             {
-                favourit = UnitOfWork.Favorites.GetFavouritByIdUserAndProduct(client.Id, product.Id);
+                favourit = UnitOfWork.Favorites.GetFavouritByIdUserAndProduct(AccountManager.Client.Id, product.Id);
                 if (favourit == null)
                 {
                     isLikePath = "/Resources/NoLike.png";
@@ -48,8 +47,6 @@ namespace MMTRShopWPF.Service
             
 
         }
-
-        private Client client;
 
 
         private Product product;
@@ -83,7 +80,7 @@ namespace MMTRShopWPF.Service
             {
                 return new Commands((obj) =>
                 {
-                    if (client==null)
+                    if (AccountManager.Client ==null)
                     {
                         ClientNullMessageShow();
                     }
@@ -113,7 +110,7 @@ namespace MMTRShopWPF.Service
         private void SetLike()
         {
             IsLikePath = "/Resources/Like.png";
-            favourit = new Favourites(client.Id, Product.Id);
+            favourit = new Favourites(AccountManager.Client.Id, Product.Id);
             UnitOfWork.Favorites.Add(favourit);
             UnitOfWork.Favorites.Save();
 
@@ -131,13 +128,13 @@ namespace MMTRShopWPF.Service
             {
                 return new Commands((obj) =>
                 {
-                    if (client == null)
+                    if (AccountManager.Client == null)
                     {
                         ClientNullMessageShow();
                     }
                     else
                     {
-                        var myKorzine = UnitOfWork.Carts.GetKorzineByIDUser(client.Id);
+                        var myKorzine = UnitOfWork.Carts.GetKorzineByIdClient(AccountManager.Client.Id);
                         bool isNew = true;
                         for (int i = 0; i < myKorzine.Count; i++)
                         {
@@ -149,7 +146,7 @@ namespace MMTRShopWPF.Service
                         }
                         if (isNew)
                         {
-                            UnitOfWork.Carts.Add(new Cart(client.Id, Product.Id, 1));
+                            UnitOfWork.Carts.Add(new Cart(AccountManager.Client.Id, Product.Id, 1));
                         }
                         UnitOfWork.Carts.Save();
                         MessageBox.Show("Успешно");

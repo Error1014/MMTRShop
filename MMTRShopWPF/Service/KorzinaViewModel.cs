@@ -9,29 +9,14 @@ namespace MMTRShopWPF.Service
     public class KorzinaViewModel : BaseViewModel
     {
         private KorzinaPage page;
-        public KorzinaViewModel(Client client, KorzinaPage page)
+        public KorzinaViewModel(KorzinaPage page)
         {
-            user = client;
-            this.page = page;
-            Cart = UnitOfWork.Carts.GetKorzineByIDUser(user.Id);
-
+            this.page=page;
+            Cart = UnitOfWork.Carts.GetKorzineByIdClient(AccountManager.Client.Id);
             Products = Cart.Join(UnitOfWork.Products.GetAll(),
             k => k.ProductId,
             p => p.Id,(k,p)=>new { k,p}).Select(x=>x.p).ToList();
 
-        }
-        private Client user;
-        public Client User
-        {
-            get
-            {
-                return user;
-            }
-            set
-            {
-                user = value;
-                OnPropertyChanged(nameof(User));
-            }
         }
         private List<Cart> cart;
         public List<Cart> Cart

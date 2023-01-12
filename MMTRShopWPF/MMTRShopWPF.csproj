@@ -119,12 +119,14 @@
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ShopContext.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Service\AccountManager.cs" />
     <Compile Include="Service\AutorizationViewModel.cs" />
     <Compile Include="Service\BaseViewModel.cs" />
     <Compile Include="Service\Commands.cs" />
     <Compile Include="Service\FavouritesViewModel.cs" />
     <Compile Include="Service\KatalogViewModel.cs" />
     <Compile Include="Service\KorzinaViewModel.cs" />
+    <Compile Include="Service\NavigarionManager.cs" />
     <Compile Include="Service\NavigationViewModel.cs" />
     <Compile Include="Service\ProductViewModel.cs" />
     <Compile Include="View\Pages\AutorizationPage.xaml.cs">

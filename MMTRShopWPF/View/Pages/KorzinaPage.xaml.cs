@@ -20,7 +20,7 @@ namespace MMTRShopWPF.View.Pages
 
         public void UpdateDataContext()
         {
-            korzinaViewModel = new KorzinaViewModel(user,this);
+            korzinaViewModel = new KorzinaViewModel(this);
             DataContext = korzinaViewModel;
         }
     }

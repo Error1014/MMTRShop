@@ -21,7 +21,7 @@ namespace MMTRShopWPF.Repositories
 
         
 
-        public List<Cart> GetKorzineByIDUser(Guid id)
+        public List<Cart> GetKorzineByIdClient(Guid id)
         {
             return ShopContext.Cart.Where(k=>k.ClientId==id).ToList();
         }

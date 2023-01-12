@@ -33,7 +33,7 @@ namespace MMTRShopWPF.View.Pages
 
         public void UpdateDataContext()
         {
-            FavouritesViewModel = new FavouritesViewModel(user, this);
+            FavouritesViewModel = new FavouritesViewModel();
             DataContext = FavouritesViewModel;
         }
     }

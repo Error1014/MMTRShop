@@ -11,30 +11,14 @@ namespace MMTRShopWPF.Service
 {
     public class FavouritesViewModel:BaseViewModel 
     {
-        private FavouritesPage page;
-        public FavouritesViewModel(Client client, FavouritesPage page)
+        public FavouritesViewModel()
         {
-            user = client;
-            this.page = page;
-            Favorites = UnitOfWork.Favorites.GetFavouritesByIdUser(client.Id);//.GetKorzineByIDUser(user.Id);
+            Favorites = UnitOfWork.Favorites.GetFavouritesByIdUser(AccountManager.Client.Id);//.GetKorzineByIDUser(user.Id);
 
             Products = Favorites.Join(UnitOfWork.Products.GetAll(),
             f => f.ProductId,
             p => p.Id, (f, p) => new { f, p }).Select(x => x.p).ToList();
 
-        }
-        private Client user;
-        public Client User
-        {
-            get
-            {
-                return user;
-            }
-            set
-            {
-                user = value;
-                OnPropertyChanged(nameof(User));
-            }
         }
         private List<Favourites> favorites;
         public List<Favourites> Favorites

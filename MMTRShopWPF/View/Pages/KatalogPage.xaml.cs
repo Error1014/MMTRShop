@@ -1,4 +1,5 @@
-﻿using MMTRShopWPF.Service;
+﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,17 +23,15 @@ namespace MMTRShopWPF.View.Pages
     public partial class KatalogPage : Page
     {
         KatalogViewModel katalogViewModel = new KatalogViewModel();
-        NavigationViewModel navigationViewModel;
-        public KatalogPage(NavigationViewModel navigationViewModel)
+        public KatalogPage()
         {
             InitializeComponent();
-            this.navigationViewModel = navigationViewModel;
             DataContext = katalogViewModel;
         }
 
         private void SelectProduct(object sender, SelectionChangedEventArgs e)
         {
-            navigationViewModel.SelectProduct(sender);
+            katalogViewModel.SelectProduct(sender);
         }
     }
 }

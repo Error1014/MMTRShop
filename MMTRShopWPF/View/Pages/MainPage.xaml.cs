@@ -9,12 +9,10 @@ namespace MMTRShopWPF.View.Pages
     /// </summary>
     public partial class MainPage : Page
     {
-        public static Frame MainFrame;
-
         public MainPage()
         {
             InitializeComponent();
-            MainFrame = MyFrame;
+            NavigarionManager.MainFrame = MyFrame;
             NavigationViewModel NavigationViewModel = new NavigationViewModel();
             DataContext = NavigationViewModel;
 
@@ -23,7 +21,7 @@ namespace MMTRShopWPF.View.Pages
         public MainPage(User user)
         {
             InitializeComponent();
-            MainFrame = MyFrame;
+            NavigarionManager.MainFrame = MyFrame;
             NavigationViewModel NavigationViewModel = new NavigationViewModel(user);
             DataContext = NavigationViewModel;
         }
@@ -31,7 +29,7 @@ namespace MMTRShopWPF.View.Pages
         public MainPage(Client client)
         {
             InitializeComponent();
-            MainFrame = MyFrame;
+            NavigarionManager.MainFrame = MyFrame;
             NavigationViewModel NavigationViewModel = new NavigationViewModel(client);
             DataContext = NavigationViewModel;
         }
@@ -39,7 +37,7 @@ namespace MMTRShopWPF.View.Pages
         public MainPage(Admin admin)
         {
             InitializeComponent();
-            MainFrame = MyFrame;
+            NavigarionManager.MainFrame = MyFrame;
             NavigationViewModel NavigationViewModel = new NavigationViewModel(admin);
             DataContext = NavigationViewModel;
         }
