@@ -34,7 +34,7 @@ namespace MMTRShopWPF.Service
             }
             else
             {
-                favourit = UnitOfWork.Favorites.GetFavouritByIdUserAndProduct(AccountManager.Client.Id, product.Id);
+                favourit = UnitOfWork.Favorites.GetFavouritByIdClientAndProduct(AccountManager.Client.Id, product.Id);
                 if (favourit == null)
                 {
                     isLikePath = "/Resources/NoLike.png";
@@ -44,10 +44,11 @@ namespace MMTRShopWPF.Service
                     isLikePath = "/Resources/Like.png";
                 }
             }
-            
+
 
         }
 
+        private Favourites favourit = new Favourites();
 
         private Product product;
 
@@ -74,13 +75,19 @@ namespace MMTRShopWPF.Service
                 OnPropertyChanged(nameof(IsLikePath));
             }
         }
+
+        private void ClientNullMessageShow()
+        {
+            MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
+            MainWindow.MainWindowFrame.Content = new AutorizationPage();
+        }
         public ICommand ClickLike
         {
             get
             {
                 return new Commands((obj) =>
                 {
-                    if (AccountManager.Client ==null)
+                    if (AccountManager.Client == null)
                     {
                         ClientNullMessageShow();
                     }
@@ -95,18 +102,10 @@ namespace MMTRShopWPF.Service
                             RemoveLike();
                         }
                     }
-                    
+
                 });
             }
         }
-
-        private void ClientNullMessageShow()
-        {
-            MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
-            MainWindow.MainWindowFrame.Content = new AutorizationPage();
-        }
-
-        private Favourites favourit = new Favourites();
         private void SetLike()
         {
             IsLikePath = "/Resources/Like.png";

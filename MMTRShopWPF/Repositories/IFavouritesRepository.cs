@@ -7,6 +7,6 @@ namespace MMTRShopWPF.Repositories
     public interface IFavouritesRepository: IRepository<Favourites>
     {
         List<Favourites> GetFavouritesByIdUser(Guid id);
-        Favourites GetFavouritByIdUserAndProduct(Guid userId,Guid productId);
+        Favourites GetFavouritByIdClientAndProduct(Guid userId,Guid productId);
     }
 }

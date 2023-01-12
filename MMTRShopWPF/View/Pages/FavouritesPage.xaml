@@ -10,7 +10,6 @@
 
     <Grid Background="White">
         <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListProducts"  ItemsSource="{Binding Favorites}" HorizontalAlignment="Center">
-
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Width="800"></StackPanel>
@@ -44,7 +43,11 @@
                             </DockPanel>
                             <TextBlock Text="{Binding Product.Category.Title}"/>
                             <TextBlock Text="{Binding Product.Description}" TextWrapping="Wrap" MaxHeight="50"/>
+                            <Button Width="30" Height="30" HorizontalAlignment="Left" Margin="10" Background="#00000000" BorderBrush="#00000000" Command="{Binding ElementName=ListProducts, Path=DataContext.RemoveFavourit}" CommandParameter="{Binding Id}">
+                                <Image Source="/Resources/Like.png"/>
+                            </Button>
                         </StackPanel>
+                        
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using MMTRShopWPF.View.Pages;
+using System;
 
 namespace MMTRShopWPF.Service
 {
@@ -51,7 +52,7 @@ namespace MMTRShopWPF.Service
             {
                 return new Commands((obj) =>
                 {
-                    System.Guid id = System.Guid.Parse(obj.ToString());
+                    Guid id =  Guid.Parse(obj.ToString());
                     var item = UnitOfWork.Carts.GetById(id);
                     if (item.ProductCount>0)
                     {
@@ -72,7 +73,7 @@ namespace MMTRShopWPF.Service
             {
                 return new Commands((obj) =>
                 {
-                    System.Guid id = System.Guid.Parse(obj.ToString());
+                    Guid id = Guid.Parse(obj.ToString());
                     var item = UnitOfWork.Carts.GetById(id);
                     item.ProductCount++;
 
@@ -87,7 +88,7 @@ namespace MMTRShopWPF.Service
             {
                 return new Commands((obj) =>
                 {
-                    System.Guid id = System.Guid.Parse(obj.ToString());
+                    Guid id =Guid.Parse(obj.ToString());
                     var item = UnitOfWork.Carts.GetById(id);
                     UnitOfWork.Carts.Remove(item);
 

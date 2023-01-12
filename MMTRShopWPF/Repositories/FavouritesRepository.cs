@@ -25,9 +25,9 @@ namespace MMTRShopWPF.Repositories
             return ShopContext.Favourites.Where(k => k.ClientId == id).ToList();
         }
 
-        public Favourites GetFavouritByIdUserAndProduct(Guid userId, Guid productId)
+        public Favourites GetFavouritByIdClientAndProduct(Guid clientId, Guid productId)
         {
-            return ShopContext.Favourites.Where(k => k.ClientId == userId && k.ProductId ==productId).FirstOrDefault();
+            return ShopContext.Favourites.Where(k => k.ClientId == clientId && k.ProductId ==productId).FirstOrDefault();
         }
     }
 }

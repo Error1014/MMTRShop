@@ -6,13 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MMTRShopWPF.Service
 {
     public class FavouritesViewModel:BaseViewModel 
     {
-        public FavouritesViewModel()
+        FavouritesPage page;
+        public FavouritesViewModel(FavouritesPage page)
         {
+            this.page = page; 
             Favorites = UnitOfWork.Favorites.GetFavouritesByIdUser(AccountManager.Client.Id);//.GetKorzineByIDUser(user.Id);
 
             Products = Favorites.Join(UnitOfWork.Products.GetAll(),
@@ -33,6 +38,7 @@ namespace MMTRShopWPF.Service
                 OnPropertyChanged(nameof(Favorites));
             }
         }
+        private Favourites favourit = new Favourites();
         private List<Product> products;
         public List<Product> Products
         {
@@ -45,6 +51,28 @@ namespace MMTRShopWPF.Service
                 products = value;
                 OnPropertyChanged(nameof(Products));
             }
+        }
+        public ICommand RemoveFavourit
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    Guid id = Guid.Parse(obj.ToString());
+                    var item = UnitOfWork.Favorites.GetById(id);
+                    
+                    UnitOfWork.Favorites.Remove(item);
+                    UnitOfWork.Favorites.Save();
+                    page.UpdateDataContext();
+
+                });
+            }
+        }
+        private void RemoveLike()
+        {
+            UnitOfWork.Favorites.Remove(favourit);
+            UnitOfWork.Favorites.Save();
+            favourit = new Favourites();
         }
     }
     
