@@ -19,7 +19,7 @@
             <TextBlock FontSize="15"  Text="Категория товара:"/>
             <ComboBox Margin="10,0" FontSize="15" Width="200" ItemsSource="{Binding CategoryItems}" DisplayMemberPath="Title" SelectedItem="{Binding SelectedCategoryItem}"/>
             <TextBlock FontSize="15" Text="Производитель:"/>
-            <ComboBox Margin="10,0" FontSize="15"  Width="200" ItemsSource="{Binding BrandItems}" SelectedItem="{Binding SelectedBrandItem}"/>
+            <ComboBox Margin="10,0" FontSize="15"  Width="200" ItemsSource="{Binding BrandItems}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedBrandItem}"/>
         </DockPanel>
         <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" x:Name="ListProducts"  SelectionChanged="SelectProduct" ItemsSource="{Binding ProductsPage}" HorizontalAlignment="Center">
             <ListView.ItemsPanel>

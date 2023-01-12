@@ -25,10 +25,12 @@ namespace MMTRShopWPF.Service
                 valuePage = ShopContext.GetContext().Product.Count() / SizePage + 1;
             }
             var categories = UnitOfWork.Categorys.GetAll();
+            var brands = UnitOfWork.Brands.GetAll();
             CategoryItems = new ObservableCollection<Category>(categories);
+            BrandItems = new ObservableCollection<Brand>(brands);
         }
 
-        #region Filtration
+        #region Filtration Category
 
         private ObservableCollection<Category> сategoryItems;
         public ObservableCollection<Category> CategoryItems
@@ -47,8 +49,33 @@ namespace MMTRShopWPF.Service
             set
             {
                 selectedCategoryItem = value;
-                ProductsPage = UnitOfWork.Products.GetProductsPage(NumPage, SizePage,selectedCategoryItem);
+                ProductsPage = UnitOfWork.Products.GetProductsPage(NumPage, SizePage,SelectedCategoryItem);
                 OnPropertyChanged(nameof(SelectedCategoryItem));
+            }
+        }
+        #endregion
+
+        #region Filtration Brand
+
+        private ObservableCollection<Brand> brandItems;
+        public ObservableCollection<Brand> BrandItems
+        {
+            get { return brandItems; }
+            set
+            {
+                brandItems = value;
+                OnPropertyChanged(nameof(BrandItems));
+            }
+        }
+        private Brand selectedBrandItem;
+        public Brand SelectedBrandItem
+        {
+            get { return selectedBrandItem; }
+            set
+            {
+                selectedBrandItem = value;
+                ProductsPage = UnitOfWork.Products.GetProductsPage(NumPage, SizePage, SelectedBrandItem);
+                OnPropertyChanged(nameof(SelectedBrandItem));
             }
         }
         #endregion
