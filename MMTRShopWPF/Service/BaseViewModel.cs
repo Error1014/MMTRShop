@@ -1,5 +1,6 @@
 ﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.Repositories;
+using MMTRShopWPF.Repositories.Repository;
 using System.ComponentModel;
 
 namespace MMTRShopWPF.Service

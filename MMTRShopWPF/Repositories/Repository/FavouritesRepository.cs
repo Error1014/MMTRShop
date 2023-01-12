@@ -1,12 +1,10 @@
 ﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Repositories.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MMTRShopWPF.Repositories
+namespace MMTRShopWPF.Repositories.Repository
 {
     public class FavouritesRepository : Repository<Favourites>, IFavouritesRepository
     {

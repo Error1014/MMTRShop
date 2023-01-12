@@ -1,12 +1,7 @@
-﻿using MMTRShopWPF.Repositories;
-using MMTRShopWPF.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Repositories.Interface;
 
-namespace MMTRShopWPF.Repositories
+namespace MMTRShopWPF.Repositories.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {

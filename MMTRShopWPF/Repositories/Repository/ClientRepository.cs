@@ -1,6 +1,7 @@
 ﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Repositories.Interface;
 
-namespace MMTRShopWPF.Repositories
+namespace MMTRShopWPF.Repositories.Repository
 {
     public class ClientRepository : Repository<Client>, IClientRepository
     {

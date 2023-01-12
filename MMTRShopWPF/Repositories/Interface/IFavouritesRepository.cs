@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MMTRShopWPF.Repositories
+namespace MMTRShopWPF.Repositories.Interface
 {
     public interface IFavouritesRepository: IRepository<Favourites>
     {
