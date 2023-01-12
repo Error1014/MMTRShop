@@ -2,6 +2,7 @@
 using MMTRShopWPF.Repositories;
 using MMTRShopWPF.View.Pages;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,8 +12,52 @@ namespace MMTRShopWPF.Service
 {
     public class KatalogViewModel : BaseViewModel
     {
+        public KatalogViewModel()
+        {
+
+            productsPage = GetPageProduct();
+            if (ShopContext.GetContext().Product.Count() % SizePage == 0)
+            {
+                valuePage = ShopContext.GetContext().Product.Count() / SizePage;
+            }
+            else
+            {
+                valuePage = ShopContext.GetContext().Product.Count() / SizePage + 1;
+            }
+            var categories = UnitOfWork.Categorys.GetAll();
+            CategoryItems = new ObservableCollection<Category>(categories);
+        }
+
+        #region Filtration
+
+        private ObservableCollection<Category> сategoryItems;
+        public ObservableCollection<Category> CategoryItems
+        {
+            get { return сategoryItems; }
+            set
+            {
+                сategoryItems = value;
+                OnPropertyChanged(nameof(CategoryItems));
+            }
+        }
+        private Category selectedCategoryItem;
+        public Category SelectedCategoryItem
+        {
+            get { return selectedCategoryItem; }
+            set
+            {
+                selectedCategoryItem = value;
+                ProductsPage = UnitOfWork.Products.GetProductsPage(NumPage, SizePage,selectedCategoryItem);
+                OnPropertyChanged(nameof(SelectedCategoryItem));
+            }
+        }
+        #endregion
+
+        #region Pagination
+
         private int valuePage = 0;
         private int numPage = 1;
+        private int SizePage = 20;
         public int NumPage
         {
             get { return numPage; }
@@ -27,60 +72,6 @@ namespace MMTRShopWPF.Service
         public int Num3 { get; private set; } = 3;
         public int Num4 { get; private set; } = 4;
         public int Num5 { get; private set; } = 5;
-
-
-        private int SizePage = 20;
-        public KatalogViewModel()
-        {
-            
-            productsPage = GetPageProduct();
-            if (ShopContext.GetContext().Product.Count() % SizePage == 0)
-            {
-                valuePage = ShopContext.GetContext().Product.Count() / SizePage;
-            }
-            else
-            {
-                valuePage = ShopContext.GetContext().Product.Count() / SizePage + 1;
-            }
-        }
-
-
-        public List<Product> GetPageProduct()
-        {
-            return UnitOfWork.Products.GetProductsPage(NumPage, SizePage);
-        }
-
-        private List<Product> productsPage;
-        public List<Product> ProductsPage
-        {
-            get
-            {
-                return productsPage;
-            }
-            set
-            {
-                productsPage = value;
-                OnPropertyChanged(nameof(ProductsPage));
-            }
-        }
-
-        private Visibility discountVisible = Visibility.Collapsed;
-        public Visibility DiscountVisible 
-        {
-            get { return discountVisible; }
-            set
-            {
-                discountVisible = value;
-                OnPropertyChanged(nameof(DiscountVisible));
-            }
-        }
-
-        public void SelectProduct(object sender)
-        {
-            var item = ((ListView)sender);
-            if (AccountManager.Admin == null) NavigarionManager.MainFrame.Content = new InfoProductPage((Product)item.SelectedItem);
-            else NavigarionManager.MainFrame.Content = new EditInfoProductPage((Product)item.SelectedItem);
-        }
 
         public ICommand PagePlus
         {
@@ -127,5 +118,45 @@ namespace MMTRShopWPF.Service
             OnPropertyChanged(nameof(Num4));
             OnPropertyChanged(nameof(Num5));
         }
+        #endregion
+
+        public List<Product> GetPageProduct()
+        {
+            return UnitOfWork.Products.GetProductsPage(NumPage, SizePage);
+        }
+
+        private List<Product> productsPage;
+        public List<Product> ProductsPage
+        {
+            get
+            {
+                return productsPage;
+            }
+            set
+            {
+                productsPage = value;
+                OnPropertyChanged(nameof(ProductsPage));
+            }
+        }
+
+        private Visibility discountVisible = Visibility.Collapsed;
+        public Visibility DiscountVisible
+        {
+            get { return discountVisible; }
+            set
+            {
+                discountVisible = value;
+                OnPropertyChanged(nameof(DiscountVisible));
+            }
+        }
+
+        public void SelectProduct(object sender)
+        {
+            var item = ((ListView)sender);
+            if (AccountManager.Admin == null) NavigarionManager.MainFrame.Content = new InfoProductPage((Product)item.SelectedItem);
+            else NavigarionManager.MainFrame.Content = new EditInfoProductPage((Product)item.SelectedItem);
+        }
+
+        
     }
 }

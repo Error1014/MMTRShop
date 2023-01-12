@@ -13,5 +13,15 @@ namespace MMTRShopWPF.Model
     {
         public string Title { get; set; }
         public virtual List<Product> Product { get; set; }
+
+
+        public Category()
+        {
+
+        }
+        public Category(string title)
+        {
+            Title = title;
+        }
     }
 }

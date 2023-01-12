@@ -11,10 +11,17 @@
     <Grid Background="White" >
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="0" x:Name="ListProducts"  SelectionChanged="SelectProduct" ItemsSource="{Binding ProductsPage}" HorizontalAlignment="Center">
+        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock FontSize="15"  Text="Категория товара:"/>
+            <ComboBox Margin="10,0" FontSize="15" Width="200" ItemsSource="{Binding CategoryItems}" DisplayMemberPath="Title" SelectedItem="{Binding SelectedCategoryItem}"/>
+            <TextBlock FontSize="15" Text="Производитель:"/>
+            <ComboBox Margin="10,0" FontSize="15"  Width="200" ItemsSource="{Binding BrandItems}" SelectedItem="{Binding SelectedBrandItem}"/>
+        </DockPanel>
+        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" x:Name="ListProducts"  SelectionChanged="SelectProduct" ItemsSource="{Binding ProductsPage}" HorizontalAlignment="Center">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Width="1000" Orientation="Horizontal"></WrapPanel>
@@ -52,7 +59,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <DockPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="30">
+        <DockPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="30">
             <Button Width="30" Height="30" FontSize="20" Content="&lt;" Command="{Binding PageMinus}"/>
             <TextBlock TextAlignment="Center" Background="Coral" Width="30" Height="30" FontSize="20" Text="{Binding Num1}"/>
             <TextBlock TextAlignment="Center" Width="30" Height="30" FontSize="20" Text="{Binding Num2}"/>
