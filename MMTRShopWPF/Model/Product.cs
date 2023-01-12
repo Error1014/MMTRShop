@@ -17,6 +17,7 @@ namespace MMTRShopWPF.Model
         public decimal Price { get; set; }
         public int Discount { get; set; }
         public string Photo { get; set; }
+        public int CountInStarage { get; set; }
         public Guid CategoryId { get; set; }
         public virtual Category Category { get; set; }
         public Guid BrandId { get; set; }
