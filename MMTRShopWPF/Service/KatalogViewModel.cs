@@ -49,7 +49,14 @@ namespace MMTRShopWPF.Service
             set
             {
                 selectedCategoryItem = value;
-                ProductsPage = UnitOfWork.Products.GetProductsPage(NumPage, SizePage,SelectedCategoryItem);
+                if (SelectedBrandItem == null)
+                {
+                    ProductsPage = UnitOfWork.Products.GetProductsPage(NumPage, SizePage, SelectedCategoryItem);
+                }
+                else
+                {
+                    ProductsPage = UnitOfWork.Products.GetProductsPage(NumPage, SizePage, SelectedCategoryItem, SelectedBrandItem);
+                }
                 OnPropertyChanged(nameof(SelectedCategoryItem));
             }
         }
@@ -74,7 +81,14 @@ namespace MMTRShopWPF.Service
             set
             {
                 selectedBrandItem = value;
-                ProductsPage = UnitOfWork.Products.GetProductsPage(NumPage, SizePage, SelectedBrandItem);
+                if (SelectedCategoryItem==null)
+                {
+                    ProductsPage = UnitOfWork.Products.GetProductsPage(NumPage, SizePage, SelectedBrandItem);
+                }
+                else
+                {
+                    ProductsPage = UnitOfWork.Products.GetProductsPage(NumPage, SizePage, SelectedCategoryItem, SelectedBrandItem);
+                }
                 OnPropertyChanged(nameof(SelectedBrandItem));
             }
         }
