@@ -18,6 +18,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1" Text="{Binding StatusProduct}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20" FontSize="20"/>
         <Button Width="30" Height="30" HorizontalAlignment="Left" Margin="10" Background="#00000000" BorderBrush="#00000000" Command="{Binding ClickLike}">
             <Image Source="{Binding IsLikePath}"/>
         </Button>
@@ -39,9 +40,9 @@
             </TextBlock>
             <TextBlock HorizontalAlignment="Left" Width="Auto" Text="{Binding Product.Description}" TextWrapping="Wrap"/>
             <TextBlock Text="{Binding Product.Category.Title}"/>
-            <TextBlock>
+            <TextBlock Visibility="{Binding VisibilityCount}">
                 <Run Text="Осталось на складе: "/>
-                <Run Text="{Binding Product.CountInStorage}"/>
+                <Run Text="{Binding Product.CountInStarage}"/>
             </TextBlock>
         </StackPanel>
         <DockPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">

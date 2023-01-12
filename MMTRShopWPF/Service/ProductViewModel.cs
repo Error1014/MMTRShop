@@ -10,6 +10,7 @@ namespace MMTRShopWPF.Service
     public class ProductVievModel : BaseViewModel
     {
         private bool isAdd;
+        private int countShow = 4;
         public ProductVievModel(Product product)
         {
             AllCategory = UnitOfWork.Categorys.GetAll().ToList();
@@ -27,6 +28,24 @@ namespace MMTRShopWPF.Service
                 SelectCategory = AllCategory.Where(category => category.Id == product.CategoryId).First();
                 SelectBrand = AllBrand.Where(brand => brand.Id == product.BrandId).First();
                 Product = UnitOfWork.Products.GetById(product.Id);
+            }
+            if (Product.CountInStarage < countShow)
+            {
+                if (Product.CountInStarage == 0)
+                {
+                    StatusProduct = "Закончился";
+                    VisibilityCount = Visibility.Collapsed;
+                }
+                else
+                {
+                    StatusProduct = "Доступен";
+                    VisibilityCount = Visibility.Visible;
+                }
+            }
+            else
+            {
+                StatusProduct = "Доступен";
+                VisibilityCount = Visibility.Collapsed;
             }
             if (AccountManager.Client == null)
             {
@@ -47,7 +66,16 @@ namespace MMTRShopWPF.Service
 
 
         }
-
+        private string statusProduct;
+        public string StatusProduct
+        {
+            get { return statusProduct; }
+            set
+            {
+                statusProduct = value;
+                OnPropertyChanged(nameof(StatusProduct));
+            }
+        }
         private Favourites favourit = new Favourites();
 
         private Product product;
@@ -104,6 +132,19 @@ namespace MMTRShopWPF.Service
                     }
 
                 });
+            }
+        }
+        private Visibility visibilityCount;
+        public Visibility VisibilityCount
+        {
+            get
+            {
+                return visibilityCount;
+            }
+            set
+            {
+                visibilityCount = value;
+                OnPropertyChanged(nameof(VisibilityCount));
             }
         }
         private void SetLike()
