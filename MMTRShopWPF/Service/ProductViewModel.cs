@@ -1,5 +1,4 @@
 ﻿using MMTRShopWPF.Model;
-using MMTRShopWPF.Repositoryes;
 using MMTRShopWPF.View.Pages;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +29,23 @@ namespace MMTRShopWPF.Service
                 SelectBrand = AllBrand.Where(brand => brand.Id == product.BrandId).First();
                 Product = UnitOfWork.Products.GetById(product.Id);
             }
+            if (client==null)
+            {
+                isLikePath = "/Resources/NoLike.png";
+            }
+            else
+            {
+                favourit = UnitOfWork.Favorites.GetFavouritByIdUserAndProduct(client.Id, product.Id);
+                if (favourit == null)
+                {
+                    isLikePath = "/Resources/NoLike.png";
+                }
+                else
+                {
+                    isLikePath = "/Resources/Like.png";
+                }
+            }
+            
 
         }
 
@@ -50,6 +66,65 @@ namespace MMTRShopWPF.Service
                 OnPropertyChanged(nameof(Product));
             }
         }
+
+        private string isLikePath;
+        public string IsLikePath
+        {
+            get { return isLikePath; }
+            set
+            {
+                isLikePath = value;
+                OnPropertyChanged(nameof(IsLikePath));
+            }
+        }
+        public ICommand ClickLike
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    if (client==null)
+                    {
+                        ClientNullMessageShow();
+                    }
+                    else
+                    {
+                        if (IsLikePath == "/Resources/NoLike.png")
+                        {
+                            SetLike();
+                        }
+                        else
+                        {
+                            RemoveLike();
+                        }
+                    }
+                    
+                });
+            }
+        }
+
+        private void ClientNullMessageShow()
+        {
+            MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
+            MainWindow.MainWindowFrame.Content = new AutorizationPage();
+        }
+
+        private Favourites favourit = new Favourites();
+        private void SetLike()
+        {
+            IsLikePath = "/Resources/Like.png";
+            favourit = new Favourites(client.Id, Product.Id);
+            UnitOfWork.Favorites.Add(favourit);
+            UnitOfWork.Favorites.Save();
+
+        }
+        private void RemoveLike()
+        {
+            IsLikePath = "/Resources/NoLike.png";
+            UnitOfWork.Favorites.Remove(favourit);
+            UnitOfWork.Favorites.Save();
+            favourit = new Favourites();
+        }
         public ICommand AddInKorzine
         {
             get
@@ -58,8 +133,7 @@ namespace MMTRShopWPF.Service
                 {
                     if (client == null)
                     {
-                        MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
-                        MainWindow.MainWindowFrame.Content = new AutorizationPage();
+                        ClientNullMessageShow();
                     }
                     else
                     {

@@ -12,6 +12,13 @@ namespace MMTRShopWPF.Model
         public virtual Client Client { get; set; }
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; }
-
+        public Favourites()
+        {
+        }
+        public Favourites(Guid clientId,Guid productId)
+        {
+            ClientId = clientId;
+            ProductId = productId;
+        }
     }
 }

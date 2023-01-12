@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMTRShopWPF.Repositoryes
+namespace MMTRShopWPF.Repositories
 {
     public interface ICategoryRepository:IRepository<Category>
     {

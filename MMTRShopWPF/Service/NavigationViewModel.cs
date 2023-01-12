@@ -56,7 +56,26 @@ namespace MMTRShopWPF.Service
                 OnPropertyChanged(nameof(SelectPage));
             }
         }
+        
+        public ICommand FavouritesNavigate
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    if (Client == null)
+                    {
+                        MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
+                        MainWindow.MainWindowFrame.Content = new AutorizationPage();
+                    }
+                    else
+                    {
+                        SelectPage = new FavouritesPage(Client);
+                    }
 
+                });
+            }
+        }
 
         public ICommand KatalogNavigate
         {

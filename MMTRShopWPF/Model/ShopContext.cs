@@ -36,6 +36,7 @@ namespace MMTRShopWPF.Model
         public DbSet<Order> Order { get; set; }
         public DbSet<CartOrder> CartOrder { get; set; }
         public DbSet<Feedback> Feedback { get; set; }
+        public DbSet<Favourites> Favourites { get; set; }
 
 
     }

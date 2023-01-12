@@ -24,8 +24,10 @@
                 <DataTemplate>
                     <Grid Background="White" HorizontalAlignment="Left" >
                         <StackPanel Margin="20" HorizontalAlignment="Left">
+
                             <Image Width="200" Height="200" Source="{Binding Photo}">
                             </Image>
+
                             <TextBlock HorizontalAlignment="Center" FontSize="20" Text="{Binding Title}"/>
                             <DockPanel>
                                 <TextBlock>

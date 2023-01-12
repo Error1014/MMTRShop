@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace MMTRShopWPF.Repositoryes
+namespace MMTRShopWPF.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity<Guid>
 {

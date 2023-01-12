@@ -1,12 +1,6 @@
-﻿using MMTRShopWPF.Repositoryes;
-using MMTRShopWPF.Model;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Repositories;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Service
 {

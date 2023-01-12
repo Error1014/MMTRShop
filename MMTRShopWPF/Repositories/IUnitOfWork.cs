@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMTRShopWPF.Repositoryes
+namespace MMTRShopWPF.Repositories
 {
     internal interface IUnitOfWork:IDisposable
     {
@@ -15,6 +15,7 @@ namespace MMTRShopWPF.Repositoryes
         IBrandRepository Brands { get; }
         IUserRepository Users { get; }
         IClientRepository  Clients { get; }
+        IFavouritesRepository Favorites { get; }
         int Complete();
     }
 }

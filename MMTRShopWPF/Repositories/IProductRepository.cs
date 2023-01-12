@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMTRShopWPF.Repositoryes
+namespace MMTRShopWPF.Repositories
 {
     public interface IProductRepository: IRepository<Product>
     {
         List<Product> GetProductsPage(int numPage, int sizePage);
+      
     }
 }

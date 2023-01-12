@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMTRShopWPF.Repositoryes
+namespace MMTRShopWPF.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -21,6 +21,7 @@ namespace MMTRShopWPF.Repositoryes
             Brands = new BrandRepository(_context);
             Users = new UserRepository(_context);
             Clients = new ClientRepository(_context);
+            Favorites = new FavouritesRepository(_context);
         }
 
         public IProductRepository Products { get;private set; }
@@ -34,6 +35,8 @@ namespace MMTRShopWPF.Repositoryes
         public IUserRepository Users { get; private set; }
 
         public IClientRepository Clients { get; private set; }
+
+        public IFavouritesRepository Favorites { get; private set; }
 
         public int Complete()
         {

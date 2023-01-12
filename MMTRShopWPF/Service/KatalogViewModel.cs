@@ -1,10 +1,7 @@
-﻿using MMTRShopWPF.Repositoryes;
-using MMTRShopWPF.Model;
-using System;
+﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Repositories;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -33,6 +30,7 @@ namespace MMTRShopWPF.Service
         private int SizePage = 20;
         public KatalogViewModel()
         {
+            
             productsPage = GetPageProduct();
             if (ShopContext.GetContext().Product.Count() % SizePage == 0)
             {
@@ -43,6 +41,7 @@ namespace MMTRShopWPF.Service
                 valuePage = ShopContext.GetContext().Product.Count() / SizePage + 1;
             }
         }
+
 
         public List<Product> GetPageProduct()
         {
