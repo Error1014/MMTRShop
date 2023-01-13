@@ -18,6 +18,8 @@ namespace MMTRShopWPF.Model
         public virtual List<Cart> Cart { get; set; }
         public virtual List<Feedback> Feedback { get; set; }
 
+        public virtual List<BankCard> BankCards { get; set; }
+
         public Client()
         {
 

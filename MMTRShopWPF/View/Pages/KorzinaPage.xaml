@@ -9,7 +9,11 @@
       Title="KorzinaPage">
 
     <Grid Background="White">
-        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListProducts"  ItemsSource="{Binding Cart}" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListProducts"  ItemsSource="{Binding Cart}" HorizontalAlignment="Center" Width="800">
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -63,5 +67,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <DockPanel Grid.Row="1">
+            <Button Content="Оформить заказ" Width="120" Height="40" Command="{Binding OrderCartNavigate}"/>
+        </DockPanel>
+        
     </Grid>
 </Page>

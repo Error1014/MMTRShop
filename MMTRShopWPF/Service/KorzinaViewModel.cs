@@ -97,5 +97,16 @@ namespace MMTRShopWPF.Service
                 });
             }
         }
+
+        public ICommand OrderCartNavigate
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    NavigarionManager.MainFrame.Content = new MakingAnOrderPage();
+                });
+            }
+        }
     }
 }

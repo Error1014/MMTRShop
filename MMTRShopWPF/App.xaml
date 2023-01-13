@@ -17,5 +17,10 @@
             <Setter Property="TextBox.Width" Value="300"/>
             <Setter Property="TextBox.TextAlignment" Value="Left"/>
         </Style>
+        <Style x:Key="BankCardStyle">
+            <Setter Property="TextBlock.FontSize" Value="18"/>
+            <Setter Property="TextBox.FontSize" Value="18"/>
+            <Setter Property="ComboBox.FontSize" Value="18"/>
+        </Style>
     </Application.Resources>
 </Application>
