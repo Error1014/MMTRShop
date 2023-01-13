@@ -81,18 +81,55 @@ namespace MMTRShopWPF.Service
             {
                 return new Commands((obj) =>
                 {
-                    if (AccountManager.Client == null)
+                    if (CheckIsClient())
                     {
-                        MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
-                        MainWindow.MainWindowFrame.Content = new AutorizationPage();
+                        NavigarionManager.MainFrame.Content = new KorzinaPage();
                     }
-                    else
-                    {
-                        NavigarionManager.MainFrame.Content = new KorzinaPage(AccountManager.Client);
-                    }
-
                 });
             }
+        }
+
+        public ICommand MyOrdersNavigate
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    if (CheckIsClient())
+                    {
+                        NavigarionManager.MainFrame.Content = new MyOrderPage();
+                    }
+                });
+            }
+        }
+
+        public ICommand MyHistoryNavigate
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    if (CheckIsClient())
+                    {
+                        NavigarionManager.MainFrame.Content = new MyHistoryPage();
+                    }
+                });
+            }
+        }
+
+        private bool CheckIsClient()
+        {
+            if (AccountManager.Client == null)
+            {
+                MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
+                MainWindow.MainWindowFrame.Content = new AutorizationPage();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
 
         public virtual ICommand AutorizationNavigate

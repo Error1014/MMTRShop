@@ -10,11 +10,9 @@ namespace MMTRShopWPF.View.Pages
     public partial class KorzinaPage : Page
     {
         public static KorzinaViewModel korzinaViewModel;
-        private  Client user;
-        public KorzinaPage(Client user)
+        public KorzinaPage()
         {
             InitializeComponent();
-            this.user = user;
             UpdateDataContext();
         }
 

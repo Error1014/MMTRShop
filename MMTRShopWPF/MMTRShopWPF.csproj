@@ -168,6 +168,12 @@
     <Compile Include="View\Pages\MakingAnOrderPage.xaml.cs">
       <DependentUpon>MakingAnOrderPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\MyHistoryPage.xaml.cs">
+      <DependentUpon>MyHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MyOrdersPage.xaml.cs">
+      <DependentUpon>MyOrdersPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Components\BindingPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +219,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\MakingAnOrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\MyHistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\MyOrdersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

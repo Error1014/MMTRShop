@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using MMTRShopWPF.View.Pages;
 
 namespace MMTRShopWPF.Service
 {
@@ -19,7 +20,7 @@ namespace MMTRShopWPF.Service
             
         }
 
-        private Order order;
+        private Order order = new Order();
         public Order Order
         {
             get { return order; }
@@ -115,6 +116,7 @@ namespace MMTRShopWPF.Service
                         UnitOfWork.Carts.RemoveRange(carts);//чистим корзину
                         UnitOfWork.Carts.Save();
 
+                        NavigarionManager.MainFrame.Content = new MyOrderPage();
                     }
                 });
             }

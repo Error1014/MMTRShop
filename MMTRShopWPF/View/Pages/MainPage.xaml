@@ -16,7 +16,10 @@
         <DockPanel Background="Coral">
             <Button Content="Корзина" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient}" Command="{Binding KorzinaNavigate}" />
             <Button Content="Избраное" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient}" Command="{Binding FavouritesNavigate}" />
-           
+
+            <Button Content="Мои заказы" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient}" Command="{Binding FavouritesNavigate}" />
+            <Button Content="История" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient}" Command="{Binding FavouritesNavigate}" />
+            
             <Button Content="Каталог" HorizontalAlignment="Right" Margin="10" Command="{Binding KatalogNavigate}" />
             <Button Content="Добавить товар" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonAdmin}" Command="{Binding AddProduct}" />
             

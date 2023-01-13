@@ -210,6 +210,7 @@ namespace MMTRShopWPF.Service
                     }
                     UnitOfWork.Products.Save();
                     MessageBox.Show("Успешно");
+                    NavigarionManager.MainFrame.Content = new KatalogPage();
 
                 });
             }
@@ -227,6 +228,7 @@ namespace MMTRShopWPF.Service
                     }
                     UnitOfWork.Products.Save();
                     MessageBox.Show("Успешно");
+                    NavigarionManager.MainFrame.Content = new KatalogPage();
                 });
             }
         }

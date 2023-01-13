@@ -24,7 +24,7 @@ namespace MMTRShopWPF.Model
         {
             Address = address;
             DateOrder = DateTime.Now;
-            DateDelivery = new DateTime();
+            DateDelivery = DateOrder;
             IsPaid = isPaid;
             StatusId = statusId;
         }
