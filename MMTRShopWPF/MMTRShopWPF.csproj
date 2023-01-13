@@ -96,8 +96,11 @@
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Status.cs" />
     <Compile Include="Repositories\Interface\IBankCardRepository.cs" />
+    <Compile Include="Repositories\Interface\ICartOrderRepository.cs" />
+    <Compile Include="Repositories\Interface\IOrderRepository.cs" />
     <Compile Include="Repositories\Repository\BankCardRepository.cs" />
     <Compile Include="Repositories\Repository\BrandRepository.cs" />
+    <Compile Include="Repositories\Repository\CartOrderRepository.cs" />
     <Compile Include="Repositories\Repository\CategoryRepository.cs" />
     <Compile Include="Repositories\Repository\ClientRepository.cs" />
     <Compile Include="Repositories\Repository\FavouritesRepository.cs" />
@@ -111,6 +114,7 @@
     <Compile Include="Repositories\Interface\IUnitOfWork.cs" />
     <Compile Include="Repositories\Interface\IUserRepository.cs" />
     <Compile Include="Repositories\Repository\CartRopository.cs" />
+    <Compile Include="Repositories\Repository\OrderRepository.cs" />
     <Compile Include="Repositories\Repository\ProductRepository.cs" />
     <Compile Include="Repositories\Repository\Repository.cs" />
     <Compile Include="Repositories\Repository\UnitOfWork.cs" />
