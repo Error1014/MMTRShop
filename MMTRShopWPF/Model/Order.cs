@@ -8,6 +8,7 @@ namespace MMTRShopWPF.Model
 {
     public class Order : BaseEntity<Guid>
     {
+        public string Address { get; set; }
         public DateTime DateOrder { get; set; }
         public DateTime DateDelivery { get; set; }
         public int StatusID { get; set; }

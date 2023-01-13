@@ -77,6 +77,10 @@
     <Compile Include="Migrations\202301130825283_AddBankCard.designer.cs">
       <DependentUpon>202301130825283_AddBankCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301130921198_AddAddressInOrder.cs" />
+    <Compile Include="Migrations\202301130921198_AddAddressInOrder.designer.cs">
+      <DependentUpon>202301130921198_AddAddressInOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BankCard.cs" />
     <Compile Include="Model\BaseEntiti.cs" />
@@ -87,6 +91,8 @@
     <Compile Include="Model\Operator.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Status.cs" />
+    <Compile Include="Repositories\Interface\IBankCardRepository.cs" />
+    <Compile Include="Repositories\Repository\BankCardRepository.cs" />
     <Compile Include="Repositories\Repository\BrandRepository.cs" />
     <Compile Include="Repositories\Repository\CategoryRepository.cs" />
     <Compile Include="Repositories\Repository\ClientRepository.cs" />
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301130825283_AddBankCard.resx">
       <DependentUpon>202301130825283_AddBankCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301130921198_AddAddressInOrder.resx">
+      <DependentUpon>202301130921198_AddAddressInOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

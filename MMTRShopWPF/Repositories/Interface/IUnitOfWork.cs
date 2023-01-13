@@ -11,6 +11,7 @@ namespace MMTRShopWPF.Repositories.Interface
         IUserRepository Users { get; }
         IClientRepository  Clients { get; }
         IFavouritesRepository Favorites { get; }
+        IBankCardRepository BankCards { get; }
         int Complete();
     }
 }

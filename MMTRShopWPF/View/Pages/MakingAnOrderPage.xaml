@@ -18,31 +18,38 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Center" Margin="0,20,0,20" Width="300">
+        <StackPanel>
             <StackPanel>
-                <TextBlock Style="{StaticResource BankCardStyle}" Text="Номер карты"/>
-                <TextBox Style="{StaticResource BankCardStyle}" Text="{Binding BankCard.Number}"/>
+                <RadioButton Content="Оплатить при получении"/>
+                <RadioButton Content="Оплатить сейчас" IsChecked="True"/>
             </StackPanel>
-            <StackPanel>
-                <TextBlock Style="{StaticResource BankCardStyle}" Text="Имя и фамилия"/>
-                <TextBox Style="{StaticResource BankCardStyle}" Text="{Binding BankCard.Name}"/>
-            </StackPanel>
-            <StackPanel>
-                <TextBlock Style="{StaticResource BankCardStyle}" Text="Срок действия"/>
-                <DockPanel>
-                    <ComboBox Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCard.Mont}" Width="60"/>
-                    <ComboBox Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCard.Year}" Width="120"/>
-                </DockPanel>
-            </StackPanel>
-            <StackPanel>
-                <TextBlock Style="{StaticResource BankCardStyle}" Text="CVV2/CVC2"/>
-                <components:BindingPassword Style="{StaticResource BankCardStyle}" HorizontalAlignment="Left" FontSize="20" Width="70" Password ="{Binding BankCard.Code,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-            </StackPanel>
-            <StackPanel Margin="0,20">
-                <TextBlock Style="{StaticResource BankCardStyle}" Text="Адрес доставки"/>
-                <TextBox Style="{StaticResource BankCardStyle}" Text=""/>
+            <StackPanel HorizontalAlignment="Center" Margin="0,20,0,20" Width="300">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource BankCardStyle}" Text="Номер карты"/>
+                    <TextBox Style="{StaticResource BankCardStyle}" Text="{Binding BankCard.Number}"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource BankCardStyle}" Text="Имя и фамилия"/>
+                    <TextBox Style="{StaticResource BankCardStyle}" Text="{Binding BankCard.Name}"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource BankCardStyle}" Text="Срок действия"/>
+                    <DockPanel>
+                        <ComboBox Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCard.Mont}" Width="60"/>
+                        <ComboBox Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCard.Year}" Width="120"/>
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource BankCardStyle}" Text="CVV2/CVC2"/>
+                    <components:BindingPassword Style="{StaticResource BankCardStyle}" HorizontalAlignment="Left" FontSize="20" Width="70" Password ="{Binding BankCard.Code,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Margin="0,20">
+                    <TextBlock Style="{StaticResource BankCardStyle}" Text="Адрес доставки"/>
+                    <TextBox Style="{StaticResource BankCardStyle}" Text=""/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
+        
 
         <StackPanel Grid.Column="1" Margin="20,20,20,20">
             <TextBlock Style="{StaticResource BankCardStyle}" Text="Ваши карты"/>
