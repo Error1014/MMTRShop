@@ -1,10 +1,12 @@
 ﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Service.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using MMTRShopWPF.View.Pages;
 using System;
 using MMTRShopWPF.ViewModel;
+using MMTRShopWPF.Model.Models;
 
 namespace MMTRShopWPF.Service.Services
 {

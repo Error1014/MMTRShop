@@ -1,4 +1,4 @@
-﻿using MMTRShopWPF.Model;
+﻿using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModel;
 using System.Collections.Generic;

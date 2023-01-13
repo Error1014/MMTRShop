@@ -1,6 +1,5 @@
-﻿using MMTRShopWPF.Model;
-using MMTRShopWPF.Repositories;
-using MMTRShopWPF.Repositories.Repository;
+﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repository;
 using System.ComponentModel;
 
 

@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModel;
+using MMTRShopWPF.Model.Models;
 
 namespace MMTRShopWPF.Service.Services
 {
