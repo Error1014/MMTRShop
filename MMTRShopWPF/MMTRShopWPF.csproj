@@ -81,6 +81,10 @@
     <Compile Include="Migrations\202301130921198_AddAddressInOrder.designer.cs">
       <DependentUpon>202301130921198_AddAddressInOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301130946172_AddIsPaid.cs" />
+    <Compile Include="Migrations\202301130946172_AddIsPaid.designer.cs">
+      <DependentUpon>202301130946172_AddIsPaid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BankCard.cs" />
     <Compile Include="Model\BaseEntiti.cs" />
@@ -224,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301130921198_AddAddressInOrder.resx">
       <DependentUpon>202301130921198_AddAddressInOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301130946172_AddIsPaid.resx">
+      <DependentUpon>202301130946172_AddIsPaid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

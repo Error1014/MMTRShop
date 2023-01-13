@@ -11,6 +11,7 @@ namespace MMTRShopWPF.Model
         public string Address { get; set; }
         public DateTime DateOrder { get; set; }
         public DateTime DateDelivery { get; set; }
+        public bool IsPaid { get; set; }
         public int StatusID { get; set; }
         public virtual Status Status { get; set; }
     }
