@@ -25,7 +25,7 @@ namespace MMTRShopWPF.Service.Services
             var users = UnitOfWork.Users.GetAll();
             foreach (var user in users)
             {
-                if (CheckCorrectLoginPassword(login, password))
+                if (login==user.Login && password==user.Password)
                 {
                     return user.Id;
                 }

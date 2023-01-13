@@ -16,8 +16,8 @@ namespace MMTRShopWPF.Service.Services
         {
             AllCategory = ProductService.GetAllCategory();
             AllBrand = ProductService.GetAllBrand();
-            SelectCategory = ProductService.GetCategoryProduct(product.Id);
-            SelectBrand = ProductService.GetBrandProduct(product.Id);
+            SelectCategory = AllCategory[0];
+            SelectBrand = AllBrand[0];
             if (product == null)
             {
                 isAdd = true;
@@ -26,6 +26,8 @@ namespace MMTRShopWPF.Service.Services
             else
             {
                 isAdd = false;
+                SelectCategory = ProductService.GetCategoryProduct(product.Id);
+                SelectBrand = ProductService.GetBrandProduct(product.Id);
                 Product = product;
             }
 

@@ -1,6 +1,6 @@
 ﻿using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Repository.Interface;
-using MMTRShopWPF.Repository.Repository;
+using MMTRShopWPF.Repository.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -2,7 +2,7 @@
 using MMTRShopWPF.Repository.Interface;
 using System.Linq;
 
-namespace MMTRShopWPF.Repository.Repository
+namespace MMTRShopWPF.Repository.Repositories
 {
     public class StatusRepository:Repository<Status>,IStatusRepository
     {

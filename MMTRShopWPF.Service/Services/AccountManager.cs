@@ -71,16 +71,34 @@ namespace MMTRShopWPF.Service.Services
         {
             var user = UnitOfWork.Users.GetById(id);
             User = user;
-            var users = UnitOfWork.Clients.GetAll();
-            foreach (var item in users)
+            var admins = UnitOfWork.Admins.GetAll();
+            foreach (var item in admins)
             {
                 if (user.Id==item.UserId)
                 {
-                    Client = UnitOfWork.Clients.GetById(item.Id);
+                    Admin = UnitOfWork.Admins.GetAdminByUserId(user.Id);
                     return;
                 }
             }
-            Admin = null;
+            var operators = UnitOfWork.Operators.GetAll();
+            foreach (var item in operators)
+            {
+                if (user.Id == item.UserId)
+                {
+                    Operator = UnitOfWork.Operators.GetOperatorByUserId(user.Id);
+                    return;
+                }
+            }
+            var clients = UnitOfWork.Clients.GetAll();
+            foreach (var item in clients)
+            {
+                if (user.Id == item.UserId)
+                {
+                    Client = UnitOfWork.Clients.GetClientByUserId(user.Id);
+                    return;
+                }
+            }
+
         }
         public static void ResetAccount()
         {

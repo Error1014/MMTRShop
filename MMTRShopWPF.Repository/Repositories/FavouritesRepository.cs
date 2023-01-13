@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MMTRShopWPF.Repository.Repository
+namespace MMTRShopWPF.Repository.Repositories
 {
     public class FavouritesRepository : Repository<Favourites>, IFavouritesRepository
     {

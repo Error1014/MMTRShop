@@ -1,6 +1,9 @@
 ﻿using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Repository.Interface;
-namespace MMTRShopWPF.Repository.Repository
+using System.Linq;
+using System;
+
+namespace MMTRShopWPF.Repository.Repositories
 {
     public class ClientRepository : Repository<Client>, IClientRepository
     {
@@ -12,6 +15,11 @@ namespace MMTRShopWPF.Repository.Repository
         public ShopContext ShopContext
         {
             get { return Context as ShopContext; }
+        }
+
+        public Client GetClientByUserId(Guid id)
+        {
+            return ShopContext.Client.Where(c => c.UserId == id).FirstOrDefault();
         }
     }
 }

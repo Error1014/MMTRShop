@@ -2,7 +2,7 @@
 using MMTRShopWPF.Repositories.Repository;
 using MMTRShopWPF.Repository.Interface;
 
-namespace MMTRShopWPF.Repository.Repository
+namespace MMTRShopWPF.Repository.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -22,6 +22,8 @@ namespace MMTRShopWPF.Repository.Repository
             Orders = new OrderRepository(_context);
             CartOrders = new CartOrderRepository(_context);
             Status = new StatusRepository(_context);
+            Admins = new AdminRepository(_context);
+            Operators = new OperatorRepository(_context);
         }
 
         public IProductRepository Products { get;private set; }
@@ -45,6 +47,9 @@ namespace MMTRShopWPF.Repository.Repository
         public ICartOrderRepository CartOrders { get; private set; }
 
         public IStatusRepository Status { get; private set; }
+
+        public IAdminRepository Admins { get; private set; }
+        public IOperatorRepository Operators { get; private set; }
 
         public int Complete()
         {

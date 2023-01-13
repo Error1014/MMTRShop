@@ -34,6 +34,7 @@ namespace MMTRShopWPF.Service.Services
             {
                 SetOperatorSettings();
             }
+            TextButton = "Выйти";
         }
 
         private void SetClientSettings()
@@ -41,21 +42,18 @@ namespace MMTRShopWPF.Service.Services
             AccountManager.User = AccountManager.GetUserByIdClient();
             VisibilityButtonClient = Visibility.Visible;
             VisibilityButtonAdmin = Visibility.Collapsed;
-            TextButton = "Выйти";
         }
         private void SetAdminSettings()
         {
             AccountManager.User = AccountManager.GetUserByIdAdmin();
             VisibilityButtonClient = Visibility.Collapsed;
             VisibilityButtonAdmin = Visibility.Visible;
-            TextButton = "Выйти";
         }
         private void SetOperatorSettings()
         {
             AccountManager.User = AccountManager.GetUserByIdOperator();
             VisibilityButtonClient = Visibility.Collapsed;
             VisibilityButtonAdmin = Visibility.Visible;
-            TextButton = "Выйти";
         }
 
         
