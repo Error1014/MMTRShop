@@ -20,43 +20,43 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <StackPanel>
-                <RadioButton Content="Оплатить при получении"/>
-                <RadioButton Content="Оплатить сейчас" IsChecked="True"/>
+                <RadioButton Content="Оплатить при получении" Command="{Binding PayLater}"/>
+                <RadioButton Content="Оплатить сейчас" IsChecked="True" Command="{Binding PayNow}"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Center" Margin="0,20,0,20" Width="300">
+            <StackPanel HorizontalAlignment="Center" Opacity="{Binding BlockBankCardOpacity}" Margin="0,20,0,20" Width="300">
                 <StackPanel>
                     <TextBlock Style="{StaticResource BankCardStyle}" Text="Номер карты"/>
-                    <TextBox Style="{StaticResource BankCardStyle}" Text="{Binding BankCard.Number}"/>
+                    <TextBox Focusable="{Binding IsPayNow}" Style="{StaticResource BankCardStyle}" Text="{Binding BankCard.Number}"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Style="{StaticResource BankCardStyle}" Text="Имя и фамилия"/>
-                    <TextBox Style="{StaticResource BankCardStyle}" Text="{Binding BankCard.Name}"/>
+                    <TextBox Focusable="{Binding IsPayNow}" Style="{StaticResource BankCardStyle}" Text="{Binding BankCard.Name}"/>
                 </StackPanel>
                 <StackPanel>
-                    <TextBlock Style="{StaticResource BankCardStyle}" Text="Срок действия"/>
+                    <TextBlock  Style="{StaticResource BankCardStyle}" Text="Срок действия"/>
                     <DockPanel>
-                        <ComboBox Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCard.Mont}" Width="60"/>
-                        <ComboBox Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCard.Year}" Width="120"/>
+                        <ComboBox Focusable="{Binding IsPayNow}" ItemsSource="{Binding MonthItems}" Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCard.Mont}" Width="60"/>
+                        <ComboBox Focusable="{Binding IsPayNow}" ItemsSource="{Binding YearItems}" Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCard.Year}" Width="120"/>
                     </DockPanel>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Style="{StaticResource BankCardStyle}" Text="CVV2/CVC2"/>
-                    <components:BindingPassword Style="{StaticResource BankCardStyle}" HorizontalAlignment="Left" FontSize="20" Width="70" Password ="{Binding BankCard.Code,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <components:BindingPassword Focusable="{Binding IsPayNow}" Style="{StaticResource BankCardStyle}" HorizontalAlignment="Left" FontSize="20" Width="70" Password ="{Binding BankCard.Code,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </StackPanel>
-                <StackPanel Margin="0,20">
-                    <TextBlock Style="{StaticResource BankCardStyle}" Text="Адрес доставки"/>
-                    <TextBox Style="{StaticResource BankCardStyle}" Text=""/>
-                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="0,20" HorizontalAlignment="Center" Width="300">
+                <TextBlock Style="{StaticResource BankCardStyle}" Text="Адрес доставки"/>
+                <TextBox Style="{StaticResource BankCardStyle}" Text=""/>
             </StackPanel>
         </StackPanel>
         
 
-        <StackPanel Grid.Column="1" Margin="20,20,20,20">
+        <StackPanel Grid.Column="1" Margin="20,50,20,20">
             <TextBlock Style="{StaticResource BankCardStyle}" Text="Ваши карты"/>
             <ComboBox Style="{StaticResource BankCardStyle}" />
         </StackPanel>
         <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
-            <Button FontSize="22" VerticalAlignment="Bottom" Content="Заказать" Width="120" Margin="0,0,0,10"/>
+            <Button FontSize="22" VerticalAlignment="Bottom" Content="Заказать" Width="120" Margin="0,0,0,10" Command="{Binding PlaceAnOrder}"/>
         </DockPanel>
     </Grid>
 </Page>
