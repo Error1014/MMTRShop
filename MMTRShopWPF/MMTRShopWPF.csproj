@@ -90,59 +90,8 @@
       <DependentUpon>202301131206336_EditTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\BankCard.cs" />
-    <Compile Include="Model\BaseEntiti.cs" />
-    <Compile Include="Model\CartOrder.cs" />
-    <Compile Include="Model\Client.cs" />
-    <Compile Include="Model\Favourites.cs" />
-    <Compile Include="Model\Feedback.cs" />
-    <Compile Include="Model\Operator.cs" />
-    <Compile Include="Model\Order.cs" />
-    <Compile Include="Model\Status.cs" />
-    <Compile Include="Repositories\Interface\IBankCardRepository.cs" />
-    <Compile Include="Repositories\Interface\ICartOrderRepository.cs" />
-    <Compile Include="Repositories\Interface\IOrderRepository.cs" />
-    <Compile Include="Repositories\Interface\IStatusRepository.cs" />
-    <Compile Include="Repositories\Repository\BankCardRepository.cs" />
-    <Compile Include="Repositories\Repository\BrandRepository.cs" />
-    <Compile Include="Repositories\Repository\CartOrderRepository.cs" />
-    <Compile Include="Repositories\Repository\CategoryRepository.cs" />
-    <Compile Include="Repositories\Repository\ClientRepository.cs" />
-    <Compile Include="Repositories\Repository\FavouritesRepository.cs" />
-    <Compile Include="Repositories\Interface\IBrandRepository.cs" />
-    <Compile Include="Repositories\Interface\ICategoryRepository.cs" />
-    <Compile Include="Repositories\Interface\ICartRepository.cs" />
-    <Compile Include="Repositories\Interface\IClientRepository.cs" />
-    <Compile Include="Repositories\Interface\IFavouritesRepository.cs" />
-    <Compile Include="Repositories\Interface\IProductRepository.cs" />
-    <Compile Include="Repositories\Interface\IRepository.cs" />
-    <Compile Include="Repositories\Interface\IUnitOfWork.cs" />
-    <Compile Include="Repositories\Interface\IUserRepository.cs" />
-    <Compile Include="Repositories\Repository\CartRopository.cs" />
-    <Compile Include="Repositories\Repository\OrderRepository.cs" />
-    <Compile Include="Repositories\Repository\ProductRepository.cs" />
-    <Compile Include="Repositories\Repository\Repository.cs" />
-    <Compile Include="Repositories\Repository\StatusRepository.cs" />
-    <Compile Include="Repositories\Repository\UnitOfWork.cs" />
-    <Compile Include="Repositories\Repository\UserRepository.cs" />
-    <Compile Include="Model\Admin.cs" />
-    <Compile Include="Model\Brand.cs" />
-    <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Cart.cs" />
-    <Compile Include="Model\Product.cs" />
-    <Compile Include="Model\ShopContext.cs" />
-    <Compile Include="Model\User.cs" />
-    <Compile Include="Service\AccountManager.cs" />
-    <Compile Include="Service\AutorizationService.cs" />
-    <Compile Include="Service\BankCardService.cs" />
-    <Compile Include="Service\CartService.cs" />
-    <Compile Include="Service\FavouritesService.cs" />
-    <Compile Include="Service\KatalogService.cs" />
-    <Compile Include="Service\OrderService.cs" />
-    <Compile Include="Service\ProductService.cs" />
     <Compile Include="ViewModels\AutorizationViewModel.cs" />
     <Compile Include="ViewModels\BankCardViewModel.cs" />
-    <Compile Include="Service\BaseService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Commands.cs" />
     <Compile Include="ViewModels\FavouritesViewModel.cs" />
@@ -417,6 +366,10 @@
     <Resource Include="Resources\Like.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MMTRShopWPF.Model\MMTRShopWPF.Model.csproj">
+      <Project>{f21dc6fa-dc03-4c18-b6bf-13dcf7ced0c3}</Project>
+      <Name>MMTRShopWPF.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MMTRShopWPF.Repository\MMTRShopWPF.Repository.csproj">
       <Project>{04e4b1ed-0599-4da6-b0e5-29e52502cf4e}</Project>
       <Name>MMTRShopWPF.Repository</Name>

@@ -1,4 +1,5 @@
 ﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Service.Services;
 using System;
 using System.Collections.Generic;
