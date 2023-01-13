@@ -1,5 +1,6 @@
 ﻿using MMTRShopWPF.Model;
-using MMTRShopWPF.Service;
+using MMTRShopWPF.Service.Services;
+using System;
 using System.Windows.Controls;
 
 namespace MMTRShopWPF.View.Pages
@@ -17,29 +18,13 @@ namespace MMTRShopWPF.View.Pages
             DataContext = NavigationViewModel;
 
         }
-
-        public MainPage(User user)
+        public MainPage(Guid id)
         {
             InitializeComponent();
             NavigarionManager.MainFrame = MyFrame;
-            NavigationViewModel NavigationViewModel = new NavigationViewModel(user);
+            NavigationViewModel NavigationViewModel = new NavigationViewModel(id);
             DataContext = NavigationViewModel;
-        }
 
-        public MainPage(Client client)
-        {
-            InitializeComponent();
-            NavigarionManager.MainFrame = MyFrame;
-            NavigationViewModel NavigationViewModel = new NavigationViewModel(client);
-            DataContext = NavigationViewModel;
-        }
-
-        public MainPage(Admin admin)
-        {
-            InitializeComponent();
-            NavigarionManager.MainFrame = MyFrame;
-            NavigationViewModel NavigationViewModel = new NavigationViewModel(admin);
-            DataContext = NavigationViewModel;
         }
     }
 }

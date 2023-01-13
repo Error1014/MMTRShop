@@ -133,17 +133,25 @@
     <Compile Include="Model\ShopContext.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Service\AccountManager.cs" />
-    <Compile Include="Service\AutorizationViewModel.cs" />
-    <Compile Include="Service\BankCardViewModel.cs" />
-    <Compile Include="Service\BaseViewModel.cs" />
-    <Compile Include="Service\Commands.cs" />
-    <Compile Include="Service\FavouritesViewModel.cs" />
-    <Compile Include="Service\KatalogViewModel.cs" />
-    <Compile Include="Service\KorzinaViewModel.cs" />
-    <Compile Include="Service\NavigarionManager.cs" />
-    <Compile Include="Service\NavigationViewModel.cs" />
-    <Compile Include="Service\OrderViewModel.cs" />
-    <Compile Include="Service\ProductViewModel.cs" />
+    <Compile Include="Service\AutorizationService.cs" />
+    <Compile Include="Service\BankCardService.cs" />
+    <Compile Include="Service\CartService.cs" />
+    <Compile Include="Service\FavouritesService.cs" />
+    <Compile Include="Service\KatalogService.cs" />
+    <Compile Include="Service\OrderService.cs" />
+    <Compile Include="Service\ProductService.cs" />
+    <Compile Include="ViewModels\AutorizationViewModel.cs" />
+    <Compile Include="ViewModels\BankCardViewModel.cs" />
+    <Compile Include="Service\BaseService.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Commands.cs" />
+    <Compile Include="ViewModels\FavouritesViewModel.cs" />
+    <Compile Include="ViewModels\KatalogViewModel.cs" />
+    <Compile Include="ViewModels\CartViewModel.cs" />
+    <Compile Include="ViewModels\NavigarionManager.cs" />
+    <Compile Include="ViewModels\NavigationViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="View\Pages\AutorizationPage.xaml.cs">
       <DependentUpon>AutorizationPage.xaml</DependentUpon>
     </Compile>
@@ -407,6 +415,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Like.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MMTRShopWPF.Repository\MMTRShopWPF.Repository.csproj">
+      <Project>{04e4b1ed-0599-4da6-b0e5-29e52502cf4e}</Project>
+      <Name>MMTRShopWPF.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MMTRShopWPF.Service\MMTRShopWPF.Service.csproj">
+      <Project>{0b174395-8894-489b-b24e-62d165945ff1}</Project>
+      <Name>MMTRShopWPF.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

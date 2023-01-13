@@ -1,5 +1,5 @@
 ﻿using MMTRShopWPF.Model;
-using MMTRShopWPF.Service;
+using MMTRShopWPF.Service.Services;
 using System.Windows.Controls;
 
 namespace MMTRShopWPF.View.Pages
@@ -9,7 +9,7 @@ namespace MMTRShopWPF.View.Pages
     /// </summary>
     public partial class KorzinaPage : Page
     {
-        public static KorzinaViewModel korzinaViewModel;
+        public static CartViewModel korzinaViewModel;
         public KorzinaPage()
         {
             InitializeComponent();
@@ -18,7 +18,7 @@ namespace MMTRShopWPF.View.Pages
 
         public void UpdateDataContext()
         {
-            korzinaViewModel = new KorzinaViewModel(this);
+            korzinaViewModel = new CartViewModel(this);
             DataContext = korzinaViewModel;
         }
     }

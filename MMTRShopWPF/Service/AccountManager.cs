@@ -1,13 +1,12 @@
 ﻿using MMTRShopWPF.Model;
+using MMTRShopWPF.Repositories.Repository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
-namespace MMTRShopWPF.Service
+namespace MMTRShopWPF.Service.Services
 {
-    public class AccountManager
+    public class AccountManager:BaseService
     {
         private static User user;
         private static Admin admin;
@@ -54,6 +53,33 @@ namespace MMTRShopWPF.Service
                 client = null;
                 _operator = value;
             }
+        }
+        public static User GetUserByIdClient()
+        {
+            return ShopContext.GetContext().User.Where(user => user.Id == Client.UserId).FirstOrDefault();
+        }
+        public static User GetUserByIdAdmin()
+        {
+            return ShopContext.GetContext().User.Where(user => user.Id == Admin.UserId).FirstOrDefault();
+        }
+        public static User GetUserByIdOperator()
+        {
+            return ShopContext.GetContext().User.Where(user => user.Id == Operator.UserId).FirstOrDefault();
+        }
+        public static void SetRoleById(Guid id)
+        {
+            var user = UnitOfWork.Users.GetById(id);
+            User = user;
+            var users = UnitOfWork.Clients.GetAll();
+            foreach (var item in users)
+            {
+                if (user.Id==item.UserId)
+                {
+                    Client = UnitOfWork.Clients.GetById(item.Id);
+                    return;
+                }
+            }
+            Admin = null;
         }
         public static void ResetAccount()
         {
