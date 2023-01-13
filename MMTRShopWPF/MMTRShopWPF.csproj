@@ -132,6 +132,7 @@
     <Compile Include="Service\KorzinaViewModel.cs" />
     <Compile Include="Service\NavigarionManager.cs" />
     <Compile Include="Service\NavigationViewModel.cs" />
+    <Compile Include="Service\OrderViewModel.cs" />
     <Compile Include="Service\ProductViewModel.cs" />
     <Compile Include="View\Pages\AutorizationPage.xaml.cs">
       <DependentUpon>AutorizationPage.xaml</DependentUpon>

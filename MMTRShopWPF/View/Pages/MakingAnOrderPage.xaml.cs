@@ -24,8 +24,9 @@ namespace MMTRShopWPF.View.Pages
         public MakingAnOrderPage()
         {
             InitializeComponent();
-            BankCardViewModel bankCardViewModel = new BankCardViewModel();
-            DataContext = bankCardViewModel;
+            OrderViewModel orderViewModel = new OrderViewModel();
+
+            DataContext = orderViewModel;
         }
     }
 }

@@ -26,27 +26,27 @@
             <StackPanel HorizontalAlignment="Center" Opacity="{Binding BlockBankCardOpacity}" Margin="0,20,0,20" Width="300">
                 <StackPanel>
                     <TextBlock Style="{StaticResource BankCardStyle}" Text="Номер карты"/>
-                    <TextBox Focusable="{Binding IsPayNow}" Style="{StaticResource BankCardStyle}" Text="{Binding BankCard.Number}"/>
+                    <TextBox Focusable="{Binding IsPayNow}" Style="{StaticResource BankCardStyle}" Text="{Binding BankCardVM.BankCard.Number}"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Style="{StaticResource BankCardStyle}" Text="Имя и фамилия"/>
-                    <TextBox Focusable="{Binding IsPayNow}" Style="{StaticResource BankCardStyle}" Text="{Binding BankCard.Name}"/>
+                    <TextBox Focusable="{Binding IsPayNow}" Style="{StaticResource BankCardStyle}" Text="{Binding BankCardVM.BankCard.Name}"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock  Style="{StaticResource BankCardStyle}" Text="Срок действия"/>
                     <DockPanel>
-                        <ComboBox Focusable="{Binding IsPayNow}" ItemsSource="{Binding MonthItems}" Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCard.Mont}" Width="60"/>
-                        <ComboBox Focusable="{Binding IsPayNow}" ItemsSource="{Binding YearItems}" Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCard.Year}" Width="120"/>
+                        <ComboBox Focusable="{Binding IsPayNow}" ItemsSource="{Binding BankCardVM.MonthItems}" Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCardVM.BankCard.Mont}" Width="60"/>
+                        <ComboBox Focusable="{Binding IsPayNow}" ItemsSource="{Binding BankCardVM.YearItems}" Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCardVM.BankCard.Year}" Width="120"/>
                     </DockPanel>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Style="{StaticResource BankCardStyle}" Text="CVV2/CVC2"/>
-                    <components:BindingPassword Focusable="{Binding IsPayNow}" Style="{StaticResource BankCardStyle}" HorizontalAlignment="Left" FontSize="20" Width="70" Password ="{Binding BankCard.Code,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <components:BindingPassword Focusable="{Binding IsPayNow}" Style="{StaticResource BankCardStyle}" HorizontalAlignment="Left" FontSize="20" Width="70" Password ="{Binding BankCardVM.BankCard.Code,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="0,20" HorizontalAlignment="Center" Width="300">
                 <TextBlock Style="{StaticResource BankCardStyle}" Text="Адрес доставки"/>
-                <TextBox Style="{StaticResource BankCardStyle}" Text=""/>
+                <TextBox Style="{StaticResource BankCardStyle}" Text="{Binding Order.Address}"/>
             </StackPanel>
         </StackPanel>
         
