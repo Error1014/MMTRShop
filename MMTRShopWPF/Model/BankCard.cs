@@ -10,7 +10,7 @@ namespace MMTRShopWPF.Model
     {
         public string Number { get; set; }
         public string Name { get; set; }
-        public int Mont { get; set; }
+        public int Month { get; set; }
         public int Year { get; set; }
         public string Code { get; set; }
 

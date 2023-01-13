@@ -20,7 +20,7 @@ namespace MMTRShopWPF.Repositories.Repository
 
         
 
-        public List<Cart> GetKorzineByIdClient(Guid id)
+        public List<Cart> GetCartByIdClient(Guid id)
         {
             return ShopContext.Cart.Where(k=>k.ClientId==id).ToList();
         }

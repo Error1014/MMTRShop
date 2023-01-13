@@ -85,6 +85,10 @@
     <Compile Include="Migrations\202301130946172_AddIsPaid.designer.cs">
       <DependentUpon>202301130946172_AddIsPaid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301131206336_EditTables.cs" />
+    <Compile Include="Migrations\202301131206336_EditTables.designer.cs">
+      <DependentUpon>202301131206336_EditTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BankCard.cs" />
     <Compile Include="Model\BaseEntiti.cs" />
@@ -98,6 +102,7 @@
     <Compile Include="Repositories\Interface\IBankCardRepository.cs" />
     <Compile Include="Repositories\Interface\ICartOrderRepository.cs" />
     <Compile Include="Repositories\Interface\IOrderRepository.cs" />
+    <Compile Include="Repositories\Interface\IStatusRepository.cs" />
     <Compile Include="Repositories\Repository\BankCardRepository.cs" />
     <Compile Include="Repositories\Repository\BrandRepository.cs" />
     <Compile Include="Repositories\Repository\CartOrderRepository.cs" />
@@ -117,6 +122,7 @@
     <Compile Include="Repositories\Repository\OrderRepository.cs" />
     <Compile Include="Repositories\Repository\ProductRepository.cs" />
     <Compile Include="Repositories\Repository\Repository.cs" />
+    <Compile Include="Repositories\Repository\StatusRepository.cs" />
     <Compile Include="Repositories\Repository\UnitOfWork.cs" />
     <Compile Include="Repositories\Repository\UserRepository.cs" />
     <Compile Include="Model\Admin.cs" />
@@ -236,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301130946172_AddIsPaid.resx">
       <DependentUpon>202301130946172_AddIsPaid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301131206336_EditTables.resx">
+      <DependentUpon>202301131206336_EditTables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

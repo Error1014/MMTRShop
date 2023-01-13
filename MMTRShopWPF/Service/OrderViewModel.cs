@@ -41,6 +41,8 @@ namespace MMTRShopWPF.Service
             }
         }
 
+        private List<CartOrder> cartOrders = new List<CartOrder>();
+        private List<Cart> carts = new List<Cart>();
 
         #region Способ оплаты
         private bool isPayNow;
@@ -95,39 +97,62 @@ namespace MMTRShopWPF.Service
             {
                 return new Commands((obj) =>
                 {
-                    if (IsPayNow)
+                    if (CheckAll())
                     {
-                        if (CheckWrittenRequisitesBankCard())
+                        Status status = UnitOfWork.Status.SetStatusPlaced();
+                        Order order = new Order(Order.Address, IsPayNow, status.Id);
+                        UnitOfWork.Orders.Add(order);//создаём заказ
+                        UnitOfWork.Orders.Save();
+
+                        carts = UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id);
+                        foreach (var item in carts)
                         {
-                            if (!CheckCorrectnessRequisitesBankCard())
-                            {
-                                MessageBox.Show("Вы ввели некоректные данные");
-                                return;
-                            }
+                            cartOrders.Add(new CartOrder(item.Id, order.Id));
                         }
-                        else
-                        {
-                            MessageBox.Show("Вы ввели не все данные карты");
-                            return;
-                        }
+                        UnitOfWork.CartOrders.AddRange(cartOrders);// заполняем дополнительную таблицу 
+                        UnitOfWork.CartOrders.Save();
+
+                        UnitOfWork.Carts.RemoveRange(carts);//чистим корзину
+                        UnitOfWork.Carts.Save();
+
                     }
-                    if (!CheckAddress())
-                    {
-                        MessageBox.Show("Вы не указали адрес");
-                        return;
-                    }
-                    //Оформление заказа
                 });
             }
         }
 
         #region Проверки введёных полей
+
+        private bool CheckAll() 
+        {
+            if (IsPayNow)
+            {
+                if (CheckWrittenRequisitesBankCard())
+                {
+                    if (!CheckCorrectnessRequisitesBankCard())
+                    {
+                        MessageBox.Show("Вы ввели некоректные данные");
+                        return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Вы ввели не все данные карты");
+                    return false;
+                }
+            }
+            if (!CheckAddress())
+            {
+                MessageBox.Show("Вы не указали адрес");
+                return false;
+            }
+            return true;
+        }
         private bool CheckWrittenRequisitesBankCard()
         {
             if (String.IsNullOrEmpty(BankCardVM.BankCard.Number)
                 || String.IsNullOrEmpty(BankCardVM.BankCard.Name)
                 || String.IsNullOrEmpty(BankCardVM.BankCard.Code)
-                || BankCardVM.BankCard.Mont == 0
+                || BankCardVM.BankCard.Month == 0
                 || BankCardVM.BankCard.Year == 0) return false;
             else return true;
 

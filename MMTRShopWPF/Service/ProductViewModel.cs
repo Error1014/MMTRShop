@@ -174,7 +174,7 @@ namespace MMTRShopWPF.Service
                     }
                     else
                     {
-                        var myKorzine = UnitOfWork.Carts.GetKorzineByIdClient(AccountManager.Client.Id);
+                        var myKorzine = UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id);
                         bool isNew = true;
                         for (int i = 0; i < myKorzine.Count; i++)
                         {

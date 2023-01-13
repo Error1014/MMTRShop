@@ -13,5 +13,15 @@ namespace MMTRShopWPF.Model
 
         public virtual Cart Cart { get; set; }
         public virtual Order Order { get; set; }
+
+        public CartOrder()
+        {
+
+        }
+        public CartOrder(Guid cartID, Guid orderId)
+        {
+            CartId = cartID;
+            OrderId = orderId;
+        }
     }
 }

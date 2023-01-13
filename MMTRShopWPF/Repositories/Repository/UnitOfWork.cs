@@ -18,6 +18,9 @@ namespace MMTRShopWPF.Repositories.Repository
             Clients = new ClientRepository(_context);
             Favorites = new FavouritesRepository(_context);
             BankCards = new BankCardRepository(_context);
+            Orders = new OrderRepository(_context);
+            CartOrders = new CartOrderRepository(_context);
+            Status = new StatusRepository(_context);
         }
 
         public IProductRepository Products { get;private set; }
@@ -35,6 +38,12 @@ namespace MMTRShopWPF.Repositories.Repository
         public IFavouritesRepository Favorites { get; private set; }
 
         public IBankCardRepository BankCards { get; private set; }
+
+        public IOrderRepository Orders { get; private set; }
+
+        public ICartOrderRepository CartOrders { get; private set; }
+
+        public IStatusRepository Status { get; private set; }
 
         public int Complete()
         {

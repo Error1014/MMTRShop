@@ -13,7 +13,7 @@ namespace MMTRShopWPF.Service
         public KorzinaViewModel(KorzinaPage page)
         {
             this.page=page;
-            Cart = UnitOfWork.Carts.GetKorzineByIdClient(AccountManager.Client.Id);
+            Cart = UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id);
             Products = Cart.Join(UnitOfWork.Products.GetAll(),
             k => k.ProductId,
             p => p.Id,(k,p)=>new { k,p}).Select(x=>x.p).ToList();
