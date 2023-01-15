@@ -20,10 +20,11 @@
 
             <Button Content="Мои заказы" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient}" Command="{Binding MyOrdersNavigate}" />
             <Button Content="История" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient}"  />
-            
-            
+
+
             <Button Content="Добавить товар" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonAdmin}" Command="{Binding AddProduct}" />
-            
+            <Button Content="Заказы" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonAdmin}" Command="{Binding OrderPageNavigate}" />
+
             <Button Content="{Binding TextButton}" HorizontalAlignment="Right" Margin="10" Command="{Binding AutorizationNavigate}"/>
         </DockPanel>
         <Frame Grid.Row="1" x:Name="MyFrame"/>

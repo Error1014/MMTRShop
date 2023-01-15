@@ -125,12 +125,21 @@ namespace MMTRShopWPF.ViewModels
                 {
                     if (CheckIsClient())
                     {
-                        NavigarionManager.MainFrame.Content = new MyHistoryPage();
+                        NavigarionManager.MainFrame.Content = new MyHistoryPage(); 
                     }
                 });
             }
         }
-
+        public ICommand OrderPageNavigate
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    NavigarionManager.MainFrame.Content = new OrdersPage();
+                });
+            }
+        }
         private bool CheckIsClient()
         {
             if (AccountManager.Client == null)

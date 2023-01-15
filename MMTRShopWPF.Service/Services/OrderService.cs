@@ -2,6 +2,7 @@
 using MMTRShopWPF.Model.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,21 @@ namespace MMTRShopWPF.Service.Services
 {
     public class OrderService:BaseService
     {
+        public static List<Cart> GetCart()
+        {
+            return UnitOfWork.Carts.GetAll().ToList();
+        }
+        public static ObservableCollection<Order> GetOrders()
+        {
+            var orders = UnitOfWork.Orders.GetAll();
+            return new ObservableCollection<Order>(orders);
+        }
         public static void CreateOrder(Order order)
         {
             UnitOfWork.Orders.Add(order);
             UnitOfWork.Orders.Save();
         }
-        public static Order GetOrder(string address, bool IsPayNow, Status status)
+        public static Order SetOrder(string address, bool IsPayNow, Status status)
         {
             return new Order(AccountManager.Client,address, IsPayNow, status.Id);
         }

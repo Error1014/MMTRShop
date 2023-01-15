@@ -11,7 +11,7 @@
                 "dbo.BankCards",
                 c => new
                     {
-                        Id = c.Guid(nullable: false, identity: true),
+                        Id = c.Guid(nullable: false, identity: true, defaultValueSql: "newid()"),
                         Number = c.String(),
                         Name = c.String(),
                         Mont = c.Int(nullable: false),

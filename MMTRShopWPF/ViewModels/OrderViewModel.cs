@@ -11,6 +11,7 @@ using MMTRShopWPF.Service;
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.ViewModels;
 using MMTRShopWPF.Service.Services;
+using System.Collections.ObjectModel;
 
 namespace MMTRShopWPF.ViewModels
 {
@@ -21,8 +22,19 @@ namespace MMTRShopWPF.ViewModels
             BankCardVM = new BankCardViewModel();
             BlockBankCardOpacity = 1;
             IsPayNow = true;
+            Orders = OrderService.GetOrders();
+            carts = OrderService.GetCart();
+        }
 
-
+        private ObservableCollection<Order> orders;
+        public ObservableCollection<Order> Orders
+        {
+            get { return orders; }
+            set
+            {
+                orders = value;
+                OnPropertyChanged(nameof(Orders));
+            }
         }
 
         private Order order = new Order();
@@ -106,7 +118,7 @@ namespace MMTRShopWPF.ViewModels
                     if (CheckAll())
                     {
                         Status status = UnitOfWork.Status.SetStatusPlaced();
-                        Order = OrderService.GetOrder(Order.Address, IsPayNow, status);
+                        Order = OrderService.SetOrder(Order.Address, IsPayNow, status);
                         OrderService.CreateOrder(Order);
                         OrderService.CreateOrderContent(Order);
                         OrderService.ClearCart(carts);
