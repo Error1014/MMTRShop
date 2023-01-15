@@ -1,11 +1,13 @@
 ﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
+using MMTRShopWPF.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.Service.Services
+namespace MMTRShopWPF.ViewModels
 {
     public class AutorizationViewModel : BaseViewModel
     {

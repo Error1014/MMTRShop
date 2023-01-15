@@ -18,7 +18,7 @@
             <Button Content="Корзина" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient}" Command="{Binding KorzinaNavigate}" />
             <Button Content="Избраное" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient}" Command="{Binding FavouritesNavigate}" />
 
-            <Button Content="Мои заказы" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient}"  />
+            <Button Content="Мои заказы" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient}" Command="{Binding MyOrdersNavigate}" />
             <Button Content="История" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient}"  />
             
             

@@ -6,11 +6,11 @@ namespace MMTRShopWPF.Model.Models
     {
         
         public Guid ClientId { get; set; }
+        public virtual Client Client { get; set; }
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; }
         public int ProductCount { get; set; }
 
-        public virtual Client Client { get; set; }
 
         public Cart()
         {

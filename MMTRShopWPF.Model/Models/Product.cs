@@ -25,6 +25,7 @@ namespace MMTRShopWPF.Model.Models
         public virtual Brand Brand { get; set; }
         public virtual List<Cart> Cart { get; set; }
 
+        public virtual List<OrderContent> Content { get; set; }
         public virtual List<Feedback> Feedback { get; set; }
 
     }

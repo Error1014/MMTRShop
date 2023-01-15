@@ -13,7 +13,7 @@ namespace MMTRShopWPF.Repository.Interface
         IFavouritesRepository Favorites { get; }
         IBankCardRepository BankCards { get; }
         IOrderRepository Orders { get; }
-        ICartOrderRepository CartOrders { get; }
+        IOrderContentRepository OrderContents { get; }
         IStatusRepository Status { get; }
         IAdminRepository Admins { get; }
         IOperatorRepository Operators { get; }

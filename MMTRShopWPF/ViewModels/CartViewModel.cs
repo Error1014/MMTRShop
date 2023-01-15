@@ -5,10 +5,11 @@ using System.Linq;
 using System.Windows.Input;
 using MMTRShopWPF.View.Pages;
 using System;
-using MMTRShopWPF.ViewModel;
+using MMTRShopWPF.Service;
 using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.ViewModels;
 
-namespace MMTRShopWPF.Service.Services
+namespace MMTRShopWPF.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {

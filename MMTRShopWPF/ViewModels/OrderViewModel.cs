@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using MMTRShopWPF.View.Pages;
-using MMTRShopWPF.ViewModel;
+using MMTRShopWPF.Service;
 using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.ViewModels;
+using MMTRShopWPF.Service.Services;
 
-namespace MMTRShopWPF.Service.Services
+namespace MMTRShopWPF.ViewModels
 {
     public class OrderViewModel:BaseViewModel
     {
@@ -45,7 +47,7 @@ namespace MMTRShopWPF.Service.Services
             }
         }
 
-        private List<CartOrder> cartOrders = new List<CartOrder>();
+        private List<OrderContent> cartOrders = new List<OrderContent>();
         private List<Cart> carts = new List<Cart>();
 
         #region Способ оплаты
@@ -106,7 +108,7 @@ namespace MMTRShopWPF.Service.Services
                         Status status = UnitOfWork.Status.SetStatusPlaced();
                         Order = OrderService.GetOrder(Order.Address, IsPayNow, status);
                         OrderService.CreateOrder(Order);
-                        OrderService.CreateCartOrder(Order);
+                        OrderService.CreateOrderContent(Order);
                         OrderService.ClearCart(carts);
                         NavigarionManager.MainFrame.Content = new MyOrderPage();
                     }

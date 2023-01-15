@@ -2,6 +2,7 @@
 using MMTRShopWPF.Model.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,18 +19,18 @@ namespace MMTRShopWPF.Service.Services
         }
         public static Order GetOrder(string address, bool IsPayNow, Status status)
         {
-            return new Order(address, IsPayNow, status.Id);
+            return new Order(AccountManager.Client,address, IsPayNow, status.Id);
         }
-        public static void CreateCartOrder(Order order)
+        public static void CreateOrderContent(Order order)
         {
             var carts = UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id);
-            List<CartOrder> cartOrders = new List<CartOrder>();
-            foreach (var item in carts)
+            List<OrderContent> cartOrders = new List<OrderContent>();
+            foreach (var cartItem in carts)
             {
-                cartOrders.Add(new CartOrder(item.Id, order.Id));
+               cartOrders.Add(new OrderContent(order, cartItem));
             }
-            UnitOfWork.CartOrders.AddRange(cartOrders);
-            UnitOfWork.CartOrders.Save();
+            UnitOfWork.OrderContents.AddRange(cartOrders);
+            UnitOfWork.OrderContents.Save();
         }
         public static void ClearCart(List<Cart> carts)
         {

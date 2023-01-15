@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.Service.Services
+namespace MMTRShopWPF.ViewModels
 {
     class Commands : ICommand
     {

@@ -54,7 +54,7 @@
     <Compile Include="Interface\IAdminRepository.cs" />
     <Compile Include="Interface\IBankCardRepository.cs" />
     <Compile Include="Interface\IBrandRepository.cs" />
-    <Compile Include="Interface\ICartOrderRepository.cs" />
+    <Compile Include="Interface\IOrderContentRepository.cs" />
     <Compile Include="Interface\ICartRepository.cs" />
     <Compile Include="Interface\ICategoryRepository.cs" />
     <Compile Include="Interface\IClientRepository.cs" />
@@ -70,7 +70,7 @@
     <Compile Include="Repositories\AdminRepository.cs" />
     <Compile Include="Repositories\BankCardRepository.cs" />
     <Compile Include="Repositories\BrandRepository.cs" />
-    <Compile Include="Repositories\CartOrderRepository.cs" />
+    <Compile Include="Repositories\OrderContentRepository.cs" />
     <Compile Include="Repositories\CartRopository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />

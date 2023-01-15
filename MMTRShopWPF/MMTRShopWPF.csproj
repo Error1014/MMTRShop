@@ -89,6 +89,10 @@
     <Compile Include="Migrations\202301131206336_EditTables.designer.cs">
       <DependentUpon>202301131206336_EditTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301152059412_FixDB.cs" />
+    <Compile Include="Migrations\202301152059412_FixDB.designer.cs">
+      <DependentUpon>202301152059412_FixDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AutorizationViewModel.cs" />
     <Compile Include="ViewModels\BankCardViewModel.cs" />
@@ -97,6 +101,7 @@
     <Compile Include="ViewModels\FavouritesViewModel.cs" />
     <Compile Include="ViewModels\KatalogViewModel.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />
+    <Compile Include="ViewModels\MyOrderVievModel.cs" />
     <Compile Include="ViewModels\NavigarionManager.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
@@ -216,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301131206336_EditTables.resx">
       <DependentUpon>202301131206336_EditTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301152059412_FixDB.resx">
+      <DependentUpon>202301152059412_FixDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

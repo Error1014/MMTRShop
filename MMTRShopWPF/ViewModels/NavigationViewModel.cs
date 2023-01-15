@@ -4,10 +4,12 @@ using System.Windows.Input;
 using System.Windows;
 using MMTRShopWPF.View.Pages;
 using System;
-using MMTRShopWPF.ViewModel;
+using MMTRShopWPF.Service;
 using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.ViewModels;
+using MMTRShopWPF.Service.Services;
 
-namespace MMTRShopWPF.Service.Services
+namespace MMTRShopWPF.ViewModels
 {
     public class NavigationViewModel : BaseViewModel
     {

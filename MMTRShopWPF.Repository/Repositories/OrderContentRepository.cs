@@ -1,11 +1,13 @@
 ﻿using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Repository.Interface;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MMTRShopWPF.Repository.Repositories
 {
-    public class CartOrderRepository:Repository<CartOrder>, ICartOrderRepository
+    public class OrderContentRepository:Repository<OrderContent>, IOrderContentRepository
     {
-        public CartOrderRepository(ShopContext context) : base(context)
+        public OrderContentRepository(ShopContext context) : base(context)
         {
 
         }
@@ -14,5 +16,7 @@ namespace MMTRShopWPF.Repository.Repositories
         {
             get { return Context as ShopContext; }
         }
+
+
     }
 }

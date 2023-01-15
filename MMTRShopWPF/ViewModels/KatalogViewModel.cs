@@ -1,14 +1,16 @@
 ﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.View.Pages;
-using MMTRShopWPF.ViewModel;
+using MMTRShopWPF.Service;
+using MMTRShopWPF.ViewModels;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using MMTRShopWPF.Service.Services;
 
-namespace MMTRShopWPF.Service.Services
+namespace MMTRShopWPF.ViewModels
 {
     public class KatalogViewModel : BaseViewModel
     {

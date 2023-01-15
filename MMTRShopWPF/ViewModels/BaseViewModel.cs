@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 
 
-namespace MMTRShopWPF.Service.Services
+namespace MMTRShopWPF.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

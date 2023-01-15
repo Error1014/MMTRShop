@@ -8,6 +8,8 @@ namespace MMTRShopWPF.Model.Models
 {
     public class Order : BaseEntity<Guid>
     {
+        public Guid ClientId { get; set; }
+        public virtual Client Client { get; set; }
         public string Address { get; set; }
         public DateTime DateOrder { get; set; }
         public DateTime DateDelivery { get; set; }
@@ -20,8 +22,9 @@ namespace MMTRShopWPF.Model.Models
 
         }
 
-        public Order(string address, bool isPaid, Guid statusId)
+        public Order(Client client, string address, bool isPaid, Guid statusId)
         {
+            ClientId = client.Id;
             Address = address;
             DateOrder = DateTime.Now;
             DateDelivery = DateOrder;

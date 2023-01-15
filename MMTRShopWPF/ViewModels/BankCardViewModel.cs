@@ -1,8 +1,10 @@
 ﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Service.Services;
+using MMTRShopWPF.ViewModels;
 using System.Collections.ObjectModel;
 
-namespace MMTRShopWPF.Service.Services
+namespace MMTRShopWPF.ViewModels
 {
     public class BankCardViewModel : BaseViewModel
     {
