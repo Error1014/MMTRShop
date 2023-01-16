@@ -182,7 +182,7 @@ namespace MMTRShopWPF.ViewModels
         public void SelectProduct(object sender)
         {
             var item = ((ListView)sender);
-            if (AccountManager.Admin == null) NavigarionManager.MainFrame.Content = new InfoProductPage((Product)item.SelectedItem);
+            if (AccountManager.Admin == null&& AccountManager.Operator==null) NavigarionManager.MainFrame.Content = new InfoProductPage((Product)item.SelectedItem);
             else NavigarionManager.MainFrame.Content = new EditInfoProductPage((Product)item.SelectedItem);
         }
 

@@ -23,8 +23,8 @@
 
 
             <Button Content="Добавить товар" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonAdmin}" Command="{Binding AddProduct}" />
-            <Button Content="Заказы" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonAdmin}" Command="{Binding OrderPageNavigate}" />
-            <Button Content="Категории" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonAdmin}" Command="{Binding CategoryNavigate}" />
+            <Button Content="Заказы" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonOperator}" Command="{Binding OrderPageNavigate}" />
+            <Button Content="Категории" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonOperator}" Command="{Binding CategoryNavigate}" />
 
             <Button Content="{Binding TextButton}" HorizontalAlignment="Right" Margin="10" Command="{Binding AutorizationNavigate}"/>
         </DockPanel>

@@ -50,12 +50,14 @@ namespace MMTRShopWPF.ViewModels
             AccountManager.User = AccountManager.GetUserByIdAdmin();
             VisibilityButtonClient = Visibility.Collapsed;
             VisibilityButtonAdmin = Visibility.Visible;
+            VisibilityButtonOperator = Visibility.Visible;
         }
         private void SetOperatorSettings()
         {
             AccountManager.User = AccountManager.GetUserByIdOperator();
             VisibilityButtonClient = Visibility.Collapsed;
-            VisibilityButtonAdmin = Visibility.Visible;
+            VisibilityButtonAdmin = Visibility.Collapsed;
+            VisibilityButtonOperator = Visibility.Visible;
         }
 
         
@@ -179,13 +181,8 @@ namespace MMTRShopWPF.ViewModels
 
         public Visibility VisibilityButtonClient { get; private set; }
         public Visibility VisibilityButtonAdmin { get; private set; }
+        public Visibility VisibilityButtonOperator { get; private set; }
 
-        public void SelectProduct(object sender)
-        {
-            var item = ((ListView)sender);
-            if (AccountManager.Admin == null) NavigarionManager.MainFrame.Content = new InfoProductPage((Product)item.SelectedItem);
-            else NavigarionManager.MainFrame.Content = new EditInfoProductPage((Product)item.SelectedItem);
-        }
         public ICommand AddProduct
         {
             get

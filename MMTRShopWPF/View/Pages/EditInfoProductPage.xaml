@@ -29,19 +29,19 @@
         <StackPanel Grid.Column="1" Grid.Row="1">
             <DockPanel Margin="0,10">
                 <TextBlock Style="{StaticResource TextInfo}" Text="Название: "/>
-                <TextBox MaxLength="50" HorizontalAlignment="Left" FontSize="15" Height="30" Width="220" Text="{Binding Product.Title}"/>
+                <TextBox Focusable="{Binding IsAdmin}" Opacity="{Binding BlockOpacity}" MaxLength="50" HorizontalAlignment="Left" FontSize="15" Height="30" Width="220" Text="{Binding Product.Title}"/>
             </DockPanel>
             <DockPanel Margin="0,10">
                 <TextBlock Style="{StaticResource TextInfo}" Text="Цена: "/>
                 <DockPanel HorizontalAlignment="Left" Height="30">
-                    <TextBox PreviewTextInput="ItputNumber"  TextAlignment="Right" FontSize="15" Width="220" Text="{Binding Product.Price}"/>
+                    <TextBox  Focusable="{Binding IsAdmin}" Opacity="{Binding BlockOpacity}" PreviewTextInput="ItputNumber"  TextAlignment="Right" FontSize="15" Width="220" Text="{Binding Product.Price}"/>
                     <TextBlock FontSize="15" Text="Руб."/>
                 </DockPanel >
             </DockPanel>
             <DockPanel Margin="0,10">
                 <TextBlock Style="{StaticResource TextInfo}" Text="Скидка"/>
                 <DockPanel HorizontalAlignment="Left"  Height="30" >
-                    <TextBox PreviewTextInput="ItputNumber" MaxLength="2" TextAlignment="Right" FontSize="15" Width="220" Text="{Binding Product.Discount}"/>
+                    <TextBox Focusable="{Binding IsAdmin}" Opacity="{Binding BlockOpacity}" PreviewTextInput="ItputNumber" MaxLength="2" TextAlignment="Right" FontSize="15" Width="220" Text="{Binding Product.Discount}"/>
                     <TextBlock FontSize="15" Text="%"/>
                 </DockPanel>
             </DockPanel>
@@ -51,11 +51,11 @@
             </DockPanel>
             <DockPanel Margin="0,10">
                 <TextBlock Style="{StaticResource TextInfo}" Text="Категория: " />
-                <ComboBox HorizontalAlignment="Left" FontSize="15" Height="30" Width="220"  ItemsSource="{Binding AllCategory}" SelectedItem="{Binding SelectCategory}" DisplayMemberPath="Title" />
+                <ComboBox Focusable="{Binding IsAdmin}" IsHitTestVisible="{Binding IsAdmin}" Opacity="{Binding BlockOpacity}" HorizontalAlignment="Left" FontSize="15" Height="30" Width="220"  ItemsSource="{Binding AllCategory}" SelectedItem="{Binding SelectCategory}" DisplayMemberPath="Title" />
             </DockPanel>
             <DockPanel Margin="0,10">
                 <TextBlock Style="{StaticResource TextInfo}" Text="Производитель: " />
-                <ComboBox HorizontalAlignment="Left" FontSize="15" Height="30" Width="220"  ItemsSource="{Binding AllBrand}" SelectedItem="{Binding SelectBrand}" DisplayMemberPath="Name" />
+                <ComboBox Focusable="{Binding IsAdmin}" IsHitTestVisible="{Binding IsAdmin}" Opacity="{Binding BlockOpacity}" HorizontalAlignment="Left" FontSize="15" Height="30" Width="220"  ItemsSource="{Binding AllBrand}" SelectedItem="{Binding SelectBrand}" DisplayMemberPath="Name" />
             </DockPanel>
         </StackPanel>
         <DockPanel  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">

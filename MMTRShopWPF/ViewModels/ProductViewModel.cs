@@ -16,6 +16,16 @@ namespace MMTRShopWPF.ViewModels
         private int countShow = 4;
         public ProductVievModel(Product product)
         {
+            if (AccountManager.Admin==null)
+            {
+                isAdmin = false;
+                BlockOpacity = 0.3f;
+            }
+            else
+            {
+                isAdmin = true;
+                BlockOpacity = 1;
+            }
             AllCategory = CategoryService.GetAllCategory();
             AllBrand = BrandService.GetAllBrand();
             SelectCategory = AllCategory[0];
@@ -241,6 +251,28 @@ namespace MMTRShopWPF.ViewModels
             {
                 selectBrand = value;
                 OnPropertyChanged(nameof(SelectBrand));
+            }
+        }
+
+        private bool isAdmin;
+        public bool IsAdmin
+        {
+            get { return isAdmin; }
+            set
+            {
+                isAdmin = value;
+                OnPropertyChanged(nameof(IsAdmin));
+            }
+        }
+
+        private float blockOpacity;
+        public float BlockOpacity
+        {
+            get { return blockOpacity; }
+            set
+            {
+                blockOpacity = value;
+                OnPropertyChanged(nameof(BlockOpacity));
             }
         }
     }
