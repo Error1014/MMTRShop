@@ -24,30 +24,9 @@ namespace MMTRShopWPF.Service.Services
         {
             return UnitOfWork.Products.GetProductsPage(numPage, sizePage, category,brand);
         }
-        public static int GetCountPage(int sizePage)//реализовать через репозиторий!!!!!!!!!!
+        public static int GetCountPage(int sizePage)
         {
-            int countPage = 0;
-            if (ShopContext.GetContext().Product.Count() % sizePage == 0)
-            {
-                countPage = ShopContext.GetContext().Product.Count() / sizePage;
-            }
-            else
-            {
-                countPage = ShopContext.GetContext().Product.Count() / sizePage + 1;
-            }
-            return countPage;
-        }
-
-        public static ObservableCollection<Category> GetAllCategory()
-        {
-            var categories = UnitOfWork.Categories.GetAll();
-            return new ObservableCollection<Category>(categories);
-        }
-
-        public static ObservableCollection<Brand> GetAllBrand()
-        {
-            var brands = UnitOfWork.Brands.GetAll();
-            return new ObservableCollection<Brand>(brands);
+            return UnitOfWork.Carts.GetCountPage(sizePage);
         }
     }
 }

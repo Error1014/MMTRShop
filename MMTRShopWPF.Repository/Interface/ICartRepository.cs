@@ -8,5 +8,6 @@ namespace MMTRShopWPF.Repository.Interface
     {
         //List<Korzine> EditValueProduct(int id, int number);
         List<Cart> GetCartByIdClient(Guid id);
+        int GetCountPage(int sizePage);
     }
 }

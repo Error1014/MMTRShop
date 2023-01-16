@@ -19,14 +19,14 @@ namespace MMTRShopWPF.ViewModels
 
             productsPage = KatalogService.GetPageProducts(numPage, sizePage);
             countPage = KatalogService.GetCountPage(sizePage);
-            CategoryItems = KatalogService.GetAllCategory();
-            BrandItems = KatalogService.GetAllBrand();
+            CategoryItems = CategoryService.GetAllCategory();
+            BrandItems = BrandService.GetAllBrand();
         }
 
         #region Filtration Category
 
-        private ObservableCollection<Category> сategoryItems;
-        public ObservableCollection<Category> CategoryItems
+        private List<Category> сategoryItems;
+        public List<Category> CategoryItems
         {
             get { return сategoryItems; }
             set
@@ -57,8 +57,8 @@ namespace MMTRShopWPF.ViewModels
 
         #region Filtration Brand
 
-        private ObservableCollection<Brand> brandItems;
-        public ObservableCollection<Brand> BrandItems
+        private List<Brand> brandItems;
+        public List<Brand> BrandItems
         {
             get { return brandItems; }
             set

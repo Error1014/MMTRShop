@@ -13,14 +13,15 @@ namespace MMTRShopWPF.Service.Services
 {
     public class OrderService:BaseService
     {
-        public static List<Cart> GetCart()
-        {
-            return UnitOfWork.Carts.GetAll().ToList();
-        }
+        
         public static ObservableCollection<Order> GetOrders()
         {
             var orders = UnitOfWork.Orders.GetAll();
             return new ObservableCollection<Order>(orders);
+        }
+        public static List<Order> GetOrderClient(Client client)
+        {
+            return UnitOfWork.Orders.GetOrdersByClientId(client.Id);
         }
         public static void CreateOrder(Order order)
         {
@@ -31,22 +32,8 @@ namespace MMTRShopWPF.Service.Services
         {
             return new Order(AccountManager.Client,address, IsPayNow, status.Id);
         }
-        public static void CreateOrderContent(Order order)
-        {
-            var carts = UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id);
-            List<OrderContent> cartOrders = new List<OrderContent>();
-            foreach (var cartItem in carts)
-            {
-               cartOrders.Add(new OrderContent(order, cartItem));
-            }
-            UnitOfWork.OrderContents.AddRange(cartOrders);
-            UnitOfWork.OrderContents.Save();
-        }
-        public static void ClearCart(List<Cart> carts)
-        {
-            UnitOfWork.Carts.RemoveRange(carts);
-            UnitOfWork.Carts.Save();
-        }
+        
+        
         #region Проверки введёных полей
 
         public static bool CheckWrittenRequisitesBankCard(BankCard bankCard)
@@ -70,18 +57,7 @@ namespace MMTRShopWPF.Service.Services
         }
         #endregion
 
-        public static List<Status> GetAllStatus()
-        {
-            return UnitOfWork.Status.GetAll().ToList();
-        }
+        
 
-        public static Status GetStatusByOrder(Order order)
-        {
-            return UnitOfWork.Status.GetStatusByOdrer(order);
-        }
-        public static Client GetClient(Order order)
-        {
-            return UnitOfWork.Clients.GetById(order.ClientId);
-        }
     }
 }

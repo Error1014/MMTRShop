@@ -16,8 +16,8 @@ namespace MMTRShopWPF.ViewModels
         private int countShow = 4;
         public ProductVievModel(Product product)
         {
-            AllCategory = ProductService.GetAllCategory();
-            AllBrand = ProductService.GetAllBrand();
+            AllCategory = CategoryService.GetAllCategory();
+            AllBrand = BrandService.GetAllBrand();
             SelectCategory = AllCategory[0];
             SelectBrand = AllBrand[0];
             if (product == null)
@@ -28,8 +28,8 @@ namespace MMTRShopWPF.ViewModels
             else
             {
                 isAdd = false;
-                SelectCategory = ProductService.GetCategoryProduct(product.CategoryId);
-                SelectBrand = ProductService.GetBrandProduct(product.BrandId);
+                SelectCategory = CategoryService.GetCategory(product);
+                SelectBrand = BrandService.GetBrandProduct(product.BrandId);
                 Product = product;
             }
 
@@ -57,7 +57,7 @@ namespace MMTRShopWPF.ViewModels
             }
             else
             {
-                favourit = FavouritesService.GetFavourites(product.Id);
+                favourit = FavouritesService.GetFavourites(product);
                 if (favourit == null)
                 {
                     isLikePath = "/Resources/NoLike.png";
@@ -163,6 +163,7 @@ namespace MMTRShopWPF.ViewModels
             FavouritesService.RemoveFavourite(favourit);
             favourit = new Favourites();
         }
+        
         public ICommand AddInKorzine
         {
             get

@@ -57,9 +57,9 @@
                 <ComboBox ItemsSource="{Binding Statuses}" SelectedItem="{Binding Status}" DisplayMemberPath="Title"/>
             </DockPanel>
         </StackPanel>
-        <DockPanel>
-            <Button Grid.ColumnSpan="2" Grid.Row="2" Width="140" Height="30" Content="Связаться с клиентом"/>
-            <Button Grid.ColumnSpan="2" Grid.Row="2" Width="140" Height="30" Content="Сохранить"/>
+        <DockPanel Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center">
+            <Button Width="140" Height="30" Content="Связаться с клиентом" Margin="20,0"/>
+            <Button Width="140" Height="30" Content="Сохранить" Margin="20,0"/>
         </DockPanel>
     </Grid>
 </Page>

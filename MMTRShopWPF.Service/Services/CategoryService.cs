@@ -16,6 +16,15 @@ namespace MMTRShopWPF.Service.Services
             var categories = UnitOfWork.Categories.GetAll();
             return new ObservableCollection<Category>(categories);
         }
+        public static List<Category> GetAllCategory()
+        {
+            return UnitOfWork.Categories.GetAll().ToList();
+        }
+
+        public static Category GetCategory(Product product)
+        {
+            return GetAllCategory().Where(category => category.Id == product.CategoryId).FirstOrDefault();
+        }
         public static void Save()
         {
             UnitOfWork.Categories.Save();

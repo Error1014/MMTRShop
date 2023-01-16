@@ -18,7 +18,7 @@ namespace MMTRShopWPF.ViewModels
         {
             this.page=page;
             Cart = CartService.GetCart();
-            Products = CartService.GetProduct();
+            Products = ProductService.GetProducts(Cart);
         }
         private List<Cart> cart;
         public List<Cart> Cart

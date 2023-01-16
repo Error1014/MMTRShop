@@ -22,7 +22,7 @@ namespace MMTRShopWPF.ViewModels
             BankCardVM = new BankCardViewModel();
             BlockBankCardOpacity = 1;
             IsPayNow = true;
-            carts = OrderService.GetCart();
+            carts = CartService.GetCart();
         }
 
         
@@ -110,8 +110,8 @@ namespace MMTRShopWPF.ViewModels
                         Status status = UnitOfWork.Status.SetStatusPlaced();
                         Order = OrderService.SetOrder(Order.Address, IsPayNow, status);
                         OrderService.CreateOrder(Order);
-                        OrderService.CreateOrderContent(Order);
-                        OrderService.ClearCart(carts);
+                        OrderContentService.CreateOrderContent(Order);
+                        CartService.ClearCart(carts);
                         NavigarionManager.MainFrame.Content = new MyOrderPage();
                     }
                 });

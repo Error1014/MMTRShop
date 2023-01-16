@@ -16,7 +16,7 @@ namespace MMTRShopWPF.ViewModels
         {
             this.page = page;
             Favorites = FavouritesService.GetFavourites();
-            Products = FavouritesService.GetProducts();
+            Products = ProductService.GetProducts(Favorites);
 
         }
         private List<Favourites> favorites;
@@ -53,7 +53,7 @@ namespace MMTRShopWPF.ViewModels
                 return new Commands((obj) =>
                 {
                     Guid id = Guid.Parse(obj.ToString());
-                    FavouritesService.RemoveFavouritById(id);
+                    FavouritesService.RemoveFavourit(id);
                     page.UpdateDataContext();
 
                 });

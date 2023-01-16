@@ -6,7 +6,7 @@ namespace MMTRShopWPF.Repository.Interface
 {
     public interface IFavouritesRepository: IRepository<Favourites>
     {
-        List<Favourites> GetFavouritesByIdUser(Guid id);
-        Favourites GetFavouritByIdClientAndProduct(Guid userId,Guid productId);
+        List<Favourites> GetFavourites(Client client);
+        Favourites GetFavourites(Client client, Product product);
     }
 }

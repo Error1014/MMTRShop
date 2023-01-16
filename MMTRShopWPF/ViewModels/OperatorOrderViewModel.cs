@@ -20,9 +20,9 @@ namespace MMTRShopWPF.ViewModels
         public OperatorOrderViewModel(Order order)
         {
             Order = order;
-            Client = OrderService.GetClient(Order);
-            Statuses = OrderService.GetAllStatus();
-            Status = OrderService.GetStatusByOrder(order);
+            Client = ClientService.GetClient(Order);
+            Statuses = StatusService.GetAllStatus();
+            Status = StatusService.GetStatus(order);
 
         }
         private Order selectedOrder;

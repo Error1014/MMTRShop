@@ -18,14 +18,14 @@ namespace MMTRShopWPF.Repository.Repositories
             get { return Context as ShopContext; }
         }
 
-        public List<Favourites> GetFavouritesByIdUser(Guid id)
+        public List<Favourites> GetFavourites(Client client)
         {
-            return ShopContext.Favourites.Where(k => k.ClientId == id).ToList();
+            return ShopContext.Favourites.Where(k => k.ClientId == client.Id).ToList();
         }
 
-        public Favourites GetFavouritByIdClientAndProduct(Guid clientId, Guid productId)
+        public Favourites GetFavourites(Client client, Product product)
         {
-            return ShopContext.Favourites.Where(k => k.ClientId == clientId && k.ProductId ==productId).FirstOrDefault();
+            return ShopContext.Favourites.Where(k => k.ClientId == client.Id && k.ProductId ==product.Id).FirstOrDefault();
         }
     }
 }

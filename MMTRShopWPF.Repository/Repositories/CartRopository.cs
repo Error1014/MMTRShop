@@ -25,5 +25,19 @@ namespace MMTRShopWPF.Repositories.Repository
         {
             return ShopContext.Cart.Where(k=>k.ClientId==id).ToList();
         }
+
+        public int GetCountPage(int sizePage)
+        {
+            int countPage = 0;
+            if (ShopContext.GetContext().Product.Count() % sizePage == 0)
+            {
+                countPage = ShopContext.GetContext().Product.Count() / sizePage;
+            }
+            else
+            {
+                countPage = ShopContext.GetContext().Product.Count() / sizePage + 1;
+            }
+            return countPage;
+        }
     }
 }

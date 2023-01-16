@@ -22,22 +22,20 @@ namespace MMTRShopWPF.Service.Services
         {
             UnitOfWork.Products.Save();
         }
-        public static List<Category> GetAllCategory()
+        public static List<Product> GetProducts(List<Cart> carts)
         {
-            return UnitOfWork.Categories.GetAll().ToList();
+            var products = carts.Join(UnitOfWork.Products.GetAll(),
+            k => k.ProductId,
+            p => p.Id, (k, p) => new { k, p }).Select(x => x.p).ToList();
+            return products;
         }
-        public static List<Brand> GetAllBrand()
+        public static List<Product> GetProducts(List<Favourites> favourites)
         {
-            return UnitOfWork.Brands.GetAll().ToList();
+            var products = favourites.Join(UnitOfWork.Products.GetAll(),
+            f => f.ProductId,
+            p => p.Id, (f, p) => new { f, p }).Select(x => x.p).ToList();
+            return products;
         }
-        public static Category GetCategoryProduct(Guid id)
-        {
-            return GetAllCategory().Where(category => category.Id == id).FirstOrDefault();
-        }
-        public static Brand GetBrandProduct(Guid id)
-        {
-            return GetAllBrand().Where(category => category.Id == id).FirstOrDefault();
-        }
-        
+
     }
 }

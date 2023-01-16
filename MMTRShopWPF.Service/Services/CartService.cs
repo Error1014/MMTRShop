@@ -14,13 +14,8 @@ namespace MMTRShopWPF.Service.Services
         {
             return  UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id);
         }
-        public static List<Product> GetProduct()
-        {
-            var products = GetCart().Join(UnitOfWork.Products.GetAll(),
-            k => k.ProductId,
-            p => p.Id, (k, p) => new { k, p }).Select(x => x.p).ToList();
-            return products;
-        }
+
+
         public static void AddProductInCart(Product product)
         {
             var myKorzine = UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id);
@@ -62,6 +57,12 @@ namespace MMTRShopWPF.Service.Services
         {
             var item = UnitOfWork.Carts.GetById(id);
             UnitOfWork.Carts.Remove(item);
+            UnitOfWork.Carts.Save();
+        }
+
+        public static void ClearCart(List<Cart> carts)
+        {
+            UnitOfWork.Carts.RemoveRange(carts);
             UnitOfWork.Carts.Save();
         }
     }
