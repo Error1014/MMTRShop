@@ -58,6 +58,7 @@
     <Compile Include="Services\BankCardService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\CartService.cs" />
+    <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\FavouritesService.cs" />
     <Compile Include="Services\KatalogService.cs" />
     <Compile Include="Services\MyOrderService.cs" />

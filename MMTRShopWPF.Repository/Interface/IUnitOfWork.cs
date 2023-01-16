@@ -6,7 +6,7 @@ namespace MMTRShopWPF.Repository.Interface
     {
         IProductRepository Products { get; }
         ICartRepository Carts { get; }
-        ICategoryRepository Categorys { get; }
+        ICategoryRepository Categories { get; }
         IBrandRepository Brands { get; }
         IUserRepository Users { get; }
         IClientRepository  Clients { get; }

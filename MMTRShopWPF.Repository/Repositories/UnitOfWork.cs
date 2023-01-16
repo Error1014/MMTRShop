@@ -13,7 +13,7 @@ namespace MMTRShopWPF.Repository.Repositories
             _context = context;
             Products = new ProductRepository(_context);
             Carts = new CartRopository(_context);
-            Categorys = new CategoryRepository(_context);
+            Categories = new CategoryRepository(_context);
             Brands = new BrandRepository(_context);
             Users = new UserRepository(_context);
             Clients = new ClientRepository(_context);
@@ -30,7 +30,7 @@ namespace MMTRShopWPF.Repository.Repositories
 
         public ICartRepository Carts { get; private set; }
 
-        public ICategoryRepository Categorys { get; private set; }
+        public ICategoryRepository Categories { get; private set; }
 
         public IBrandRepository Brands { get; private set; }
 

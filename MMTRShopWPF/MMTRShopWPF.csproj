@@ -101,6 +101,7 @@
     <Compile Include="ViewModels\AutorizationViewModel.cs" />
     <Compile Include="ViewModels\BankCardViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Commands.cs" />
     <Compile Include="ViewModels\FavouritesViewModel.cs" />
     <Compile Include="ViewModels\KatalogViewModel.cs" />
@@ -112,6 +113,9 @@
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="View\Pages\AutorizationPage.xaml.cs">
       <DependentUpon>AutorizationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\CategoryPage.xaml.cs">
+      <DependentUpon>CategoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\EditInfoProductPage.xaml.cs">
       <DependentUpon>EditInfoProductPage.xaml</DependentUpon>
@@ -160,6 +164,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Pages\AutorizationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\CategoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

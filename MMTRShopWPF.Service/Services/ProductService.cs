@@ -24,7 +24,7 @@ namespace MMTRShopWPF.Service.Services
         }
         public static List<Category> GetAllCategory()
         {
-            return UnitOfWork.Categorys.GetAll().ToList();
+            return UnitOfWork.Categories.GetAll().ToList();
         }
         public static List<Brand> GetAllBrand()
         {

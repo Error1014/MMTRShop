@@ -140,6 +140,16 @@ namespace MMTRShopWPF.ViewModels
                 });
             }
         }
+        public ICommand CategoryNavigate
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    NavigarionManager.MainFrame.Content = new CategoryPage();
+                });
+            }
+        }
         private bool CheckIsClient()
         {
             if (AccountManager.Client == null)

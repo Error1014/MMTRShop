@@ -40,7 +40,7 @@ namespace MMTRShopWPF.Service.Services
 
         public static ObservableCollection<Category> GetAllCategory()
         {
-            var categories = UnitOfWork.Categorys.GetAll();
+            var categories = UnitOfWork.Categories.GetAll();
             return new ObservableCollection<Category>(categories);
         }
 
