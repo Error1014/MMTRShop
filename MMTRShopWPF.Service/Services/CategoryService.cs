@@ -27,8 +27,17 @@ namespace MMTRShopWPF.Service.Services
         }
         public static void Remove(Category category)
         {
-            UnitOfWork.Categories.Remove(category);
+            if (!CheckToRemove(category))
+            {
+                UnitOfWork.Categories.Remove(category);
+            }
             Save();
+        }
+
+        public static bool CheckToRemove(Category category)
+        {
+            var products = UnitOfWork.Products.GetAll().Where(c=>c.CategoryId==category.Id).FirstOrDefault();
+            return products == null;
         }
     }
 }

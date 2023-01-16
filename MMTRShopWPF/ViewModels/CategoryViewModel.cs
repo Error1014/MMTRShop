@@ -75,9 +75,16 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    CategoryService.Remove(Category);
-                    Categories = CategoryService.GetCategory();
-                    Category = new Category();
+                    if (CategoryService.CheckToRemove(Category))
+                    {
+                        CategoryService.Remove(Category);
+                        Categories = CategoryService.GetCategory();
+                        Category = new Category();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Вы не можете удалить данную категорию, так как приведёт к удалению продуктов");
+                    }
                 });
             }
         }
