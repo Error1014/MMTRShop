@@ -12,13 +12,13 @@ namespace MMTRShopWPF.Service.Services
     {
         public static List<Cart> GetCart()
         {
-            return  UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id);
+            return  UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id).ToList();
         }
 
 
         public static void AddProductInCart(Product product)
         {
-            var myKorzine = UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id);
+            var myKorzine = UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id).ToList();
             bool isNew = true;
             for (int i = 0; i < myKorzine.Count; i++)
             {

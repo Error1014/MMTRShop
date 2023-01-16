@@ -6,6 +6,6 @@ namespace MMTRShopWPF.Repository.Interface
 {
     public interface IOrderRepository: IRepository<Order>
     {
-        List<Order> GetOrdersByClientId(Guid id);
+        IEnumerable<Order> GetOrdersByClientId(Guid id);
     }
 }

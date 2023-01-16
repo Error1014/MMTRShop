@@ -10,7 +10,7 @@ namespace MMTRShopWPF.Service.Services
     {
         public static List<Favourites> GetFavourites()
         {
-            return UnitOfWork.Favorites.GetFavourites(AccountManager.Client);
+            return UnitOfWork.Favorites.GetFavourites(AccountManager.Client).ToList();
         }
         public static Favourites GetFavourites(Product product)
         {

@@ -21,7 +21,7 @@ namespace MMTRShopWPF.Repositories.Repository
 
         
 
-        public List<Cart> GetCartByIdClient(Guid id)
+        public IEnumerable<Cart> GetCartByIdClient(Guid id)
         {
             return ShopContext.Cart.Where(k=>k.ClientId==id).ToList();
         }

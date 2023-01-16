@@ -18,7 +18,7 @@ namespace MMTRShopWPF.Repository.Repositories
             get { return Context as ShopContext; }
         }
 
-        public List<Order> GetOrdersByClientId(Guid id)
+        public IEnumerable<Order> GetOrdersByClientId(Guid id)
         {
             return ShopContext.Order.Where(o=>o.ClientId == id).ToList();
         }

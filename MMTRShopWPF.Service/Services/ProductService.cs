@@ -37,21 +37,21 @@ namespace MMTRShopWPF.Service.Services
             return products;
         }
 
-        public static List<Product> GetPageProducts(int numPage, int sizePage)
+        public static List<Product> GetPageProducts(int numPage,int sizePage)
         {
-            return UnitOfWork.Products.GetProductsPage(numPage, sizePage);
+            return UnitOfWork.Products.GetProductsPage(numPage, sizePage).ToList();
         }
         public static List<Product> GetPageProducts(int numPage, int sizePage, Category category)
         {
-            return UnitOfWork.Products.GetProductsPage(numPage, sizePage, category);
+            return UnitOfWork.Products.GetProductsPage(numPage, sizePage,category).ToList();
         }
         public static List<Product> GetPageProducts(int numPage, int sizePage, Brand brand)
         {
-            return UnitOfWork.Products.GetProductsPage(numPage, sizePage, brand);
+            return UnitOfWork.Products.GetProductsPage(numPage, sizePage,brand).ToList();
         }
         public static List<Product> GetPageProducts(int numPage, int sizePage, Category category, Brand brand)
         {
-            return UnitOfWork.Products.GetProductsPage(numPage, sizePage, category, brand);
+            return UnitOfWork.Products.GetProductsPage(numPage, sizePage, category,brand).ToList();
         }
         public static int GetCountPage(int sizePage)
         {

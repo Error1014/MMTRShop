@@ -21,7 +21,7 @@ namespace MMTRShopWPF.Service.Services
         }
         public static List<Order> GetOrderClient(Client client)
         {
-            return UnitOfWork.Orders.GetOrdersByClientId(client.Id);
+            return UnitOfWork.Orders.GetOrdersByClientId(client.Id).ToList();
         }
         public static void CreateOrder(Order order)
         {
