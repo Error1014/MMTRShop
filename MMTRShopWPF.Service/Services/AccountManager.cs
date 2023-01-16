@@ -76,7 +76,7 @@ namespace MMTRShopWPF.Service.Services
             {
                 if (user.Id==item.UserId)
                 {
-                    Admin = UnitOfWork.Admins.GetAdminByUserId(user.Id);
+                    Admin = UnitOfWork.Admins.GetAdminByUser(user);
                     return;
                 }
             }
@@ -85,7 +85,7 @@ namespace MMTRShopWPF.Service.Services
             {
                 if (user.Id == item.UserId)
                 {
-                    Operator = UnitOfWork.Operators.GetOperatorByUserId(user.Id);
+                    Operator = UnitOfWork.Operators.GetOperatorByUser(user);
                     return;
                 }
             }
@@ -94,7 +94,7 @@ namespace MMTRShopWPF.Service.Services
             {
                 if (user.Id == item.UserId)
                 {
-                    Client = UnitOfWork.Clients.GetClientByUserId(user.Id);
+                    Client = UnitOfWork.Clients.GetClientByUser(user);
                     return;
                 }
             }

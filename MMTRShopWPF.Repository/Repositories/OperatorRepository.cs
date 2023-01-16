@@ -15,9 +15,9 @@ namespace MMTRShopWPF.Repository.Repositories
             
         }
 
-        public Operator GetOperatorByUserId(Guid id)
+        public Operator GetOperatorByUser(User user)
         {
-            return ShopContext.Operator.Where(c => c.UserId == id).FirstOrDefault();
+            return ShopContext.Operator.FirstOrDefault(c => c.UserId == user.Id);
         }
     }
 }

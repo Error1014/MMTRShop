@@ -7,7 +7,7 @@ namespace MMTRShopWPF.Repository.Interface
     public interface ICartRepository:IRepository<Cart,Guid>
     {
         //List<Korzine> EditValueProduct(int id, int number);
-        IEnumerable<Cart> GetCartByIdClient(Guid id);
+        IEnumerable<Cart> GetCartByClient(Client client);
         int GetCountPage(int sizePage);
     }
 }

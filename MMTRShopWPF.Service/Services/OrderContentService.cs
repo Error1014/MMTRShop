@@ -12,7 +12,7 @@ namespace MMTRShopWPF.Service.Services
     {
         public static void CreateOrderContent(Order order)
         {
-            var carts = UnitOfWork.Carts.GetCartByIdClient(AccountManager.Client.Id);
+            var carts = UnitOfWork.Carts.GetCartByClient(AccountManager.Client);
             List<OrderContent> cartOrders = new List<OrderContent>();
             foreach (var cartItem in carts)
             {

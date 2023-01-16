@@ -25,9 +25,9 @@ namespace MMTRShopWPF.Repository.Repositories
             ShopContext.Set<TEntity>().AddRange(entities);
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public TEntity Find(Expression<Func<TEntity, bool>> predicate)
         {
-            return ShopContext.Set<TEntity>().Where(predicate);
+            return ShopContext.Set<TEntity>().FirstOrDefault(predicate);
         }
 
         public IEnumerable<TEntity> GetAll()

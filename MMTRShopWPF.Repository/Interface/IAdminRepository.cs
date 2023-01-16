@@ -9,6 +9,6 @@ namespace MMTRShopWPF.Repository.Interface
 {
     public interface IAdminRepository: IRepository<Admin,Guid>
     {
-        Admin GetAdminByUserId(Guid id);
+        Admin GetAdminByUser(User user);
     }
 }
