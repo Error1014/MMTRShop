@@ -29,8 +29,8 @@
             <TextBlock FontSize="25" Text="Категория"/>
             <TextBox FontSize="25" Text="{Binding Category.Title}"/>
             <Button Margin="20" FontSize="25" Content="Сохранить" Command="{Binding SaveCategory}"/>
-            <Button Margin="20" FontSize="25" Content="Создать" Command="{Binding CreateCategory}"/>
             <Button Margin="20" FontSize="25" Content="Удалить" Command="{Binding RemoveCategory}"/>
+            <Button Margin="20" FontSize="25" Content="Создать новый" Command="{Binding CreateCategory}"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -28,8 +28,8 @@ namespace MMTRShopWPF.ViewModels
             else
             {
                 isAdd = false;
-                SelectCategory = ProductService.GetCategoryProduct(product.Id);
-                SelectBrand = ProductService.GetBrandProduct(product.Id);
+                SelectCategory = ProductService.GetCategoryProduct(product.CategoryId);
+                SelectBrand = ProductService.GetBrandProduct(product.BrandId);
                 Product = product;
             }
 

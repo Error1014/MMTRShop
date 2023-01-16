@@ -20,9 +20,9 @@ namespace MMTRShopWPF.Service.Services
         {
             UnitOfWork.Categories.Save();
         }
-        public static void Create(string title)
+        public static void Create(Category category)
         {
-            UnitOfWork.Categories.Add(new Category(title));
+            UnitOfWork.Categories.Add(new Category(category.Title));
             Save();
         }
         public static void Remove(Category category)

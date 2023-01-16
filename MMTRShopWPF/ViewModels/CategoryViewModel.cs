@@ -13,6 +13,7 @@ namespace MMTRShopWPF.ViewModels
 {
     public class CategoryViewModel:BaseViewModel
     {
+        private bool isCreate = false;
         public CategoryViewModel()
         {
             Categories = CategoryService.GetCategory();
@@ -45,8 +46,14 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
+                    if (isCreate)
+                    {
+                        CategoryService.Create(Category);
+                        isCreate=false;
+                        CategoryService.Save();
+                        Category = new Category();
+                    }
                     CategoryService.Save();
-                    Category = new Category();
                     Categories = CategoryService.GetCategory();
                 });
             }
@@ -57,10 +64,8 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    string titleCategory = Category.Title;
-                    Category = new Category();
-                    CategoryService.Create(titleCategory);
-                    Categories = CategoryService.GetCategory();
+                    Category = new Category() ;
+                    isCreate = true;
                 });
             }
         }
