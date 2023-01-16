@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Model.Models
 {
-    public abstract class BaseEntity<Guid>
+    public abstract class BaseEntity<TKey> where TKey : struct
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+
+        public TKey Id { get; set; }
     }
 }

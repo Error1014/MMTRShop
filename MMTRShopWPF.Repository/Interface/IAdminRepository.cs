@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Repository.Interface
 {
-    public interface IAdminRepository: IRepository<Admin>
+    public interface IAdminRepository: IRepository<Admin,Guid>
     {
         Admin GetAdminByUserId(Guid id);
     }

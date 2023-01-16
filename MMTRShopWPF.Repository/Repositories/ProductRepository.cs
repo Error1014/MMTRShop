@@ -1,11 +1,12 @@
 ﻿using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Repository.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MMTRShopWPF.Repository.Repositories
 {
-    public class ProductRepository : Repository<Product>, IProductRepository
+    public class ProductRepository : Repository<Product,Guid>, IProductRepository
     {
         public ProductRepository(ShopContext context) : base(context)
         {

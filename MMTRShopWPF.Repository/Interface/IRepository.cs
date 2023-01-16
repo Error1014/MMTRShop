@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MMTRShopWPF.Model.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace MMTRShopWPF.Repository.Interface
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : struct
     {
         TEntity GetById(Guid id);
         IEnumerable<TEntity> GetAll();

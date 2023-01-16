@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Repository.Repositories
 {
-    public class AdminRepository:Repository<Admin>,IAdminRepository
+    public class AdminRepository:Repository<Admin,Guid>,IAdminRepository
     {
         public AdminRepository(ShopContext context) : base(context)
         {

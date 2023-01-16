@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MMTRShopWPF.Repository.Interface
 {
-    public interface IOrderRepository: IRepository<Order>
+    public interface IOrderRepository: IRepository<Order,Guid>
     {
         IEnumerable<Order> GetOrdersByClientId(Guid id);
     }

@@ -7,12 +7,13 @@ using System.Linq;
 
 namespace MMTRShopWPF.Repositories.Repository
 {
-    public class CartRopository : Repository<Cart>, ICartRepository
+    public class CartRopository : Repository<Cart,Guid>, ICartRepository
     {
         public CartRopository(ShopContext context) : base(context)
         {
 
         }
+
 
         public IEnumerable<Cart> GetCartByIdClient(Guid id)
         {

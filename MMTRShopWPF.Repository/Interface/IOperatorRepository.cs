@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Repository.Interface
 {
-    public interface IOperatorRepository:IRepository<Operator>
+    public interface IOperatorRepository:IRepository<Operator,Guid>
     {
         Operator GetOperatorByUserId(Guid id);
     }

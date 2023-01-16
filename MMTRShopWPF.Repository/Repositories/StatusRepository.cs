@@ -1,10 +1,11 @@
 ﻿using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Repository.Interface;
+using System;
 using System.Linq;
 
 namespace MMTRShopWPF.Repository.Repositories
 {
-    public class StatusRepository:Repository<Status>,IStatusRepository
+    public class StatusRepository:Repository<Status,Guid>,IStatusRepository
     {
         public StatusRepository(ShopContext context) : base(context)
         {

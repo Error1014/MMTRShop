@@ -5,7 +5,7 @@ using System;
 
 namespace MMTRShopWPF.Repository.Repositories
 {
-    public class ClientRepository : Repository<Client>, IClientRepository
+    public class ClientRepository : Repository<Client,Guid>, IClientRepository
     {
         public ClientRepository(ShopContext context) : base(context)
         {

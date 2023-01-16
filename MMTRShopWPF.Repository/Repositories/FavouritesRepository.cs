@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MMTRShopWPF.Repository.Repositories
 {
-    public class FavouritesRepository : Repository<Favourites>, IFavouritesRepository
+    public class FavouritesRepository : Repository<Favourites,Guid>, IFavouritesRepository
     {
         public FavouritesRepository(ShopContext context) : base(context)
         {

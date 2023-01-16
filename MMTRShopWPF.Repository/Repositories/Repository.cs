@@ -7,8 +7,8 @@ using System.Linq.Expressions;
 
 namespace MMTRShopWPF.Repository.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity<Guid>
-{
+    public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : struct
+    {
         protected readonly ShopContext ShopContext;
 
         public Repository(ShopContext context)

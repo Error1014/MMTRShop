@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\BankCard.cs" />
-    <Compile Include="Models\BaseEntiti.cs" />
+    <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />

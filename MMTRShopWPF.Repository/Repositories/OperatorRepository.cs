@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Repository.Repositories
 {
-    public class OperatorRepository:Repository<Operator>, IOperatorRepository
+    public class OperatorRepository:Repository<Operator,Guid>, IOperatorRepository
     {
         public OperatorRepository(ShopContext context) : base(context)
         {

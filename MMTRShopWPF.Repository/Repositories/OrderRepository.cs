@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MMTRShopWPF.Repository.Repositories
 {
-    public class OrderRepository:Repository<Order>,IOrderRepository
+    public class OrderRepository:Repository<Order,Guid>,IOrderRepository
     {
         public OrderRepository(ShopContext context) : base(context)
         {

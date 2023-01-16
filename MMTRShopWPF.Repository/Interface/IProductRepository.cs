@@ -1,9 +1,10 @@
 ﻿using MMTRShopWPF.Model.Models;
+using System;
 using System.Collections.Generic;
 
 namespace MMTRShopWPF.Repository.Interface
 {
-    public interface IProductRepository: IRepository<Product>
+    public interface IProductRepository: IRepository<Product,Guid>
     {
         IEnumerable<Product> GetProductsPage(int numPage, int sizePage);
 

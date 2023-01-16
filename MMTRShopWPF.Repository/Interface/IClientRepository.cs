@@ -3,7 +3,7 @@ using System;
 
 namespace MMTRShopWPF.Repository.Interface
 {
-    public interface IClientRepository: IRepository<Client>
+    public interface IClientRepository: IRepository<Client,Guid>
     {
         Client GetClientByUserId(Guid id);
     }

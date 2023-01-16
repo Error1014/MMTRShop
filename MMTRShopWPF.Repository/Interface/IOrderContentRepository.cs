@@ -1,9 +1,10 @@
 ﻿using MMTRShopWPF.Model.Models;
+using System;
 using System.Collections.Generic;
 
 namespace MMTRShopWPF.Repository.Interface
 {
-    public interface IOrderContentRepository:IRepository<OrderContent>
+    public interface IOrderContentRepository:IRepository<OrderContent,Guid>
     {
 
     }
