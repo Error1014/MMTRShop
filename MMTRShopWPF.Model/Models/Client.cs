@@ -11,7 +11,7 @@ namespace MMTRShopWPF.Model.Models
     {
         public Guid UserId { get; set; }
         public virtual User User { get; set; }
-        public string Emain { get; set; }
+        public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
 
@@ -25,10 +25,10 @@ namespace MMTRShopWPF.Model.Models
 
         }
 
-        public Client(Guid userId,string emain, string phone, string address)
+        public Client(Guid userId,string email, string phone, string address)
         {
             UserId = userId;
-            Emain = emain;
+            Email = email;
             Phone = phone;
             Address = address;
         }

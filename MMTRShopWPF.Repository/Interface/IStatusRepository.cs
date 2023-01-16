@@ -9,5 +9,6 @@ namespace MMTRShopWPF.Repository.Interface
         Status Delivered();
         Status SetStatusReceived();
         Status SetStatusCancelled();
+        Status GetStatusByOdrer(Order order);
     }
 }

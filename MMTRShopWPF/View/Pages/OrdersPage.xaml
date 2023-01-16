@@ -9,7 +9,7 @@
       Title="OrdersPage">
 
     <Grid Background="White">
-        <DataGrid ItemsSource="{Binding Orders}" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid ItemsSource="{Binding Orders}" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedOrder}">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="№ Заказа" Binding="{Binding Id}"/>
                 <DataGridTextColumn Width="*" Header="№ Клиента" Binding="{Binding ClientId}"/>

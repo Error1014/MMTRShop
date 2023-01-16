@@ -97,6 +97,10 @@
     <Compile Include="Migrations\202301152329134_FixAutoKey.designer.cs">
       <DependentUpon>202301152329134_FixAutoKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301160235047_RenameEmail.cs" />
+    <Compile Include="Migrations\202301160235047_RenameEmail.designer.cs">
+      <DependentUpon>202301160235047_RenameEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AutorizationViewModel.cs" />
     <Compile Include="ViewModels\BankCardViewModel.cs" />
@@ -109,6 +113,7 @@
     <Compile Include="ViewModels\MyOrderVievModel.cs" />
     <Compile Include="ViewModels\NavigarionManager.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
+    <Compile Include="ViewModels\OperatorOrderViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="View\Pages\AutorizationPage.xaml.cs">
@@ -143,6 +148,9 @@
     </Compile>
     <Compile Include="View\Pages\MyOrdersPage.xaml.cs">
       <DependentUpon>MyOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\OrderInfoPage.xaml.cs">
+      <DependentUpon>OrderInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\OrdersPage.xaml.cs">
       <DependentUpon>OrdersPage.xaml</DependentUpon>
@@ -207,6 +215,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\OrderInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\OrdersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -246,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301152329134_FixAutoKey.resx">
       <DependentUpon>202301152329134_FixAutoKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301160235047_RenameEmail.resx">
+      <DependentUpon>202301160235047_RenameEmail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

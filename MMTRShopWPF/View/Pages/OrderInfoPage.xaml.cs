@@ -1,4 +1,5 @@
-﻿using MMTRShopWPF.ViewModels;
+﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,14 @@ using System.Windows.Shapes;
 namespace MMTRShopWPF.View.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для OrdersPage.xaml
+    /// Логика взаимодействия для OrderInfoPage.xaml
     /// </summary>
-    public partial class OrdersPage : Page
+    public partial class OrderInfoPage : Page
     {
-        public OrdersPage()
+        public OrderInfoPage(Order order)
         {
             InitializeComponent();
-            OperatorOrderViewModel operatorOrderViewModel = new OperatorOrderViewModel();
+            OperatorOrderViewModel operatorOrderViewModel = new OperatorOrderViewModel(order);
             DataContext = operatorOrderViewModel;
         }
     }

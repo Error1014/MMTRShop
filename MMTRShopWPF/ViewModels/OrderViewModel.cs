@@ -22,20 +22,10 @@ namespace MMTRShopWPF.ViewModels
             BankCardVM = new BankCardViewModel();
             BlockBankCardOpacity = 1;
             IsPayNow = true;
-            Orders = OrderService.GetOrders();
             carts = OrderService.GetCart();
         }
 
-        private ObservableCollection<Order> orders;
-        public ObservableCollection<Order> Orders
-        {
-            get { return orders; }
-            set
-            {
-                orders = value;
-                OnPropertyChanged(nameof(Orders));
-            }
-        }
+        
 
         private Order order = new Order();
         public Order Order

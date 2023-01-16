@@ -40,5 +40,10 @@ namespace MMTRShopWPF.Repository.Repositories
         {
             return ShopContext.Status.Where(s => s.Title == "Получен").First();
         }
+
+        public Status GetStatusByOdrer(Order order)
+        {
+            return ShopContext.Status.Where(s => s.Id == order.StatusId).FirstOrDefault();
+        }
     }
 }

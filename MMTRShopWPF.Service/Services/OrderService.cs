@@ -69,5 +69,19 @@ namespace MMTRShopWPF.Service.Services
             return !String.IsNullOrEmpty(address);
         }
         #endregion
+
+        public static List<Status> GetAllStatus()
+        {
+            return UnitOfWork.Status.GetAll().ToList();
+        }
+
+        public static Status GetStatusByOrder(Order order)
+        {
+            return UnitOfWork.Status.GetStatusByOdrer(order);
+        }
+        public static Client GetClient(Order order)
+        {
+            return UnitOfWork.Clients.GetById(order.ClientId);
+        }
     }
 }
