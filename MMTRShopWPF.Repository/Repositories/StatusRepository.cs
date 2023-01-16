@@ -11,11 +11,6 @@ namespace MMTRShopWPF.Repository.Repositories
 
         }
 
-        public ShopContext ShopContext
-        {
-            get { return Context as ShopContext; }
-        }
-
         //Продумать как это реализовать через enum
         public Status SetStatusWaitingPlaced()
         {

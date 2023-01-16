@@ -14,7 +14,7 @@ namespace MMTRShopWPF.Repository.Repositories
 
         public ShopContext ShopContext
         {
-            get { return Context as ShopContext; }
+            get { return base.ShopContext as ShopContext; }
         }
 
 

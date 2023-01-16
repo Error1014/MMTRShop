@@ -13,11 +13,6 @@ namespace MMTRShopWPF.Repository.Repositories
 
         }
 
-        public ShopContext ShopContext
-        {
-            get { return Context as ShopContext; }
-        }
-
         public IEnumerable<Favourites> GetFavourites(Client client)
         {
             return ShopContext.Favourites.Where(k => k.ClientId == client.Id).ToList();

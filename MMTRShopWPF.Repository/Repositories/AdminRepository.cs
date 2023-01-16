@@ -14,12 +14,6 @@ namespace MMTRShopWPF.Repository.Repositories
         {
 
         }
-
-        public ShopContext ShopContext
-        {
-            get { return Context as ShopContext; }
-        }
-
         public Admin GetAdminByUserId(Guid id)
         {
             return ShopContext.Admin.Where(c => c.UserId == id).FirstOrDefault();

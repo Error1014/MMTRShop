@@ -13,11 +13,6 @@ namespace MMTRShopWPF.Repository.Repositories
 
         }
 
-        public ShopContext ShopContext
-        {
-            get { return Context as ShopContext; }
-        }
-
         public IEnumerable<Order> GetOrdersByClientId(Guid id)
         {
             return ShopContext.Order.Where(o=>o.ClientId == id).ToList();

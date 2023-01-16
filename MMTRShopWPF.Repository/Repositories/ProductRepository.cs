@@ -12,11 +12,6 @@ namespace MMTRShopWPF.Repository.Repositories
 
         }
 
-        public ShopContext ShopContext
-        {
-            get { return Context as ShopContext; }
-        }
-
         public IEnumerable<Product> GetProductsPage(int numPage, int sizePage,Category category)
         {
             return ShopContext.Product.OrderBy(product => product.Id).Where(product => product.CategoryId == category.Id).Skip((numPage - 1) * sizePage).Take(sizePage).ToList();

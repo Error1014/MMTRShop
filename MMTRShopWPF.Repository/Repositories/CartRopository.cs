@@ -14,13 +14,6 @@ namespace MMTRShopWPF.Repositories.Repository
 
         }
 
-        public ShopContext ShopContext
-        {
-            get { return Context as ShopContext; }
-        }
-
-        
-
         public IEnumerable<Cart> GetCartByIdClient(Guid id)
         {
             return ShopContext.Cart.Where(k=>k.ClientId==id).ToList();

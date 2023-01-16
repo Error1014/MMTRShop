@@ -9,49 +9,49 @@ namespace MMTRShopWPF.Repository.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity<Guid>
 {
-        protected readonly ShopContext Context;
+        protected readonly ShopContext ShopContext;
 
         public Repository(ShopContext context)
         {
-            Context = context;
+            ShopContext = context;
         }
         public void Add(TEntity entity)
         {
-            Context.Set<TEntity>().Add(entity);
+            ShopContext.Set<TEntity>().Add(entity);
         }
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
-            Context.Set<TEntity>().AddRange(entities);
+            ShopContext.Set<TEntity>().AddRange(entities);
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            return Context.Set<TEntity>().Where(predicate);
+            return ShopContext.Set<TEntity>().Where(predicate);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            return Context.Set<TEntity>().ToList();
+            return ShopContext.Set<TEntity>().ToList();
         }
 
         public TEntity GetById(System.Guid id)
         {
-            return Context.Set<TEntity>().Find(id);
+            return ShopContext.Set<TEntity>().Find(id);
         }
 
         public void Remove(TEntity entity)
         {
-            Context.Set<TEntity>().Remove(entity);
+            ShopContext.Set<TEntity>().Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            Context.Set<TEntity>().RemoveRange(entities);
+            ShopContext.Set<TEntity>().RemoveRange(entities);
         }
         public void Save()
         {
-            Context.SaveChanges();
+            ShopContext.SaveChanges();
         }
     }
 }
