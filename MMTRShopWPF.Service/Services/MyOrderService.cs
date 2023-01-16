@@ -14,12 +14,15 @@ namespace MMTRShopWPF.Service.Services
             return UnitOfWork.Orders.GetOrdersByClientId(client.Id);
         }
 
-        public static List<OrderContent> GetOrderContent()
+        public static List<OrderContent> GetOrderContent(List<Order> orders)
         {
-            var orderContents = GetOrderClient(AccountManager.Client).Join(UnitOfWork.OrderContents.GetAll(),
-            o=>o.Id,
-            oc => oc.OrderId, (o, oc) => new { o, oc }).Select(x => x.oc).ToList();
-            return orderContents;
+            List<OrderContent> result = new List<OrderContent>();
+            foreach (var item in orders)
+            {
+                result.AddRange(UnitOfWork.OrderContents.GetAll().Where(oc=>oc.OrderId==item.Id));
+            }
+           
+            return result;
         }
     }
 }

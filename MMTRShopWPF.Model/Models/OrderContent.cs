@@ -24,7 +24,7 @@ namespace MMTRShopWPF.Model.Models
 
         public OrderContent(Order order, Cart cart)
         {
-            OrderId = OrderId;
+            OrderId = order.Id;
             ProductId = cart.ProductId;
             CountProduct = cart.ProductCount;
         }

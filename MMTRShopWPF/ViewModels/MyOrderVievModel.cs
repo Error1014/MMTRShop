@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MMTRShopWPF.ViewModels
 {
@@ -13,7 +14,9 @@ namespace MMTRShopWPF.ViewModels
         public MyOrderVievModel()
         {
             Orders = MyOrderService.GetOrderClient(AccountManager.Client);
-            OrderContents = MyOrderService.GetOrderContent();
+
+            OrderContents = MyOrderService.GetOrderContent(Orders);
+
         }
         private List<Order> orders;
         public List<Order> Orders
