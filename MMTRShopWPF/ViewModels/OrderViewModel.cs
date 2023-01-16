@@ -107,7 +107,7 @@ namespace MMTRShopWPF.ViewModels
                 {
                     if (CheckAll())
                     {
-                        Status status = UnitOfWork.Status.SetStatusPlaced();
+                        Status status = UnitOfWork.Status.SetStatusWaitingPlaced();
                         Order = OrderService.SetOrder(Order.Address, IsPayNow, status);
                         OrderService.CreateOrder(Order);
                         OrderContentService.CreateOrderContent(Order);

@@ -17,6 +17,10 @@ namespace MMTRShopWPF.Repository.Repositories
         }
 
         //Продумать как это реализовать через enum
+        public Status SetStatusWaitingPlaced()
+        {
+            return ShopContext.Status.Where(s => s.Title == "Ждёт подтверждения").First();
+        }
         public Status SetStatusPlaced()
         {
             return ShopContext.Status.Where(s => s.Title == "Оформлен").First();
@@ -45,5 +49,7 @@ namespace MMTRShopWPF.Repository.Repositories
         {
             return ShopContext.Status.Where(s => s.Id == order.StatusId).FirstOrDefault();
         }
+
+        
     }
 }

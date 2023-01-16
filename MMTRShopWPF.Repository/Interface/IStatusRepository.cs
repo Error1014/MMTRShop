@@ -4,6 +4,7 @@ namespace MMTRShopWPF.Repository.Interface
 {
     public interface IStatusRepository:IRepository<Status>
     {
+        Status SetStatusWaitingPlaced();
         Status SetStatusPlaced();
         Status SetStatusOnWay();
         Status Delivered();

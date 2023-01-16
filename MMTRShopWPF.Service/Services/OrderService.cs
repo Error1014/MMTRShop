@@ -26,6 +26,10 @@ namespace MMTRShopWPF.Service.Services
         public static void CreateOrder(Order order)
         {
             UnitOfWork.Orders.Add(order);
+            SaveOrder();
+        }
+        public static void SaveOrder()
+        {
             UnitOfWork.Orders.Save();
         }
         public static Order SetOrder(string address, bool IsPayNow, Status status)

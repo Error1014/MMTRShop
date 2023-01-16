@@ -96,5 +96,26 @@ namespace MMTRShopWPF.ViewModels
                 });
             }
         }
+        public ICommand Save
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    Order.StatusId = Status.Id;
+                    OrderService.SaveOrder();
+                    NavigarionManager.MainFrame.Content = new OrdersPage();
+                });
+            }
+        }
+        public ICommand ContactClient
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                });
+            }
+        }
     }
 }

@@ -58,8 +58,8 @@
             </DockPanel>
         </StackPanel>
         <DockPanel Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center">
-            <Button Width="140" Height="30" Content="Связаться с клиентом" Margin="20,0"/>
-            <Button Width="140" Height="30" Content="Сохранить" Margin="20,0"/>
+            <Button Width="140" Height="30" Content="Связаться с клиентом" Margin="20,0" Command="{Binding ContactClient}"/>
+            <Button Width="140" Height="30" Content="Сохранить" Margin="20,0" Command="{Binding Save}"/>
         </DockPanel>
     </Grid>
 </Page>
