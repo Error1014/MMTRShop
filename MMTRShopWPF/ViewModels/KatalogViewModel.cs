@@ -17,8 +17,8 @@ namespace MMTRShopWPF.ViewModels
         public KatalogViewModel()
         {
 
-            productsPage = KatalogService.GetPageProducts(numPage, sizePage);
-            countPage = KatalogService.GetCountPage(sizePage);
+            productsPage = ProductService.GetPageProducts(numPage, sizePage);
+            countPage = ProductService.GetCountPage(sizePage);
             CategoryItems = CategoryService.GetAllCategory();
             BrandItems = BrandService.GetAllBrand();
         }
@@ -44,11 +44,11 @@ namespace MMTRShopWPF.ViewModels
                 selectedCategoryItem = value;
                 if (SelectedBrandItem == null)
                 {
-                    ProductsPage = KatalogService.GetPageProducts(NumPage, sizePage, SelectedCategoryItem);
+                    ProductsPage = ProductService.GetPageProducts(NumPage, sizePage, SelectedCategoryItem);
                 }
                 else
                 {
-                    ProductsPage = KatalogService.GetPageProducts(NumPage, sizePage, SelectedCategoryItem, SelectedBrandItem);
+                    ProductsPage = ProductService.GetPageProducts(NumPage, sizePage, SelectedCategoryItem, SelectedBrandItem);
                 }
                 OnPropertyChanged(nameof(SelectedCategoryItem));
             }
@@ -76,11 +76,11 @@ namespace MMTRShopWPF.ViewModels
                 selectedBrandItem = value;
                 if (SelectedCategoryItem==null)
                 {
-                    ProductsPage = KatalogService.GetPageProducts(NumPage, sizePage, SelectedBrandItem);
+                    ProductsPage = ProductService.GetPageProducts(NumPage, sizePage, SelectedBrandItem);
                 }
                 else
                 {
-                    ProductsPage = KatalogService.GetPageProducts(NumPage, sizePage, SelectedCategoryItem, SelectedBrandItem);
+                    ProductsPage = ProductService.GetPageProducts(NumPage, sizePage, SelectedCategoryItem, SelectedBrandItem);
                 }
                 OnPropertyChanged(nameof(SelectedBrandItem));
             }
@@ -119,7 +119,7 @@ namespace MMTRShopWPF.ViewModels
                         SetNumPage(1);
                     }
 
-                    ProductsPage = KatalogService.GetPageProducts(numPage,sizePage);
+                    ProductsPage = ProductService.GetPageProducts(numPage,sizePage);
                 });
             }
         }
@@ -134,7 +134,7 @@ namespace MMTRShopWPF.ViewModels
                         NumPage--;
                         SetNumPage(-1);
                     }
-                    ProductsPage = KatalogService.GetPageProducts(numPage, sizePage);
+                    ProductsPage = ProductService.GetPageProducts(numPage, sizePage);
                 });
             }
         }
