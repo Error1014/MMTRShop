@@ -34,7 +34,7 @@ namespace MMTRShopWPF.ViewModels
                 OnPropertyChanged(nameof(Favorites));
             }
         }
-        private Favourites favourit = new Favourites();
+
         private List<Product> products;
         public List<Product> Products
         {

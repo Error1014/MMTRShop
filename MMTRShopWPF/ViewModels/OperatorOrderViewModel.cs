@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MMTRShopWPF.ViewModels
@@ -23,9 +24,11 @@ namespace MMTRShopWPF.ViewModels
         public OperatorOrderViewModel(Order order)
         {
             Order = order;
+            MessageBox.Show(Order.Status.Title);
             Client = ClientService.GetClient(Order);
             Statuses = UnitOfWork.Status.GetAll().ToList();
-            Status = StatusService.GetStatus(order);
+            Status = Order.Status;
+
 
         }
         private Order selectedOrder;

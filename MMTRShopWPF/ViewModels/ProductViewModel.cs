@@ -172,6 +172,7 @@ namespace MMTRShopWPF.ViewModels
         {
             IsLikePath = "/Resources/Like.png";
             favourit = new Favourites(AccountManager.Client.Id, Product.Id);
+            FavouritesService.AddFavourite(favourit);
 
         }
         private void RemoveLike()
@@ -180,7 +181,7 @@ namespace MMTRShopWPF.ViewModels
             FavouritesService.RemoveFavourite(favourit);
             favourit = new Favourites();
         }
-        
+
         public ICommand AddInKorzine
         {
             get
