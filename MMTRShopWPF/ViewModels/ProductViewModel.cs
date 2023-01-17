@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace MMTRShopWPF.ViewModels
 {
-    public class ProductVievModel : BaseViewModel
+    public class ProductViewModel : BaseViewModel
     {
         private bool isAdd;
         private int countShow = 4;
@@ -21,7 +21,7 @@ namespace MMTRShopWPF.ViewModels
         private FavouritesService FavouritesService = new FavouritesService();
 
 
-        public ProductVievModel(Product product)
+        public ProductViewModel(Product product)
         {
             if (AccountManager.Admin==null)
             {
