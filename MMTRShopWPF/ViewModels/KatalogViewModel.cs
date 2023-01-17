@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MMTRShopWPF.Service.Services;
+using System.Linq;
 
 namespace MMTRShopWPF.ViewModels
 {
@@ -20,7 +21,7 @@ namespace MMTRShopWPF.ViewModels
             productsPage = ProductService.GetPageProducts(numPage, sizePage);
             countPage = ProductService.GetCountPage(sizePage);
             CategoryItems = CategoryService.GetAllCategory();
-            BrandItems = BrandService.GetAllBrand();
+            BrandItems = UnitOfWork.Brands.GetAll().ToList();
         }
 
         #region Filtration Category

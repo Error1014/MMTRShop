@@ -7,13 +7,13 @@ using System.Windows;
 
 namespace MMTRShopWPF.Service.Services
 {
-    public class AccountManager:BaseService
+    public class AccountManager : BaseService
     {
         private static User user;
         private static Admin admin;
         private static Client client;
         private static Operator _operator;
-        public static User User 
+        public static User User
         {
             get
             {
@@ -26,13 +26,13 @@ namespace MMTRShopWPF.Service.Services
         }
         public static Admin Admin
         {
-            get { return admin; } 
-            set 
+            get { return admin; }
+            set
             {
                 admin = value;
                 client = null;
                 _operator = null;
-            } 
+            }
         }
         public static Client Client
         {
@@ -74,9 +74,9 @@ namespace MMTRShopWPF.Service.Services
             var admins = UnitOfWork.Admins.GetAll();
             foreach (var item in admins)
             {
-                if (user.Id==item.UserId)
+                if (user.Id == item.UserId)
                 {
-                    Admin = UnitOfWork.Admins.GetAdminByUser(user);
+                    Admin = UnitOfWork.Admins.Find(a => a.UserId == user.Id);
                     return;
                 }
             }
@@ -85,7 +85,7 @@ namespace MMTRShopWPF.Service.Services
             {
                 if (user.Id == item.UserId)
                 {
-                    Operator = UnitOfWork.Operators.GetOperatorByUser(user);
+                    Operator = UnitOfWork.Operators.Find(c => c.UserId == user.Id);
                     return;
                 }
             }
@@ -94,7 +94,7 @@ namespace MMTRShopWPF.Service.Services
             {
                 if (user.Id == item.UserId)
                 {
-                    Client = UnitOfWork.Clients.GetClientByUser(user);
+                    Client = UnitOfWork.Clients.Find(c => c.UserId == user.Id);
                     return;
                 }
             }

@@ -12,14 +12,14 @@ namespace MMTRShopWPF.Service.Services
         {
             return UnitOfWork.Favorites.GetFavourites(AccountManager.Client).ToList();
         }
-        public static Favourites GetFavourites(Product product)
+        public static Favourites GetFavourit(Product product)
         {
-            return UnitOfWork.Favorites.GetFavourites(AccountManager.Client, product);
+            return UnitOfWork.Favorites.Find(f=>f.ClientId == AccountManager.Client.Id && f.ProductId == product.Id);
         }
 
-        public static void RemoveFavourit(Guid id)
+        public static void RemoveFavouritById(Guid id)
         {
-            Favourites favourit = UnitOfWork.Favorites.GetById(id);
+            Favourites favourit = UnitOfWork.Favorites.Find(f=>f.Id==id);
             RemoveFavourite(favourit);
         }
 

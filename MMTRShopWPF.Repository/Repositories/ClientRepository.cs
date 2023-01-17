@@ -11,9 +11,6 @@ namespace MMTRShopWPF.Repository.Repositories
         {
 
         }
-        public Client GetClientByUser(User user)
-        {
-            return ShopContext.Client.FirstOrDefault(c => c.UserId == user.Id);
-        }
+
     }
 }

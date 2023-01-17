@@ -23,7 +23,7 @@ namespace MMTRShopWPF.Service.Services
 
         public static Category GetCategory(Product product)
         {
-            return GetAllCategory().Where(category => category.Id == product.CategoryId).FirstOrDefault();
+            return UnitOfWork.Categories.Find(category => category.Id == product.CategoryId);
         }
         public static void Save()
         {
@@ -45,7 +45,7 @@ namespace MMTRShopWPF.Service.Services
 
         public static bool CheckToRemove(Category category)
         {
-            var products = UnitOfWork.Products.GetAll().Where(c=>c.CategoryId==category.Id).FirstOrDefault();
+            var products = UnitOfWork.Products.Find(c=>c.CategoryId==category.Id);
             return products == null;
         }
     }

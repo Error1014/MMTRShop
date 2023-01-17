@@ -9,14 +9,9 @@ namespace MMTRShopWPF.Service.Services
 {
     public class BrandService:BaseService
     {
-        public static List<Brand> GetAllBrand()
+        public static Brand GetBrandProduct(Product product)
         {
-            return UnitOfWork.Brands.GetAll().ToList();
-        }
-
-        public static Brand GetBrandProduct(Guid productId)
-        {
-            return GetAllBrand().Where(brand => brand.Id == productId).FirstOrDefault();
+            return UnitOfWork.Brands.Find(b=>b.Id==product.BrandId);
         }
     }
 }

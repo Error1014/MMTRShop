@@ -5,6 +5,5 @@ namespace MMTRShopWPF.Repository.Interface
 {
     public interface IClientRepository: IRepository<Client,Guid>
     {
-        Client GetClientByUser(User user);
     }
 }

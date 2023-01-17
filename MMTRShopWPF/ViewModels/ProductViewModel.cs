@@ -27,7 +27,7 @@ namespace MMTRShopWPF.ViewModels
                 BlockOpacity = 1;
             }
             AllCategory = CategoryService.GetAllCategory();
-            AllBrand = BrandService.GetAllBrand();
+            AllBrand = UnitOfWork.Brands.GetAll().ToList();
             SelectCategory = AllCategory[0];
             SelectBrand = AllBrand[0];
             if (product == null)
@@ -39,7 +39,7 @@ namespace MMTRShopWPF.ViewModels
             {
                 isAdd = false;
                 SelectCategory = CategoryService.GetCategory(product);
-                SelectBrand = BrandService.GetBrandProduct(product.BrandId);
+                SelectBrand = BrandService.GetBrandProduct(product);
                 Product = product;
             }
 
@@ -67,7 +67,7 @@ namespace MMTRShopWPF.ViewModels
             }
             else
             {
-                favourit = FavouritesService.GetFavourites(product);
+                favourit = FavouritesService.GetFavourit(product);
                 if (favourit == null)
                 {
                     isLikePath = "/Resources/NoLike.png";

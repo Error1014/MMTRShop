@@ -21,7 +21,7 @@ namespace MMTRShopWPF.ViewModels
         {
             Order = order;
             Client = ClientService.GetClient(Order);
-            Statuses = StatusService.GetAllStatus();
+            Statuses = UnitOfWork.Status.GetAll().ToList();
             Status = StatusService.GetStatus(order);
 
         }

@@ -44,6 +44,7 @@ namespace MMTRShopWPF.ViewModels
             AccountManager.User = AccountManager.GetUserByIdClient();
             VisibilityButtonClient = Visibility.Visible;
             VisibilityButtonAdmin = Visibility.Collapsed;
+            VisibilityButtonOperator = Visibility.Collapsed;
         }
         private void SetAdminSettings()
         {

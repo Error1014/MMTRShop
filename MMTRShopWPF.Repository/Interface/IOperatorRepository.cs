@@ -9,6 +9,5 @@ namespace MMTRShopWPF.Repository.Interface
 {
     public interface IOperatorRepository:IRepository<Operator,Guid>
     {
-        Operator GetOperatorByUser(User user);
     }
 }

@@ -53,7 +53,7 @@ namespace MMTRShopWPF.ViewModels
                 return new Commands((obj) =>
                 {
                     Guid id = Guid.Parse(obj.ToString());
-                    FavouritesService.RemoveFavourit(id);
+                    FavouritesService.RemoveFavouritById(id);
                     page.UpdateDataContext();
 
                 });

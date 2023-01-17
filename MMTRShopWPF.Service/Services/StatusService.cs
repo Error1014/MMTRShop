@@ -9,14 +9,10 @@ namespace MMTRShopWPF.Service.Services
 {
     public class StatusService:BaseService
     {
-        public static List<Status> GetAllStatus()
-        {
-            return UnitOfWork.Status.GetAll().ToList();
-        }
 
         public static Status GetStatus(Order order)
         {
-            return UnitOfWork.Status.GetStatusByOdrer(order);
+            return UnitOfWork.Status.Find(s=>s.Id ==order.StatusId);
         }
     }
 }
