@@ -47,7 +47,7 @@ namespace MMTRShopWPF.ViewModels
                 isAdd = false;
                 SelectCategory = CategoryService.GetCategory(product);
                 SelectBrand = BrandService.GetBrandProduct(product);
-                Product = product;
+                Product = ProductService.GetProduct(product);
             }
 
             if (Product.CountInStarage < countShow)

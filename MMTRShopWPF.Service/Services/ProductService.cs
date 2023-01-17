@@ -16,6 +16,10 @@ namespace MMTRShopWPF.Service.Services
         {
             UnitOfWork = new UnitOfWork(new ShopContext());
         }
+        public Product GetProduct(Product product)
+        {
+            return UnitOfWork.Products.Find(p=>p.Id == product.Id);
+        }
         public void AddProduct(Product product)
         {
             UnitOfWork.Products.Add(product);
