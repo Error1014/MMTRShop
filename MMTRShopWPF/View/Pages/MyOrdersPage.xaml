@@ -43,6 +43,10 @@
                             </DockPanel>
                             <TextBlock Text="{Binding Product.Category.Title}"/>
                             <TextBlock Text="{Binding Product.Description}" TextWrapping="Wrap" MaxHeight="50"/>
+                            <TextBlock>
+                                <Run Text="Количество: "/>
+                                <Run Text="{Binding CountProduct}"/>
+                            </TextBlock>
                             <TextBlock TextWrapping="Wrap" MaxHeight="50" FontSize="22">
                                 <Run Text="Статус заказа: "/>
                                 <Run Foreground="Green" FontWeight="Bold" Text="{Binding Order.Status.Title}"/>

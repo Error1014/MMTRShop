@@ -16,7 +16,6 @@ namespace MMTRShopWPF.ViewModels
         public MyOrderVievModel()
         {
             Orders = OrderService.GetOrderClient(AccountManager.Client);
-
             OrderContents = OrderContentService.GetOrderContent(Orders);
 
         }
