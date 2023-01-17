@@ -48,11 +48,10 @@
                                 <Run Text="{Binding CountProduct}"/>
                             </TextBlock>
                             <StackPanel>
-                                <Button Margin="5" Width="120" Content="Поставить оценку"/>
-                                <Button Margin="5" Width="120" Content="Оставить отзыв"/>
+                                <Button Margin="5" Width="120" Content="Поставить оценку" Command="{Binding AddRating}"/>
+                                <Button Margin="5" Width="120" Content="Оставить отзыв" Command="{Binding AddComment}"/>
                             </StackPanel>
                         </StackPanel>
-
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

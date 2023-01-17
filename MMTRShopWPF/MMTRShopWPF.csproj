@@ -135,8 +135,8 @@
     <Compile Include="View\Pages\KatalogPage.xaml.cs">
       <DependentUpon>KatalogPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\KorzinaPage.xaml.cs">
-      <DependentUpon>KorzinaPage.xaml</DependentUpon>
+    <Compile Include="View\Pages\CartPage.xaml.cs">
+      <DependentUpon>CartPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -196,7 +196,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\KorzinaPage.xaml">
+    <Page Include="View\Pages\CartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
