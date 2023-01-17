@@ -16,6 +16,10 @@ namespace MMTRShopWPF.Service.Services
             UnitOfWork = new UnitOfWork(new ShopContext());
         }
 
+        public List<Status> GetAll()
+        {
+            return UnitOfWork.Status.GetAll().ToList();
+        }
         public Status GetStatus(Order order)
         {
             return UnitOfWork.Status.Find(s=>s.Id == order.StatusId);
