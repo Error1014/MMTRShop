@@ -1,11 +1,17 @@
 ﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using System;
 
 namespace MMTRShopWPF.Service.Services
 {
-    public class AutorizationService:BaseService
+    public class AutorizationService
     {
-        public static bool CheckCorrectLoginPassword(string login,string password)
+        UnitOfWork UnitOfWork { get; set; }
+        public AutorizationService()
+        {
+            UnitOfWork = new UnitOfWork(new ShopContext());
+        }
+        public bool CheckCorrectLoginPassword(string login,string password)
         {
             bool isOk = false;
             var users = UnitOfWork.Users.GetAll();
@@ -20,7 +26,7 @@ namespace MMTRShopWPF.Service.Services
             return isOk;
         }
 
-        public static Guid GetUserId(string login, string password)
+        public Guid GetUserId(string login, string password)
         {
             var users = UnitOfWork.Users.GetAll();
             foreach (var user in users)
@@ -32,7 +38,7 @@ namespace MMTRShopWPF.Service.Services
             }
             return Guid.Empty;
         }
-        public static bool IsCheckUserInDB(string login)
+        public bool IsCheckUserInDB(string login)
         {
             var users = UnitOfWork.Users.GetAll();
             foreach (var user in users)
@@ -45,12 +51,12 @@ namespace MMTRShopWPF.Service.Services
             return false;
         }
 
-        public static bool IsCheckEqualTwoPassword(string password, string password2)
+        public bool IsCheckEqualTwoPassword(string password, string password2)
         {
             return password==password2;
         }
 
-        public static void AddNewClientInDB(User user,Client client)
+        public void AddNewClientInDB(User user,Client client)
         {
             UnitOfWork.Users.Add(user);
             UnitOfWork.Users.Save();

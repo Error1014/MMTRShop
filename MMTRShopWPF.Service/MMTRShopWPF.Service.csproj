@@ -56,7 +56,6 @@
     <Compile Include="Services\AccountManager.cs" />
     <Compile Include="Services\AutorizationService.cs" />
     <Compile Include="Services\BankCardService.cs" />
-    <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\BrandService.cs" />
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\CategoryService.cs" />

@@ -17,6 +17,10 @@ namespace MMTRShopWPF.ViewModels
 {
     public class OrderViewModel:BaseViewModel
     {
+        private CartService CartService = new CartService();
+        private OrderService OrderService = new OrderService();
+        private OrderContentService OrderContentService = new OrderContentService();
+
         public OrderViewModel()
         {
             BankCardVM = new BankCardViewModel();

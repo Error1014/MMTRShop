@@ -12,6 +12,8 @@ namespace MMTRShopWPF.ViewModels
     public class FavouritesViewModel:BaseViewModel 
     {
         FavouritesPage page;
+        private ProductService ProductService = new ProductService();
+        private FavouritesService FavouritesService = new FavouritesService();
         public FavouritesViewModel(FavouritesPage page)
         {
             this.page = page;

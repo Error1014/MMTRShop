@@ -13,6 +13,9 @@ namespace MMTRShopWPF.ViewModels
 {
     public class OperatorOrderViewModel:BaseViewModel
     {
+        private OrderService OrderService = new OrderService();
+        private ClientService ClientService = new ClientService();
+        private StatusService StatusService = new StatusService();
         public OperatorOrderViewModel()
         {
             Orders = OrderService.GetOrders();

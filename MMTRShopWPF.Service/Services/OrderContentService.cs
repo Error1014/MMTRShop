@@ -8,9 +8,14 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Service.Services
 {
-    public class OrderContentService:BaseService
+    public class OrderContentService
     {
-        public static void CreateOrderContent(Order order)
+        UnitOfWork UnitOfWork { get; set; }
+        public OrderContentService()
+        {
+            UnitOfWork = new UnitOfWork(new ShopContext());
+        }
+        public void CreateOrderContent(Order order)
         {
             var carts = UnitOfWork.Carts.GetCartByClient(AccountManager.Client);
             List<OrderContent> cartOrders = new List<OrderContent>();
@@ -21,7 +26,7 @@ namespace MMTRShopWPF.Service.Services
             UnitOfWork.OrderContents.AddRange(cartOrders);
             UnitOfWork.OrderContents.Save();
         }
-        public static List<OrderContent> GetOrderContent(List<Order> orders)
+        public List<OrderContent> GetOrderContent(List<Order> orders)
         {
             List<OrderContent> result = new List<OrderContent>();
             foreach (var item in orders)

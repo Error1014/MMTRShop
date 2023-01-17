@@ -8,9 +8,14 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Service.Services
 {
-    public class ClientService:BaseService
+    public class ClientService
     {
-        public static Client GetClient(Order order)
+        UnitOfWork UnitOfWork { get; set; }
+        public ClientService()
+        {
+            UnitOfWork = new UnitOfWork(new ShopContext());
+        }
+        public Client GetClient(Order order)
         {
             return UnitOfWork.Clients.GetById(order.ClientId);
         }

@@ -1,5 +1,6 @@
 ﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,28 +12,32 @@ using System.Windows;
 
 namespace MMTRShopWPF.Service.Services
 {
-    public class OrderService:BaseService
+    public class OrderService
     {
-        
-        public static ObservableCollection<Order> GetOrders()
+        UnitOfWork UnitOfWork { get; set; }
+        public OrderService()
+        {
+            UnitOfWork = new UnitOfWork(new ShopContext());
+        }
+        public ObservableCollection<Order> GetOrders()
         {
             var orders = UnitOfWork.Orders.GetAll();
             return new ObservableCollection<Order>(orders);
         }
-        public static List<Order> GetOrderClient(Client client)
+        public List<Order> GetOrderClient(Client client)
         {
             return UnitOfWork.Orders.GetOrdersByClientId(client.Id).ToList();
         }
-        public static void CreateOrder(Order order)
+        public void CreateOrder(Order order)
         {
             UnitOfWork.Orders.Add(order);
             SaveOrder();
         }
-        public static void SaveOrder()
+        public void SaveOrder()
         {
             UnitOfWork.Orders.Save();
         }
-        public static Order SetOrder(string address, bool IsPayNow, Status status)
+        public Order SetOrder(string address, bool IsPayNow, Status status)
         {
             return new Order(AccountManager.Client,address, IsPayNow, status.Id);
         }
@@ -40,7 +45,7 @@ namespace MMTRShopWPF.Service.Services
         
         #region Проверки введёных полей
 
-        public static bool CheckWrittenRequisitesBankCard(BankCard bankCard)
+        public bool CheckWrittenRequisitesBankCard(BankCard bankCard)
         {
             if (String.IsNullOrEmpty(bankCard.Number)
                 || String.IsNullOrEmpty(bankCard.Name)
@@ -49,13 +54,13 @@ namespace MMTRShopWPF.Service.Services
                 || bankCard.Year == 0) return false;
             else return true;
         }
-        public static bool CheckCorrectnessRequisitesBankCard(BankCard bankCard)
+        public bool CheckCorrectnessRequisitesBankCard(BankCard bankCard)
         {
             //В дальнейшем будет реализовано
             return true;
         }
 
-        public static bool CheckAddress(string address)
+        public bool CheckAddress(string address)
         {
             return !String.IsNullOrEmpty(address);
         }

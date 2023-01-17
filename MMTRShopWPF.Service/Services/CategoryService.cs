@@ -9,32 +9,37 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Service.Services
 {
-    public class CategoryService:BaseService
+    public class CategoryService
     {
-        public static ObservableCollection<Category> GetCategory()
+        UnitOfWork UnitOfWork { get; set; }
+        public CategoryService()
+        {
+            UnitOfWork = new UnitOfWork(new ShopContext());
+        }
+        public ObservableCollection<Category> GetCategory()
 {
             var categories = UnitOfWork.Categories.GetAll();
             return new ObservableCollection<Category>(categories);
         }
-        public static List<Category> GetAllCategory()
+        public List<Category> GetAllCategory()
         {
             return UnitOfWork.Categories.GetAll().ToList();
         }
 
-        public static Category GetCategory(Product product)
+        public Category GetCategory(Product product)
         {
             return UnitOfWork.Categories.Find(category => category.Id == product.CategoryId);
         }
-        public static void Save()
+        public void Save()
         {
             UnitOfWork.Categories.Save();
         }
-        public static void Create(Category category)
+        public void Create(Category category)
         {
             UnitOfWork.Categories.Add(new Category(category.Title));
             Save();
         }
-        public static void Remove(Category category)
+        public void Remove(Category category)
         {
             if (!CheckToRemove(category))
             {
@@ -43,7 +48,7 @@ namespace MMTRShopWPF.Service.Services
             Save();
         }
 
-        public static bool CheckToRemove(Category category)
+        public bool CheckToRemove(Category category)
         {
             var products = UnitOfWork.Products.Find(c=>c.CategoryId==category.Id);
             return products == null;

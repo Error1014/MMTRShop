@@ -14,6 +14,7 @@ namespace MMTRShopWPF.ViewModels
     public class CategoryViewModel:BaseViewModel
     {
         private bool isCreate = false;
+        private CategoryService CategoryService = new CategoryService();
         public CategoryViewModel()
         {
             Categories = CategoryService.GetCategory();

@@ -14,6 +14,13 @@ namespace MMTRShopWPF.ViewModels
     {
         private bool isAdd;
         private int countShow = 4;
+        private ProductService ProductService  = new ProductService();
+        private CategoryService CategoryService = new CategoryService();
+        private CartService CartService = new CartService();
+        private BrandService BrandService = new BrandService();
+        private FavouritesService FavouritesService = new FavouritesService();
+
+
         public ProductVievModel(Product product)
         {
             if (AccountManager.Admin==null)

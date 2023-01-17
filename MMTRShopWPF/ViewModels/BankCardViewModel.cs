@@ -9,6 +9,7 @@ namespace MMTRShopWPF.ViewModels
     public class BankCardViewModel : BaseViewModel
     {
         private int quantityYear = 6;
+        BankCardService BankCardService = new BankCardService();
         public BankCardViewModel()
         {
             BankCard = new BankCard();

@@ -1,5 +1,6 @@
 ﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,20 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Service.Services
 {
-    public class CartService: BaseService
+    public class CartService
     {
-        public static List<Cart> GetCart()
+        UnitOfWork UnitOfWork { get; set; }
+        public CartService()
+        {
+            UnitOfWork = new UnitOfWork(new ShopContext());
+        }
+        public List<Cart> GetCart()
         {
             return  UnitOfWork.Carts.GetCartByClient(AccountManager.Client).ToList();
         }
 
 
-        public static void AddProductInCart(Product product)
+        public void AddProductInCart(Product product)
         {
             var myKorzine = UnitOfWork.Carts.GetCartByClient(AccountManager.Client).ToList();
             bool isNew = true;
@@ -34,7 +40,7 @@ namespace MMTRShopWPF.Service.Services
             }
             UnitOfWork.Carts.Save();
         }
-        public static void CartMinusOneProduct(Guid id)
+        public void CartMinusOneProduct(Guid id)
         {
             var item = UnitOfWork.Carts.GetById(id);
             if (item.ProductCount > 0)
@@ -47,20 +53,20 @@ namespace MMTRShopWPF.Service.Services
             }
             UnitOfWork.Carts.Save();
         }
-        public static void CartPlusOneProduct(Guid id)
+        public void CartPlusOneProduct(Guid id)
         {
             var item = UnitOfWork.Carts.GetById(id);
             item.ProductCount++;
             UnitOfWork.Carts.Save();
         }
-        public static void CartRemoveProduct(Guid id)
+        public void CartRemoveProduct(Guid id)
         {
             var item = UnitOfWork.Carts.GetById(id);
             UnitOfWork.Carts.Remove(item);
             UnitOfWork.Carts.Save();
         }
 
-        public static void ClearCart(List<Cart> carts)
+        public void ClearCart(List<Cart> carts)
         {
             UnitOfWork.Carts.RemoveRange(carts);
             UnitOfWork.Carts.Save();

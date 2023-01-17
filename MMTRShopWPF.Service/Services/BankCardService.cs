@@ -1,11 +1,18 @@
-﻿using System;
+﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
+using System;
 using System.Collections.ObjectModel;
 
 namespace MMTRShopWPF.Service.Services
 {
-    public  class BankCardService: BaseService
+    public  class BankCardService
     {
-        public static ObservableCollection<int> GetAllMonth()
+        UnitOfWork UnitOfWork { get; set; }
+        public BankCardService()
+        {
+            UnitOfWork = new UnitOfWork(new ShopContext());
+        }
+        public ObservableCollection<int> GetAllMonth()
         {
             ObservableCollection<int> months = new ObservableCollection<int>();
             for (int i = 1; i <= 12; i++)
@@ -14,7 +21,7 @@ namespace MMTRShopWPF.Service.Services
             }
             return months;
         }
-        public static ObservableCollection<int> GetYear(int quantityYear)
+        public ObservableCollection<int> GetYear(int quantityYear)
         {
             ObservableCollection<int> year = new ObservableCollection<int>();
             DateTime dateTime = DateTime.Now;

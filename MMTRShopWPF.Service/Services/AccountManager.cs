@@ -1,14 +1,18 @@
 ﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Repositories.Repository;
+using MMTRShopWPF.Repository.Repositories;
 using System;
 using System.Linq;
 using System.Windows;
 
 namespace MMTRShopWPF.Service.Services
 {
-    public class AccountManager : BaseService
+    public class AccountManager
     {
+        static UnitOfWork UnitOfWork = new UnitOfWork(new ShopContext());
+
+
         private static User user;
         private static Admin admin;
         private static Client client;
