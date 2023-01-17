@@ -28,6 +28,10 @@ namespace MMTRShopWPF.Service.Services
         {
             return UnitOfWork.Orders.GetOrdersByClientId(client.Id).ToList();
         }
+        public Order GetOrder(Order order)
+        {
+            return UnitOfWork.Orders.Find(o=>o.Id==order.Id);
+        }
         public void CreateOrder(Order order)
         {
             UnitOfWork.Orders.Add(order);
