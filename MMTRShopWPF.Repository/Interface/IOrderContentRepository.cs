@@ -6,6 +6,6 @@ namespace MMTRShopWPF.Repository.Interface
 {
     public interface IOrderContentRepository:IRepository<OrderContent,Guid>
     {
-
+        List<OrderContent> GetOrderContents(Order order);
     }
 }

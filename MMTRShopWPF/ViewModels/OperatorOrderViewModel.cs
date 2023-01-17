@@ -17,6 +17,7 @@ namespace MMTRShopWPF.ViewModels
         private OrderService OrderService = new OrderService();
         private ClientService ClientService = new ClientService();
         private StatusService StatusService = new StatusService();
+        private OrderContentService OrderContentService = new OrderContentService();
         public OperatorOrderViewModel()
         {
             Orders = OrderService.GetOrders();
@@ -27,9 +28,21 @@ namespace MMTRShopWPF.ViewModels
             Client = ClientService.GetClient(Order);
             Statuses = StatusService.GetAll();
             Status = StatusService.GetStatus(order);
-
+            OrderContents = OrderContentService.GetOrderContents(order);
 
         }
+
+        private List<OrderContent> orderContents;
+        public List<OrderContent> OrderContents
+        {
+            get { return orderContents; }
+            set
+            {
+                orderContents = value;
+                OnPropertyChanged(nameof(OrderContents));
+            }
+        }
+
         private Order selectedOrder;
         public Order SelectedOrder
         {

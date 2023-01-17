@@ -36,5 +36,9 @@ namespace MMTRShopWPF.Service.Services
 
             return result;
         }
+        public List<OrderContent> GetOrderContents(Order order)
+        {
+            return UnitOfWork.OrderContents.GetOrderContents(order);
+        }
     }
 }

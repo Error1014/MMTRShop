@@ -12,5 +12,10 @@ namespace MMTRShopWPF.Repository.Repositories
         {
 
         }
+
+        public List<OrderContent> GetOrderContents(Order order)
+        {
+            return ShopContext.OrderContent.Where(o=>o.OrderId == order.Id).ToList();
+        }
     }
 }
