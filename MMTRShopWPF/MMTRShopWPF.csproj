@@ -110,7 +110,8 @@
     <Compile Include="ViewModels\FavouritesViewModel.cs" />
     <Compile Include="ViewModels\KatalogViewModel.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />
-    <Compile Include="ViewModels\MyOrderVievModel.cs" />
+    <Compile Include="ViewModels\MyHistoryViewModel.cs" />
+    <Compile Include="ViewModels\MyOrderViewModel.cs" />
     <Compile Include="ViewModels\NavigarionManager.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\OperatorOrderViewModel.cs" />

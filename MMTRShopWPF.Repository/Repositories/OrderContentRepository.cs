@@ -13,6 +13,11 @@ namespace MMTRShopWPF.Repository.Repositories
 
         }
 
+        public List<OrderContent> GetCanceledOrder()
+        {
+            return ShopContext.OrderContent.Where(o=>o.Order.Status.Title== "Получен").ToList();
+        }
+
         public List<OrderContent> GetOrderContents(Order order)
         {
             return ShopContext.OrderContent.Where(o=>o.OrderId == order.Id).ToList();

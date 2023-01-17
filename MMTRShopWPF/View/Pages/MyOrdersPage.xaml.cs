@@ -24,7 +24,7 @@ namespace MMTRShopWPF.View.Pages
         public MyOrderPage()
         {
             InitializeComponent();
-            MyOrderVievModel myOrderVievModel = new MyOrderVievModel();
+            MyOrderViewModel myOrderVievModel = new MyOrderViewModel();
             DataContext = myOrderVievModel;
         }
     }

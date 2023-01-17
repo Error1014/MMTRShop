@@ -26,12 +26,15 @@ namespace MMTRShopWPF.Service.Services
             UnitOfWork.OrderContents.AddRange(cartOrders);
             UnitOfWork.OrderContents.Save();
         }
-        public List<OrderContent> GetOrderContent(List<Order> orders)
+        public List<OrderContent> GetOrderContentNoСompleted(List<Order> orders)
         {
             List<OrderContent> result = new List<OrderContent>();
             foreach (var item in orders)
             {
-                result.AddRange(UnitOfWork.OrderContents.GetAll().Where(oc => oc.OrderId == item.Id));
+                if (item.Status.Title!="Получен")
+                {
+                    result.AddRange(UnitOfWork.OrderContents.GetAll().Where(oc => oc.OrderId == item.Id));
+                }
             }
 
             return result;
@@ -39,6 +42,11 @@ namespace MMTRShopWPF.Service.Services
         public List<OrderContent> GetOrderContents(Order order)
         {
             return UnitOfWork.OrderContents.GetOrderContents(order);
+        }
+
+        public List<OrderContent> GetCancelledOrder()
+        {
+            return UnitOfWork.OrderContents.GetCanceledOrder();
         }
     }
 }

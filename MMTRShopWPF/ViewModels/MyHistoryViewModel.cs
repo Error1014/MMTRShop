@@ -5,31 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace MMTRShopWPF.ViewModels
 {
-    public class MyOrderVievModel:BaseViewModel
+    public class MyHistoryViewModel:BaseViewModel
     {
-        private OrderService OrderService = new OrderService();
         private OrderContentService OrderContentService = new OrderContentService();
-        public MyOrderVievModel()
+        public MyHistoryViewModel()
         {
-            Orders = OrderService.GetOrderClient(AccountManager.Client);
-            OrderContents = OrderContentService.GetOrderContent(Orders);
-
+            OrderContents = OrderContentService.GetCancelledOrder();
         }
-        private List<Order> orders;
-        public List<Order> Orders
-        {
-            get { return orders; }
-            set
-            {
-                orders = value;
-                OnPropertyChanged(nameof(Order));
-            }
-        }
-
         private List<OrderContent> orderContents;
         public List<OrderContent> OrderContents
         {
@@ -41,8 +26,5 @@ namespace MMTRShopWPF.ViewModels
             }
         }
 
-
     }
-
-    
 }
