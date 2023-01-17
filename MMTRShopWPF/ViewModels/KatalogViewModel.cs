@@ -23,7 +23,7 @@ namespace MMTRShopWPF.ViewModels
 
             productsPage = ProductService.GetPageProducts(numPage, sizePage);
             countPage = ProductService.GetCountPage(sizePage);
-            CategoryItems = CategoryService.GetAllCategory();
+            CategoryItems = UnitOfWork.Categories.GetAll().ToList();
             BrandItems = UnitOfWork.Brands.GetAll().ToList();
         }
 

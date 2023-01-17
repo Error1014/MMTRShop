@@ -18,6 +18,7 @@ namespace MMTRShopWPF.ViewModels
             NavigarionManager.MainFrame.Content = new KatalogPage();
             VisibilityButtonAdmin = Visibility.Collapsed;
             VisibilityButtonClient = Visibility.Visible;
+            VisibilityButtonOperator= Visibility.Collapsed;
             TextButton = "Войти";
         }
         public NavigationViewModel(Guid id)

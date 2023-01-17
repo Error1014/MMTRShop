@@ -15,6 +15,10 @@ namespace MMTRShopWPF.Service.Services
         {
             UnitOfWork = new UnitOfWork(new ShopContext());
         }
+        public List<Brand> GetAllBrand()
+        {
+            return UnitOfWork.Brands.GetAll().ToList();
+        }
         public Brand GetBrandProduct(Product product)
         {
             return UnitOfWork.Brands.Find(b=>b.Id==product.BrandId);

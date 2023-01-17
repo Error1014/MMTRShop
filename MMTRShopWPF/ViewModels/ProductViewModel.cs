@@ -34,7 +34,7 @@ namespace MMTRShopWPF.ViewModels
                 BlockOpacity = 1;
             }
             AllCategory = CategoryService.GetAllCategory();
-            AllBrand = UnitOfWork.Brands.GetAll().ToList();
+            AllBrand = BrandService.GetAllBrand();
             SelectCategory = AllCategory[0];
             SelectBrand = AllBrand[0];
             if (product == null)
