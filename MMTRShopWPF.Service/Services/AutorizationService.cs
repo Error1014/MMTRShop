@@ -1,6 +1,7 @@
 ﻿using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Repository.Repositories;
 using System;
+using System.Windows;
 
 namespace MMTRShopWPF.Service.Services
 {
@@ -10,6 +11,22 @@ namespace MMTRShopWPF.Service.Services
         public AutorizationService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());
+        }
+        public void Registration(User user, string password2)
+        {
+            if (IsCheckUserInDB(user.Login))
+            {
+                MessageBox.Show("Пользователь с таким логином уже существует");
+                return;
+            }
+            if (!IsCheckEqualTwoPassword(user.Password, password2))
+            {
+                MessageBox.Show("Пароли должны совпадать!");
+                return;
+            }
+            User u = new User(user.Login, user.Password, user.LastName, user.FirstName, user.Patronymic);
+            AddNewClientInDB(u);
+            MessageBox.Show("Регистрация прошла успешно");
         }
         public bool CheckCorrectLoginPassword(string login,string password)
         {
@@ -56,10 +73,11 @@ namespace MMTRShopWPF.Service.Services
             return password==password2;
         }
 
-        public void AddNewClientInDB(User user,Client client)
+        public void AddNewClientInDB(User user)
         {
             UnitOfWork.Users.Add(user);
             UnitOfWork.Users.Save();
+            Client client = new Client(user.Id, "", "", "");
             UnitOfWork.Clients.Add(client);
             UnitOfWork.Clients.Save();
         }

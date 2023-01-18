@@ -129,22 +129,9 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    if (AutorizationService.IsCheckUserInDB(User.Login))
-                    {
-                        MessageBox.Show("Пользователь с таким логином уже существует");
-                        return;
-                    }
-                    if (!AutorizationService.IsCheckEqualTwoPassword(User.Password,Password2))
-                    {
-                        MessageBox.Show("Пароли должны совпадать!");
-                        return;
-                    }
-                    User = new User(User.Login, User.Password, User.LastName, User.FirstName, User.Patronymic);
-                    client = new Client(User.Id, "", "", "");
-                    AutorizationService.AddNewClientInDB(User, client);
-                    MessageBox.Show("Регистрация прошла успешно");
-                    User = new User();
+                    AutorizationService.Registration(user, Password2);
                     Password2 = "";
+                    User = new User();
                     SelectRejim();
                 });
             }
