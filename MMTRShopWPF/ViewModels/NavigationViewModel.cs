@@ -16,9 +16,9 @@ namespace MMTRShopWPF.ViewModels
         public NavigationViewModel()
         {
             NavigarionManager.MainFrame.Content = new KatalogPage();
-            VisibilityButtonAdmin = Visibility.Collapsed;
             VisibilityButtonClient = Visibility.Visible;
-            VisibilityButtonOperator= Visibility.Collapsed;
+            VisibilityButtonAdmin = Visibility.Collapsed;
+            VisibilityButtonOperator = Visibility.Collapsed;
             TextButton = "Войти";
         }
         public NavigationViewModel(Guid id)
@@ -61,8 +61,11 @@ namespace MMTRShopWPF.ViewModels
             VisibilityButtonAdmin = Visibility.Collapsed;
             VisibilityButtonOperator = Visibility.Visible;
         }
-
         
+        public Visibility VisibilityButtonClient { get; private set; }
+        public Visibility VisibilityButtonAdmin { get; private set; }
+        public Visibility VisibilityButtonOperator { get; private set; }
+
         public ICommand FavouritesNavigate
         {
             get
@@ -181,9 +184,7 @@ namespace MMTRShopWPF.ViewModels
             }
         }
 
-        public Visibility VisibilityButtonClient { get; private set; }
-        public Visibility VisibilityButtonAdmin { get; private set; }
-        public Visibility VisibilityButtonOperator { get; private set; }
+
 
         public ICommand AddProduct
         {

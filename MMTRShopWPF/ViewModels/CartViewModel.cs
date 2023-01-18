@@ -14,7 +14,6 @@ namespace MMTRShopWPF.ViewModels
     public class CartViewModel : BaseViewModel
     {
         private KorzinaPage page;
-        private ProductService ProductService = new ProductService();
         private CartService CartService = new CartService();
         public CartViewModel(KorzinaPage page)
         {
