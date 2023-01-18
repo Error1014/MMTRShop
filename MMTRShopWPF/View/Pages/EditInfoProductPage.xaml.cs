@@ -28,8 +28,8 @@ namespace MMTRShopWPF.View.Pages
         public EditInfoProductPage(Product product)
         {
             InitializeComponent();
-            ProductViewModel productVievModel = new ProductViewModel(product);
-            DataContext = productVievModel;
+            EditProductViewModel editProductViewModel = new EditProductViewModel(product);
+            DataContext = editProductViewModel;
         }
 
         private void ItputNumber(object sender, TextCompositionEventArgs e)

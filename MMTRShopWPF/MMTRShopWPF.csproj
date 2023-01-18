@@ -107,7 +107,9 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Commands.cs" />
+    <Compile Include="ViewModels\EditProductViewModel.cs" />
     <Compile Include="ViewModels\FavouritesViewModel.cs" />
+    <Compile Include="ViewModels\InfoProductViewModel.cs" />
     <Compile Include="ViewModels\KatalogViewModel.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\MyHistoryViewModel.cs" />

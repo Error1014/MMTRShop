@@ -31,8 +31,8 @@ namespace MMTRShopWPF.View.Pages
         public InfoProductPage(Product product)
         {
             InitializeComponent();
-            ProductViewModel productVievModel = new ProductViewModel(product);
-            DataContext = productVievModel;
+            InfoProductViewModel infoProductViewModel = new InfoProductViewModel(product);
+            DataContext = infoProductViewModel;
         }
     }
 }
