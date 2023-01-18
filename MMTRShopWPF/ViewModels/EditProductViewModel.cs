@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace MMTRShopWPF.ViewModels
 {
-    public class EditProductViewModel: ProductViewModel
+    public class EditProductViewModel: BaseViewModel
     {
         private CategoryService CategoryService = new CategoryService();
         protected BrandService BrandService = new BrandService();
@@ -31,11 +31,11 @@ namespace MMTRShopWPF.ViewModels
             }
             AllCategory = CategoryService.GetAllCategory();
             AllBrand = BrandService.GetAllBrand();
-            SelectCategory = AllCategory[0];
-            SelectBrand = AllBrand[0];
             if (product == null)
             {
                 isAdd = true;
+                SelectCategory = AllCategory[0];
+                SelectBrand = AllBrand[0];
                 Product = new Product();
             }
             else
@@ -94,13 +94,7 @@ namespace MMTRShopWPF.ViewModels
                 {
                     Product.CategoryId = SelectCategory.Id;
                     Product.BrandId = SelectBrand.Id;
-                    if (isAdd)
-                    {
-                        ProductService.AddProduct(Product);
-                        isAdd = false;
-                    }
-                    ProductService.Save();
-                    MessageBox.Show("Успешно");
+                    ProductService.SeveResultEdit(isAdd, Product);
                     NavigarionManager.MainFrame.Content = new KatalogPage();
 
                 });
@@ -112,13 +106,7 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    if (!isAdd)
-                    {
-                        ProductService.RemoveProduct(Product);
-                        isAdd = true;
-                    }
-                    ProductService.Save();
-                    MessageBox.Show("Успешно");
+                    ProductService.RemoveResultEdit(isAdd, Product);
                     NavigarionManager.MainFrame.Content = new KatalogPage();
                 });
             }

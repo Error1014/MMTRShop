@@ -24,5 +24,9 @@ namespace MMTRShopWPF.Service.Services
         {
             return UnitOfWork.Status.Find(s=>s.Id == order.StatusId);
         }
+        public Status GetStatusWaitingPlaced()
+        {
+            return UnitOfWork.Status.SetStatusWaitingPlaced();
+        }
     }
 }

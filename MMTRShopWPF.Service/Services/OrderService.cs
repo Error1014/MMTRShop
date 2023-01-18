@@ -41,10 +41,7 @@ namespace MMTRShopWPF.Service.Services
         {
             UnitOfWork.Orders.Save();
         }
-        public Order SetOrder(string address, bool IsPayNow, Status status)
-        {
-            return new Order(AccountManager.Client,address, IsPayNow, status.Id);
-        }
+
         
         
         #region Проверки введёных полей

@@ -15,11 +15,12 @@ using System.Collections.ObjectModel;
 
 namespace MMTRShopWPF.ViewModels
 {
-    public class OrderViewModel:BaseViewModel
+    public class OrderViewModel : BaseViewModel
     {
         private CartService CartService = new CartService();
         private OrderService OrderService = new OrderService();
         private OrderContentService OrderContentService = new OrderContentService();
+        private StatusService StatusService = new StatusService();
 
         public OrderViewModel()
         {
@@ -27,9 +28,10 @@ namespace MMTRShopWPF.ViewModels
             BlockBankCardOpacity = 1;
             IsPayNow = true;
             carts = CartService.GetCart();
+            Status = StatusService.GetStatusWaitingPlaced();
         }
 
-        
+
 
         private Order order = new Order();
         public Order Order
@@ -41,7 +43,17 @@ namespace MMTRShopWPF.ViewModels
                 OnPropertyChanged(nameof(Order));
             }
         }
-
+        private Status status;
+        public Status Status
+        {
+            get { return status; }
+            set
+            {
+                status = value;
+                Order.StatusId = value.Id;
+                OnPropertyChanged(nameof(Status));
+            }
+        }
         private BankCardViewModel bankCardVM;
         public BankCardViewModel BankCardVM
         {
@@ -64,6 +76,7 @@ namespace MMTRShopWPF.ViewModels
             set
             {
                 isPayNow = value;
+                Order.IsPaid = value;
                 OnPropertyChanged(nameof(IsPayNow));
             }
         }
@@ -111,8 +124,6 @@ namespace MMTRShopWPF.ViewModels
                 {
                     if (CheckAll())
                     {
-                        Status status = UnitOfWork.Status.SetStatusWaitingPlaced();
-                        Order = OrderService.SetOrder(Order.Address, IsPayNow, status);
                         OrderService.CreateOrder(Order);
                         OrderContentService.CreateOrderContent(Order);
                         CartService.ClearCart(carts);
@@ -124,7 +135,7 @@ namespace MMTRShopWPF.ViewModels
 
         #region Проверки введёных полей
 
-        private bool CheckAll() 
+        private bool CheckAll()
         {
             if (IsPayNow)
             {

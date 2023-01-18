@@ -11,7 +11,7 @@ using MMTRShopWPF.View.Pages;
 
 namespace MMTRShopWPF.ViewModels
 {
-    public class InfoProductViewModel: ProductViewModel
+    public class InfoProductViewModel: BaseViewModel
     {
         private int countShow = 4;
         private CartService CartService = new CartService();
@@ -95,7 +95,6 @@ namespace MMTRShopWPF.ViewModels
                     else
                     {
                         CartService.AddProductInCart(Product);
-                        MessageBox.Show("Успешно");
                     }
                 });
             }

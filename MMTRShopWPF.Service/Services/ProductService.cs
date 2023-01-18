@@ -32,6 +32,22 @@ namespace MMTRShopWPF.Service.Services
         {
             UnitOfWork.Products.Save();
         }
+        public void SeveResultEdit(bool isAdd, Product product)
+        {
+            if (isAdd)
+            {
+                AddProduct(product);
+            }
+            Save();
+        }
+        public void RemoveResultEdit(bool isAdd, Product product)
+        {
+            if (!isAdd)
+            {
+                RemoveProduct(product);
+            }
+            Save();
+        }
         public List<Product> GetProducts(List<Cart> carts)
         {
             var products = carts.Join(UnitOfWork.Products.GetAll(),
