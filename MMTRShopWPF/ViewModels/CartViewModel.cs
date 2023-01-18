@@ -20,7 +20,6 @@ namespace MMTRShopWPF.ViewModels
         {
             this.page=page;
             Cart = CartService.GetCart();
-            Products = ProductService.GetProducts(Cart);
         }
         private List<Cart> cart;
         public List<Cart> Cart
@@ -36,19 +35,6 @@ namespace MMTRShopWPF.ViewModels
             }
         }
 
-        private List<Product> products;
-        public List<Product> Products
-        {
-            get
-            {
-                return products;
-            }
-            set
-            {
-                products = value;
-                OnPropertyChanged(nameof(Products));
-            }
-        }
         public ICommand ProductMinus
         {
             get
