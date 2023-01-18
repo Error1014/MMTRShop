@@ -18,7 +18,8 @@ namespace MMTRShopWPF.ViewModels
         private ProductService ProductService = new ProductService();
         public EditProductViewModel(Product product)
         {
-
+            AllCategory = CategoryService.GetAllCategory();
+            AllBrand = BrandService.GetAllBrand();
             if (AccountManager.Admin == null)
             {
                 isAdmin = false;
@@ -29,34 +30,15 @@ namespace MMTRShopWPF.ViewModels
                 isAdmin = true;
                 BlockOpacity = 1;
             }
-            AllCategory = CategoryService.GetAllCategory();
-            AllBrand = BrandService.GetAllBrand();
             if (product == null)
             {
                 isAdd = true;
-                SelectCategory = AllCategory[0];
-                SelectBrand = AllBrand[0];
                 Product = new Product();
             }
             else
             {
                 isAdd = false;
-                SelectCategory = CategoryService.GetCategory(product);
-                SelectBrand = BrandService.GetBrandProduct(product);
                 Product = ProductService.GetProduct(product);
-            }
-        }
-
-        private bool isAdd;
-        public List<Category> AllCategory { get; private set; }
-        private Category selectCategory;
-        public Category SelectCategory
-        {
-            get { return selectCategory; }
-            set
-            {
-                selectCategory = value;
-                OnPropertyChanged(nameof(SelectCategory));
             }
         }
         private Product product = new Product();
@@ -70,10 +52,29 @@ namespace MMTRShopWPF.ViewModels
             set
             {
                 product = value;
+                SelectCategory = CategoryService.GetCategory(value)==null? AllCategory[0] : CategoryService.GetCategory(value);
+                SelectBrand = BrandService.GetBrand(value)==null? AllBrand[0] : BrandService.GetBrand(value);
                 OnPropertyChanged(nameof(Product));
             }
         }
 
+        private bool isAdd;
+        public List<Category> AllCategory { get; private set; }
+        private Category selectCategory;
+        public Category SelectCategory
+        {
+            get { return selectCategory; }
+            set
+            {
+                selectCategory = value;
+                if (value!=null)
+                {
+                    Product.CategoryId = value.Id;
+                }
+                OnPropertyChanged(nameof(SelectCategory));
+            }
+        }
+        
         public List<Brand> AllBrand { get; private set; }
         protected Brand selectBrand;
         public Brand SelectBrand
@@ -82,6 +83,10 @@ namespace MMTRShopWPF.ViewModels
             set
             {
                 selectBrand = value;
+                if (value != null)
+                {
+                    Product.BrandId = value.Id;
+                }
                 OnPropertyChanged(nameof(SelectBrand));
             }
         }
@@ -92,8 +97,6 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    Product.CategoryId = SelectCategory.Id;
-                    Product.BrandId = SelectBrand.Id;
                     ProductService.SeveResultEdit(isAdd, Product);
                     NavigarionManager.MainFrame.Content = new KatalogPage();
 

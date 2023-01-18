@@ -19,7 +19,7 @@ namespace MMTRShopWPF.Service.Services
         {
             return UnitOfWork.Brands.GetAll().ToList();
         }
-        public Brand GetBrandProduct(Product product)
+        public Brand GetBrand(Product product)
         {
             return UnitOfWork.Brands.Find(b=>b.Id==product.BrandId);
         }

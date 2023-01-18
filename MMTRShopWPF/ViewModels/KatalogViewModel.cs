@@ -16,11 +16,8 @@ namespace MMTRShopWPF.ViewModels
     public class KatalogViewModel : BaseViewModel
     {
         private ProductService ProductService = new ProductService();
-        private CategoryService CategoryService = new CategoryService();
-        private BrandService BrandService = new BrandService();
         public KatalogViewModel()
         {
-
             productsPage = ProductService.GetPageProducts(numPage, sizePage);
             countPage = ProductService.GetCountPage(sizePage);
             CategoryItems = UnitOfWork.Categories.GetAll().ToList();

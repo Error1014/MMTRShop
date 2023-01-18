@@ -71,6 +71,7 @@ namespace MMTRShopWPF.ViewModels
             set
             {
                 status = value;
+                Order.StatusId = status.Id;
                 OnPropertyChanged(nameof(Status));
             }
         }
@@ -120,7 +121,6 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    Order.StatusId = Status.Id;
                     OrderService.SaveOrder();
                     NavigarionManager.MainFrame.Content = new OrdersPage();
                 });

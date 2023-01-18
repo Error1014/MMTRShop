@@ -18,7 +18,6 @@ namespace MMTRShopWPF.ViewModels
         {
             this.page = page;
             Favorites = FavouritesService.GetFavourites();
-            Products = ProductService.GetProducts(Favorites);
 
         }
         private List<Favourites> favorites;
@@ -35,19 +34,6 @@ namespace MMTRShopWPF.ViewModels
             }
         }
 
-        private List<Product> products;
-        public List<Product> Products
-        {
-            get
-            {
-                return products;
-            }
-            set
-            {
-                products = value;
-                OnPropertyChanged(nameof(Products));
-            }
-        }
         public ICommand RemoveFavourit
         {
             get
@@ -57,7 +43,6 @@ namespace MMTRShopWPF.ViewModels
                     Guid id = Guid.Parse(obj.ToString());
                     FavouritesService.RemoveFavouritById(id);
                     page.UpdateDataContext();
-
                 });
             }
         }
