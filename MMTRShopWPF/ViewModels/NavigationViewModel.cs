@@ -13,12 +13,13 @@ namespace MMTRShopWPF.ViewModels
 {
     public class NavigationViewModel : BaseViewModel
     {
+        private NavigationService NavigationService = new NavigationService();
         public NavigationViewModel()
         {
             NavigarionManager.MainFrame.Content = new KatalogPage();
-            VisibilityButtonClient = Visibility.Visible;
-            VisibilityButtonAdmin = Visibility.Collapsed;
-            VisibilityButtonOperator = Visibility.Collapsed;
+            VisibilityButtonClient = true;
+            VisibilityButtonAdmin = false;
+            VisibilityButtonOperator = false;
             TextButton = "Войти";
         }
         public NavigationViewModel(Guid id)
@@ -43,28 +44,28 @@ namespace MMTRShopWPF.ViewModels
         private void SetClientSettings()
         {
             AccountManager.User = AccountManager.GetUserByIdClient();
-            VisibilityButtonClient = Visibility.Visible;
-            VisibilityButtonAdmin = Visibility.Collapsed;
-            VisibilityButtonOperator = Visibility.Collapsed;
+            VisibilityButtonClient = true;
+            VisibilityButtonAdmin = false;
+            VisibilityButtonOperator = false;
         }
         private void SetAdminSettings()
         {
             AccountManager.User = AccountManager.GetUserByIdAdmin();
-            VisibilityButtonClient = Visibility.Collapsed;
-            VisibilityButtonAdmin = Visibility.Visible;
-            VisibilityButtonOperator = Visibility.Visible;
+            VisibilityButtonClient = false;
+            VisibilityButtonAdmin = true;
+            VisibilityButtonOperator = true;
         }
         private void SetOperatorSettings()
         {
             AccountManager.User = AccountManager.GetUserByIdOperator();
-            VisibilityButtonClient = Visibility.Collapsed;
-            VisibilityButtonAdmin = Visibility.Collapsed;
-            VisibilityButtonOperator = Visibility.Visible;
+            VisibilityButtonClient = false;
+            VisibilityButtonAdmin = false;
+            VisibilityButtonOperator = true;
         }
         
-        public Visibility VisibilityButtonClient { get; private set; }
-        public Visibility VisibilityButtonAdmin { get; private set; }
-        public Visibility VisibilityButtonOperator { get; private set; }
+        public bool VisibilityButtonClient { get; private set; }
+        public bool VisibilityButtonAdmin { get; private set; }
+        public bool VisibilityButtonOperator { get; private set; }
 
         public ICommand FavouritesNavigate
         {
