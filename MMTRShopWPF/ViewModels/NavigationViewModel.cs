@@ -76,7 +76,7 @@ namespace MMTRShopWPF.ViewModels
                     Message = NavigationService.CheckAutorisation();
                     if (!Message.IsError())
                     {
-                        MainWindow.MainWindowFrame.Content = new FavouritesPage();
+                        NavigarionManager.MainFrame.Content = new FavouritesPage();
                     }
 
                 });

@@ -25,11 +25,9 @@ namespace MMTRShopWPF.View.Pages
     public partial class FavouritesPage : Page
     {
         public static FavouritesViewModel FavouritesViewModel;
-        private Client user;
-        public FavouritesPage(Client user)
+        public FavouritesPage()
         {
             InitializeComponent();
-            this.user = user;
             UpdateDataContext();
         }
 
