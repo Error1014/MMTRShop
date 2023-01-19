@@ -11,13 +11,14 @@ namespace MMTRShopWPF.Service.Services
 {
     public class CategoryService
     {
+        private Message Message = new Message();
         UnitOfWork UnitOfWork { get; set; }
         public CategoryService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());
         }
-        public ObservableCollection<Category> GetCategory()
-{
+        public ObservableCollection<Category> GetCategories()
+        {
             var categories = UnitOfWork.Categories.GetAll();
             return new ObservableCollection<Category>(categories);
         }
@@ -41,17 +42,21 @@ namespace MMTRShopWPF.Service.Services
         }
         public void Remove(Category category)
         {
-            if (!CheckToRemove(category))
-            {
-                UnitOfWork.Categories.Remove(category);
-            }
+            UnitOfWork.Categories.Remove(category);
             Save();
         }
 
-        public bool CheckToRemove(Category category)
+        public Message CheckToRemove(Category category)
         {
-            var products = UnitOfWork.Products.Find(c=>c.CategoryId==category.Id);
-            return products == null;
+            var products = UnitOfWork.Products.Find(c => c.CategoryId == category.Id);
+            if (products==null)
+            {
+                return new Message(false);
+            }
+            else
+            {
+                return Message.GetMessage(true, "Вы не можете удалить данную категорию, так как приведёт к удалению продуктов");
+            }
         }
     }
 }

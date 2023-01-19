@@ -17,7 +17,7 @@ namespace MMTRShopWPF.ViewModels
         private CategoryService CategoryService = new CategoryService();
         public CategoryViewModel()
         {
-            Categories = CategoryService.GetCategory();
+            Categories = CategoryService.GetCategories();
         }
         private ObservableCollection<Category> categories;
         public ObservableCollection<Category> Categories
@@ -47,6 +47,7 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
+                    
                     if (isCreate)
                     {
                         CategoryService.Create(Category);
@@ -55,7 +56,7 @@ namespace MMTRShopWPF.ViewModels
                         Category = new Category();
                     }
                     CategoryService.Save();
-                    Categories = CategoryService.GetCategory();
+                    Categories = CategoryService.GetCategories();
                 });
             }
         }
@@ -76,15 +77,12 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    if (CategoryService.CheckToRemove(Category))
+                    Message = CategoryService.CheckToRemove(Category);
+                    if (!Message.IsError())
                     {
                         CategoryService.Remove(Category);
-                        Categories = CategoryService.GetCategory();
+                        Categories = CategoryService.GetCategories();
                         Category = new Category();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Вы не можете удалить данную категорию, так как приведёт к удалению продуктов");
                     }
                 });
             }
