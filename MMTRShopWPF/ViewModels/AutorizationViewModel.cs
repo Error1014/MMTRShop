@@ -12,7 +12,6 @@ namespace MMTRShopWPF.ViewModels
     public class AutorizationViewModel : BaseViewModel
     {
         private AutorizationService AutorizationService = new AutorizationService();
-        private ErrorService ErrorService = new ErrorService();
         public AutorizationViewModel()
         {
             VisibilityRejimRegistration = Visibility.Collapsed;
