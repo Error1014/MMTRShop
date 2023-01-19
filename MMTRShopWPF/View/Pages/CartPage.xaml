@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="KorzinaPage">
-
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -68,8 +67,9 @@
             </ListView.ItemTemplate>
         </ListView>
         <DockPanel Grid.Row="1">
-            <Button Content="Оформить заказ" Width="120" Height="40" Command="{Binding OrderCartNavigate}"/>
+            <Button Content="Оформить заказ" HorizontalAlignment="Center" Width="120" Height="40" Command="{Binding OrderCartNavigate}"/>
         </DockPanel>
+
         
     </Grid>
 </Page>

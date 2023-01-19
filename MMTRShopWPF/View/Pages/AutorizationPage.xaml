@@ -8,14 +8,19 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AutorizationPage">
-
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisible"/>
+    </Page.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="22*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <Button Content="Назад" Width="100" Height="30" Margin="10" HorizontalAlignment="Left" Command="{Binding KatalogNavigate}"/>
+        <DockPanel>
+            <Button Content="Назад" Width="100" Height="30" Margin="10" HorizontalAlignment="Left" Command="{Binding KatalogNavigate}"/>
+            <TextBlock Foreground="Red" Text="{Binding Message.ErrorMessage}" Visibility="{Binding Message.VisibilityError, Converter={StaticResource BoolToVisible}}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </DockPanel>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">
             <DockPanel Margin="0,10">
                 <TextBlock Style="{StaticResource AutorizationStyle}" Text="Логин: " TextAlignment="Right"/>

@@ -7,40 +7,39 @@ namespace MMTRShopWPF.Service.Services
 {
     public class AutorizationService
     {
+        private Message Message = new Message();
         UnitOfWork UnitOfWork { get; set; }
         public AutorizationService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());
         }
-        public void Registration(User user, string password2)
+        public Message Registration(User user, string password2)
         {
             if (IsCheckUserInDB(user.Login))
             {
-                MessageBox.Show("Пользователь с таким логином уже существует");
-                return;
+                return Message.GetMessage(true, "Пользователь с таким логином уже существует");
             }
             if (!IsCheckEqualTwoPassword(user.Password, password2))
             {
-                MessageBox.Show("Пароли должны совпадать!");
-                return;
+                return Message.GetMessage(true, "Пароли должны совпадать!");
             }
             User u = new User(user.Login, user.Password, user.LastName, user.FirstName, user.Patronymic);
             AddNewClientInDB(u);
-            MessageBox.Show("Регистрация прошла успешно");
+            return Message.GetMessage(false);
         }
-        public bool CheckCorrectLoginPassword(string login,string password)
+        public Message CheckCorrectLoginPassword(string login,string password)
         {
-            bool isOk = false;
+            Message message = new Message(true, "Вы ввели неверный логин или пароль!");
             var users = UnitOfWork.Users.GetAll();
             foreach (var user in users)
             {
                 if (user.Login == login && user.Password == password)
                 {
-                    isOk = true;
+                    message.VisibilityError = false;
                     break;
                 }
             }
-            return isOk;
+            return message;
         }
 
         public Guid GetUserId(string login, string password)

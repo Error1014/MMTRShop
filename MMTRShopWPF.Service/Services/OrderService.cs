@@ -14,6 +14,7 @@ namespace MMTRShopWPF.Service.Services
 {
     public class OrderService
     {
+        private Message Message = new Message();
         UnitOfWork UnitOfWork { get; set; }
         public OrderService()
         {
@@ -46,24 +47,29 @@ namespace MMTRShopWPF.Service.Services
         
         #region Проверки введёных полей
 
-        public bool CheckWrittenRequisitesBankCard(BankCard bankCard)
+        public Message CheckWrittenRequisitesBankCard(BankCard bankCard)
         {
             if (String.IsNullOrEmpty(bankCard.Number)
                 || String.IsNullOrEmpty(bankCard.Name)
                 || String.IsNullOrEmpty(bankCard.Code)
-                || bankCard.Month == 0
-                || bankCard.Year == 0) return false;
-            else return true;
+                //|| bankCard.Month == 0
+                //|| bankCard.Year == 0
+                ) return Message.GetMessage(true, "Вы ввели не все данные карты");
+            else return Message.GetMessage(false);
         }
-        public bool CheckCorrectnessRequisitesBankCard(BankCard bankCard)
+        public Message CheckCorrectnessRequisitesBankCard(BankCard bankCard)
         {
             //В дальнейшем будет реализовано
-            return true;
+            return Message.GetMessage(false);
         }
 
-        public bool CheckAddress(string address)
+        public Message CheckAddress(string address)
         {
-            return !String.IsNullOrEmpty(address);
+            if (String.IsNullOrEmpty(address))
+            {
+                return Message.GetMessage(true, "Вы не указали адрес");
+            }
+            return new Message(false);
         }
         #endregion
 

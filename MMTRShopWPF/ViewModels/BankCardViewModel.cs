@@ -28,6 +28,29 @@ namespace MMTRShopWPF.ViewModels
             }
         }
         #region Списки месяц и год
+
+        private int selectedMonth;
+        public int SelectedMonth
+        {
+            get { return selectedMonth; }
+            set
+            {
+                selectedMonth = value;
+                BankCard.Month = value;
+                OnPropertyChanged(nameof(SelectedMonth));
+            }
+        }
+        private int selectedYear;
+        public int SelectedYear
+        {
+            get { return selectedYear; }
+            set
+            {
+                selectedYear = value;
+                BankCard.Year = value;
+                OnPropertyChanged(nameof(SelectedYear));
+            }
+        }
         private ObservableCollection<int> monthItems = new ObservableCollection<int>();
         public ObservableCollection<int> MonthItems
         {

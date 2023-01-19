@@ -8,7 +8,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MakingAnOrderPage">
-
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
@@ -35,8 +37,8 @@
                 <StackPanel>
                     <TextBlock  Style="{StaticResource BankCardStyle}" Text="Срок действия"/>
                     <DockPanel>
-                        <ComboBox Focusable="{Binding IsPayNow}" ItemsSource="{Binding BankCardVM.MonthItems}" Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCardVM.BankCard.Mont}" Width="60"/>
-                        <ComboBox Focusable="{Binding IsPayNow}" ItemsSource="{Binding BankCardVM.YearItems}" Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCardVM.BankCard.Year}" Width="120"/>
+                        <ComboBox Focusable="{Binding IsPayNow}" ItemsSource="{Binding BankCardVM.MonthItems}" Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCardVM.BankCard.SelectedMont}" Width="60"/>
+                        <ComboBox Focusable="{Binding IsPayNow}" ItemsSource="{Binding BankCardVM.YearItems}" Style="{StaticResource BankCardStyle}" SelectedItem="{Binding BankCardVM.BankCard.SelectedYear}" Width="120"/>
                     </DockPanel>
                 </StackPanel>
                 <StackPanel>
@@ -58,5 +60,11 @@
         <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
             <Button FontSize="22" VerticalAlignment="Bottom" Content="Заказать" Width="120" Margin="0,0,0,10" Command="{Binding PlaceAnOrder}"/>
         </DockPanel>
+        <Grid Panel.ZIndex="100" Width="200" Height="70"  Background="Gray" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Message.VisibilityError, Converter={StaticResource BooleanToVisibilityConverter}}" >
+            <TextBlock Text="{Binding Message.ErrorMessage}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" TextWrapping="Wrap"/>
+            <DockPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <Button Content="Ok" Width="60" Command="{Binding CloseWin}" Margin="10,10,0,0"/>
+            </DockPanel>
+        </Grid>
     </Grid>
 </Page>

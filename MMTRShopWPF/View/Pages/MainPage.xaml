@@ -27,5 +27,12 @@
             <Button Content="{Binding TextButton}" HorizontalAlignment="Right" Margin="10" Command="{Binding AutorizationNavigate}"/>
         </DockPanel>
         <Frame Grid.Row="1" x:Name="MyFrame"/>
+        <Grid Panel.ZIndex="100" Width="200" Height="70"  Background="Gray" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Message.VisibilityError, Converter={StaticResource BooleanToVisibilityConverter}}" >
+            <TextBlock Text="{Binding Message.ErrorMessage}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" TextWrapping="Wrap"/>
+            <DockPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <Button Content="Ok" Width="60" Command="{Binding CloseWin}" Margin="10,10,0,0"/>
+                <Button Content="Войти в аккаунт" Command="{Binding AutorizationNavigate}" Margin="10,10,0,0"/>
+            </DockPanel>
+        </Grid>
     </Grid>
 </Page>

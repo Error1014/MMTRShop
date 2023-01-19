@@ -12,6 +12,7 @@ namespace MMTRShopWPF.ViewModels
     public class AutorizationViewModel : BaseViewModel
     {
         private AutorizationService AutorizationService = new AutorizationService();
+        private ErrorService ErrorService = new ErrorService();
         public AutorizationViewModel()
         {
             VisibilityRejimRegistration = Visibility.Collapsed;
@@ -83,15 +84,13 @@ namespace MMTRShopWPF.ViewModels
         {
                 return new Commands((obj) =>
                 {
-                    if (AutorizationService.CheckCorrectLoginPassword(User.Login, User.Password))
+                    Message = AutorizationService.CheckCorrectLoginPassword(User.Login, User.Password);
+                    if (!Message.IsError())
                     {
                         Guid id = AutorizationService.GetUserId(User.Login, User.Password);
                         MainWindow.MainWindowFrame.Content = new MainPage(id);
                     }
-                    else
-                    {
-                        MessageBox.Show("Вы ввели неверный логин или пароль!");
-                    }
+
                 });
             }
         }
@@ -129,10 +128,14 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    AutorizationService.Registration(user, Password2);
-                    Password2 = "";
-                    User = new User();
-                    SelectRejim();
+                    Message = AutorizationService.Registration(user, Password2);
+                    if (!Message.IsError())
+                    {
+                        Password2 = "";
+                        User = new User();
+                        SelectRejim();
+                    }
+                   
                 });
             }
         }
@@ -147,5 +150,6 @@ namespace MMTRShopWPF.ViewModels
                 });
             }
         }
+        
     }
 }

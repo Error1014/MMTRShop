@@ -61,7 +61,9 @@
     <Compile Include="Services\CartService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\ClientService.cs" />
+    <Compile Include="Services\ErrorService.cs" />
     <Compile Include="Services\FavouritesService.cs" />
+    <Compile Include="Services\Message.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\OrderContentService.cs" />
     <Compile Include="Services\OrderService.cs" />

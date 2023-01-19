@@ -73,15 +73,22 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    if (AccountManager.Client == null)
+                    Message = NavigationService.CheckAutorisation();
+                    if (!Message.IsError())
                     {
-                        MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
                         MainWindow.MainWindowFrame.Content = new AutorizationPage();
                     }
-                    else
-                    {
-                        NavigarionManager.MainFrame.Content = new FavouritesPage(AccountManager.Client);
-                    }
+
+                });
+            }
+        }
+        public ICommand CloseWin
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    Message = new Message(false);
                 });
             }
         }
@@ -103,7 +110,8 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    if (CheckIsClient())
+                    Message = NavigationService.CheckAutorisation();
+                    if (!Message.IsError())
                     {
                         NavigarionManager.MainFrame.Content = new KorzinaPage();
                     }
@@ -117,7 +125,8 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    if (CheckIsClient())
+                    Message = NavigationService.CheckAutorisation();
+                    if (!Message.IsError())
                     {
                         NavigarionManager.MainFrame.Content = new MyOrderPage();
                     }
@@ -131,9 +140,10 @@ namespace MMTRShopWPF.ViewModels
             {
                 return new Commands((obj) =>
                 {
-                    if (CheckIsClient())
+                    Message = NavigationService.CheckAutorisation();
+                    if (!Message.IsError())
                     {
-                        NavigarionManager.MainFrame.Content = new MyHistoryPage(); 
+                        NavigarionManager.MainFrame.Content = new MyHistoryPage();
                     }
                 });
             }
@@ -157,20 +167,6 @@ namespace MMTRShopWPF.ViewModels
                     NavigarionManager.MainFrame.Content = new CategoryPage();
                 });
             }
-        }
-        private bool CheckIsClient()
-        {
-            if (AccountManager.Client == null)
-            {
-                MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
-                MainWindow.MainWindowFrame.Content = new AutorizationPage();
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
         }
 
         public virtual ICommand AutorizationNavigate

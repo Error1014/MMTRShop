@@ -12,6 +12,8 @@ using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.ViewModels;
 using MMTRShopWPF.Service.Services;
 using System.Collections.ObjectModel;
+using System.Windows.Documents;
+using System.Net;
 
 namespace MMTRShopWPF.ViewModels
 {
@@ -123,7 +125,10 @@ namespace MMTRShopWPF.ViewModels
                 return new Commands((obj) =>
                 {
                     if (CheckAll())
-                    {
+{
+                        Order.DateOrder = DateTime.Now;
+                        Order.DateDelivery = Order.DateOrder;
+                        Order.ClientId = AccountManager.Client.Id;
                         OrderService.CreateOrder(Order);
                         OrderContentService.CreateOrderContent(Order);
                         CartService.ClearCart(carts);
@@ -132,32 +137,31 @@ namespace MMTRShopWPF.ViewModels
                 });
             }
         }
+        public ICommand CloseWin
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    Message = new Message();
+                });
+            }
+        }
 
         #region Проверки введёных полей
-
+        
         private bool CheckAll()
         {
+
             if (IsPayNow)
             {
-                if (OrderService.CheckWrittenRequisitesBankCard(BankCardVM.BankCard))
-                {
-                    if (!OrderService.CheckCorrectnessRequisitesBankCard(BankCardVM.BankCard))
-                    {
-                        MessageBox.Show("Вы ввели некоректные данные");
-                        return false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Вы ввели не все данные карты");
-                    return false;
-                }
+                Message = OrderService.CheckWrittenRequisitesBankCard(BankCardVM.BankCard);
+                if (Message.IsError()) return false;
+                Message = OrderService.CheckCorrectnessRequisitesBankCard(BankCardVM.BankCard);
+                if (Message.IsError()) return false;
             }
-            if (!OrderService.CheckAddress(Order.Address))
-            {
-                MessageBox.Show("Вы не указали адрес");
-                return false;
-            }
+            Message = OrderService.CheckAddress(Order.Address);
+            if (Message.IsError()) return false;
             return true;
         }
         #endregion

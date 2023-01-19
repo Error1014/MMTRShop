@@ -22,6 +22,7 @@ namespace MMTRShopWPF.Model.Models
 
         }
 
+
         public Order(Client client, string address, bool isPaid, Guid statusId)
         {
             ClientId = client.Id;
