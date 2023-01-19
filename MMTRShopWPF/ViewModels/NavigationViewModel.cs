@@ -78,7 +78,20 @@ namespace MMTRShopWPF.ViewModels
                     {
                         NavigarionManager.MainFrame.Content = new FavouritesPage();
                     }
-
+                });
+            }
+        }
+        public ICommand AccountNavigate
+        {
+            get
+            {
+                return new Commands((obj) =>
+                {
+                    Message = NavigationService.CheckAutorisation();
+                    if (!Message.IsError())
+                    {
+                        NavigarionManager.MainFrame.Content = new AccountPage();
+                    }
                 });
             }
         }

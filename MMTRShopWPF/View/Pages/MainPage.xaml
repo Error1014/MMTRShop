@@ -22,8 +22,10 @@
             <Button Content="Мои заказы" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding MyOrdersNavigate}" />
             <Button Content="История" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient, Converter={StaticResource BooleanToVisibilityConverter}}"  Command="{Binding MyHistoryNavigate}"/>
             <Button Content="Добавить товар" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding AddProduct}" />
-            <Button Content="Заказы" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonOperator, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding OrderPageNavigate}" />
             <Button Content="Категории" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonOperator, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding CategoryNavigate}" />
+            <Button Content="Заказы" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonOperator, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding OrderPageNavigate}" />
+            <Button Content="Избраное" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding FavouritesNavigate}" />
+            <Button Content="Аккаунт" HorizontalAlignment="Right" Margin="60,10,10,10" Visibility="{Binding VisibilityButtonClient, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding AccountNavigate}" />
             <Button Content="{Binding TextButton}" HorizontalAlignment="Right" Margin="10" Command="{Binding AutorizationNavigate}"/>
         </DockPanel>
         <Frame Grid.Row="1" x:Name="MyFrame"/>
