@@ -18,6 +18,14 @@ namespace MMTRShopWPF.ViewModels
         public CategoryViewModel()
         {
             Categories = CategoryService.GetCategories();
+            if (AccountManager.Admin==null)
+            {
+                VisibilityBtnAdminRemoveAdd = false;
+            }
+            else
+            {
+                visibilityBtnAdminRemoveAdd = true;
+            }
         }
         private ObservableCollection<Category> categories;
         public ObservableCollection<Category> Categories
@@ -85,6 +93,16 @@ namespace MMTRShopWPF.ViewModels
                         Category = new Category();
                     }
                 });
+            }
+        }
+        private bool visibilityBtnAdminRemoveAdd;
+        public bool VisibilityBtnAdminRemoveAdd
+        {
+            get { return visibilityBtnAdminRemoveAdd; }
+            set
+            {
+                visibilityBtnAdminRemoveAdd = value;
+                OnPropertyChanged(nameof(VisibilityBtnAdminRemoveAdd));
             }
         }
     }
