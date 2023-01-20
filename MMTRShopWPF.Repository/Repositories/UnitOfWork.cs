@@ -24,6 +24,7 @@ namespace MMTRShopWPF.Repository.Repositories
             Status = new StatusRepository(_context);
             Admins = new AdminRepository(_context);
             Operators = new OperatorRepository(_context);
+            Feedbacks = new FeedbackRepository(_context);
         }
 
         public IProductRepository Products { get;private set; }
@@ -50,6 +51,7 @@ namespace MMTRShopWPF.Repository.Repositories
 
         public IAdminRepository Admins { get; private set; }
         public IOperatorRepository Operators { get; private set; }
+        public IFeedbackReporitory Feedbacks { get; private set; }
 
         public int Complete()
         {

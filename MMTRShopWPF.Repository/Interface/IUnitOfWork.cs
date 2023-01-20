@@ -17,6 +17,7 @@ namespace MMTRShopWPF.Repository.Interface
         IStatusRepository Status { get; }
         IAdminRepository Admins { get; }
         IOperatorRepository Operators { get; }
+        IFeedbackReporitory Feedbacks { get; }
         int Complete();
     }
 }

@@ -63,6 +63,7 @@
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\ClientService.cs" />
     <Compile Include="Services\FavouritesService.cs" />
+    <Compile Include="Services\FeedbackService.cs" />
     <Compile Include="Services\Message.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\OrderContentService.cs" />

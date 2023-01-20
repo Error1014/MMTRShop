@@ -7,9 +7,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MyHistoryPage">
-
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+    </Page.Resources>
     <Grid Background="White">
-        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListProducts"  ItemsSource="{Binding OrderContents}" HorizontalAlignment="Center">
+        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListOrderContents"  ItemsSource="{Binding OrderContents}" HorizontalAlignment="Center">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Width="800"></StackPanel>
@@ -48,13 +50,49 @@
                                 <Run Text="{Binding CountProduct}"/>
                             </TextBlock>
                             <StackPanel>
-                                <Button Margin="5" Width="120" Content="Поставить оценку" Command="{Binding AddRating}"/>
-                                <Button Margin="5" Width="120" Content="Оставить отзыв" Command="{Binding AddComment}"/>
+                                <Button Margin="5" Width="120" Content="Оценить" Command="{Binding ElementName=ListOrderContents, Path=DataContext.AddRatingComment}" CommandParameter="{Binding Product.Id}"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Grid Panel.ZIndex="100" Background="#FFA1D4D0" Width="400" Height="250" Visibility="{Binding VisibilityPanelFeedback, Converter={StaticResource BoolToVisibility}}">
+            <StackPanel>
+                <DockPanel HorizontalAlignment="Center" Margin="30">
+                    <RadioButton Command="{Binding SelectRating}" CommandParameter="1">
+                        <RadioButton.LayoutTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2" />
+                        </RadioButton.LayoutTransform>
+                    </RadioButton>
+                    <RadioButton Command="{Binding SelectRating}" CommandParameter="2">
+                        <RadioButton.LayoutTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2" />
+                        </RadioButton.LayoutTransform>
+                    </RadioButton>
+                    <RadioButton Command="{Binding SelectRating}" CommandParameter="3">
+                        <RadioButton.LayoutTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2" />
+                        </RadioButton.LayoutTransform>
+                    </RadioButton>
+                    <RadioButton Command="{Binding SelectRating}" CommandParameter="4">
+                        <RadioButton.LayoutTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2" />
+                        </RadioButton.LayoutTransform>
+                    </RadioButton>
+                    <RadioButton Command="{Binding SelectRating}" CommandParameter="5">
+                        <RadioButton.LayoutTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2" />
+                        </RadioButton.LayoutTransform>
+                    </RadioButton>
+                </DockPanel>
+                <TextBlock Text="Отзыв:"/>
+                <TextBox Height="100" Margin="10" TextWrapping="Wrap" Text="{Binding Comment}"/>
+                <DockPanel HorizontalAlignment="Center">
+                    <Button Margin="10,0" Content="Отменить" Width="100" Command="{Binding Cancel}"/>
+                    <Button Margin="10,0" Content="Оставить отзыв" Width="100" Command="{Binding CompleteFeedback}"/>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -24,7 +24,6 @@
             <Button Content="Добавить товар" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding AddProduct}" />
             <Button Content="Категории" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonOperator, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding CategoryNavigate}" />
             <Button Content="Заказы" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonOperator, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding OrderPageNavigate}" />
-            <Button Content="Избраное" HorizontalAlignment="Right" Margin="10" Visibility="{Binding VisibilityButtonClient, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding FavouritesNavigate}" />
             <Button Content="Аккаунт" HorizontalAlignment="Right" Margin="60,10,10,10" Visibility="{Binding VisibilityButtonClient, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding AccountNavigate}" />
             <Button Content="{Binding TextButton}" HorizontalAlignment="Right" Margin="10" Command="{Binding AutorizationNavigate}"/>
         </DockPanel>

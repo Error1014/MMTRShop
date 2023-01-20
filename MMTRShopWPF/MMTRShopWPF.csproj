@@ -101,6 +101,10 @@
     <Compile Include="Migrations\202301160235047_RenameEmail.designer.cs">
       <DependentUpon>202301160235047_RenameEmail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301200930116_FixFeedback.cs" />
+    <Compile Include="Migrations\202301200930116_FixFeedback.designer.cs">
+      <DependentUpon>202301200930116_FixFeedback.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\AutorizationViewModel.cs" />
@@ -271,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301160235047_RenameEmail.resx">
       <DependentUpon>202301160235047_RenameEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301200930116_FixFeedback.resx">
+      <DependentUpon>202301200930116_FixFeedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
