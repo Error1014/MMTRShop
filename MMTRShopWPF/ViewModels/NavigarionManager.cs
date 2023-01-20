@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public class NavigarionManager
     {

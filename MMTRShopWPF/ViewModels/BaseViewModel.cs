@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

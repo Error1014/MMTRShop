@@ -2,7 +2,7 @@
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.Service;
-using MMTRShopWPF.ViewModels;
+using MMTRShopWPF.Commands;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -11,7 +11,7 @@ using System.Windows.Input;
 using MMTRShopWPF.Service.Services;
 using System.Linq;
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public class KatalogViewModel : BaseViewModel
     {
@@ -112,7 +112,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     if (NumPage < countPage)
                     {
@@ -128,7 +128,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     if (NumPage > 1)
                     {

@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CategoryCreationCommand.cs" />
     <Compile Include="Components\BindingPassword.xaml.cs">
       <DependentUpon>BindingPassword.xaml</DependentUpon>
     </Compile>
@@ -111,7 +112,7 @@
     <Compile Include="ViewModels\BankCardViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\Commands.cs" />
+    <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="ViewModels\EditProductViewModel.cs" />
     <Compile Include="ViewModels\FavouritesViewModel.cs" />
     <Compile Include="ViewModels\InfoProductViewModel.cs" />

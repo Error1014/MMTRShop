@@ -9,13 +9,13 @@ using System.Windows;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.Service;
 using MMTRShopWPF.Model.Models;
-using MMTRShopWPF.ViewModels;
+using MMTRShopWPF.Commands;
 using MMTRShopWPF.Service.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Documents;
 using System.Net;
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public class OrderViewModel : BaseViewModel
     {
@@ -97,7 +97,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     IsPayNow = false;
                     BlockBankCardOpacity = 0.5f;
@@ -109,7 +109,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     IsPayNow = true;
                     BlockBankCardOpacity = 1f;
@@ -122,7 +122,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     if (CheckAll())
 {
@@ -141,7 +141,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     Message = new Message();
                 });

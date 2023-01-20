@@ -12,7 +12,7 @@ namespace MMTRShopWPF.Service.Services
     public class CategoryService
     {
         private Message Message = new Message();
-        UnitOfWork UnitOfWork { get; set; }
+        private readonly UnitOfWork UnitOfWork;
         public CategoryService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());
@@ -35,9 +35,25 @@ namespace MMTRShopWPF.Service.Services
         {
             UnitOfWork.Categories.Save();
         }
-        public void Create(Category category)
+        public void Save(object obj)
+        {
+            UnitOfWork.Categories.Save();
+        }
+        public void Add(object obj)
+        {
+            UnitOfWork.Categories.Add(new Category(obj.ToString()));
+            Save();
+        }
+        public void Add(Category category)
         {
             UnitOfWork.Categories.Add(new Category(category.Title));
+            Save();
+        }
+        public void Remove(object obj)
+        {
+            var categ = obj as Category;
+            Category category = UnitOfWork.Categories.Find(c=>c.Id == categ.Id);
+            UnitOfWork.Categories.Remove(category);
             Save();
         }
         public void Remove(Category category)

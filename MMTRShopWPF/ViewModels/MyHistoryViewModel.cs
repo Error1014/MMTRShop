@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public class MyHistoryViewModel : BaseViewModel
     {
@@ -54,7 +54,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     VisibilityPanelFeedback = true;
                     productId = Guid.Parse(obj.ToString());
@@ -67,7 +67,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     rating =Convert.ToByte(obj.ToString());
                 });
@@ -77,7 +77,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     VisibilityPanelFeedback = false;
                 });
@@ -87,7 +87,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     VisibilityPanelFeedback = false;
                     Feedback feedback = new Feedback();

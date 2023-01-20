@@ -7,9 +7,9 @@ using MMTRShopWPF.View.Pages;
 using System;
 using MMTRShopWPF.Service;
 using MMTRShopWPF.Model.Models;
-using MMTRShopWPF.ViewModels;
+using MMTRShopWPF.Commands;
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public class CartViewModel : BaseViewModel
     {
@@ -38,7 +38,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     Guid id =  Guid.Parse(obj.ToString());
                     CartService.CartMinusOneProduct(id);
@@ -50,7 +50,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     Guid id = Guid.Parse(obj.ToString());
                     CartService.CartPlusOneProduct(id);
@@ -62,7 +62,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     Guid id =Guid.Parse(obj.ToString());
                     CartService.CartRemoveProduct(id);
@@ -75,7 +75,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     NavigarionManager.MainFrame.Content = new MakingAnOrderPage();
                 });

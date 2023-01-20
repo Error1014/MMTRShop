@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public class EditProductViewModel: BaseViewModel
     {
@@ -95,7 +95,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     ProductService.SeveResultEdit(isAdd, Product);
                     NavigarionManager.MainFrame.Content = new KatalogPage();
@@ -107,7 +107,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     ProductService.RemoveResultEdit(isAdd, Product);
                     NavigarionManager.MainFrame.Content = new KatalogPage();

@@ -2,12 +2,12 @@
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
-using MMTRShopWPF.ViewModels;
+using MMTRShopWPF.Commands;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public class FavouritesViewModel:BaseViewModel 
     {
@@ -37,7 +37,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     Guid id = Guid.Parse(obj.ToString());
                     FavouritesService.RemoveFavouritById(id);

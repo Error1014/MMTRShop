@@ -1,7 +1,7 @@
 ﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Service.Services;
-using MMTRShopWPF.ViewModels;
+using MMTRShopWPF.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;

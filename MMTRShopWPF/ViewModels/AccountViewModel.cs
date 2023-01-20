@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public class AccountViewModel:BaseViewModel
     {
@@ -69,7 +69,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     VisibilityEditButton = false;
                 });
@@ -79,7 +79,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     VisibilityEditButton = true;
                     NavigarionManager.MainFrame.Content = new AccountPage();
@@ -91,7 +91,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     VisibilityEditButton = true;
                     AccountService.Save();

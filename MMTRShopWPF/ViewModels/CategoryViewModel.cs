@@ -9,16 +9,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public class CategoryViewModel:BaseViewModel
     {
-        private bool isCreate = false;
         private CategoryService CategoryService = new CategoryService();
         public CategoryViewModel()
         {
             Categories = CategoryService.GetCategories();
-            if (AccountManager.Admin==null)
+            if (AccountManager.Admin == null)
             {
                 VisibilityBtnAdminRemoveAdd = false;
             }
@@ -26,7 +25,11 @@ namespace MMTRShopWPF.ViewModels
             {
                 visibilityBtnAdminRemoveAdd = true;
             }
+            saveResult = new CategoryCreationCommand(SaveResult.Save);
+            addCategory = new CategoryCreationCommand(AddCategory.Add);
+            removeCategory = new CategoryCreationCommand(RemoveCategory.Remove);
         }
+
         private ObservableCollection<Category> categories;
         public ObservableCollection<Category> Categories
         {
@@ -48,53 +51,31 @@ namespace MMTRShopWPF.ViewModels
                 OnPropertyChanged(nameof(Category));
             }
         }
-
-        public ICommand SaveCategory
+        private CategoryCreationCommand saveResult = new CategoryCreationCommand(null);
+        public CategoryCreationCommand SaveResult
+        {
+            get 
+            {
+                return saveResult;
+            }
+        }
+        private CategoryCreationCommand addCategory = new CategoryCreationCommand(null);
+        public CategoryCreationCommand AddCategory
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    
-                    if (isCreate)
-                    {
-                        CategoryService.Create(Category);
-                        isCreate=false;
-                        CategoryService.Save();
-                        Category = new Category();
-                    }
-                    CategoryService.Save();
-                    Categories = CategoryService.GetCategories();
-                });
+                return addCategory;
             }
         }
-        public ICommand CreateCategory
+        private CategoryCreationCommand removeCategory = new CategoryCreationCommand(null);
+        public CategoryCreationCommand RemoveCategory
         {
-            get
+            get 
             {
-                return new Commands((obj) =>
-                {
-                    Category = new Category() ;
-                    isCreate = true;
-                });
+                return removeCategory;
             }
         }
-        public ICommand RemoveCategory
-        {
-            get
-            {
-                return new Commands((obj) =>
-                {
-                    Message = CategoryService.CheckToRemove(Category);
-                    if (!Message.IsError())
-                    {
-                        CategoryService.Remove(Category);
-                        Categories = CategoryService.GetCategories();
-                        Category = new Category();
-                    }
-                });
-            }
-        }
+        
         private bool visibilityBtnAdminRemoveAdd;
         public bool VisibilityBtnAdminRemoveAdd
         {

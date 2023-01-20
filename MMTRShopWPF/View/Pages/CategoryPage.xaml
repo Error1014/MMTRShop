@@ -15,7 +15,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding Categories}" SelectedItem="{Binding Category}">
+        <ListView ItemsSource="{Binding Categories}" SelectedItem="{Binding Category, Mode=TwoWay}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel/>
@@ -30,9 +30,9 @@
         <StackPanel Grid.Column="1">
             <TextBlock FontSize="25" Text="Категория"/>
             <TextBox FontSize="25" Text="{Binding Category.Title}"/>
-            <Button Margin="20" FontSize="25" Content="Сохранить" Command="{Binding SaveCategory}"/>
-            <Button Visibility="{Binding VisibilityBtnAdminRemoveAdd, Converter={StaticResource BoolToVisibility}}" Margin="20" FontSize="25" Content="Удалить" Command="{Binding RemoveCategory}"/>
-            <Button Visibility="{Binding VisibilityBtnAdminRemoveAdd, Converter={StaticResource BoolToVisibility}}" Margin="20" FontSize="25" Content="Создать новый" Command="{Binding CreateCategory}"/>
+            <Button Margin="20" FontSize="25" Content="Сохранить" Command="{Binding SaveResult}"/>
+            <Button Visibility="{Binding VisibilityBtnAdminRemoveAdd, Converter={StaticResource BoolToVisibility}}" Margin="20" FontSize="25" Content="Удалить" Command="{Binding RemoveCategory}" CommandParameter="{Binding Category}"/>
+            <Button Visibility="{Binding VisibilityBtnAdminRemoveAdd, Converter={StaticResource BoolToVisibility}}" Margin="20" FontSize="25" Content="Создать новый" Command="{Binding AddCategory}" CommandParameter="{Binding Category.Title}"/>
         </StackPanel>
     </Grid>
 </Page>

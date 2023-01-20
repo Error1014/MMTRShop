@@ -2,12 +2,12 @@
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
-using MMTRShopWPF.ViewModels;
+using MMTRShopWPF.Commands;
 using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public class AutorizationViewModel : BaseViewModel
     {
@@ -81,7 +81,7 @@ namespace MMTRShopWPF.ViewModels
         {
         get
         {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     Message = AutorizationService.CheckCorrectLoginPassword(User.Login, User.Password);
                     if (!Message.IsError())
@@ -97,7 +97,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     SelectRejim();
 
@@ -125,7 +125,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     Message = AutorizationService.Registration(user, Password2);
                     if (!Message.IsError())
@@ -143,7 +143,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     MainWindow.MainWindowFrame.Content = new MainPage();
                 });

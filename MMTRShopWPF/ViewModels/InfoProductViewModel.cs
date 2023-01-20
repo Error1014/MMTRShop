@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows;
 using MMTRShopWPF.View.Pages;
 
-namespace MMTRShopWPF.ViewModels
+namespace MMTRShopWPF.Commands
 {
     public class InfoProductViewModel: BaseViewModel
     {
@@ -86,7 +86,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     if (AccountManager.Client == null)
                     {
@@ -119,7 +119,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                return new Commands((obj) =>
+                return new BaseCommand((obj) =>
                 {
                     if (AccountManager.Client == null)
                     {
