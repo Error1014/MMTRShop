@@ -25,9 +25,6 @@ namespace MMTRShopWPF.Commands
             {
                 visibilityBtnAdminRemoveAdd = true;
             }
-            saveResult = new CategoryCreationCommand(SaveResult.Save);
-            addCategory = new CategoryCreationCommand(AddCategory.Add);
-            removeCategory = new CategoryCreationCommand(RemoveCategory.Remove);
         }
 
         private ObservableCollection<Category> categories;
@@ -41,6 +38,7 @@ namespace MMTRShopWPF.Commands
             }
         }
 
+
         private Category category = new Category();
         public Category Category
         {
@@ -51,31 +49,35 @@ namespace MMTRShopWPF.Commands
                 OnPropertyChanged(nameof(Category));
             }
         }
-        private CategoryCreationCommand saveResult = new CategoryCreationCommand(null);
-        public CategoryCreationCommand SaveResult
-        {
-            get 
-            {
-                return saveResult;
-            }
-        }
-        private CategoryCreationCommand addCategory = new CategoryCreationCommand(null);
-        public CategoryCreationCommand AddCategory
+
+        private ICommand add;
+        public ICommand AddCategory
         {
             get
             {
-                return addCategory;
+                if (add == null) add = new AddCategoryCommand(this);
+                return add;
             }
         }
-        private CategoryCreationCommand removeCategory = new CategoryCreationCommand(null);
-        public CategoryCreationCommand RemoveCategory
+        private ICommand remove;
+        public ICommand RemoveCategory
         {
-            get 
+            get
             {
-                return removeCategory;
+                if (remove == null) remove = new RemoveCategoryCommand(this);
+                return remove;
             }
         }
-        
+        private ICommand save;
+        public ICommand SaveChanged
+        {
+            get
+            {
+                if (save == null) save = new SaveCategoryCommand(this);
+                return save;
+            }
+        }
+
         private bool visibilityBtnAdminRemoveAdd;
         public bool VisibilityBtnAdminRemoveAdd
         {

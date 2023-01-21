@@ -13,6 +13,7 @@ namespace MMTRShopWPF.Service.Services
     {
         private Message Message = new Message();
         private readonly UnitOfWork UnitOfWork;
+
         public CategoryService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());
@@ -31,34 +32,31 @@ namespace MMTRShopWPF.Service.Services
         {
             return UnitOfWork.Categories.Find(category => category.Id == product.CategoryId);
         }
+        private Category GetCategory(Category  category)
+        {
+            return UnitOfWork.Categories.Find(c=>c.Id ==category.Id);
+        }
+        public void SaveChanges(Category category)
+        {
+            Category categoryDB = GetCategory(category);
+            categoryDB.Title = category.Title;
+            UnitOfWork.Categories.Save();
+        }
         public void Save()
         {
             UnitOfWork.Categories.Save();
         }
-        public void Save(object obj)
+
+        public void Add(string title)
         {
-            UnitOfWork.Categories.Save();
-        }
-        public void Add(object obj)
-        {
-            UnitOfWork.Categories.Add(new Category(obj.ToString()));
+            UnitOfWork.Categories.Add(new Category(title));
             Save();
         }
-        public void Add(Category category)
-        {
-            UnitOfWork.Categories.Add(new Category(category.Title));
-            Save();
-        }
-        public void Remove(object obj)
-        {
-            var categ = obj as Category;
-            Category category = UnitOfWork.Categories.Find(c=>c.Id == categ.Id);
-            UnitOfWork.Categories.Remove(category);
-            Save();
-        }
+
+
         public void Remove(Category category)
         {
-            UnitOfWork.Categories.Remove(category);
+            UnitOfWork.Categories.Remove(GetCategory(category));
             Save();
         }
 
