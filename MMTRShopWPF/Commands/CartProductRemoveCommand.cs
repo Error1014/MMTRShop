@@ -19,10 +19,9 @@ namespace MMTRShopWPF.Commands
         }
         public override void Execute(object parameter)
         {
-            CartViewModel cartViewModel = viewModel;
             Guid id = Guid.Parse(parameter.ToString());
             CartService.CartRemoveProduct(id);
-            cartViewModel.Cart = CartService.GetCart();
+            viewModel.Cart = CartService.GetCart();
         }
     }
 }

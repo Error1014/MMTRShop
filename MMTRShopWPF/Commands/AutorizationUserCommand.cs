@@ -21,11 +21,10 @@ namespace MMTRShopWPF.Commands
         }
         public override void Execute(object parameter)
         {
-            AutorizationViewModel autorizationViewModel = viewModel;
-            autorizationViewModel.Message = AutorizationService.CheckCorrectLoginPassword(autorizationViewModel.User.Login, autorizationViewModel.User.Password);
-            if (!autorizationViewModel.Message.IsError())
+            viewModel.Message = AutorizationService.CheckCorrectLoginPassword(viewModel.User.Login, viewModel.User.Password);
+            if (!viewModel.Message.IsError())
             {
-                Guid id = AutorizationService.GetUserId(autorizationViewModel.User.Login, autorizationViewModel.User.Password);
+                Guid id = AutorizationService.GetUserId(viewModel.User.Login, viewModel.User.Password);
                 MainWindow.MainWindowFrame.Content = new MainPage(id);
             }
         }

@@ -59,6 +59,15 @@ namespace MMTRShopWPF.Commands
         }
 
         private bool isAdd;
+        public bool IsAdd
+        {
+            get { return isAdd; }
+            set
+            {
+                isAdd = value;
+                OnPropertyChanged(nameof(IsAdd));
+            }
+        }
         public List<Category> AllCategory { get; private set; }
         private Category selectCategory;
         public Category SelectCategory
@@ -90,28 +99,23 @@ namespace MMTRShopWPF.Commands
                 OnPropertyChanged(nameof(SelectBrand));
             }
         }
+        private ICommand saveResult;
 
         public ICommand SaveResult
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    ProductService.SeveResultEdit(isAdd, Product);
-                    NavigarionManager.MainFrame.Content = new KatalogPage();
-
-                });
+                if (saveResult == null) saveResult = new EditProductSaveResultCommand(this);
+                return saveResult;
             }
         }
+        private ICommand delete;
         public ICommand Delete
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    ProductService.RemoveResultEdit(isAdd, Product);
-                    NavigarionManager.MainFrame.Content = new KatalogPage();
-                });
+                if (delete == null) delete = new EditProductRemoveCommand(this);
+                return delete;
             }
         }
         protected bool isAdmin;

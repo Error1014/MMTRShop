@@ -21,13 +21,12 @@ namespace MMTRShopWPF.Commands
         }
         public override void Execute(object parameter)
         {
-            AutorizationViewModel autorizationViewModel = viewModel;
-            autorizationViewModel.Message = AutorizationService.Registration(autorizationViewModel.User, autorizationViewModel.Password2);
-            if (!autorizationViewModel.Message.IsError())
+            viewModel.Message = AutorizationService.Registration(viewModel.User, viewModel.Password2);
+            if (!viewModel.Message.IsError())
             {
-                autorizationViewModel.Password2 = "";
-                autorizationViewModel.User = new User();
-                autorizationViewModel.IsRegistration = !autorizationViewModel.IsRegistration;
+                viewModel.Password2 = "";
+                viewModel.User = new User();
+                viewModel.IsRegistration = !viewModel.IsRegistration;
             }
         }
     }

@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Commands
 {
-    public class OpenRegistrationPanelCommand : MyCommand<AutorizationViewModel>
+    public class EditProductRemoveCommand:MyCommand<EditProductViewModel>
     {
-        public OpenRegistrationPanelCommand(AutorizationViewModel autorizationViewModel) : base(autorizationViewModel)
+        ProductService ProductService = new ProductService();
+        public EditProductRemoveCommand(EditProductViewModel editProductViewModel) : base(editProductViewModel)
         {
         }
         public override bool CanExecute(object parameter)
@@ -19,7 +20,8 @@ namespace MMTRShopWPF.Commands
         }
         public override void Execute(object parameter)
         {
-            viewModel.IsRegistration = !viewModel.IsRegistration;
+            ProductService.RemoveResultEdit(viewModel.IsAdd, viewModel.Product);
+            NavigarionManager.MainFrame.Content = new KatalogPage();
         }
     }
 }
