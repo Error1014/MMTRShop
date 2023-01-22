@@ -81,22 +81,23 @@ namespace MMTRShopWPF.Commands
                 OnPropertyChanged(nameof(StatusProduct));
             }
         }
-        protected Favourites favourit = new Favourites();
-        public ICommand AddInKorzine
+        private Favourites favourit = new Favourites();
+        public Favourites Favourit
+        {
+            get { return favourit; }
+            set
+            {
+                favourit = value;
+                OnPropertyChanged(nameof(Favourit));
+            }
+        }
+        private ICommand addInCart;
+        public ICommand AddInCart
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    if (AccountManager.Client == null)
-                    {
-                        ClientNullMessageShow();
-                    }
-                    else
-                    {
-                        CartService.AddProductInCart(Product);
-                    }
-                });
+                if (addInCart == null) addInCart = new AddInCartCommand(this);
+                return addInCart;
             }
         }
         protected string isLikePath;
@@ -110,34 +111,13 @@ namespace MMTRShopWPF.Commands
             }
         }
 
-        protected void ClientNullMessageShow()
-        {
-            MessageBox.Show("Для этого вам сперва необходимо войти в аккаутн");
-            MainWindow.MainWindowFrame.Content = new AutorizationPage();
-        }
+        private ICommand clickLike;
         public ICommand ClickLike
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    if (AccountManager.Client == null)
-                    {
-                        ClientNullMessageShow();
-                    }
-                    else
-                    {
-                        if (IsLikePath == "/Resources/NoLike.png")
-                        {
-                            SetLike();
-                        }
-                        else
-                        {
-                            RemoveLike();
-                        }
-                    }
-
-                });
+                if (clickLike == null) clickLike = new ClickLikeCommand(this);
+                return clickLike;
             }
         }
         protected Visibility visibilityCount;
@@ -152,19 +132,6 @@ namespace MMTRShopWPF.Commands
                 visibilityCount = value;
                 OnPropertyChanged(nameof(VisibilityCount));
             }
-        }
-        protected void SetLike()
-        {
-            IsLikePath = "/Resources/Like.png";
-            favourit = new Favourites(AccountManager.Client.Id, Product.Id);
-            FavouritesService.AddFavourite(favourit);
-
-        }
-        protected void RemoveLike()
-        {
-            IsLikePath = "/Resources/NoLike.png";
-            FavouritesService.RemoveFavourite(favourit);
-            favourit = new Favourites();
         }
     }
 }

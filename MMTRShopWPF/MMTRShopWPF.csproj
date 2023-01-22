@@ -67,9 +67,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\AddCategoryCommand.cs" />
+    <Compile Include="Commands\AddInCartCommand.cs" />
     <Compile Include="Commands\CartProductMinusCommand.cs" />
     <Compile Include="Commands\CartProductPlusCommand.cs" />
     <Compile Include="Commands\CartProductRemoveCommand.cs" />
+    <Compile Include="Commands\ClickLikeCommand.cs" />
     <Compile Include="Commands\EditProductRemoveCommand.cs" />
     <Compile Include="Commands\EditProductSaveResultCommand.cs" />
     <Compile Include="Commands\OpenRegistrationPanelCommand.cs" />

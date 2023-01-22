@@ -51,7 +51,7 @@
             </TextBlock>
         </StackPanel>
         <DockPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <Button Content="В корзину" Width="200" Height="50" Margin="10" Visibility="{Binding VisibilityButtonKorzine}" Command="{Binding AddInKorzine}"/>
+            <Button Content="В корзину" Width="200" Height="50" Margin="10" Visibility="{Binding VisibilityButtonKorzine}" Command="{Binding AddInCart}"/>
         </DockPanel>
     </Grid>
 </Page>
