@@ -33,41 +33,31 @@ namespace MMTRShopWPF.Commands
                 OnPropertyChanged(nameof(Cart));
             }
         }
-
+        private ICommand productMinus;
         public ICommand ProductMinus
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    Guid id =  Guid.Parse(obj.ToString());
-                    CartService.CartMinusOneProduct(id);
-                    page.UpdateDataContext();
-                });
+                productMinus = new CartProductMinusCommand(this);
+                return productMinus;
             }
         }
+        private ICommand productPlus;
         public ICommand ProductPlus
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    Guid id = Guid.Parse(obj.ToString());
-                    CartService.CartPlusOneProduct(id);
-                    page.UpdateDataContext();
-                });
+                productPlus = new CartProductPlusCommand(this);
+                return productPlus;
             }
         }
+        private ICommand productRemove;
         public ICommand ProductRemove
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    Guid id =Guid.Parse(obj.ToString());
-                    CartService.CartRemoveProduct(id);
-                    page.UpdateDataContext();
-                });
+                productRemove = new CartProductRemoveCommand(this);
+                return productRemove;
             }
         }
 

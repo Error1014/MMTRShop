@@ -67,6 +67,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\AddCategoryCommand.cs" />
+    <Compile Include="Commands\CartProductMinusCommand.cs" />
+    <Compile Include="Commands\CartProductPlusCommand.cs" />
+    <Compile Include="Commands\CartProductRemoveCommand.cs" />
     <Compile Include="Commands\OpenRegistrationPanelCommand.cs" />
     <Compile Include="Commands\AutorizationUserCommand.cs" />
     <Compile Include="Commands\MyCommand.cs" />
