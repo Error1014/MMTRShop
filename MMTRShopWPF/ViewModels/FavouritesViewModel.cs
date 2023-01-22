@@ -33,16 +33,13 @@ namespace MMTRShopWPF.Commands
             }
         }
 
+        private ICommand removeFavourit;
         public ICommand RemoveFavourit
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    Guid id = Guid.Parse(obj.ToString());
-                    FavouritesService.RemoveFavouritById(id);
-                    page.UpdateDataContext();
-                });
+                if (removeFavourit == null) removeFavourit = new RemoveFavouritCommand(this);
+                return removeFavourit;
             }
         }
     }
