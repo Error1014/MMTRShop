@@ -67,7 +67,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\AddCategoryCommand.cs" />
+    <Compile Include="Commands\OpenRegistrationPanelCommand.cs" />
+    <Compile Include="Commands\AutorizationUserCommand.cs" />
     <Compile Include="Commands\MyCommand.cs" />
+    <Compile Include="Commands\RegistrationUserCommand.cs" />
     <Compile Include="Commands\RemoveCategoryCommand.cs" />
     <Compile Include="Commands\SaveCategoryCommand.cs" />
     <Compile Include="Components\BindingPassword.xaml.cs">

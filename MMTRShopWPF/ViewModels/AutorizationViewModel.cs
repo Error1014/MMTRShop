@@ -14,7 +14,8 @@ namespace MMTRShopWPF.Commands
         private AutorizationService AutorizationService = new AutorizationService();
         public AutorizationViewModel()
         {
-            VisibilityRejimRegistration = Visibility.Collapsed;
+            VisibilityRejimRegistration = false;
+            VisibilityRejimAutorization = true;
             TextBtnRegistration = "Зарегистрироваться";
         }
         private Client client = new Client();
@@ -44,8 +45,20 @@ namespace MMTRShopWPF.Commands
         }
 
         private bool isRegistration = false;
-        private Visibility visibilityRejimRegistration;
-        public Visibility VisibilityRejimRegistration
+        public bool IsRegistration
+        {
+            get { return isRegistration; }
+            set
+            {
+                isRegistration = value;
+                VisibilityRejimRegistration = value;
+                VisibilityRejimAutorization = !value;
+                TextBtnRegistration = value==true? "Отменить": "Зарегистрироваться";
+                OnPropertyChanged(nameof(IsRegistration));
+            }
+        }
+        private bool visibilityRejimRegistration;
+        public bool VisibilityRejimRegistration
         {
             get { return visibilityRejimRegistration; }
             set
@@ -55,8 +68,8 @@ namespace MMTRShopWPF.Commands
             }
         }
 
-        private Visibility visibilityRejimAutorization;
-        public Visibility VisibilityRejimAutorization
+        private bool visibilityRejimAutorization;
+        public bool VisibilityRejimAutorization
         {
             get { return visibilityRejimAutorization; }
             set
@@ -76,66 +89,31 @@ namespace MMTRShopWPF.Commands
                 OnPropertyChanged(nameof (TextBtnRegistration));
             }
         }
-
+        private ICommand autorizationUser;
         public ICommand AutorizationUser
         {
         get
         {
-                return new BaseCommand((obj) =>
-                {
-                    Message = AutorizationService.CheckCorrectLoginPassword(User.Login, User.Password);
-                    if (!Message.IsError())
-                    {
-                        Guid id = AutorizationService.GetUserId(User.Login, User.Password);
-                        MainWindow.MainWindowFrame.Content = new MainPage(id);
-                    }
-
-                });
+                if (autorizationUser == null) autorizationUser = new AutorizationUserCommand(this);
+                return autorizationUser;
             }
         }
+        private ICommand openRegistrationPanel;
         public ICommand OpenRegistrationPanel
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    SelectRejim();
-
-                });
+                if (openRegistrationPanel == null) openRegistrationPanel = new OpenRegistrationPanelCommand (this);
+                return openRegistrationPanel;
             }
         }
-        void SelectRejim()
-        {
-            isRegistration = !isRegistration;
-            if (isRegistration)
-            {
-                VisibilityRejimAutorization = Visibility.Collapsed;
-                VisibilityRejimRegistration = Visibility.Visible;
-                TextBtnRegistration = "Отменить";
-            }
-            else
-            {
-                VisibilityRejimAutorization = Visibility.Visible;
-                VisibilityRejimRegistration = Visibility.Collapsed;
-                TextBtnRegistration = "Зарегистрироваться";
-            }
-            
-        }
+        private ICommand registrationUser;
         public ICommand RegistrationUser
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    Message = AutorizationService.Registration(user, Password2);
-                    if (!Message.IsError())
-                    {
-                        Password2 = "";
-                        User = new User();
-                        SelectRejim();
-                    }
-                   
-                });
+                if (registrationUser == null) registrationUser = new RegistrationUserCommand(this);
+                return registrationUser;
             }
         }
         

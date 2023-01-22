@@ -19,7 +19,7 @@ namespace MMTRShopWPF.Commands
         }
         public override void Execute(object parameter)
         {
-            CategoryViewModel categoryViewModel = viewModel as CategoryViewModel;
+            CategoryViewModel categoryViewModel = viewModel;
             string title = categoryViewModel.Category.Title;
             categoryService.Add(title);
             categoryService.Save();
