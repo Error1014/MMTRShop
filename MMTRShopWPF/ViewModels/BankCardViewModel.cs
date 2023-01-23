@@ -10,11 +10,6 @@ namespace MMTRShopWPF.ViewModels
     {
         private int quantityYear = 6;
         BankCardService BankCardService = new BankCardService();
-        public BankCardViewModel()
-        {
-            MonthItems = BankCardService.GetAllMonth();
-            YearItems = BankCardService.GetYear(quantityYear);
-        }
 
         private BankCard bankCard = new BankCard();
         public BankCard BankCard
@@ -50,10 +45,17 @@ namespace MMTRShopWPF.ViewModels
                 OnPropertyChanged(nameof(SelectedYear));
             }
         }
-        private ObservableCollection<int> monthItems = new ObservableCollection<int>();
+        private ObservableCollection<int> monthItems;
         public ObservableCollection<int> MonthItems
         {
-            get { return monthItems; }
+            get 
+            {
+                if (monthItems == null)
+                {
+                    MonthItems = BankCardService.GetAllMonth();
+                }
+                return monthItems; 
+            }
             set
             {
                 monthItems = value;
@@ -61,10 +63,17 @@ namespace MMTRShopWPF.ViewModels
             }
         }
 
-        private ObservableCollection<int> yearItems = new ObservableCollection<int>();
+        private ObservableCollection<int> yearItems;
         public ObservableCollection<int> YearItems
         {
-            get { return yearItems; }
+            get
+            {
+                if (yearItems == null)
+                {
+                    YearItems = BankCardService.GetYear(quantityYear);
+                }
+                return yearItems;
+            }
             set
             {
                 yearItems = value;

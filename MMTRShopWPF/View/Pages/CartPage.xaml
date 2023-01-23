@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MMTRShopWPF.View.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="KorzinaPage">
+      Title="KorzinaPage" DataContext="{StaticResource CartVM}">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

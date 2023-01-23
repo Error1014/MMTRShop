@@ -31,7 +31,7 @@ namespace MMTRShopWPF.Commands
                 viewModel.Order.ClientId = AccountManager.Client.Id;
                 OrderService.CreateOrder(viewModel.Order);
                 OrderContentService.CreateOrderContent(viewModel.Order);
-                CartService.ClearCart(viewModel.Carts);
+                CartService.ClearCart(viewModel.Carts.ToList());
                 NavigarionManager.MainFrame.Content = new MyOrderPage();
             }
         }

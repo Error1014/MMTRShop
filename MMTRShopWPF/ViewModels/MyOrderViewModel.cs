@@ -9,20 +9,21 @@ using System.Windows;
 
 namespace MMTRShopWPF.ViewModels
 {
-    public class MyOrderViewModel:BaseViewModel
+    public class MyOrderViewModel : BaseViewModel
     {
         private OrderService OrderService = new OrderService();
         private OrderContentService OrderContentService = new OrderContentService();
-        public MyOrderViewModel()
-        {
-            Orders = OrderService.GetOrderClient(AccountManager.Client);
-            OrderContents = OrderContentService.GetOrderContentNoСompleted(Orders);
-
-        }
-        private List<Order> orders;
+        private List<Order> orders = null;
         public List<Order> Orders
         {
-            get { return orders; }
+            get
+            {
+                if (orders == null)
+                {
+                    Orders = OrderService.GetOrderClient(AccountManager.Client);
+                }
+                return orders;
+            }
             set
             {
                 orders = value;
@@ -30,10 +31,17 @@ namespace MMTRShopWPF.ViewModels
             }
         }
 
-        private List<OrderContent> orderContents;
+        private List<OrderContent> orderContents = null;
         public List<OrderContent> OrderContents
         {
-            get { return orderContents; }
+            get
+            {
+                if (orderContents == null)
+                {
+                    OrderContents = OrderContentService.GetOrderContentNoСompleted(Orders);
+                }
+                return orderContents;
+            }
             set
             {
                 orderContents = value;
@@ -44,5 +52,5 @@ namespace MMTRShopWPF.ViewModels
 
     }
 
-    
+
 }

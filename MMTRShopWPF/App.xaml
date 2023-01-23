@@ -5,19 +5,20 @@
              xmlns:vm="clr-namespace:MMTRShopWPF.ViewModels"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
+        <vm:AccountViewModel x:Key="AccountVM"/>
         <vm:AutorizationViewModel x:Key="AutorizationVM"/>
         <vm:BankCardViewModel x:Key="BankCardVM"/>
-        <!--<vm:CartViewModel x:Key="CartVM"/>-->
+        <vm:CartViewModel x:Key="CartVM"/>
         <vm:CategoryViewModel x:Key="CategoryVM"/>
-        <!--<vm:EditProductViewModel x:Key="EditProductVM"/>
-        <vm:FavouritesViewModel x:Key="AutorizationVM"/>
-        <vm:InfoProductViewModel x:Key="AutorizationVM"/>-->
+        <!--<vm:EditProductViewModel x:Key="EditProductVM"/>-->
+        <vm:FavouritesViewModel x:Key="FavouritesVM"/>
+        <!--<vm:InfoProductViewModel x:Key="InfoProductVM"/>-->
         <vm:KatalogViewModel x:Key="KatalogVM"/>
         <vm:MyHistoryViewModel x:Key="MyHistoryVM"/>
-        <!--<vm:MyOrderViewModel x:Key="MyOrderVM"/>-->
+        <vm:MyOrderViewModel x:Key="MyOrderVM"/>
         <!--<vm:NavigationViewModel x:Key="NavigationVM"/>-->
         <vm:OperatorOrderViewModel x:Key="OperatorOrderVM"/>
-        <!--<vm:OrderViewModel x:Key="OrderVM"/>-->
+        <vm:OrderViewModel x:Key="OrderVM"/>
         <Style x:Key="TextInfo">
             <Setter Property="TextBlock.FontSize" Value="15"/>
             <Setter Property="TextBlock.Height" Value="30"/>

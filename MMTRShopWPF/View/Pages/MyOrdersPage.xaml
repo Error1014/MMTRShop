@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MMTRShopWPF.View.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MyOrderPage">
+      Title="MyOrderPage" DataContext="{StaticResource MyOrderVM}">
 
     <Grid Background="White">
         <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListProducts"  ItemsSource="{Binding OrderContents}" HorizontalAlignment="Center">

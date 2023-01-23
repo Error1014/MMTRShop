@@ -16,20 +16,20 @@ namespace MMTRShopWPF.ViewModels
     public class KatalogViewModel : BaseViewModel
     {
         private ProductService ProductService = new ProductService();
-        public KatalogViewModel()
-        {
-            productsPage = ProductService.GetPageProducts(numPage, sizePage);
-            countPage = ProductService.GetCountPage(sizePage);
-            CategoryItems = UnitOfWork.Categories.GetAll().ToList();
-            BrandItems = UnitOfWork.Brands.GetAll().ToList();
-        }
 
         #region Filtration Category
 
         private List<Category> сategoryItems;
         public List<Category> CategoryItems
         {
-            get { return сategoryItems; }
+            get 
+            {
+                if (сategoryItems == null)
+                {
+                    CategoryItems = UnitOfWork.Categories.GetAll().ToList();
+                }
+                return сategoryItems; 
+            }
             set
             {
                 сategoryItems = value;
@@ -61,7 +61,14 @@ namespace MMTRShopWPF.ViewModels
         private List<Brand> brandItems;
         public List<Brand> BrandItems
         {
-            get { return brandItems; }
+            get 
+            {
+                if (brandItems==null)
+                {
+                    BrandItems = UnitOfWork.Brands.GetAll().ToList();
+                }
+                return brandItems; 
+            }
             set
             {
                 brandItems = value;
@@ -91,6 +98,22 @@ namespace MMTRShopWPF.ViewModels
         #region Pagination
 
         private int countPage = 0;
+        public int CountPage
+        {
+            get
+            {
+                if (countPage==0)
+                {
+                    CountPage = ProductService.GetCountPage(sizePage);
+                }
+                return countPage;
+            }
+            set
+            {
+                countPage = value;
+                OnPropertyChanged(nameof(CountPage));
+            }
+        }
         private int numPage = 1;
         private int sizePage = 20;
         public int NumPage
@@ -160,6 +183,10 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
+                if (productsPage == null)
+                {
+                    ProductsPage = ProductService.GetPageProducts(numPage, sizePage);
+                }
                 return productsPage;
             }
             set

@@ -28,13 +28,6 @@ namespace MMTRShopWPF.View.Pages
         public FavouritesPage()
         {
             InitializeComponent();
-            UpdateDataContext();
-        }
-
-        public void UpdateDataContext()
-        {
-            FavouritesViewModel = new FavouritesViewModel(this);
-            DataContext = FavouritesViewModel;
         }
     }
 }

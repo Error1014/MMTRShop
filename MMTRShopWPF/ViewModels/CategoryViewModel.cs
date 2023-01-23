@@ -15,23 +15,18 @@ namespace MMTRShopWPF.ViewModels
     public class CategoryViewModel:BaseViewModel
     {
         private CategoryService CategoryService = new CategoryService();
-        public CategoryViewModel()
-        {
-            Categories = CategoryService.GetCategories();
-            if (AccountManager.Admin == null)
-            {
-                VisibilityBtnAdminRemoveAdd = false;
-            }
-            else
-            {
-                visibilityBtnAdminRemoveAdd = true;
-            }
-        }
 
         private ObservableCollection<Category> categories;
         public ObservableCollection<Category> Categories
         {
-            get { return categories; }
+            get 
+            {
+                if (categories == null)
+                {
+                    Categories = CategoryService.GetCategories();
+                }
+                return categories; 
+            }
             set
             {
                 categories = value;
@@ -82,7 +77,17 @@ namespace MMTRShopWPF.ViewModels
         private bool visibilityBtnAdminRemoveAdd;
         public bool VisibilityBtnAdminRemoveAdd
         {
-            get { return visibilityBtnAdminRemoveAdd; }
+            get 
+            {
+                if (visibilityBtnAdminRemoveAdd == false)
+                {
+                    if (AccountManager.Operator==null)
+                    {
+                        VisibilityBtnAdminRemoveAdd = true;
+                    }
+                }
+                return visibilityBtnAdminRemoveAdd; 
+            }
             set
             {
                 visibilityBtnAdminRemoveAdd = value;

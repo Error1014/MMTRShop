@@ -24,8 +24,6 @@ namespace MMTRShopWPF.View.Pages
         public AccountPage()
         {
             InitializeComponent();
-            AccountViewModel accountViewModel = new AccountViewModel();
-            DataContext = accountViewModel;
         }
     }
 }

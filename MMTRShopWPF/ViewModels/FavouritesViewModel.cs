@@ -12,19 +12,16 @@ namespace MMTRShopWPF.ViewModels
 {
     public class FavouritesViewModel:BaseViewModel 
     {
-        FavouritesPage page;
         private FavouritesService FavouritesService = new FavouritesService();
-        public FavouritesViewModel(FavouritesPage page)
-        {
-            this.page = page;
-            Favorites = FavouritesService.GetFavourites();
-
-        }
         private List<Favourites> favorites;
         public List<Favourites> Favorites
         {
             get
             {
+                if (favorites==null)
+                {
+                    Favorites = FavouritesService.GetFavourites();
+                }
                 return favorites;
             }
             set

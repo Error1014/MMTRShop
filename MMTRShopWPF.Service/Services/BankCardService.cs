@@ -25,7 +25,7 @@ namespace MMTRShopWPF.Service.Services
         {
             ObservableCollection<int> year = new ObservableCollection<int>();
             DateTime dateTime = DateTime.Now;
-            for (int i = dateTime.Year; i < dateTime.Year + quantityYear; i++)
+            for (int i = dateTime.Year-2; i < dateTime.Year + quantityYear; i++)
             {
                 year.Add(i);
             }

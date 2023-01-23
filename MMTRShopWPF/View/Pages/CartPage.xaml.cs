@@ -14,13 +14,6 @@ namespace MMTRShopWPF.View.Pages
         public KorzinaPage()
         {
             InitializeComponent();
-            UpdateDataContext();
-        }
-
-        public void UpdateDataContext()
-        {
-            korzinaViewModel = new CartViewModel(this);
-            DataContext = korzinaViewModel;
         }
     }
 }

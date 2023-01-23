@@ -21,20 +21,7 @@ namespace MMTRShopWPF.ViewModels
     public class OrderViewModel : BaseViewModel
     {
         private CartService CartService = new CartService();
-        private OrderService OrderService = new OrderService();
-        private OrderContentService OrderContentService = new OrderContentService();
         private StatusService StatusService = new StatusService();
-
-        public OrderViewModel()
-        {
-            BankCardVM = new BankCardViewModel();
-            BlockBankCardOpacity = 1;
-            IsPayNow = true;
-            carts = CartService.GetCart();
-            Status = StatusService.GetStatusWaitingPlaced();
-        }
-
-
 
         private Order order = new Order();
         public Order Order
@@ -49,7 +36,14 @@ namespace MMTRShopWPF.ViewModels
         private Status status;
         public Status Status
         {
-            get { return status; }
+            get 
+            {
+                if (status==null)
+                {
+                    Status = StatusService.GetStatusWaitingPlaced();
+                }
+                return status; 
+            }
             set
             {
                 status = value;
@@ -57,10 +51,13 @@ namespace MMTRShopWPF.ViewModels
                 OnPropertyChanged(nameof(Status));
             }
         }
-        private BankCardViewModel bankCardVM;
+        private BankCardViewModel bankCardVM = new BankCardViewModel();
         public BankCardViewModel BankCardVM
         {
-            get { return bankCardVM; }
+            get 
+            {
+                return bankCardVM; 
+            }
             set
             {
                 bankCardVM = value;
@@ -69,10 +66,17 @@ namespace MMTRShopWPF.ViewModels
         }
 
         private List<OrderContent> cartOrders = new List<OrderContent>();
-        private List<Cart> carts = new List<Cart>();
+        private List<Cart> carts;
         public List<Cart> Carts
         {
-            get { return carts; }
+            get 
+            {
+                if (carts ==null)
+                {
+                    Carts = CartService.GetCart().ToList();
+                }
+                return carts; 
+            }
             set
             {
                 carts = value;
@@ -81,7 +85,7 @@ namespace MMTRShopWPF.ViewModels
         }
 
         #region Способ оплаты
-        private bool isPayNow;
+        private bool isPayNow = true;
         public bool IsPayNow
         {
             get { return isPayNow; }
@@ -92,7 +96,7 @@ namespace MMTRShopWPF.ViewModels
                 OnPropertyChanged(nameof(IsPayNow));
             }
         }
-        private float blockBankCardOpacity;
+        private float blockBankCardOpacity=1;
         public float BlockBankCardOpacity
         {
             get { return blockBankCardOpacity; }

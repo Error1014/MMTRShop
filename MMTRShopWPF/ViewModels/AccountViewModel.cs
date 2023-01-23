@@ -15,28 +15,30 @@ namespace MMTRShopWPF.ViewModels
     public class AccountViewModel:BaseViewModel
     {
         private AccountService AccountService = new AccountService();
-        public AccountViewModel()
-        {
-            User = AccountService.GetUser();
-            Client = AccountService.GetClient();
-            VisibilityEditButton = true;
-        }
 
-        private User user = new User();
+        private User user;
         public User User
         {
-            get { return user; }
+            get 
+            {
+                if (user==null) User = AccountService.GetUser();
+                return user; 
+            }
             set
             {
                 user = value;
                 OnPropertyChanged(nameof(User));
             }
         }
-        
-        private Client client = new Client();
+
+        private Client client;
         public Client Client
         {
-            get { return client; }
+            get 
+            {
+                if (client == null) Client = AccountService.GetClient();
+                return client;
+            }
             set
             {
                 client = value;
@@ -44,7 +46,7 @@ namespace MMTRShopWPF.ViewModels
             }
         }
 
-        private bool visibilityEditButton;
+        private bool visibilityEditButton = true;
         public bool VisibilityEditButton
         {
             get { return visibilityEditButton; }

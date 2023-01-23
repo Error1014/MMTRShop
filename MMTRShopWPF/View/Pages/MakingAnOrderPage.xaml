@@ -7,7 +7,7 @@
       xmlns:components="clr-namespace:MMTRShopWPF.Components"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MakingAnOrderPage">
+      Title="MakingAnOrderPage" DataContext="{StaticResource OrderVM}">
     <Page.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Page.Resources>

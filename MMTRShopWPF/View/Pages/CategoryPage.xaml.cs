@@ -24,8 +24,6 @@ namespace MMTRShopWPF.View.Pages
         public CategoryPage()
         {
             InitializeComponent();
-            CategoryViewModel categoryViewModel = new CategoryViewModel();
-            DataContext = categoryViewModel;
         }
     }
 }

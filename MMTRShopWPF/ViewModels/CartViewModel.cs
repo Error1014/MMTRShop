@@ -14,18 +14,16 @@ namespace MMTRShopWPF.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
-        private KorzinaPage page;
         private CartService CartService = new CartService();
-        public CartViewModel(KorzinaPage page)
-        {
-            this.page=page;
-            Cart = CartService.GetCart();
-        }
         private List<Cart> cart;
         public List<Cart> Cart
         {
             get
             {
+                if (cart==null)
+                {
+                    Cart = CartService.GetCart();
+                }
                 return cart;
             }
             set
