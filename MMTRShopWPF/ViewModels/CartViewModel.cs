@@ -7,9 +7,10 @@ using MMTRShopWPF.View.Pages;
 using System;
 using MMTRShopWPF.Service;
 using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.ViewModels;
 using MMTRShopWPF.Commands;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {

@@ -3,7 +3,7 @@ using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.Service;
 using System;
 using System.Windows.Controls;
-using MMTRShopWPF.Commands;
+using MMTRShopWPF.ViewModels;
 
 namespace MMTRShopWPF.View.Pages
 {

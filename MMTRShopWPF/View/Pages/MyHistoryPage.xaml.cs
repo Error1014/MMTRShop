@@ -1,4 +1,4 @@
-﻿using MMTRShopWPF.Commands;
+﻿using MMTRShopWPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +24,6 @@ namespace MMTRShopWPF.View.Pages
         public MyHistoryPage()
         {
             InitializeComponent();
-            MyHistoryViewModel myHistoryViewModel = new MyHistoryViewModel();
-            DataContext = myHistoryViewModel;
         }
     }
 }

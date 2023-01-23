@@ -1,10 +1,10 @@
 ﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Service.Services;
-using MMTRShopWPF.Commands;
+using MMTRShopWPF.ViewModels;
 using System.Collections.ObjectModel;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class BankCardViewModel : BaseViewModel
     {
@@ -12,12 +12,11 @@ namespace MMTRShopWPF.Commands
         BankCardService BankCardService = new BankCardService();
         public BankCardViewModel()
         {
-            BankCard = new BankCard();
             MonthItems = BankCardService.GetAllMonth();
             YearItems = BankCardService.GetYear(quantityYear);
         }
 
-        private BankCard bankCard;
+        private BankCard bankCard = new BankCard();
         public BankCard BankCard
         {
             get { return bankCard; }

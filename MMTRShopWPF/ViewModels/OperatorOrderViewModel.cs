@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class OperatorOrderViewModel:BaseViewModel
     {

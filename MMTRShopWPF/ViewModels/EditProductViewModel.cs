@@ -8,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using MMTRShopWPF.Commands;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class EditProductViewModel: BaseViewModel
     {

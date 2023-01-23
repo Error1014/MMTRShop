@@ -1,4 +1,5 @@
 ﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Commands;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class AccountViewModel:BaseViewModel
     {

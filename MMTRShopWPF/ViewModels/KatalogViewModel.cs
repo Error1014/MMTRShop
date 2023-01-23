@@ -2,7 +2,7 @@
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.Service;
-using MMTRShopWPF.Commands;
+using MMTRShopWPF.ViewModels;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -11,7 +11,7 @@ using System.Windows.Input;
 using MMTRShopWPF.Service.Services;
 using System.Linq;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class KatalogViewModel : BaseViewModel
     {

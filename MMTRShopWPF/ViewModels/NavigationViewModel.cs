@@ -6,10 +6,10 @@ using MMTRShopWPF.View.Pages;
 using System;
 using MMTRShopWPF.Service;
 using MMTRShopWPF.Model.Models;
-using MMTRShopWPF.Commands;
+using MMTRShopWPF.ViewModels;
 using MMTRShopWPF.Service.Services;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class NavigationViewModel : BaseViewModel
     {

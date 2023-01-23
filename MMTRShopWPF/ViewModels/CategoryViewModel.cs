@@ -1,4 +1,5 @@
-﻿using MMTRShopWPF.Model.Models;
+﻿using MMTRShopWPF.Commands;
+using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Service.Services;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class CategoryViewModel:BaseViewModel
     {

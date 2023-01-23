@@ -1,13 +1,14 @@
-﻿using MMTRShopWPF.Model;
+﻿using MMTRShopWPF.Commands;
+using MMTRShopWPF.Model;
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
-using MMTRShopWPF.Commands;
+using MMTRShopWPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class FavouritesViewModel:BaseViewModel 
     {

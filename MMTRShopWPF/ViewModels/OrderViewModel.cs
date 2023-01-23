@@ -9,13 +9,14 @@ using System.Windows;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.Service;
 using MMTRShopWPF.Model.Models;
-using MMTRShopWPF.Commands;
+using MMTRShopWPF.ViewModels;
 using MMTRShopWPF.Service.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Documents;
 using System.Net;
+using MMTRShopWPF.Commands;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class OrderViewModel : BaseViewModel
     {

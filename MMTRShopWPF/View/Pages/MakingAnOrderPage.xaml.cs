@@ -1,5 +1,5 @@
 ﻿using MMTRShopWPF.Service.Services;
-using MMTRShopWPF.Commands;
+using MMTRShopWPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,6 @@ namespace MMTRShopWPF.View.Pages
         {
             InitializeComponent();
             OrderViewModel orderViewModel = new OrderViewModel();
-
             DataContext = orderViewModel;
         }
     }

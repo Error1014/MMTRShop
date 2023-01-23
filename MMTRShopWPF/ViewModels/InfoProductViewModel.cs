@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using MMTRShopWPF.View.Pages;
+using MMTRShopWPF.Commands;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class InfoProductViewModel: BaseViewModel
     {

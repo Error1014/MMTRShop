@@ -1,30 +1,23 @@
-﻿using MMTRShopWPF.Model;
+﻿using MMTRShopWPF.Commands;
+using MMTRShopWPF.Model;
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
-using MMTRShopWPF.Commands;
 using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MMTRShopWPF.Commands
+namespace MMTRShopWPF.ViewModels
 {
     public class AutorizationViewModel : BaseViewModel
     {
-        private AutorizationService AutorizationService = new AutorizationService();
-        public AutorizationViewModel()
-        {
-            VisibilityRejimRegistration = false;
-            VisibilityRejimAutorization = true;
-            TextBtnRegistration = "Зарегистрироваться";
-        }
-        private Client client = new Client();
+
         private User user = new User();
         public User User
         {
             get { return user; }
-            set 
-            { 
+            set
+            {
                 user = value;
                 OnPropertyChanged(nameof(User));
             }
@@ -53,11 +46,11 @@ namespace MMTRShopWPF.Commands
                 isRegistration = value;
                 VisibilityRejimRegistration = value;
                 VisibilityRejimAutorization = !value;
-                TextBtnRegistration = value==true? "Отменить": "Зарегистрироваться";
+                TextBtnRegistration = value == true ? "Отменить" : "Зарегистрироваться";
                 OnPropertyChanged(nameof(IsRegistration));
             }
         }
-        private bool visibilityRejimRegistration;
+        private bool visibilityRejimRegistration = false;
         public bool VisibilityRejimRegistration
         {
             get { return visibilityRejimRegistration; }
@@ -68,7 +61,7 @@ namespace MMTRShopWPF.Commands
             }
         }
 
-        private bool visibilityRejimAutorization;
+        private bool visibilityRejimAutorization = true;
         public bool VisibilityRejimAutorization
         {
             get { return visibilityRejimAutorization; }
@@ -79,21 +72,21 @@ namespace MMTRShopWPF.Commands
             }
         }
 
-        private string textBtnRegistration;
+        private string textBtnRegistration = "Зарегистрироваться";
         public string TextBtnRegistration
         {
             get { return textBtnRegistration; }
             set
             {
                 textBtnRegistration = value;
-                OnPropertyChanged(nameof (TextBtnRegistration));
+                OnPropertyChanged(nameof(TextBtnRegistration));
             }
         }
         private ICommand autorizationUser;
         public ICommand AutorizationUser
         {
-        get
-        {
+            get
+            {
                 if (autorizationUser == null) autorizationUser = new AutorizationUserCommand(this);
                 return autorizationUser;
             }
@@ -103,7 +96,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                if (openRegistrationPanel == null) openRegistrationPanel = new OpenRegistrationPanelCommand (this);
+                if (openRegistrationPanel == null) openRegistrationPanel = new OpenRegistrationPanelCommand(this);
                 return openRegistrationPanel;
             }
         }
@@ -116,7 +109,7 @@ namespace MMTRShopWPF.Commands
                 return registrationUser;
             }
         }
-        
+
         public ICommand KatalogNavigate
         {
             get
@@ -127,6 +120,6 @@ namespace MMTRShopWPF.Commands
                 });
             }
         }
-        
+
     }
 }

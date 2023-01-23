@@ -1,6 +1,6 @@
 ﻿using MMTRShopWPF.Model;
 using MMTRShopWPF.Service.Services;
-using MMTRShopWPF.Commands;
+using MMTRShopWPF.ViewModels;
 using System.Windows.Controls;
 
 namespace MMTRShopWPF.View.Pages
