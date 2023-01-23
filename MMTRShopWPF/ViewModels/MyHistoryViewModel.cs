@@ -29,7 +29,25 @@ namespace MMTRShopWPF.Commands
             }
         }
         private Guid productId;
+        public Guid ProductId
+        {
+            get { return productId; }
+            set
+            {
+                productId = value;
+                OnPropertyChanged(nameof(ProductId));
+            }
+        }
         private byte rating;
+        public byte Rating
+        {
+            get { return rating; }
+            set
+            {
+                rating = value;
+                OnPropertyChanged(nameof(Rating));
+            }
+        }
         private string comment;
         public string Comment
         {
@@ -50,58 +68,42 @@ namespace MMTRShopWPF.Commands
                 OnPropertyChanged(nameof(VisibilityPanelFeedback));
             }
         }
+        private ICommand addRatingComment;
         public ICommand AddRatingComment
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    VisibilityPanelFeedback = true;
-                    productId = Guid.Parse(obj.ToString());
-                });
+                if (addRatingComment == null) addRatingComment = new AddRatingCommentCommand(this);
+                return addRatingComment;
             }
         }
 
 
+        private ICommand selectRating;
         public ICommand SelectRating
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    rating =Convert.ToByte(obj.ToString());
-                });
+                if (selectRating == null) selectRating = new SelectRatingCommand(this);
+                return selectRating;
             }
         }
+        private ICommand cancel;
         public ICommand Cancel
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    VisibilityPanelFeedback = false;
-                });
+                if (cancel == null) cancel = new CancelPanelFeedbackCommand(this);
+                return cancel;
             }
         }
+        private ICommand completeFeedback;
         public ICommand CompleteFeedback
         {
             get
             {
-                return new BaseCommand((obj) =>
-                {
-                    VisibilityPanelFeedback = false;
-                    Feedback feedback = new Feedback();
-                    if (String.IsNullOrEmpty(Comment)||String.IsNullOrWhiteSpace(Comment))
-                    {
-                        feedback = new Feedback(AccountManager.Client.Id, productId, rating, null);
-                    }
-                    else
-                    {
-                        feedback = new Feedback(AccountManager.Client.Id, productId, rating, comment);
-                    }
-                    FeedbackService.AddFeedback(feedback);
-                    FeedbackService.SaveFeedback();
-                });
+                if (completeFeedback == null) completeFeedback = new CompleteFeedbackCommand(this);
+                return completeFeedback;
             }
         }
 

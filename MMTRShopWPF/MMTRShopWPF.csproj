@@ -68,10 +68,13 @@
     </ApplicationDefinition>
     <Compile Include="Commands\AddCategoryCommand.cs" />
     <Compile Include="Commands\AddInCartCommand.cs" />
+    <Compile Include="Commands\AddRatingCommentCommand.cs" />
+    <Compile Include="Commands\CancelPanelFeedbackCommand.cs" />
     <Compile Include="Commands\CartProductMinusCommand.cs" />
     <Compile Include="Commands\CartProductPlusCommand.cs" />
     <Compile Include="Commands\CartProductRemoveCommand.cs" />
     <Compile Include="Commands\ClickLikeCommand.cs" />
+    <Compile Include="Commands\CompleteFeedbackCommand.cs" />
     <Compile Include="Commands\EditProductRemoveCommand.cs" />
     <Compile Include="Commands\EditProductSaveResultCommand.cs" />
     <Compile Include="Commands\OpenRegistrationPanelCommand.cs" />
@@ -81,6 +84,7 @@
     <Compile Include="Commands\RemoveCategoryCommand.cs" />
     <Compile Include="Commands\RemoveFavouritCommand.cs" />
     <Compile Include="Commands\SaveCategoryCommand.cs" />
+    <Compile Include="Commands\SelectRatingCommand.cs" />
     <Compile Include="Components\BindingPassword.xaml.cs">
       <DependentUpon>BindingPassword.xaml</DependentUpon>
     </Compile>
