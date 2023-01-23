@@ -13,12 +13,6 @@ namespace MMTRShopWPF.ViewModels
 {
     public class MyHistoryViewModel : BaseViewModel
     {
-        private OrderContentService OrderContentService = new OrderContentService();
-        private FeedbackService FeedbackService = new FeedbackService();
-        public MyHistoryViewModel()
-        {
-            OrderContents = OrderContentService.GetCancelledOrder();
-        }
         private List<OrderContent> orderContents;
         public List<OrderContent> OrderContents
         {
@@ -67,6 +61,15 @@ namespace MMTRShopWPF.ViewModels
             {
                 visibilityPanelFeedback = value;
                 OnPropertyChanged(nameof(VisibilityPanelFeedback));
+            }
+        }
+        private ICommand getOrderContentsСompleted;
+        public ICommand GetOrderContentsСompleted
+        {
+            get
+            {
+                if (getOrderContentsСompleted == null) getOrderContentsСompleted = new LoadedMyHistoryVMCommand(this);
+                return getOrderContentsСompleted;
             }
         }
         private ICommand addRatingComment;

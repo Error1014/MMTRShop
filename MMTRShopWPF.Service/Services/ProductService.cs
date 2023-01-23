@@ -3,6 +3,7 @@ using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.Repository.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,21 +71,25 @@ namespace MMTRShopWPF.Service.Services
             return products;
         }
 
-        public List<Product> GetPageProducts(int numPage,int sizePage)
+        public ObservableCollection<Product> GetPageProducts(int numPage,int sizePage)
         {
-            return UnitOfWork.Products.GetProductsPage(numPage, sizePage).ToList();
+            var products = UnitOfWork.Products.GetProductsPage(numPage, sizePage).ToList();
+            return new ObservableCollection<Product>(products);
         }
-        public List<Product> GetPageProducts(int numPage, int sizePage, Category category)
+        public ObservableCollection<Product> GetPageProducts(int numPage, int sizePage, Category category)
         {
-            return UnitOfWork.Products.GetProductsPage(numPage, sizePage,category).ToList();
+            var products = UnitOfWork.Products.GetProductsPage(numPage, sizePage,category).ToList();
+            return new ObservableCollection<Product>(products);
         }
-        public List<Product> GetPageProducts(int numPage, int sizePage, Brand brand)
+        public ObservableCollection<Product> GetPageProducts(int numPage, int sizePage, Brand brand)
         {
-            return UnitOfWork.Products.GetProductsPage(numPage, sizePage,brand).ToList();
+            var products = UnitOfWork.Products.GetProductsPage(numPage, sizePage,brand).ToList();
+            return new ObservableCollection<Product>(products);
         }
-        public List<Product> GetPageProducts(int numPage, int sizePage, Category category, Brand brand)
+        public ObservableCollection<Product> GetPageProducts(int numPage, int sizePage, Category category, Brand brand)
         {
-            return UnitOfWork.Products.GetProductsPage(numPage, sizePage, category,brand).ToList();
+            var products = UnitOfWork.Products.GetProductsPage(numPage, sizePage, category,brand).ToList();
+            return new ObservableCollection<Product>(products);
         }
         public int GetCountPage(int sizePage)
         {

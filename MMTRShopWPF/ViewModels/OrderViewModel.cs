@@ -65,7 +65,6 @@ namespace MMTRShopWPF.ViewModels
             }
         }
 
-        private List<OrderContent> cartOrders = new List<OrderContent>();
         private List<Cart> carts;
         public List<Cart> Carts
         {

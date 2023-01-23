@@ -4,9 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MMTRShopWPF.View.Pages"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="KatalogPage" DataContext="{StaticResource KatalogVM}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded" >
+            <i:InvokeCommandAction Command="{Binding GetProductsPage}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid Background="White" >
 
         <Grid.RowDefinitions>
@@ -14,6 +20,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
+
         <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left">
             <TextBlock FontSize="15"  Text="Категория товара:"/>
             <ComboBox Margin="10,0" FontSize="15" Width="200" ItemsSource="{Binding CategoryItems}" DisplayMemberPath="Title" SelectedItem="{Binding SelectedCategoryItem}"/>

@@ -8,12 +8,13 @@ namespace MMTRShopWPF.View.Pages
     /// <summary>
     /// Логика взаимодействия для KorzinaPage.xaml
     /// </summary>
-    public partial class KorzinaPage : Page
+    public partial class CartPage : Page
     {
-        public static CartViewModel korzinaViewModel;
-        public KorzinaPage()
+        public CartPage()
         {
             InitializeComponent();
+            CartViewModel cartViewModel = new CartViewModel();
+            DataContext = cartViewModel;
         }
     }
 }

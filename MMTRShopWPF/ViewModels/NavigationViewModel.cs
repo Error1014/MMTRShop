@@ -126,7 +126,7 @@ namespace MMTRShopWPF.ViewModels
                     Message = NavigationService.CheckAutorisation();
                     if (!Message.IsError())
                     {
-                        NavigarionManager.MainFrame.Content = new KorzinaPage();
+                        NavigarionManager.MainFrame.Content = new CartPage();
                     }
                 });
             }

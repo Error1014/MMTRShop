@@ -14,19 +14,10 @@ namespace MMTRShopWPF.ViewModels
 {
     public class CategoryViewModel:BaseViewModel
     {
-        private CategoryService CategoryService = new CategoryService();
-
         private ObservableCollection<Category> categories;
         public ObservableCollection<Category> Categories
         {
-            get 
-            {
-                if (categories == null)
-                {
-                    Categories = CategoryService.GetCategories();
-                }
-                return categories; 
-            }
+            get { return categories; }
             set
             {
                 categories = value;
@@ -45,7 +36,15 @@ namespace MMTRShopWPF.ViewModels
                 OnPropertyChanged(nameof(Category));
             }
         }
-
+        private ICommand getCategories;
+        public ICommand GetCategories
+        {
+            get
+            {
+                if (getCategories == null) getCategories = new LoadedCategoriesVMCommand(this);
+                return getCategories;
+            }
+        }
         private ICommand add;
         public ICommand AddCategory
         {

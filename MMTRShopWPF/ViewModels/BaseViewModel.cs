@@ -4,8 +4,6 @@ using MMTRShopWPF.Service.Services;
 using System;
 using System.ComponentModel;
 
-
-
 namespace MMTRShopWPF.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged

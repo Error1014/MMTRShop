@@ -12,16 +12,11 @@ namespace MMTRShopWPF.ViewModels
 {
     public class FavouritesViewModel:BaseViewModel 
     {
-        private FavouritesService FavouritesService = new FavouritesService();
         private List<Favourites> favorites;
         public List<Favourites> Favorites
         {
             get
             {
-                if (favorites==null)
-                {
-                    Favorites = FavouritesService.GetFavourites();
-                }
                 return favorites;
             }
             set
@@ -30,7 +25,15 @@ namespace MMTRShopWPF.ViewModels
                 OnPropertyChanged(nameof(Favorites));
             }
         }
-
+        private ICommand getFovourites;
+        public ICommand GetFovourites
+        {
+            get
+            {
+                if (getFovourites == null) getFovourites = new LoadedFavouritesVMCommand(this);
+                return getFovourites;
+            }
+        }
         private ICommand removeFavourit;
         public ICommand RemoveFavourit
         {

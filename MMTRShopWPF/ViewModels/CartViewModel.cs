@@ -14,22 +14,27 @@ namespace MMTRShopWPF.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
-        private CartService CartService = new CartService();
-        private List<Cart> cart;
+        private List<Cart> cart = null;
+
         public List<Cart> Cart
         {
             get
             {
-                if (cart==null)
-                {
-                    Cart = CartService.GetCart();
-                }
                 return cart;
             }
             set
             {
                 cart = value;
                 OnPropertyChanged(nameof(Cart));
+            }
+        }
+        private ICommand getCart;
+        public ICommand GetCart
+        {
+            get
+            {
+                if (getCart == null) getCart = new LoadedCartVMCommand(this);
+                return getCart;
             }
         }
         private ICommand productMinus;

@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using MMTRShopWPF.Service.Services;
 using System.Linq;
+using MMTRShopWPF.Commands;
 
 namespace MMTRShopWPF.ViewModels
 {
@@ -45,11 +46,11 @@ namespace MMTRShopWPF.ViewModels
                 selectedCategoryItem = value;
                 if (SelectedBrandItem == null)
                 {
-                    ProductsPage = ProductService.GetPageProducts(NumPage, sizePage, SelectedCategoryItem);
+                    ProductsPage = ProductService.GetPageProducts(NumPage, SizePage, SelectedCategoryItem);
                 }
                 else
                 {
-                    ProductsPage = ProductService.GetPageProducts(NumPage, sizePage, SelectedCategoryItem, SelectedBrandItem);
+                    ProductsPage = ProductService.GetPageProducts(NumPage, SizePage, SelectedCategoryItem, SelectedBrandItem);
                 }
                 OnPropertyChanged(nameof(SelectedCategoryItem));
             }
@@ -84,11 +85,11 @@ namespace MMTRShopWPF.ViewModels
                 selectedBrandItem = value;
                 if (SelectedCategoryItem==null)
                 {
-                    ProductsPage = ProductService.GetPageProducts(NumPage, sizePage, SelectedBrandItem);
+                    ProductsPage = ProductService.GetPageProducts(NumPage, SizePage, SelectedBrandItem);
                 }
                 else
                 {
-                    ProductsPage = ProductService.GetPageProducts(NumPage, sizePage, SelectedCategoryItem, SelectedBrandItem);
+                    ProductsPage = ProductService.GetPageProducts(NumPage, SizePage, SelectedCategoryItem, SelectedBrandItem);
                 }
                 OnPropertyChanged(nameof(SelectedBrandItem));
             }
@@ -104,7 +105,7 @@ namespace MMTRShopWPF.ViewModels
             {
                 if (countPage==0)
                 {
-                    CountPage = ProductService.GetCountPage(sizePage);
+                    CountPage = ProductService.GetCountPage(SizePage);
                 }
                 return countPage;
             }
@@ -114,8 +115,8 @@ namespace MMTRShopWPF.ViewModels
                 OnPropertyChanged(nameof(CountPage));
             }
         }
+        public int SizePage = 20;
         private int numPage = 1;
-        private int sizePage = 20;
         public int NumPage
         {
             get { return numPage; }
@@ -143,7 +144,7 @@ namespace MMTRShopWPF.ViewModels
                         SetNumPage(1);
                     }
 
-                    ProductsPage = ProductService.GetPageProducts(numPage,sizePage);
+                    ProductsPage = ProductService.GetPageProducts(numPage,SizePage);
                 });
             }
         }
@@ -158,9 +159,19 @@ namespace MMTRShopWPF.ViewModels
                         NumPage--;
                         SetNumPage(-1);
                     }
-                    ProductsPage = ProductService.GetPageProducts(numPage, sizePage);
+                    ProductsPage = ProductService.GetPageProducts(numPage, SizePage);
                 });
             }
+        }
+        private ICommand getProductsPage;
+        public ICommand GetProductsPage
+        {
+            get
+            {
+                if (getProductsPage == null) getProductsPage = new LoadedKatalogVMCommand(this);
+                return getProductsPage;
+            }
+            
         }
 
         public void SetNumPage(int value)
@@ -177,16 +188,11 @@ namespace MMTRShopWPF.ViewModels
             OnPropertyChanged(nameof(Num5));
         }
         #endregion
-
-        private List<Product> productsPage;
-        public List<Product> ProductsPage
+        private ObservableCollection<Product> productsPage;
+        public ObservableCollection<Product> ProductsPage
         {
             get
             {
-                if (productsPage == null)
-                {
-                    ProductsPage = ProductService.GetPageProducts(numPage, sizePage);
-                }
                 return productsPage;
             }
             set

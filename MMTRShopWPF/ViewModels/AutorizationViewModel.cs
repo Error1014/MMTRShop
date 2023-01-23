@@ -26,10 +26,7 @@ namespace MMTRShopWPF.ViewModels
         private string password2;
         public string Password2
         {
-            get
-            {
-                return password2;
-            }
+            get { return password2; }
             set
             {
                 password2 = value;
