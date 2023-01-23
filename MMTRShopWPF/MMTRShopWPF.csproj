@@ -86,6 +86,7 @@
     <Compile Include="Commands\LoadedMyHistoryVMCommand.cs" />
     <Compile Include="Commands\LoadedMyViewModelCommand.cs" />
     <Compile Include="Commands\LoadedKatalogVMCommand.cs" />
+    <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Commands\OpenRegistrationPanelCommand.cs" />
     <Compile Include="Commands\AutorizationUserCommand.cs" />
     <Compile Include="Commands\BaseCommand.cs" />

@@ -25,6 +25,10 @@ namespace MMTRShopWPF.View.Pages
     /// </summary>
     public partial class EditInfoProductPage : Page
     {
+        public EditInfoProductPage()
+        {
+            InitializeComponent();
+        }
         public EditInfoProductPage(Product product)
         {
             InitializeComponent();

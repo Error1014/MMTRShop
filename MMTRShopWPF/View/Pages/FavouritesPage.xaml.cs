@@ -24,7 +24,6 @@ namespace MMTRShopWPF.View.Pages
     /// </summary>
     public partial class FavouritesPage : Page
     {
-        public static FavouritesViewModel FavouritesViewModel;
         public FavouritesPage()
         {
             InitializeComponent();

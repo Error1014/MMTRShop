@@ -8,6 +8,7 @@ using MMTRShopWPF.Service;
 using MMTRShopWPF.Model.Models;
 using MMTRShopWPF.ViewModels;
 using MMTRShopWPF.Service.Services;
+using MMTRShopWPF.Commands;
 
 namespace MMTRShopWPF.ViewModels
 {
@@ -67,34 +68,26 @@ namespace MMTRShopWPF.ViewModels
         public bool VisibilityButtonAdmin { get; private set; }
         public bool VisibilityButtonOperator { get; private set; }
 
+        private ICommand favouritesNavigate;
         public ICommand FavouritesNavigate
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    Message = NavigationService.CheckAutorisation();
-                    if (!Message.IsError())
-                    {
-                        NavigarionManager.MainFrame.Content = new FavouritesPage();
-                    }
-                });
+                if (favouritesNavigate == null) favouritesNavigate = new NavigateCommand(this, new FavouritesPage(),true);
+                return favouritesNavigate;
             }
         }
-        public ICommand AccountNavigate
-        {
-            get
-            {
-                return new Commands((obj) =>
-                {
-                    Message = NavigationService.CheckAutorisation();
-                    if (!Message.IsError())
-                    {
-                        NavigarionManager.MainFrame.Content = new AccountPage();
-                    }
-                });
-            }
-        }
+
+        //public ICommand accountNavigate;
+        //public ICommand AccountNavigate
+        //{
+        //    get
+        //    {
+        //        if (accountNavigate == null) accountNavigate = new NavigateCommand(this, new AccountPage(),true);
+        //        return accountNavigate;
+        //    }
+        //}
+
         public ICommand CloseWin
         {
             get
@@ -106,104 +99,81 @@ namespace MMTRShopWPF.ViewModels
             }
         }
 
+        private ICommand katalogNavigate;
         public ICommand KatalogNavigate
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    NavigarionManager.MainFrame.Content = new KatalogPage();
-                });
+                if (katalogNavigate == null) katalogNavigate = new NavigateCommand(this, new KatalogPage(),false);
+                return katalogNavigate;
             }
         }
 
-        public ICommand KorzinaNavigate
+        private ICommand cartNavigate;
+        public ICommand CartNavigate
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    Message = NavigationService.CheckAutorisation();
-                    if (!Message.IsError())
-                    {
-                        NavigarionManager.MainFrame.Content = new CartPage();
-                    }
-                });
+                if (cartNavigate == null) cartNavigate = new NavigateCommand(this, new CartPage(),true);
+                return cartNavigate;
             }
         }
 
+        private ICommand myOrdersNavigate;
         public ICommand MyOrdersNavigate
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    Message = NavigationService.CheckAutorisation();
-                    if (!Message.IsError())
-                    {
-                        NavigarionManager.MainFrame.Content = new MyOrderPage();
-                    }
-                });
+                if (myOrdersNavigate == null) myOrdersNavigate = new NavigateCommand(this, new MyOrderPage(),true);
+                return myOrdersNavigate;
             }
         }
 
+        private ICommand myHistoryNavigate;
         public ICommand MyHistoryNavigate
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    Message = NavigationService.CheckAutorisation();
-                    if (!Message.IsError())
-                    {
-                        NavigarionManager.MainFrame.Content = new MyHistoryPage();
-                    }
-                });
+                if (myHistoryNavigate == null) myHistoryNavigate = new NavigateCommand(this, new MyHistoryPage(),true);
+                return myHistoryNavigate;
             }
         }
+        private ICommand orderPageNavigate;
         public ICommand OrderPageNavigate
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    NavigarionManager.MainFrame.Content = new OrdersPage();
-                });
+                if (orderPageNavigate == null) orderPageNavigate = new NavigateCommand(this, new OrdersPage(),true);
+                return orderPageNavigate;
             }
         }
+        private ICommand categoryNavigate;
         public ICommand CategoryNavigate
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    NavigarionManager.MainFrame.Content = new CategoryPage();
-                });
+                if (categoryNavigate == null) categoryNavigate = new NavigateCommand(this, new CategoryPage(),true);
+                return categoryNavigate;
             }
         }
 
-        public virtual ICommand AutorizationNavigate
+        private ICommand autorizationNavigate;
+        public ICommand AutorizationNavigate
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    AccountManager.ResetAccount();
-                    MainWindow.MainWindowFrame.Content = new AutorizationPage();
-                });
+                if (autorizationNavigate == null) autorizationNavigate = new NavigateCommand(this, new AutorizationPage(), false);
+                return autorizationNavigate;
             }
         }
 
-
-
-        public ICommand AddProduct
+        private ICommand addProductNavigate;
+        public ICommand AddProductNavigate
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    NavigarionManager.MainFrame.Content = new EditInfoProductPage(null);
-                });
+                if (addProductNavigate == null) addProductNavigate = new NavigateCommand(this, new EditInfoProductPage(),true);
+                return addProductNavigate;
             }
         }
         public string TextButton { get; private set; }
