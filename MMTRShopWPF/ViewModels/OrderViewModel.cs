@@ -69,6 +69,15 @@ namespace MMTRShopWPF.Commands
 
         private List<OrderContent> cartOrders = new List<OrderContent>();
         private List<Cart> carts = new List<Cart>();
+        public List<Cart> Carts
+        {
+            get { return carts; }
+            set
+            {
+                carts = value;
+                OnPropertyChanged(nameof(Carts));
+            }
+        }
 
         #region Способ оплаты
         private bool isPayNow;
@@ -118,23 +127,13 @@ namespace MMTRShopWPF.Commands
         }
         #endregion
 
+        private ICommand placeAnOrder;
         public ICommand PlaceAnOrder
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    if (CheckAll())
-{
-                        Order.DateOrder = DateTime.Now;
-                        Order.DateDelivery = Order.DateOrder;
-                        Order.ClientId = AccountManager.Client.Id;
-                        OrderService.CreateOrder(Order);
-                        OrderContentService.CreateOrderContent(Order);
-                        CartService.ClearCart(carts);
-                        NavigarionManager.MainFrame.Content = new MyOrderPage();
-                    }
-                });
+                if (placeAnOrder == null) placeAnOrder = new PlaceAnOrderCommand(this);
+                return placeAnOrder;
             }
         }
         public ICommand CloseWin
@@ -147,24 +146,5 @@ namespace MMTRShopWPF.Commands
                 });
             }
         }
-
-        #region Проверки введёных полей
-        
-        private bool CheckAll()
-        {
-
-            if (IsPayNow)
-            {
-                Message = OrderService.CheckWrittenRequisitesBankCard(BankCardVM.BankCard);
-                if (Message.IsError()) return false;
-                Message = OrderService.CheckCorrectnessRequisitesBankCard(BankCardVM.BankCard);
-                if (Message.IsError()) return false;
-            }
-            Message = OrderService.CheckAddress(Order.Address);
-            if (Message.IsError()) return false;
-            return true;
-        }
-        #endregion
-
     }
 }
