@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace MMTRShopWPF.Commands
 {
-    public class AddInCartCommand:MyCommand<InfoProductViewModel>
+    public class AddInCartCommand:BaseCommand<InfoProductViewModel>
     {
         CartService CartService = new CartService();
         public AddInCartCommand(InfoProductViewModel infoProductViewModel) : base(infoProductViewModel)

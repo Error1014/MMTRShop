@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Commands
 {
-    public class CartProductPlusCommand:MyCommand<CartViewModel>
+    public class CartProductPlusCommand:BaseCommand<CartViewModel>
     {
         private CartService CartService = new CartService();
         public CartProductPlusCommand(CartViewModel cartViewModel) : base(cartViewModel)

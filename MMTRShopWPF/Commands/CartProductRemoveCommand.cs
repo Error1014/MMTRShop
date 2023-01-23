@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Commands
 {
-    public class CartProductRemoveCommand:MyCommand<CartViewModel>
+    public class CartProductRemoveCommand:BaseCommand<CartViewModel>
     {
         private CartService CartService = new CartService();
         public CartProductRemoveCommand(CartViewModel cartViewModel) : base(cartViewModel)

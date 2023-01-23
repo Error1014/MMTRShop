@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Commands
 {
-    public class AddCategoryCommand:MyCommand<CategoryViewModel>
+    public class AddCategoryCommand:BaseCommand<CategoryViewModel>
     {
         CategoryService categoryService = new CategoryService();
         public AddCategoryCommand(CategoryViewModel categoryViewModel) : base(categoryViewModel)

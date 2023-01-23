@@ -109,7 +109,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     NavigarionManager.MainFrame.Content = new OrdersPage();
                 });
@@ -119,7 +119,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     OrderService.SaveOrder();
                     NavigarionManager.MainFrame.Content = new OrdersPage();
@@ -130,7 +130,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                 });
             }

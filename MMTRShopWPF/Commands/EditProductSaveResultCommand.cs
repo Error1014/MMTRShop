@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Commands
 {
-    public class EditProductSaveResultCommand: MyCommand<EditProductViewModel>
+    public class EditProductSaveResultCommand: BaseCommand<EditProductViewModel>
     {
         ProductService ProductService = new ProductService();
         public EditProductSaveResultCommand(EditProductViewModel editProductViewModel) : base(editProductViewModel)

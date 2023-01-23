@@ -69,7 +69,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     VisibilityEditButton = false;
                 });
@@ -79,7 +79,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     VisibilityEditButton = true;
                     NavigarionManager.MainFrame.Content = new AccountPage();
@@ -91,7 +91,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     VisibilityEditButton = true;
                     AccountService.Save();

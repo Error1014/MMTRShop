@@ -65,7 +65,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     NavigarionManager.MainFrame.Content = new MakingAnOrderPage();
                 });

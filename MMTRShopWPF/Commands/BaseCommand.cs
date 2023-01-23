@@ -7,32 +7,15 @@ using System.Windows.Input;
 
 namespace MMTRShopWPF.Commands
 {
-    public class BaseCommand : ICommand
+    public abstract class BaseCommand<TViewModel> : ICommand where TViewModel : class
     {
-
-        protected Action<object> execute;
-        protected Func<object, bool> canExecute;
-
-        public event EventHandler CanExecuteChanged
+        protected TViewModel viewModel;
+        public BaseCommand(TViewModel viewModel)
         {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
+            this.viewModel = viewModel;
         }
-
-        public BaseCommand(Action<object> execute, Func<object, bool> canExecute = null)
-        {
-            this.execute = execute;
-            this.canExecute = canExecute;
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return this.canExecute == null || this.canExecute(parameter);
-        }
-
-        public void Execute(object parameter)
-        {
-            this.execute(parameter);
-        }
+        public event EventHandler CanExecuteChanged;
+        public abstract bool CanExecute(object parameter);
+        public abstract void Execute(object parameter);
     }
 }

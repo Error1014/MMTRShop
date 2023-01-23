@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Commands
 {
-    public class CompleteFeedbackCommand : MyCommand<MyHistoryViewModel>
+    public class CompleteFeedbackCommand : BaseCommand<MyHistoryViewModel>
     {
         private FeedbackService FeedbackService = new FeedbackService();
         public CompleteFeedbackCommand(MyHistoryViewModel myHistoryViewModel) : base(myHistoryViewModel)

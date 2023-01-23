@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Commands
 {
-    public class RemoveCategoryCommand: MyCommand<CategoryViewModel>
+    public class RemoveCategoryCommand: BaseCommand<CategoryViewModel>
     {
         CategoryService categoryService = new CategoryService();
         public RemoveCategoryCommand(CategoryViewModel categoryViewModel) : base(categoryViewModel)

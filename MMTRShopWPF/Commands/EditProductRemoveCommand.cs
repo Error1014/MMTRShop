@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Commands
 {
-    public class EditProductRemoveCommand:MyCommand<EditProductViewModel>
+    public class EditProductRemoveCommand:BaseCommand<EditProductViewModel>
     {
         ProductService ProductService = new ProductService();
         public EditProductRemoveCommand(EditProductViewModel editProductViewModel) : base(editProductViewModel)

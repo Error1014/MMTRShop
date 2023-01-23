@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace MMTRShopWPF.Commands
 {
-    public class AddRatingCommentCommand:MyCommand<MyHistoryViewModel>
+    public class AddRatingCommentCommand:BaseCommand<MyHistoryViewModel>
     {
         public AddRatingCommentCommand(MyHistoryViewModel myHistoryViewModel) : base(myHistoryViewModel)
         {

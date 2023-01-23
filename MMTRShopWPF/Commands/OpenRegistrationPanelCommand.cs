@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Commands
 {
-    public class OpenRegistrationPanelCommand : MyCommand<AutorizationViewModel>
+    public class OpenRegistrationPanelCommand : BaseCommand<AutorizationViewModel>
     {
         public OpenRegistrationPanelCommand(AutorizationViewModel autorizationViewModel) : base(autorizationViewModel)
         {

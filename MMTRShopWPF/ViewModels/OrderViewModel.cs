@@ -97,7 +97,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     IsPayNow = false;
                     BlockBankCardOpacity = 0.5f;
@@ -109,7 +109,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     IsPayNow = true;
                     BlockBankCardOpacity = 1f;
@@ -122,7 +122,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     if (CheckAll())
 {
@@ -141,7 +141,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     Message = new Message();
                 });

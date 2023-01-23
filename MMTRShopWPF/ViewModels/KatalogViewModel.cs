@@ -112,7 +112,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     if (NumPage < countPage)
                     {
@@ -128,7 +128,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     if (NumPage > 1)
                     {

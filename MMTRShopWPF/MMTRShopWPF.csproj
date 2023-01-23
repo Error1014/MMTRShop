@@ -79,7 +79,7 @@
     <Compile Include="Commands\EditProductSaveResultCommand.cs" />
     <Compile Include="Commands\OpenRegistrationPanelCommand.cs" />
     <Compile Include="Commands\AutorizationUserCommand.cs" />
-    <Compile Include="Commands\MyCommand.cs" />
+    <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\RegistrationUserCommand.cs" />
     <Compile Include="Commands\RemoveCategoryCommand.cs" />
     <Compile Include="Commands\RemoveFavouritCommand.cs" />
@@ -130,7 +130,7 @@
     <Compile Include="ViewModels\BankCardViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
-    <Compile Include="Commands\BaseCommand.cs" />
+    <Compile Include="Commands\Commands.cs" />
     <Compile Include="ViewModels\EditProductViewModel.cs" />
     <Compile Include="ViewModels\FavouritesViewModel.cs" />
     <Compile Include="ViewModels\InfoProductViewModel.cs" />

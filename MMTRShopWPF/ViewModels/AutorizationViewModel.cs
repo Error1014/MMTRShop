@@ -121,7 +121,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     MainWindow.MainWindowFrame.Content = new MainPage();
                 });

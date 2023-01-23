@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace MMTRShopWPF.Commands
 {
-    public class CartProductMinusCommand:MyCommand<CartViewModel>
+    public class CartProductMinusCommand:BaseCommand<CartViewModel>
     {
         private CartService CartService = new CartService();
         public CartProductMinusCommand(CartViewModel cartViewModel) : base(cartViewModel)

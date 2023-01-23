@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace MMTRShopWPF.Commands
 {
-    public class ClickLikeCommand:MyCommand<InfoProductViewModel>
+    public class ClickLikeCommand:BaseCommand<InfoProductViewModel>
     {
         private FavouritesService FavouritesService = new FavouritesService();
         public ClickLikeCommand(InfoProductViewModel infoProductViewModel) : base(infoProductViewModel)

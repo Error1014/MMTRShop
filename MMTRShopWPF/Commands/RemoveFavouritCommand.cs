@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace MMTRShopWPF.Commands
 {
-    public class RemoveFavouritCommand:MyCommand<FavouritesViewModel>
+    public class RemoveFavouritCommand:BaseCommand<FavouritesViewModel>
     {
         private FavouritesService FavouritesService = new FavouritesService();
         public RemoveFavouritCommand(FavouritesViewModel favouritesViewModel) : base(favouritesViewModel)

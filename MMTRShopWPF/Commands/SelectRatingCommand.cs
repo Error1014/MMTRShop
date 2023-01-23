@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace MMTRShopWPF.Commands
 {
-    public class SelectRatingCommand : MyCommand<MyHistoryViewModel>
+    public class SelectRatingCommand : BaseCommand<MyHistoryViewModel>
     {
         public SelectRatingCommand(MyHistoryViewModel myHistoryViewModel) : base(myHistoryViewModel)
         {

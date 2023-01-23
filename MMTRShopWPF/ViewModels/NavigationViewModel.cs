@@ -71,7 +71,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     Message = NavigationService.CheckAutorisation();
                     if (!Message.IsError())
@@ -85,7 +85,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     Message = NavigationService.CheckAutorisation();
                     if (!Message.IsError())
@@ -99,7 +99,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     Message = new Message(false);
                 });
@@ -110,7 +110,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     NavigarionManager.MainFrame.Content = new KatalogPage();
                 });
@@ -121,7 +121,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     Message = NavigationService.CheckAutorisation();
                     if (!Message.IsError())
@@ -136,7 +136,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     Message = NavigationService.CheckAutorisation();
                     if (!Message.IsError())
@@ -151,7 +151,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     Message = NavigationService.CheckAutorisation();
                     if (!Message.IsError())
@@ -165,7 +165,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     NavigarionManager.MainFrame.Content = new OrdersPage();
                 });
@@ -175,7 +175,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     NavigarionManager.MainFrame.Content = new CategoryPage();
                 });
@@ -186,7 +186,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     AccountManager.ResetAccount();
                     MainWindow.MainWindowFrame.Content = new AutorizationPage();
@@ -200,7 +200,7 @@ namespace MMTRShopWPF.Commands
         {
             get
             {
-                return new BaseCommand((obj) =>
+                return new Commands((obj) =>
                 {
                     NavigarionManager.MainFrame.Content = new EditInfoProductPage(null);
                 });

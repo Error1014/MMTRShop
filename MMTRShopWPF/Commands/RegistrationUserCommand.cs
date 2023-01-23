@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Commands
 {
-    public class RegistrationUserCommand:MyCommand<AutorizationViewModel>
+    public class RegistrationUserCommand:BaseCommand<AutorizationViewModel>
     {
         private AutorizationService AutorizationService = new AutorizationService();
         public RegistrationUserCommand(AutorizationViewModel autorizationViewModel) : base(autorizationViewModel)

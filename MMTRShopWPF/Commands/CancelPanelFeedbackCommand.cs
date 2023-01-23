@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShopWPF.Commands
 {
-    public class CancelPanelFeedbackCommand:MyCommand<MyHistoryViewModel>
+    public class CancelPanelFeedbackCommand:BaseCommand<MyHistoryViewModel>
     {
         public CancelPanelFeedbackCommand(MyHistoryViewModel myHistoryViewModel) : base(myHistoryViewModel)
         {
