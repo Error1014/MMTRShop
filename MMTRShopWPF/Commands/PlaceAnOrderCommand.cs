@@ -28,10 +28,11 @@ namespace MMTRShopWPF.Commands
             {
                 viewModel.Order.DateOrder = DateTime.Now;
                 viewModel.Order.DateDelivery = viewModel.Order.DateOrder;
+                viewModel.Order.StatusId = viewModel.Status.Id;
                 viewModel.Order.ClientId = AccountManager.Client.Id;
                 OrderService.CreateOrder(viewModel.Order);
                 OrderContentService.CreateOrderContent(viewModel.Order);
-                CartService.ClearCart(viewModel.Carts.ToList());
+                CartService.ClearCart();
                 NavigarionManager.MainFrame.Content = new MyOrderPage();
             }
         }

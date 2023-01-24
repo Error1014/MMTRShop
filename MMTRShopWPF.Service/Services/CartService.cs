@@ -66,8 +66,9 @@ namespace MMTRShopWPF.Service.Services
             UnitOfWork.Carts.Save();
         }
 
-        public void ClearCart(List<Cart> carts)
+        public void ClearCart()
         {
+            var carts = GetCart();
             UnitOfWork.Carts.RemoveRange(carts);
             UnitOfWork.Carts.Save();
         }
