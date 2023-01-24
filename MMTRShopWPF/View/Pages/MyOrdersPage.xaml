@@ -3,15 +3,18 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:MMTRShopWPF.View.Pages" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:local="clr-namespace:MMTRShopWPF.View.Pages" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:vm="clr-namespace:MMTRShopWPF.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MyOrderPage" DataContext="{StaticResource MyOrderVM}">
+      Title="MyOrderPage" DataContext="{DynamicResource MyOrderVM}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded" >
             <i:InvokeCommandAction Command="{Binding GetOrderContentsNoСompleted}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Page.Resources>
+        <vm:MyOrderViewModel x:Key="MyOrderVM"/>
+    </Page.Resources>
     <Grid Background="White">
         <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListProducts"  ItemsSource="{Binding OrderContents}" HorizontalAlignment="Center">
             <ListView.ItemsPanel>

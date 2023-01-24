@@ -13,8 +13,6 @@ namespace MMTRShopWPF.View.Pages
         public CartPage()
         {
             InitializeComponent();
-            CartViewModel cartViewModel = new CartViewModel();
-            DataContext = cartViewModel;
         }
     }
 }

@@ -23,13 +23,17 @@ namespace MMTRShopWPF.Commands
         public override void Execute(object parameter)
         {
             Product product = ProductService.GetProduct(viewModel.Product);
+            if (viewModel.IsAdd)
+            {
+                product = new Product();
+            }
             product.Title = viewModel.Title;
             product.Price = viewModel.Price;
             product.Discount = viewModel.Discount;
             product.Description = viewModel.Description;
             product.CategoryId = viewModel.SelectCategory.Id;
             product.BrandId = viewModel.SelectBrand.Id;
-            ProductService.SeveResultEdit(viewModel.IsAdd, viewModel.Product);
+            ProductService.SeveResultEdit(viewModel.IsAdd, product);
             NavigarionManager.MainFrame.Content = new KatalogPage();
         }
     }

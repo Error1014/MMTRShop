@@ -34,12 +34,12 @@ namespace MMTRShopWPF.ViewModels
             }
             if (product == null)
             {
-                isAdd = true;
+                IsAdd = true;
                 Product = new Product();
             }
             else
             {
-                isAdd = false;
+                IsAdd = false;
                 Product = ProductService.GetProduct(product);
             }
         }
@@ -136,7 +136,7 @@ namespace MMTRShopWPF.ViewModels
             }
         }
         #endregion
-        private bool isAdd;
+        private bool isAdd = false;
         public bool IsAdd
         {
             get { return isAdd; }
