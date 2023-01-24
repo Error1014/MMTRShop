@@ -3,11 +3,15 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:MMTRShopWPF.View.Pages"
+      xmlns:local="clr-namespace:MMTRShopWPF.View.Pages" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="OrdersPage" DataContext="{StaticResource OperatorOrderVM}">
-
+      Title="OrdersPage" DataContext="{DynamicResource OperatorOrderVM}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded" >
+            <i:InvokeCommandAction Command="{Binding GetOrders}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid Background="White">
         <DataGrid ItemsSource="{Binding Orders}" AutoGenerateColumns="False" IsReadOnly="True" SelectedItem="{Binding SelectedOrder}">
             <DataGrid.Columns>

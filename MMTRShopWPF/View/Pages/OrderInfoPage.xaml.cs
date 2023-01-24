@@ -25,7 +25,7 @@ namespace MMTRShopWPF.View.Pages
         public OrderInfoPage(Order order)
         {
             InitializeComponent();
-            OperatorOrderViewModel operatorOrderViewModel = new OperatorOrderViewModel(order);
+            InfoOperatorOrderViewModel operatorOrderViewModel = new InfoOperatorOrderViewModel(order);
             DataContext = operatorOrderViewModel;
         }
     }

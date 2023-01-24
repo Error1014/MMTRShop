@@ -24,7 +24,6 @@ namespace MMTRShopWPF.View.Pages
         public OrdersPage()
         {
             InitializeComponent();
-
         }
     }
 }

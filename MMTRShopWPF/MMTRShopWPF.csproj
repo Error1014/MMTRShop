@@ -88,6 +88,7 @@
     <Compile Include="Commands\LoadedMyHistoryVMCommand.cs" />
     <Compile Include="Commands\LoadedMyViewModelCommand.cs" />
     <Compile Include="Commands\LoadedKatalogVMCommand.cs" />
+    <Compile Include="Commands\LoadedOperatorOrderVMCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Commands\OpenRegistrationPanelCommand.cs" />
     <Compile Include="Commands\AutorizationUserCommand.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Commands\RemoveFavouritCommand.cs" />
     <Compile Include="Commands\SaveAccountSettingsCommand.cs" />
     <Compile Include="Commands\SaveCategoryCommand.cs" />
+    <Compile Include="Commands\SaveOperatorOrderCommand.cs" />
     <Compile Include="Commands\SelectRatingCommand.cs" />
     <Compile Include="Components\BindingPassword.xaml.cs">
       <DependentUpon>BindingPassword.xaml</DependentUpon>
@@ -145,6 +147,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="Commands\Commands.cs" />
+    <Compile Include="ViewModels\InfoOperatorOrderViewModel.cs" />
     <Compile Include="ViewModels\EditProductViewModel.cs" />
     <Compile Include="ViewModels\FavouritesViewModel.cs" />
     <Compile Include="ViewModels\InfoProductViewModel.cs" />
