@@ -15,7 +15,7 @@ namespace MMTRShopWPF.Service.Services
     public class OrderService
     {
         private Message Message = new Message();
-        UnitOfWork UnitOfWork { get; set; }
+        private readonly UnitOfWork UnitOfWork;
         public OrderService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());

@@ -8,7 +8,7 @@ namespace MMTRShopWPF.Service.Services
     public class AutorizationService
     {
         private Message Message = new Message();
-        UnitOfWork UnitOfWork { get; set; }
+        private readonly UnitOfWork UnitOfWork;
         public AutorizationService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());

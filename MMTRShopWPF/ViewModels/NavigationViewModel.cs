@@ -83,7 +83,7 @@ namespace MMTRShopWPF.ViewModels
         //{
         //    get
         //    {
-        //        if (accountNavigate == null) accountNavigate = new NavigateCommand(this, new AccountPage(),true);
+        //        if (accountNavigate == null) accountNavigate = new NavigateCommand(this, new AccountPage(), true);
         //        return accountNavigate;
         //    }
         //}

@@ -9,7 +9,7 @@ namespace MMTRShopWPF.Service.Services
 {
     public class FavouritesService
     {
-        UnitOfWork UnitOfWork { get; set; }
+        private readonly UnitOfWork UnitOfWork;
         public FavouritesService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());

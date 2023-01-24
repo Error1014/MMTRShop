@@ -10,7 +10,7 @@ namespace MMTRShopWPF.Service.Services
 {
     public class BrandService
     {
-        UnitOfWork UnitOfWork { get; set; }
+        private readonly UnitOfWork UnitOfWork;
         public BrandService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());

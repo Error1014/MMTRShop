@@ -11,7 +11,7 @@ namespace MMTRShopWPF.Service.Services
 {
     public class CartService
     {
-        UnitOfWork UnitOfWork { get; set; }
+        private readonly UnitOfWork UnitOfWork;
         public CartService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());

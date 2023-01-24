@@ -7,7 +7,7 @@ namespace MMTRShopWPF.Service.Services
 {
     public  class BankCardService
     {
-        UnitOfWork UnitOfWork { get; set; }
+        private readonly UnitOfWork UnitOfWork;
         public BankCardService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());

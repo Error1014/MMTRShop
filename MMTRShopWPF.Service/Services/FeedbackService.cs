@@ -11,7 +11,7 @@ namespace MMTRShopWPF.Service.Services
 {
     public class FeedbackService
     {
-        UnitOfWork UnitOfWork { get; set; }
+        private readonly UnitOfWork UnitOfWork;
         public FeedbackService()
         {
             UnitOfWork = new UnitOfWork(new ShopContext());
