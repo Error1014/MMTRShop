@@ -46,7 +46,7 @@ namespace MMTRShopWPF.Service.Services
 
         public List<OrderContent> GetCancelledOrder()
         {
-            return UnitOfWork.OrderContents.GetCanceledOrder();
+            return UnitOfWork.OrderContents.GetCanceledOrder(AccountManager.Client);
         }
     }
 }

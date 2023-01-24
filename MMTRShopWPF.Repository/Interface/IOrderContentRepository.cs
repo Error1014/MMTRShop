@@ -8,6 +8,6 @@ namespace MMTRShopWPF.Repository.Interface
     {
         List<OrderContent> GetOrderContents(Order order);
 
-        List<OrderContent> GetCanceledOrder();
+        List<OrderContent> GetCanceledOrder(Client client);
     }
 }
