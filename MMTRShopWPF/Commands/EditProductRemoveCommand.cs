@@ -1,4 +1,5 @@
-﻿using MMTRShopWPF.Service.Services;
+﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModels;
 using System;
@@ -21,6 +22,7 @@ namespace MMTRShopWPF.Commands
         }
         public override void Execute(object parameter)
         {
+            Product product = ProductService.GetProduct(viewModel.Product);
             ProductService.RemoveResultEdit(viewModel.IsAdd, viewModel.Product);
             NavigarionManager.MainFrame.Content = new KatalogPage();
         }

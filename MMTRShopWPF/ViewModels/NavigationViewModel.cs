@@ -172,7 +172,7 @@ namespace MMTRShopWPF.ViewModels
         {
             get
             {
-                if (addProductNavigate == null) addProductNavigate = new NavigateCommand(this, new EditInfoProductPage(),true);
+                if (addProductNavigate == null) addProductNavigate = new NavigateCommand(this, new EditInfoProductPage(null),true);
                 return addProductNavigate;
             }
         }

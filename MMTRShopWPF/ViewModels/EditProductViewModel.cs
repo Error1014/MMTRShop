@@ -17,6 +17,7 @@ namespace MMTRShopWPF.ViewModels
         private CategoryService CategoryService = new CategoryService();
         protected BrandService BrandService = new BrandService();
         private ProductService ProductService = new ProductService();
+
         public EditProductViewModel(Product product)
         {
             AllCategory = CategoryService.GetAllCategory();
@@ -42,8 +43,8 @@ namespace MMTRShopWPF.ViewModels
                 Product = ProductService.GetProduct(product);
             }
         }
+        #region Product
         private Product product = new Product();
-
         public Product Product
         {
             get
@@ -53,23 +54,59 @@ namespace MMTRShopWPF.ViewModels
             set
             {
                 product = value;
+                Title = value.Title;
+                Price = value.Price;
+                Discount = value.Discount;
+                Description = value.Description;
                 SelectCategory = CategoryService.GetCategory(value)==null? AllCategory[0] : CategoryService.GetCategory(value);
                 SelectBrand = BrandService.GetBrand(value)==null? AllBrand[0] : BrandService.GetBrand(value);
                 OnPropertyChanged(nameof(Product));
             }
         }
-
-        private bool isAdd;
-        public bool IsAdd
+        private string title;
+        public string Title
         {
-            get { return isAdd; }
+            get { return title; }
             set
             {
-                isAdd = value;
-                OnPropertyChanged(nameof(IsAdd));
+                title = value;
+                OnPropertyChanged(nameof(Title));
             }
+
         }
-        public List<Category> AllCategory { get; private set; }
+        private decimal price;
+        public decimal Price
+        {
+            get { return price; }
+            set
+            {
+                price = value;
+                OnPropertyChanged(nameof(Price));
+            }
+
+        }
+        private int discount;
+        public int Discount
+        {
+            get { return discount; }
+            set
+            {
+                discount = value;
+                OnPropertyChanged(nameof(Discount));
+            }
+
+        }
+        private string description;
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                description = value;
+                OnPropertyChanged(nameof(Description));
+            }
+
+        }
         private Category selectCategory;
         public Category SelectCategory
         {
@@ -77,15 +114,13 @@ namespace MMTRShopWPF.ViewModels
             set
             {
                 selectCategory = value;
-                if (value!=null)
+                if (value != null)
                 {
                     Product.CategoryId = value.Id;
                 }
                 OnPropertyChanged(nameof(SelectCategory));
             }
         }
-        
-        public List<Brand> AllBrand { get; private set; }
         protected Brand selectBrand;
         public Brand SelectBrand
         {
@@ -100,6 +135,22 @@ namespace MMTRShopWPF.ViewModels
                 OnPropertyChanged(nameof(SelectBrand));
             }
         }
+        #endregion
+        private bool isAdd;
+        public bool IsAdd
+        {
+            get { return isAdd; }
+            set
+            {
+                isAdd = value;
+                OnPropertyChanged(nameof(IsAdd));
+            }
+        }
+        public List<Category> AllCategory { get; private set; }
+        
+        
+        public List<Brand> AllBrand { get; private set; }
+        
         private ICommand saveResult;
 
         public ICommand SaveResult
