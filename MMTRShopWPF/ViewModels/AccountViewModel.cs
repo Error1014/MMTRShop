@@ -12,37 +12,111 @@ using System.Windows.Input;
 
 namespace MMTRShopWPF.ViewModels
 {
-    public class AccountViewModel:BaseViewModel
+    public class AccountViewModel : BaseViewModel
     {
-        private AccountService AccountService = new AccountService();
-
+        #region User
         private User user;
         public User User
         {
-            get 
-            {
-                if (user==null) User = AccountService.GetUser();
-                return user; 
-            }
+            get { return user; }
             set
             {
                 user = value;
+                LastName = value.LastName;
+                FirstName = value.FirstName;
+                Patronymic = value.Patronymic;
                 OnPropertyChanged(nameof(User));
             }
         }
 
+        private string lastName;
+        public string LastName
+        {
+            get { return lastName; }
+            set
+            {
+                lastName = value;
+                OnPropertyChanged(nameof(LastName));
+            }
+        }
+        private string firstName;
+        public string FirstName
+        {
+            get { return firstName; }
+            set
+            {
+                firstName = value;
+                OnPropertyChanged(nameof(FirstName));
+            }
+        }
+        private string patronymic;
+        public string Patronymic
+        {
+            get { return patronymic; }
+            set
+            {
+                patronymic = value;
+                OnPropertyChanged(nameof(Patronymic));
+            }
+        }
+        #endregion
+        #region Client
         private Client client;
         public Client Client
         {
-            get 
-            {
-                if (client == null) Client = AccountService.GetClient();
-                return client;
-            }
+            get { return client; }
             set
             {
                 client = value;
+                Email = value.Email;
+                Phone = value.Phone;
+                Address = value.Address;
                 OnPropertyChanged(nameof(Client));
+            }
+        }
+
+        private string email;
+        public string Email
+        {
+            get { return email; }
+            set
+            {
+                email = value;
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+
+        private string phone;
+        public string Phone
+        {
+            get { return phone; }
+            set
+            {
+                phone = value;
+                OnPropertyChanged(nameof(Phone));
+            }
+        }
+
+        private string address;
+        public string Address
+        {
+            get { return address; }
+            set
+            {
+                address = value;
+                OnPropertyChanged(nameof(Address));
+            }
+        }
+        #endregion
+
+
+        private ICommand loadedAcountVM;
+        public ICommand LoadedAcountVM
+        {
+            get
+            {
+                if (loadedAcountVM == null) loadedAcountVM = new LoadedAccountVMCommand(this);
+                return loadedAcountVM;
             }
         }
 
@@ -78,27 +152,22 @@ namespace MMTRShopWPF.ViewModels
                 });
             }
         }
+        private ICommand cancel;
         public ICommand Cancel
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    VisibilityEditButton = true;
-                    NavigarionManager.MainFrame.Content = new AccountPage();
-
-                });
+                if (cancel == null) cancel = new CancelEditCommand(this);
+                return cancel;
             }
         }
+        private ICommand save;
         public ICommand Save
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    VisibilityEditButton = true;
-                    AccountService.Save();
-                });
+                if (save == null) save = new SaveAccountSettingsCommand(this);
+                return save;
             }
         }
     }

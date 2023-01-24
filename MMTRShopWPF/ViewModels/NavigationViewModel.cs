@@ -78,15 +78,15 @@ namespace MMTRShopWPF.ViewModels
             }
         }
 
-        //public ICommand accountNavigate;
-        //public ICommand AccountNavigate
-        //{
-        //    get
-        //    {
-        //        if (accountNavigate == null) accountNavigate = new NavigateCommand(this, new AccountPage(), true);
-        //        return accountNavigate;
-        //    }
-        //}
+        public ICommand accountNavigate;
+        public ICommand AccountNavigate
+        {
+            get
+            {
+                if (accountNavigate == null) accountNavigate = new NavigateCommand(this, new AccountPage(), true);
+                return accountNavigate;
+            }
+        }
 
         public ICommand CloseWin
         {

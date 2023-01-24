@@ -36,6 +36,7 @@ namespace MMTRShopWPF.Commands
             }
             else
             {
+                viewModel.Message = new Message(false);
                 NavigarionManager.MainFrame.Content = page;
             }
         }
