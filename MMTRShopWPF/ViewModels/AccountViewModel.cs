@@ -127,7 +127,6 @@ namespace MMTRShopWPF.ViewModels
             set
             {
                 visibilityEditButton = value;
-                VisibilitySaveAndCancelButton = !value;
                 OnPropertyChanged(nameof(VisibilityEditButton));
             }
         }
@@ -142,14 +141,13 @@ namespace MMTRShopWPF.ViewModels
             }
         }
 
+        private ICommand edit;
         public ICommand Edit
         {
             get
             {
-                return new Commands((obj) =>
-                {
-                    VisibilityEditButton = false;
-                });
+                if (edit==null) edit = new ClickEditCommand(this);
+                return edit;
             }
         }
         private ICommand cancel;
