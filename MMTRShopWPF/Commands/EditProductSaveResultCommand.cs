@@ -1,4 +1,5 @@
 ﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModels;
@@ -12,7 +13,7 @@ namespace MMTRShopWPF.Commands
 {
     public class EditProductSaveResultCommand: BaseCommand<EditProductViewModel>
     {
-        ProductService ProductService = new ProductService();
+        ProductService ProductService = new ProductService(new UnitOfWork(new ShopContext()));
         public EditProductSaveResultCommand(EditProductViewModel editProductViewModel) : base(editProductViewModel)
         {
         }

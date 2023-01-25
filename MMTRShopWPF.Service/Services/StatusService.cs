@@ -10,23 +10,23 @@ namespace MMTRShopWPF.Service.Services
 {
     public class StatusService
     {
-        private readonly UnitOfWork UnitOfWork;
-        public StatusService()
+        private readonly UnitOfWork _unitOfWork;
+        public StatusService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
 
         public List<Status> GetAll()
         {
-            return UnitOfWork.Status.GetAll().ToList();
+            return _unitOfWork.Status.GetAll().ToList();
         }
         public Status GetStatus(Order order)
         {
-            return UnitOfWork.Status.Find(s=>s.Id == order.StatusId);
+            return _unitOfWork.Status.Find(s=>s.Id == order.StatusId);
         }
         public Status GetStatusWaitingPlaced()
         {
-            return UnitOfWork.Status.SetStatusWaitingPlaced();
+            return _unitOfWork.Status.SetStatusWaitingPlaced();
         }
     }
 }

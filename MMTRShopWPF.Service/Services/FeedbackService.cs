@@ -11,19 +11,19 @@ namespace MMTRShopWPF.Service.Services
 {
     public class FeedbackService
     {
-        private readonly UnitOfWork UnitOfWork;
-        public FeedbackService()
+        private readonly UnitOfWork _unitOfWork;
+        public FeedbackService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
 
         public void AddFeedback(Feedback feedback)
         {
-            UnitOfWork.Feedbacks.Add(feedback);
+            _unitOfWork.Feedbacks.Add(feedback);
         }
         public void SaveFeedback()
         {
-            UnitOfWork.Feedbacks.Save();
+            _unitOfWork.Feedbacks.Save();
         }
 
     }

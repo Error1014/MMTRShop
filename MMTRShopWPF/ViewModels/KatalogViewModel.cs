@@ -11,12 +11,13 @@ using System.Windows.Input;
 using MMTRShopWPF.Service.Services;
 using System.Linq;
 using MMTRShopWPF.Commands;
+using MMTRShopWPF.Repository.Repositories;
 
 namespace MMTRShopWPF.ViewModels
 {
     public class KatalogViewModel : BaseViewModel
     {
-        private ProductService ProductService = new ProductService();
+        private ProductService ProductService = new ProductService(new UnitOfWork(new ShopContext()));
 
         #region Filtration Category
 

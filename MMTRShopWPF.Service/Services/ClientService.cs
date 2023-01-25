@@ -10,14 +10,14 @@ namespace MMTRShopWPF.Service.Services
 {
     public class ClientService
     {
-        private readonly UnitOfWork UnitOfWork;
-        public ClientService()
+        private readonly UnitOfWork _unitOfWork;
+        public ClientService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
         public Client GetClient(Order order)
         {
-            return UnitOfWork.Clients.GetById(order.ClientId);
+            return _unitOfWork.Clients.GetById(order.ClientId);
         }
     }
 }

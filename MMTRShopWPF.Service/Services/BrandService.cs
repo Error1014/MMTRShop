@@ -10,18 +10,18 @@ namespace MMTRShopWPF.Service.Services
 {
     public class BrandService
     {
-        private readonly UnitOfWork UnitOfWork;
-        public BrandService()
+        private readonly UnitOfWork _unitOfWork;
+        public BrandService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
         public List<Brand> GetAllBrand()
         {
-            return UnitOfWork.Brands.GetAll().ToList();
+            return _unitOfWork.Brands.GetAll().ToList();
         }
         public Brand GetBrand(Product product)
         {
-            return UnitOfWork.Brands.Find(b=>b.Id==product.BrandId);
+            return _unitOfWork.Brands.Find(b=>b.Id==product.BrandId);
         }
     }
 }

@@ -15,13 +15,14 @@ using System.Collections.ObjectModel;
 using System.Windows.Documents;
 using System.Net;
 using MMTRShopWPF.Commands;
+using MMTRShopWPF.Repository.Repositories;
 
 namespace MMTRShopWPF.ViewModels
 {
     public class OrderViewModel : BaseViewModel
     {
-        private CartService CartService = new CartService();
-        private StatusService StatusService = new StatusService();
+        private CartService CartService = new CartService(new UnitOfWork(new ShopContext()));
+        private StatusService StatusService = new StatusService(new UnitOfWork(new ShopContext()));
 
         private Order order = new Order();
         public Order Order

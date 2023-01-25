@@ -1,4 +1,6 @@
-﻿using MMTRShopWPF.Service.Services;
+﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
+using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,8 +12,8 @@ namespace MMTRShopWPF.Commands
 {
     public class LoadedMyViewModelCommand: BaseCommand<MyOrderViewModel>
     {
-        private OrderContentService OrderContentService = new OrderContentService();
-        private OrderService OrderService = new OrderService();
+        private OrderContentService OrderContentService = new OrderContentService(new UnitOfWork(new ShopContext()));
+        private OrderService OrderService = new OrderService(new UnitOfWork(new ShopContext()));
         public LoadedMyViewModelCommand(MyOrderViewModel myOrderViewModel) : base(myOrderViewModel)
         {
         }

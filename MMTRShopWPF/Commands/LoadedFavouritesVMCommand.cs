@@ -1,4 +1,5 @@
 ﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModels;
@@ -13,7 +14,7 @@ namespace MMTRShopWPF.Commands
 {
     public class LoadedFavouritesVMCommand:BaseCommand<FavouritesViewModel>
     {
-        FavouritesService FavouritesService = new FavouritesService();
+        FavouritesService FavouritesService = new FavouritesService(new UnitOfWork(new ShopContext()));
         public LoadedFavouritesVMCommand(FavouritesViewModel favouritesViewModel) : base(favouritesViewModel)
         {
         }

@@ -9,14 +9,15 @@ using System.Windows.Input;
 using System.Windows;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.Commands;
+using MMTRShopWPF.Repository.Repositories;
 
 namespace MMTRShopWPF.ViewModels
 {
     public class InfoProductViewModel: BaseViewModel
     {
         private int countShow = 4;
-        private CartService CartService = new CartService();
-        private FavouritesService FavouritesService = new FavouritesService();
+        private CartService CartService = new CartService(new UnitOfWork(new ShopContext()));
+        private FavouritesService FavouritesService = new FavouritesService(new UnitOfWork(new ShopContext()));
         public InfoProductViewModel(Product product)
         {
             if (product != null)

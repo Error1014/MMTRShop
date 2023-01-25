@@ -12,57 +12,59 @@ namespace MMTRShopWPF.Service.Services
     public class CategoryService
     {
         private Message Message = new Message();
-        private readonly UnitOfWork UnitOfWork;
+        private readonly UnitOfWork _unitOfWork;
 
-        public CategoryService()
+        public CategoryService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
         public ObservableCollection<Category> GetCategories()
         {
-            var categories = UnitOfWork.Categories.GetAll();
+            var categories = _unitOfWork.Categories.GetAll();
             return new ObservableCollection<Category>(categories);
         }
         public List<Category> GetAllCategory()
         {
-            return UnitOfWork.Categories.GetAll().ToList();
+            return _unitOfWork.Categories.GetAll().ToList();
         }
 
         public Category GetCategory(Product product)
         {
-            return UnitOfWork.Categories.Find(category => category.Id == product.CategoryId);
+            return _unitOfWork.Categories.Find(category => category.Id == product.CategoryId);
         }
         private Category GetCategory(Category  category)
         {
-            return UnitOfWork.Categories.Find(c=>c.Id ==category.Id);
+            return _unitOfWork.Categories.Find(c=>c.Id ==category.Id);
         }
         public void SaveChanges(Category category)
         {
+            if (category == null) return;
             Category categoryDB = GetCategory(category);
             categoryDB.Title = category.Title;
-            UnitOfWork.Categories.Save();
+            _unitOfWork.Categories.Save();
         }
         public void Save()
         {
-            UnitOfWork.Categories.Save();
+            _unitOfWork.Categories.Save();
         }
 
         public void Add(string title)
         {
-            UnitOfWork.Categories.Add(new Category(title));
+            _unitOfWork.Categories.Add(new Category(title));
             Save();
         }
 
 
         public void Remove(Category category)
         {
-            UnitOfWork.Categories.Remove(GetCategory(category));
+            if (category == null) return;
+            _unitOfWork.Categories.Remove(GetCategory(category));
             Save();
         }
 
         public Message CheckToRemove(Category category)
         {
-            var products = UnitOfWork.Products.Find(c => c.CategoryId == category.Id);
+            var products = _unitOfWork.Products.Find(c => c.CategoryId == category.Id);
             if (products==null)
             {
                 return new Message(false);

@@ -1,4 +1,5 @@
 ﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModels;
@@ -12,7 +13,7 @@ namespace MMTRShopWPF.Commands
 {
     public class AutorizationUserCommand : BaseCommand<AutorizationViewModel>
     {
-        private AutorizationService AutorizationService = new AutorizationService();
+        private AutorizationService AutorizationService = new AutorizationService(new UnitOfWork(new ShopContext()));
         public AutorizationUserCommand(AutorizationViewModel autorizationViewModel) : base(autorizationViewModel)
         {
         }

@@ -1,4 +1,5 @@
 ﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModels;
@@ -13,7 +14,7 @@ namespace MMTRShopWPF.Commands
 {
     public class AddInCartCommand:BaseCommand<InfoProductViewModel>
     {
-        CartService CartService = new CartService();
+        CartService CartService = new CartService(new UnitOfWork(new ShopContext()));
         public AddInCartCommand(InfoProductViewModel infoProductViewModel) : base(infoProductViewModel)
         {
         }

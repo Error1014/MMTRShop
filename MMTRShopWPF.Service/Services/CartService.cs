@@ -11,20 +11,20 @@ namespace MMTRShopWPF.Service.Services
 {
     public class CartService
     {
-        private readonly UnitOfWork UnitOfWork;
-        public CartService()
+        private readonly UnitOfWork _unitOfWork;
+        public CartService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
         public List<Cart> GetCart()
         {
-            return  UnitOfWork.Carts.GetCartByClient(AccountManager.Client).ToList();
+            return  _unitOfWork.Carts.GetCartByClient(AccountManager.Client).ToList();
         }
 
 
         public void AddProductInCart(Product product)
         {
-            var myKorzine = UnitOfWork.Carts.GetCartByClient(AccountManager.Client).ToList();
+            var myKorzine = _unitOfWork.Carts.GetCartByClient(AccountManager.Client).ToList();
             bool isNew = true;
             for (int i = 0; i < myKorzine.Count; i++)
             {
@@ -36,13 +36,13 @@ namespace MMTRShopWPF.Service.Services
             }
             if (isNew)
             {
-                UnitOfWork.Carts.Add(new Cart(AccountManager.Client.Id, product.Id, 1));
+                _unitOfWork.Carts.Add(new Cart(AccountManager.Client.Id, product.Id, 1));
             }
-            UnitOfWork.Carts.Save();
+            _unitOfWork.Carts.Save();
         }
         public void CartMinusOneProduct(Guid id)
         {
-            var item = UnitOfWork.Carts.GetById(id);
+            var item = _unitOfWork.Carts.GetById(id);
             if (item.ProductCount > 0)
             {
                 item.ProductCount--;
@@ -51,26 +51,26 @@ namespace MMTRShopWPF.Service.Services
             {
                 CartRemoveProduct(id);
             }
-            UnitOfWork.Carts.Save();
+            _unitOfWork.Carts.Save();
         }
         public void CartPlusOneProduct(Guid id)
         {
-            var item = UnitOfWork.Carts.GetById(id);
+            var item = _unitOfWork.Carts.GetById(id);
             item.ProductCount++;
-            UnitOfWork.Carts.Save();
+            _unitOfWork.Carts.Save();
         }
         public void CartRemoveProduct(Guid id)
         {
-            var item = UnitOfWork.Carts.GetById(id);
-            UnitOfWork.Carts.Remove(item);
-            UnitOfWork.Carts.Save();
+            var item = _unitOfWork.Carts.GetById(id);
+            _unitOfWork.Carts.Remove(item);
+            _unitOfWork.Carts.Save();
         }
 
         public void ClearCart()
         {
             var carts = GetCart();
-            UnitOfWork.Carts.RemoveRange(carts);
-            UnitOfWork.Carts.Save();
+            _unitOfWork.Carts.RemoveRange(carts);
+            _unitOfWork.Carts.Save();
         }
     }
 }

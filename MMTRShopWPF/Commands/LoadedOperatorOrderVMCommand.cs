@@ -1,4 +1,5 @@
 ﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModels;
@@ -12,7 +13,7 @@ namespace MMTRShopWPF.Commands
 {
     public class LoadedOperatorOrderVMCommand : BaseCommand<OperatorOrderViewModel>
     {
-        private OrderService OrderService = new OrderService();
+        private OrderService OrderService = new OrderService(new UnitOfWork(new ShopContext()));
         public LoadedOperatorOrderVMCommand(OperatorOrderViewModel vm) : base(vm)
         {
         }

@@ -7,10 +7,10 @@ namespace MMTRShopWPF.Service.Services
 {
     public  class BankCardService
     {
-        private readonly UnitOfWork UnitOfWork;
-        public BankCardService()
+        private readonly UnitOfWork _unitOfWork;
+        public BankCardService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
         public ObservableCollection<int> GetAllMonth()
         {

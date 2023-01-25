@@ -13,27 +13,27 @@ namespace MMTRShopWPF.Service.Services
 {
     public class ProductService
     {
-        private readonly UnitOfWork UnitOfWork;
-        public ProductService()
+        private readonly UnitOfWork _unitOfWork;
+        public ProductService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
         public Product GetProduct(Product product)
         {
-            return UnitOfWork.Products.Find(p=>p.Id == product.Id);
+            return _unitOfWork.Products.Find(p=>p.Id == product.Id);
         }
         public void AddProduct(Product product)
         {
-            UnitOfWork.Products.Add(product);
+            _unitOfWork.Products.Add(product);
         }
         public void RemoveProduct(Product product)
         {
             Product productDB = GetProduct(product);
-            UnitOfWork.Products.Remove(productDB);
+            _unitOfWork.Products.Remove(productDB);
         }
         public void Save()
         {
-            UnitOfWork.Products.Save();
+            _unitOfWork.Products.Save();
         }
         public void SeveResultEdit(bool isAdd, Product product)
         {
@@ -54,14 +54,14 @@ namespace MMTRShopWPF.Service.Services
         }
         public List<Product> GetProducts(List<Cart> carts)
         {
-            var products = carts.Join(UnitOfWork.Products.GetAll(),
+            var products = carts.Join(_unitOfWork.Products.GetAll(),
             k => k.ProductId,
             p => p.Id, (k, p) => new { k, p }).Select(x => x.p).ToList();
             return products;
         }
         public List<Product> GetProducts(List<Favourites> favourites)
         {
-            var products = favourites.Join(UnitOfWork.Products.GetAll(),
+            var products = favourites.Join(_unitOfWork.Products.GetAll(),
             f => f.ProductId,
             p => p.Id, (f, p) => new { f, p }).Select(x => x.p).ToList();
             return products;
@@ -69,34 +69,34 @@ namespace MMTRShopWPF.Service.Services
 
         public ObservableCollection<Product> GetPageProducts(int numPage,int sizePage)
         {
-            var products = UnitOfWork.Products.GetProductsPage(numPage, sizePage).ToList();
+            var products = _unitOfWork.Products.GetProductsPage(numPage, sizePage).ToList();
             return new ObservableCollection<Product>(products);
         }
         public ObservableCollection<Product> GetPageProducts(int numPage, int sizePage, Category category)
         {
-            var products = UnitOfWork.Products.GetProductsPage(numPage, sizePage,category).ToList();
+            var products = _unitOfWork.Products.GetProductsPage(numPage, sizePage,category).ToList();
             return new ObservableCollection<Product>(products);
         }
         public ObservableCollection<Product> GetPageProducts(int numPage, int sizePage, Brand brand)
         {
-            var products = UnitOfWork.Products.GetProductsPage(numPage, sizePage,brand).ToList();
+            var products = _unitOfWork.Products.GetProductsPage(numPage, sizePage,brand).ToList();
             return new ObservableCollection<Product>(products);
         }
         public ObservableCollection<Product> GetPageProducts(int numPage, int sizePage, Category category, Brand brand)
         {
-            var products = UnitOfWork.Products.GetProductsPage(numPage, sizePage, category,brand).ToList();
+            var products = _unitOfWork.Products.GetProductsPage(numPage, sizePage, category,brand).ToList();
             return new ObservableCollection<Product>(products);
         }
         public int GetCountPage(int sizePage)
         {
-            return UnitOfWork.Carts.GetCountPage(sizePage);
+            return _unitOfWork.Carts.GetCountPage(sizePage);
         }
 
         public void RemoveProductsInStorage(List<Cart> carts)
         {
             foreach (var item in carts)
             {
-                var product = UnitOfWork.Products.Find(p => p.Id == item.ProductId);
+                var product = _unitOfWork.Products.Find(p => p.Id == item.ProductId);
                 product.CountInStarage -= item.ProductCount;
             }
             Save();

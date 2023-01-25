@@ -1,4 +1,5 @@
 ﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.ViewModels;
 using System;
@@ -11,7 +12,7 @@ namespace MMTRShopWPF.Commands
 {
     public class CompleteFeedbackCommand : BaseCommand<MyHistoryViewModel>
     {
-        private FeedbackService FeedbackService = new FeedbackService();
+        private FeedbackService FeedbackService = new FeedbackService(new UnitOfWork(new ShopContext()));
         public CompleteFeedbackCommand(MyHistoryViewModel myHistoryViewModel) : base(myHistoryViewModel)
         {
         }

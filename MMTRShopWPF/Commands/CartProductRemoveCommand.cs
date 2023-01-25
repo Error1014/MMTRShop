@@ -1,4 +1,6 @@
-﻿using MMTRShopWPF.Service.Services;
+﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
+using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ namespace MMTRShopWPF.Commands
 {
     public class CartProductRemoveCommand:BaseCommand<CartViewModel>
     {
-        private CartService CartService = new CartService();
+        private CartService CartService = new CartService(new UnitOfWork(new ShopContext()));
         public CartProductRemoveCommand(CartViewModel cartViewModel) : base(cartViewModel)
         {
         }

@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using MMTRShopWPF.Commands;
+using MMTRShopWPF.Repository.Repositories;
 
 namespace MMTRShopWPF.ViewModels
 {
     public class EditProductViewModel: BaseViewModel
     {
-        private CategoryService CategoryService = new CategoryService();
-        protected BrandService BrandService = new BrandService();
-        private ProductService ProductService = new ProductService();
+        private CategoryService CategoryService = new CategoryService(new UnitOfWork(new ShopContext()));
+        protected BrandService BrandService = new BrandService(new UnitOfWork(new ShopContext()));
+        private ProductService ProductService = new ProductService(new UnitOfWork(new ShopContext()));
 
         public EditProductViewModel(Product product)
         {

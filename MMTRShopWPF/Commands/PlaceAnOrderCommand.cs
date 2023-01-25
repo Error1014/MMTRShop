@@ -1,4 +1,5 @@
 ﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModels;
@@ -12,10 +13,10 @@ namespace MMTRShopWPF.Commands
 {
     public class PlaceAnOrderCommand:BaseCommand<OrderViewModel>
     {
-        private OrderService OrderService = new OrderService();
-        private OrderContentService OrderContentService = new OrderContentService();
-        private CartService CartService = new CartService();
-        private ProductService ProductService = new ProductService();
+        private OrderService OrderService = new OrderService(new UnitOfWork(new ShopContext()));
+        private OrderContentService OrderContentService = new OrderContentService(new UnitOfWork(new ShopContext()));
+        private CartService CartService = new CartService(new UnitOfWork(new ShopContext()));
+        private ProductService ProductService = new ProductService(new UnitOfWork(new ShopContext()));
         public PlaceAnOrderCommand(OrderViewModel orderViewModel) : base(orderViewModel)
         {
         }

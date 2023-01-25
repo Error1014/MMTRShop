@@ -1,4 +1,5 @@
 ﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.ViewModels;
 using System;
@@ -11,7 +12,7 @@ namespace MMTRShopWPF.Commands
 {
     internal class SaveAccountSettingsCommand : BaseCommand<AccountViewModel>
     {
-        private AccountService AccountService = new AccountService();
+        private AccountService AccountService = new AccountService(new UnitOfWork(new ShopContext()));
         public SaveAccountSettingsCommand(AccountViewModel vm) : base(vm)
         {
 

@@ -10,23 +10,23 @@ namespace MMTRShopWPF.Service.Services
 {
     public class AccountService
     {
-        private UnitOfWork UnitOfWork;
-        public AccountService()
+        private UnitOfWork _unitOfWork;
+        public AccountService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
         public User GetUser()
         {
-            return UnitOfWork.Users.Find(u=>u.Id == AccountManager.User.Id);
+            return _unitOfWork.Users.Find(u=>u.Id == AccountManager.User.Id);
         }
         public Client GetClient()
         {
-            return UnitOfWork.Clients.Find(c=>c.Id == AccountManager.Client.Id);
+            return _unitOfWork.Clients.Find(c=>c.Id == AccountManager.Client.Id);
         }
         public void Save()
         {
-            UnitOfWork.Users.Save();
-            UnitOfWork.Clients.Save();
+            _unitOfWork.Users.Save();
+            _unitOfWork.Clients.Save();
         }
     }
 }

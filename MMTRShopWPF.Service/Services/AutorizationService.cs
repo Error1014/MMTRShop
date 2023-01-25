@@ -8,10 +8,10 @@ namespace MMTRShopWPF.Service.Services
     public class AutorizationService
     {
         private Message Message = new Message();
-        private readonly UnitOfWork UnitOfWork;
-        public AutorizationService()
+        private readonly UnitOfWork _unitOfWork;
+        public AutorizationService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
         public Message Registration(User user, string password2)
         {
@@ -30,7 +30,7 @@ namespace MMTRShopWPF.Service.Services
         public Message CheckCorrectLoginPassword(string login,string password)
         {
             Message message = new Message(true, "Вы ввели неверный логин или пароль!");
-            var users = UnitOfWork.Users.GetAll();
+            var users = _unitOfWork.Users.GetAll();
             foreach (var user in users)
             {
                 if (user.Login == login && user.Password == password)
@@ -44,7 +44,7 @@ namespace MMTRShopWPF.Service.Services
 
         public Guid GetUserId(string login, string password)
         {
-            var users = UnitOfWork.Users.GetAll();
+            var users = _unitOfWork.Users.GetAll();
             foreach (var user in users)
             {
                 if (login==user.Login && password==user.Password)
@@ -56,7 +56,7 @@ namespace MMTRShopWPF.Service.Services
         }
         public bool IsCheckUserInDB(string login)
         {
-            var users = UnitOfWork.Users.GetAll();
+            var users = _unitOfWork.Users.GetAll();
             foreach (var user in users)
             {
                 if (user.Login == login)
@@ -74,11 +74,11 @@ namespace MMTRShopWPF.Service.Services
 
         public void AddNewClientInDB(User user)
         {
-            UnitOfWork.Users.Add(user);
-            UnitOfWork.Users.Save();
+            _unitOfWork.Users.Add(user);
+            _unitOfWork.Users.Save();
             Client client = new Client(user.Id, "", "", "");
-            UnitOfWork.Clients.Add(client);
-            UnitOfWork.Clients.Save();
+            _unitOfWork.Clients.Add(client);
+            _unitOfWork.Clients.Save();
         }
     }
 }

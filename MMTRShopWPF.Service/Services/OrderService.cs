@@ -15,32 +15,32 @@ namespace MMTRShopWPF.Service.Services
     public class OrderService
     {
         private Message Message = new Message();
-        private readonly UnitOfWork UnitOfWork;
-        public OrderService()
+        private readonly UnitOfWork _unitOfWork;
+        public OrderService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
         public ObservableCollection<Order> GetOrders()
         {
-            var orders = UnitOfWork.Orders.GetAll();
+            var orders = _unitOfWork.Orders.GetAll();
             return new ObservableCollection<Order>(orders);
         }
         public List<Order> GetOrderClient(Client client)
         {
-            return UnitOfWork.Orders.GetOrdersByClientId(client.Id).ToList();
+            return _unitOfWork.Orders.GetOrdersByClientId(client.Id).ToList();
         }
         public Order GetOrder(Order order)
         {
-            return UnitOfWork.Orders.Find(o=>o.Id==order.Id);
+            return _unitOfWork.Orders.Find(o=>o.Id==order.Id);
         }
         public void CreateOrder(Order order)
         {
-            UnitOfWork.Orders.Add(order);
+            _unitOfWork.Orders.Add(order);
             SaveOrder();
         }
         public void SaveOrder()
         {
-            UnitOfWork.Orders.Save();
+            _unitOfWork.Orders.Save();
         }
 
         

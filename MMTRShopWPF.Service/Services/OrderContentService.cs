@@ -10,21 +10,21 @@ namespace MMTRShopWPF.Service.Services
 {
     public class OrderContentService
     {
-        private readonly UnitOfWork UnitOfWork;
-        public OrderContentService()
+        private readonly UnitOfWork _unitOfWork;
+        public OrderContentService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
         public void CreateOrderContent(Order order)
         {
-            var carts = UnitOfWork.Carts.GetCartByClient(AccountManager.Client);
+            var carts = _unitOfWork.Carts.GetCartByClient(AccountManager.Client);
             List<OrderContent> cartOrders = new List<OrderContent>();
             foreach (var cartItem in carts)
             {
                 cartOrders.Add(new OrderContent(order, cartItem));
             }
-            UnitOfWork.OrderContents.AddRange(cartOrders);
-            UnitOfWork.OrderContents.Save();
+            _unitOfWork.OrderContents.AddRange(cartOrders);
+            _unitOfWork.OrderContents.Save();
         }
         public List<OrderContent> GetOrderContentNoСompleted(List<Order> orders)
         {
@@ -33,7 +33,7 @@ namespace MMTRShopWPF.Service.Services
             {
                 if (item.Status.Title!="Получен")
                 {
-                    result.AddRange(UnitOfWork.OrderContents.GetAll().Where(oc => oc.OrderId == item.Id));
+                    result.AddRange(_unitOfWork.OrderContents.GetAll().Where(oc => oc.OrderId == item.Id));
                 }
             }
 
@@ -41,12 +41,12 @@ namespace MMTRShopWPF.Service.Services
         }
         public List<OrderContent> GetOrderContents(Order order)
         {
-            return UnitOfWork.OrderContents.GetOrderContents(order);
+            return _unitOfWork.OrderContents.GetOrderContents(order);
         }
 
         public List<OrderContent> GetCancelledOrder()
         {
-            return UnitOfWork.OrderContents.GetCanceledOrder(AccountManager.Client);
+            return _unitOfWork.OrderContents.GetCanceledOrder(AccountManager.Client);
         }
     }
 }

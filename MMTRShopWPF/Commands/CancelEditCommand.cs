@@ -1,4 +1,6 @@
-﻿using MMTRShopWPF.Service.Services;
+﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
+using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModels;
 using System;
@@ -11,7 +13,7 @@ namespace MMTRShopWPF.Commands
 {
     public class CancelEditCommand : BaseCommand<AccountViewModel>
     {
-        private AccountService AccountService = new AccountService();
+        private AccountService AccountService = new AccountService(new UnitOfWork(new ShopContext()));
         public CancelEditCommand(AccountViewModel accountViewModel) : base(accountViewModel)
         {
         }

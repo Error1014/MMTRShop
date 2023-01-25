@@ -1,4 +1,6 @@
-﻿using MMTRShopWPF.Service.Services;
+﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
+using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModels;
 using System;
@@ -12,7 +14,7 @@ namespace MMTRShopWPF.Commands
 {
     public class ClickEditCommand : BaseCommand<AccountViewModel>
     {
-        CartService CartService = new CartService();
+        CartService CartService = new CartService(new UnitOfWork(new ShopContext()));
         public ClickEditCommand(AccountViewModel vm) : base(vm)
         {
         }

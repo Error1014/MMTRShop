@@ -1,4 +1,5 @@
 ﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
 using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using System;
@@ -12,10 +13,10 @@ namespace MMTRShopWPF.ViewModels
 {
     public class InfoOperatorOrderViewModel:BaseViewModel
     {
-        private OrderService OrderService = new OrderService();
-        private ClientService ClientService = new ClientService();
-        private StatusService StatusService = new StatusService();
-        private OrderContentService OrderContentService = new OrderContentService();
+        private OrderService OrderService = new OrderService(new UnitOfWork(new ShopContext()));
+        private ClientService ClientService = new ClientService(new UnitOfWork(new ShopContext()));
+        private StatusService StatusService = new StatusService(new UnitOfWork(new ShopContext()));
+        private OrderContentService OrderContentService = new OrderContentService(new UnitOfWork(new ShopContext()));
         public InfoOperatorOrderViewModel(Order order)
         {
             Order = OrderService.GetOrder(order);

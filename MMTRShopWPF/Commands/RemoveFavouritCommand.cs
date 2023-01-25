@@ -1,4 +1,6 @@
-﻿using MMTRShopWPF.Service.Services;
+﻿using MMTRShopWPF.Model.Models;
+using MMTRShopWPF.Repository.Repositories;
+using MMTRShopWPF.Service.Services;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModels;
 using System;
@@ -12,7 +14,7 @@ namespace MMTRShopWPF.Commands
 {
     public class RemoveFavouritCommand:BaseCommand<FavouritesViewModel>
     {
-        private FavouritesService FavouritesService = new FavouritesService();
+        private FavouritesService FavouritesService = new FavouritesService(new UnitOfWork(new ShopContext()));
         public RemoveFavouritCommand(FavouritesViewModel favouritesViewModel) : base(favouritesViewModel)
         {
         }

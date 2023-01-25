@@ -9,35 +9,35 @@ namespace MMTRShopWPF.Service.Services
 {
     public class FavouritesService
     {
-        private readonly UnitOfWork UnitOfWork;
-        public FavouritesService()
+        private readonly UnitOfWork _unitOfWork;
+        public FavouritesService(UnitOfWork unitOfWork)
         {
-            UnitOfWork = new UnitOfWork(new ShopContext());
+            _unitOfWork = unitOfWork;
         }
         public List<Favourites> GetFavourites()
         {
-            return UnitOfWork.Favorites.GetFavourites(AccountManager.Client).ToList();
+            return _unitOfWork.Favorites.GetFavourites(AccountManager.Client).ToList();
         }
         public Favourites GetFavourit(Product product)
         {
-            return UnitOfWork.Favorites.Find(f=>f.ClientId == AccountManager.Client.Id && f.ProductId == product.Id);
+            return _unitOfWork.Favorites.Find(f=>f.ClientId == AccountManager.Client.Id && f.ProductId == product.Id);
         }
 
         public void RemoveFavouritById(Guid id)
         {
-            Favourites favourit = UnitOfWork.Favorites.Find(f=>f.Id==id);
+            Favourites favourit = _unitOfWork.Favorites.Find(f=>f.Id==id);
             RemoveFavourite(favourit);
         }
 
         public void AddFavourite(Favourites favourit)
         {
-            UnitOfWork.Favorites.Add(favourit);
-            UnitOfWork.Favorites.Save();
+            _unitOfWork.Favorites.Add(favourit);
+            _unitOfWork.Favorites.Save();
         }
         public void RemoveFavourite(Favourites favourit)
         {
-            UnitOfWork.Favorites.Remove(favourit);
-            UnitOfWork.Favorites.Save();
+            _unitOfWork.Favorites.Remove(favourit);
+            _unitOfWork.Favorites.Save();
         }
     }
 }
