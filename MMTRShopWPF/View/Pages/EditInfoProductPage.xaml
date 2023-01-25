@@ -57,6 +57,10 @@
                 <TextBlock Style="{StaticResource TextInfo}" Text="Производитель: " />
                 <ComboBox Focusable="{Binding IsAdmin}" IsHitTestVisible="{Binding IsAdmin}" Opacity="{Binding BlockOpacity}" HorizontalAlignment="Left" FontSize="15" Height="30" Width="220"  ItemsSource="{Binding AllBrand}" SelectedItem="{Binding SelectBrand}" DisplayMemberPath="Name"/>
             </DockPanel>
+            <DockPanel Margin="0,10">
+                <TextBlock VerticalAlignment="Top" Style="{StaticResource TextInfo}" PreviewTextInput="ItputNumber" Text="Количество на складе:"/>
+                <TextBox MaxLength="500" AcceptsReturn="True" HorizontalAlignment="Left"  Focusable="{Binding IsAdmin}" Opacity="{Binding BlockOpacity}" FontSize="15" MinWidth="220"  Width="Auto"   Text="{Binding CountInStorage}" TextWrapping="Wrap"/>
+            </DockPanel>
         </StackPanel>
         <DockPanel  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Button Content="Удалить" Width="200" Height="50" Margin="10" Command="{Binding Delete}"/>

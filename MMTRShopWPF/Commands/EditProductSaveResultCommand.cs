@@ -33,6 +33,7 @@ namespace MMTRShopWPF.Commands
             product.Description = viewModel.Description;
             product.CategoryId = viewModel.SelectCategory.Id;
             product.BrandId = viewModel.SelectBrand.Id;
+            product.CountInStarage = viewModel.CountInStorage;
             ProductService.SeveResultEdit(viewModel.IsAdd, product);
             NavigarionManager.MainFrame.Content = new KatalogPage();
         }

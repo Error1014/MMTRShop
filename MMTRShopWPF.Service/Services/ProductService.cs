@@ -41,11 +41,7 @@ namespace MMTRShopWPF.Service.Services
             {
                 AddProduct(product);
             }
-            else
-            {
-                Product productDB = GetProduct(product);
-                //Исправить так чтобы сохранялись изменения
-            }
+
             Save();
         }
         public void RemoveResultEdit(bool isAdd, Product product)
@@ -94,6 +90,16 @@ namespace MMTRShopWPF.Service.Services
         public int GetCountPage(int sizePage)
         {
             return UnitOfWork.Carts.GetCountPage(sizePage);
+        }
+
+        public void RemoveProductsInStorage(List<Cart> carts)
+        {
+            foreach (var item in carts)
+            {
+                var product = UnitOfWork.Products.Find(p => p.Id == item.ProductId);
+                product.CountInStarage -= item.ProductCount;
+            }
+            Save();
         }
 
     }

@@ -15,6 +15,7 @@ namespace MMTRShopWPF.Commands
         private OrderService OrderService = new OrderService();
         private OrderContentService OrderContentService = new OrderContentService();
         private CartService CartService = new CartService();
+        private ProductService ProductService = new ProductService();
         public PlaceAnOrderCommand(OrderViewModel orderViewModel) : base(orderViewModel)
         {
         }
@@ -30,8 +31,10 @@ namespace MMTRShopWPF.Commands
                 viewModel.Order.DateDelivery = viewModel.Order.DateOrder;
                 viewModel.Order.StatusId = viewModel.Status.Id;
                 viewModel.Order.ClientId = AccountManager.Client.Id;
+
                 OrderService.CreateOrder(viewModel.Order);
                 OrderContentService.CreateOrderContent(viewModel.Order);
+                ProductService.RemoveProductsInStorage(viewModel.Carts);
                 CartService.ClearCart();
                 NavigarionManager.MainFrame.Content = new MyOrderPage();
             }

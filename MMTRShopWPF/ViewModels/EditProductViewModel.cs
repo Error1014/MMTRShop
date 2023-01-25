@@ -60,6 +60,7 @@ namespace MMTRShopWPF.ViewModels
                 Description = value.Description;
                 SelectCategory = CategoryService.GetCategory(value)==null? AllCategory[0] : CategoryService.GetCategory(value);
                 SelectBrand = BrandService.GetBrand(value)==null? AllBrand[0] : BrandService.GetBrand(value);
+                CountInStorage = value.CountInStarage;
                 OnPropertyChanged(nameof(Product));
             }
         }
@@ -135,6 +136,18 @@ namespace MMTRShopWPF.ViewModels
                 OnPropertyChanged(nameof(SelectBrand));
             }
         }
+
+        private int countInStorage;
+        public int CountInStorage
+        {
+            get { return countInStorage; }
+            set
+            {
+                countInStorage = value;
+                OnPropertyChanged(nameof(CountInStorage));
+            }
+        }
+
         #endregion
         private bool isAdd = false;
         public bool IsAdd
