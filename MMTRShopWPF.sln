@@ -11,11 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMTRShopWPF.Service", "MMTR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMTRShopWPF.Model", "MMTRShopWPF.Model\MMTRShopWPF.Model.csproj", "{F21DC6FA-DC03-4C18-B6BF-13DCF7CED0C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMTRShop.Model", "MMTRShop.Model\MMTRShop.Model.csproj", "{D3EFF983-FF01-44CA-BB06-055F630C68D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShop.Model", "MMTRShop.Model\MMTRShop.Model.csproj", "{D3EFF983-FF01-44CA-BB06-055F630C68D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMTRShop.Repository", "MMTRShop.Repository\MMTRShop.Repository.csproj", "{6A36A9DC-38EE-4442-9F23-A8B87DE1493B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShop.Repository", "MMTRShop.Repository\MMTRShop.Repository.csproj", "{6A36A9DC-38EE-4442-9F23-A8B87DE1493B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMTRShop.Service", "MMTRShop.Service\MMTRShop.Service.csproj", "{2D10C12E-F6D1-43E0-9783-70938BA1B09F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShop.Service", "MMTRShop.Service\MMTRShop.Service.csproj", "{2D10C12E-F6D1-43E0-9783-70938BA1B09F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
