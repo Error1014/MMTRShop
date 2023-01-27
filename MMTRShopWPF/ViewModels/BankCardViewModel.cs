@@ -1,7 +1,7 @@
-﻿using MMTRShopWPF.Model;
-using MMTRShopWPF.Model.Models;
-using MMTRShopWPF.Repository.Repositories;
-using MMTRShopWPF.Service.Services;
+﻿using MMTRShop.Model;
+using MMTRShop.Model.Models;
+using MMTRShop.Repository.Repositories;
+using MMTRShop.Service.Services;
 using MMTRShopWPF.ViewModels;
 using System.Collections.ObjectModel;
 

@@ -1,6 +1,6 @@
-﻿using MMTRShopWPF.Model.Models;
-using MMTRShopWPF.Repository.Repositories;
-using MMTRShopWPF.Service.Services;
+﻿using MMTRShop.Model.Models;
+using MMTRShop.Repository.Repositories;
+using MMTRShop.Service.Services;
 using MMTRShopWPF.View.Pages;
 using System;
 using System.Collections.Generic;

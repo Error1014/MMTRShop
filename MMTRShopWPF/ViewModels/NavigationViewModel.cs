@@ -1,13 +1,13 @@
-﻿using MMTRShopWPF.Model;
+﻿using MMTRShop.Model;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using MMTRShopWPF.View.Pages;
 using System;
-using MMTRShopWPF.Service;
-using MMTRShopWPF.Model.Models;
+using MMTRShop.Service;
+using MMTRShop.Model.Models;
 using MMTRShopWPF.ViewModels;
-using MMTRShopWPF.Service.Services;
+using MMTRShop.Service.Services;
 using MMTRShopWPF.Commands;
 
 namespace MMTRShopWPF.ViewModels

@@ -1,4 +1,4 @@
-﻿using MMTRShopWPF.Model;
+﻿using MMTRShop.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using MMTRShopWPF.View.Pages;
-using MMTRShopWPF.Service;
-using MMTRShopWPF.Model.Models;
+using MMTRShop.Service;
+using MMTRShop.Model.Models;
 using MMTRShopWPF.ViewModels;
-using MMTRShopWPF.Service.Services;
+using MMTRShop.Service.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Documents;
 using System.Net;
 using MMTRShopWPF.Commands;
-using MMTRShopWPF.Repository.Repositories;
+using MMTRShop.Repository.Repositories;
 
 namespace MMTRShopWPF.ViewModels
 {

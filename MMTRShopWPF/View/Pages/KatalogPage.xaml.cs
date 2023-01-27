@@ -1,5 +1,5 @@
-﻿using MMTRShopWPF.Model;
-using MMTRShopWPF.Service.Services;
+﻿using MMTRShop.Model;
+using MMTRShop.Service.Services;
 using MMTRShopWPF.ViewModels;
 using System;
 using System.Collections.Generic;

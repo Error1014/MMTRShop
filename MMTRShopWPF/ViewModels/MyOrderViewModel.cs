@@ -1,6 +1,6 @@
 ﻿using MMTRShopWPF.Commands;
-using MMTRShopWPF.Model.Models;
-using MMTRShopWPF.Service.Services;
+using MMTRShop.Model.Models;
+using MMTRShop.Service.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

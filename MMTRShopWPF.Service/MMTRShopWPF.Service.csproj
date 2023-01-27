@@ -72,16 +72,6 @@
     <Compile Include="Services\StatusService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MMTRShopWPF.Model\MMTRShopWPF.Model.csproj">
-      <Project>{f21dc6fa-dc03-4c18-b6bf-13dcf7ced0c3}</Project>
-      <Name>MMTRShopWPF.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MMTRShopWPF.Repository\MMTRShopWPF.Repository.csproj">
-      <Project>{04e4b1ed-0599-4da6-b0e5-29e52502cf4e}</Project>
-      <Name>MMTRShopWPF.Repository</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>

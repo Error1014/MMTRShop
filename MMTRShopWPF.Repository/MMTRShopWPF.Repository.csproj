@@ -88,12 +88,6 @@
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MMTRShopWPF.Model\MMTRShopWPF.Model.csproj">
-      <Project>{f21dc6fa-dc03-4c18-b6bf-13dcf7ced0c3}</Project>
-      <Name>MMTRShopWPF.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>

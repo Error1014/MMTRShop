@@ -9,9 +9,6 @@
 	  <ProjectReference Include="..\MMTRShop.Model\MMTRShop.Model.csproj" />
 	  <ProjectReference Include="..\MMTRShop.Repository\MMTRShop.Repository.csproj" />
 	  <ProjectReference Include="..\MMTRShop.Service\MMTRShop.Service.csproj" />
-	  <ProjectReference Include="..\MMTRShopWPF.Model\MMTRShopWPF.Model.csproj" />
-	  <ProjectReference Include="..\MMTRShopWPF.Repository\MMTRShopWPF.Repository.csproj" />
-	  <ProjectReference Include="..\MMTRShopWPF.Service\MMTRShopWPF.Service.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">

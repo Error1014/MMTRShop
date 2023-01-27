@@ -1,6 +1,6 @@
 ﻿namespace MMTRShopWPF.Migrations
 {
-    using MMTRShopWPF.Model.Models;
+    using MMTRShop.Model.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;

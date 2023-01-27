@@ -1,4 +1,4 @@
-﻿using MMTRShopWPF.Service.Services;
+﻿using MMTRShop.Service.Services;
 using MMTRShopWPF.View.Pages;
 using MMTRShopWPF.ViewModels;
 using System;
