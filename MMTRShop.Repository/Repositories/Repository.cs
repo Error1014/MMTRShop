@@ -1,9 +1,6 @@
-﻿using MMTRShop.Model.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Linq.Expressions;
 
 namespace MMTRShop.Repository.Repositories
@@ -30,8 +27,11 @@ namespace MMTRShop.Repository.Repositories
         {
             return ShopContext.Set<TEntity>().FirstOrDefault(predicate);
         }
-
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public IEnumerable<TEntity> GetAll()
+        {
+            return ShopContext.Set<TEntity>().ToList();
+        }
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await ShopContext.Set<TEntity>().ToListAsync();
         }

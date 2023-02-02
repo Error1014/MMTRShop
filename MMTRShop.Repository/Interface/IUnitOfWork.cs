@@ -2,7 +2,7 @@
 
 namespace MMTRShop.Repository.Interface
 {
-    internal interface IUnitOfWork:IDisposable
+    public interface IUnitOfWork:IDisposable
     {
         IProductRepository Products { get; }
         ICartRepository Carts { get; }

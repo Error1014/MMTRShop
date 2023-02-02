@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,15 +13,18 @@ namespace MMTRShop.Model.Models
 
         private static ShopContext Context;
         public static ShopContext GetContext()
-        {
+{
             if (Context == null) Context = new ShopContext();
             return Context;
         }
 
-
-        public ShopContext() : base("MMPRShopDB") 
+        public ShopContext() : base(new DbContextOptions<ShopContext>())
         {
-            Database.SetInitializer<ShopContext>(new CreateDatabaseIfNotExists<ShopContext>());
+
+        }
+        public ShopContext(DbContextOptions<ShopContext> options) : base(options) 
+        {
+            
         }
 
         public DbSet<Category> Category { get; set; }

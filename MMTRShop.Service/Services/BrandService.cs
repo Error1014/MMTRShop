@@ -15,9 +15,13 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public List<Brand> GetAllBrand()
+        public  IEnumerable<Brand> GetAllBrand()
         {
-            return _unitOfWork.Brands.GetAll().ToList();
+            return _unitOfWork.Brands.GetAll();
+        }
+        public async Task<IEnumerable<Brand>> GetAllBrandAsync()
+        {
+            return await _unitOfWork.Brands.GetAllAsync();
         }
         public Brand GetBrand(Product product)
         {

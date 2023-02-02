@@ -5,20 +5,16 @@ namespace MMTRShopAPI
 {
     public class SampleContextFactory
     {
-        //public ShopContext CreateDbContext(string[] args)
-        //{
-        //    var optionsBuilder = new DbContextOptionsBuilder<ShopContext>();
+        private const string ConnectionString =
+            "Server=(localdb)\\mssqllocaldb;Database=EfCoreInActionDb;Trusted_Connection=True;MultipleActiveResultSets=true";
 
-        //    // получаем конфигурацию из файла appsettings.json
-        //    ConfigurationBuilder builder = new ConfigurationBuilder();
-        //    builder.SetBasePath(Directory.GetCurrentDirectory());
-        //    builder.AddJsonFile("appsettings.json");
-        //    IConfigurationRoot config = builder.Build();
+        public ShopContext CreateDbContext(string[] args)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ShopContext>();
+            optionsBuilder.UseSqlServer(ConnectionString,
+                b => b.MigrationsAssembly("MMTRShopAPI"));
 
-        //    // получаем строку подключения из файла appsettings.json
-        //    string connectionString = config.GetConnectionString("DefaultConnection");
-        //    optionsBuilder.UseSqlServer(connectionString, opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds));
-        //    return new ShopContext(optionsBuilder.Options);
-        //}
+            return new ShopContext(optionsBuilder.Options);
+        }
     }
 }

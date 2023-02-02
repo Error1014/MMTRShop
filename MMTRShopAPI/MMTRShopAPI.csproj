@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MMTRShop.Model\MMTRShop.Model.csproj" />
     <ProjectReference Include="..\MMTRShop.Repository\MMTRShop.Repository.csproj" />
+    <ProjectReference Include="..\MMTRShop.Service\MMTRShop.Service.csproj" />
   </ItemGroup>
 
 </Project>

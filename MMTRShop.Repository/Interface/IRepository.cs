@@ -9,7 +9,8 @@ namespace MMTRShop.Repository.Interface
     public interface IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : struct
     {
         TEntity GetById(Guid id);
-        Task<IEnumerable<TEntity>> GetAll();
+        IEnumerable<TEntity> GetAll();
+        Task<IEnumerable<TEntity>> GetAllAsync();
         TEntity Find(Expression<Func<TEntity, bool>> predicate);
 
         void Add(TEntity entity);
