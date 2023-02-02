@@ -2,6 +2,7 @@
 using MMTRShop.Repository.Interface;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -30,9 +31,9 @@ namespace MMTRShop.Repository.Repositories
             return ShopContext.Set<TEntity>().FirstOrDefault(predicate);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
-            return ShopContext.Set<TEntity>().ToList();
+            return await ShopContext.Set<TEntity>().ToListAsync();
         }
 
         public TEntity GetById(Guid id)
