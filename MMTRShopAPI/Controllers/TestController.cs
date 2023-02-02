@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MMTRShop.Model.Models;
-using MMTRShopAPI.Data;
-using ShopContext = MMTRShopAPI.Data.ShopContext;
 
 namespace MMTRShopAPI.Controllers
 {

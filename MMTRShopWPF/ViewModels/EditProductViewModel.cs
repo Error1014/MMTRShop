@@ -21,8 +21,8 @@ namespace MMTRShopWPF.ViewModels
 
         public EditProductViewModel(Product product)
         {
-            AllCategory = CategoryService.GetAllCategory();
-            AllBrand = BrandService.GetAllBrand();
+            //AllCategory = CategoryService.GetAllCategory();
+            //AllBrand = BrandService.GetAllBrand();
             if (AccountManager.Admin == null)
             {
                 isAdmin = false;
@@ -59,8 +59,8 @@ namespace MMTRShopWPF.ViewModels
                 Price = value.Price;
                 Discount = value.Discount;
                 Description = value.Description;
-                SelectCategory = CategoryService.GetCategory(value)==null? AllCategory[0] : CategoryService.GetCategory(value);
-                SelectBrand = BrandService.GetBrand(value)==null? AllBrand[0] : BrandService.GetBrand(value);
+                //SelectCategory = CategoryService.GetCategory(value)==null? AllCategory[0] : CategoryService.GetCategory(value);
+                //SelectBrand = BrandService.GetBrand(value)==null? AllBrand[0] : BrandService.GetBrand(value);
                 CountInStorage = value.CountInStarage;
                 OnPropertyChanged(nameof(Product));
             }

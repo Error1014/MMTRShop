@@ -28,7 +28,7 @@ namespace MMTRShopWPF.ViewModels
             {
                 if (сategoryItems == null)
                 {
-                    CategoryItems = UnitOfWork.Categories.GetAll().ToList();
+                    //CategoryItems = UnitOfWork.Categories.GetAll().ToList();
                 }
                 return сategoryItems; 
             }
@@ -67,7 +67,7 @@ namespace MMTRShopWPF.ViewModels
             {
                 if (brandItems==null)
                 {
-                    BrandItems = UnitOfWork.Brands.GetAll().ToList();
+                    //BrandItems = UnitOfWork.Brands.GetAll().ToList();
                 }
                 return brandItems; 
             }
