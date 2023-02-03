@@ -27,9 +27,13 @@ namespace MMTRShopAPI.Controllers
             {
                 return NotFound();
             }
-            var result = await _unitOfWork.Products.GetAllAsync();
+            var result = _context.Product.ToList();
+            if (result == null)
+            {
+                return NotFound();
+            }
 
-            return result.ToList();
+            return result;
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(Guid id)

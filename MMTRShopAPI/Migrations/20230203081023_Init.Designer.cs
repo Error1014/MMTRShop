@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MMTRShopAPI.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230202163814_Init")]
+    [Migration("20230203081023_Init")]
     partial class Init
     {
         /// <inheritdoc />

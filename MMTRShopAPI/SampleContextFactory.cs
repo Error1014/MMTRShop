@@ -6,7 +6,7 @@ namespace MMTRShopAPI
     public class SampleContextFactory
     {
         private const string ConnectionString =
-            "Server=(localdb)\\mssqllocaldb;Database=EfCoreInActionDb;Trusted_Connection=True;MultipleActiveResultSets=true";
+            "Server=(localdb)\\mssqllocaldb;Database=MMTRShopDB;Trusted_Connection=True;MultipleActiveResultSets=true";
 
         public ShopContext CreateDbContext(string[] args)
         {
