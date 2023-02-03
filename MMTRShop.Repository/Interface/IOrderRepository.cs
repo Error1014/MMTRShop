@@ -6,6 +6,6 @@ namespace MMTRShop.Repository.Interface
 {
     public interface IOrderRepository: IRepository<Order,Guid>
     {
-        IEnumerable<Order> GetOrdersByClientId(Guid id);
+        Task<IEnumerable<Order>> GetOrdersByClientId(Guid id);
     }
 }

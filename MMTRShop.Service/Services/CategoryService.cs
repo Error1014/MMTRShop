@@ -18,28 +18,29 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public ObservableCollection<Category> GetCategories()
+        public async Task<ObservableCollection<Category>> GetCategories()
         {
-            var categories = _unitOfWork.Categories.GetAll();
-            return new ObservableCollection<Category>(categories);
+            var categories =await _unitOfWork.Categories.GetAllAsync();
+            return new ObservableCollection<Category>(categories.ToList());
         }
-        public List<Category> GetAllCategory()
+        public async Task<List<Category>> GetAllCategory()
         {
-            return _unitOfWork.Categories.GetAll().ToList();
+            var categories = await _unitOfWork.Categories.GetAllAsync();
+            return categories.ToList();
         }
 
-        public Category GetCategory(Product product)
+        public async Task<Category> GetCategory(Product product)
         {
-            return _unitOfWork.Categories.Find(category => category.Id == product.CategoryId);
+            return await _unitOfWork.Categories.FindAsync(category => category.Id == product.CategoryId);
         }
-        private Category GetCategory(Category  category)
+        private async Task<Category> GetCategory(Category  category)
         {
-            return _unitOfWork.Categories.Find(c=>c.Id ==category.Id);
+            return await _unitOfWork.Categories.FindAsync(c=>c.Id ==category.Id);
         }
-        public void SaveChanges(Category category)
+        public async void SaveChanges(Category category)
         {
             if (category == null) return;
-            Category categoryDB = GetCategory(category);
+            Category categoryDB =await GetCategory(category);
             categoryDB.Title = category.Title;
             _unitOfWork.Categories.Save();
         }
@@ -55,16 +56,16 @@ namespace MMTRShop.Service.Services
         }
 
 
-        public void Remove(Category category)
+        public async void Remove(Category category)
         {
             if (category == null) return;
-            _unitOfWork.Categories.Remove(GetCategory(category));
+            _unitOfWork.Categories.Remove(await GetCategory(category));
             Save();
         }
 
         public Message CheckToRemove(Category category)
         {
-            var products = _unitOfWork.Products.Find(c => c.CategoryId == category.Id);
+            var products = _unitOfWork.Products.FindAsync(c => c.CategoryId == category.Id);
             if (products==null)
             {
                 return new Message(false);

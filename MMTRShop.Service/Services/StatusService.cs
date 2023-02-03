@@ -16,13 +16,14 @@ namespace MMTRShop.Service.Services
             _unitOfWork = unitOfWork;
         }
 
-        public List<Status> GetAll()
+        public async Task<List<Status>> GetAll()
         {
-            return _unitOfWork.Status.GetAll().ToList();
+            var list =await _unitOfWork.Status.GetAllAsync();
+            return list.ToList();
         }
-        public Status GetStatus(Order order)
+        public async Task<Status> GetStatus(Order order)
         {
-            return _unitOfWork.Status.Find(s=>s.Id == order.StatusId);
+            return await _unitOfWork.Status.FindAsync(s=>s.Id == order.StatusId);
         }
         public Status GetStatusWaitingPlaced()
         {

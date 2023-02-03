@@ -6,6 +6,6 @@ namespace MMTRShop.Repository.Interface
 {
     public interface IFavouritesRepository: IRepository<Favourites,Guid>
     {
-        IEnumerable<Favourites> GetFavourites(Client client);
+        Task<IEnumerable<Favourites>> GetFavourites(Client client);
     }
 }

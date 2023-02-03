@@ -15,9 +15,9 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public Client GetClient(Order order)
+        public async Task<Client> GetClient(Order order)
         {
-            return _unitOfWork.Clients.GetById(order.ClientId);
+            return await _unitOfWork.Clients.GetByIdAsync(order.ClientId);
         }
     }
 }

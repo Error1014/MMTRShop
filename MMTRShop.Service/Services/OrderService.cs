@@ -20,18 +20,18 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public ObservableCollection<Order> GetOrders()
+        public async Task<ObservableCollection<Order>> GetOrders()
         {
-            var orders = _unitOfWork.Orders.GetAll();
-            return new ObservableCollection<Order>(orders);
+            var orders =await _unitOfWork.Orders.GetAllAsync();
+            return new ObservableCollection<Order>(orders.ToList());
         }
         public List<Order> GetOrderClient(Client client)
         {
             return _unitOfWork.Orders.GetOrdersByClientId(client.Id).ToList();
         }
-        public Order GetOrder(Order order)
+        public async Task<Order> GetOrder(Order order)
         {
-            return _unitOfWork.Orders.Find(o=>o.Id==order.Id);
+            return await _unitOfWork.Orders.FindAsync(o=>o.Id==order.Id);
         }
         public void CreateOrder(Order order)
         {

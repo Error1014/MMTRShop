@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using MMTRShop.Service.Services;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Repository.Interface;
+using MMTRShop.Service.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -15,9 +15,9 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public void CreateOrderContent(Order order)
+        public async void CreateOrderContent(Order order)
         {
-            var carts = _unitOfWork.Carts.GetCartByClient(AccountManager.Client);
+            var carts =await _unitOfWork.Carts.GetCartByClient(AccountManager.Client);
             List<OrderContent> cartOrders = new List<OrderContent>();
             foreach (var cartItem in carts)
             {
@@ -29,24 +29,24 @@ namespace MMTRShop.Service.Services
         public List<OrderContent> GetOrderContentNoСompleted(List<Order> orders)
         {
             List<OrderContent> result = new List<OrderContent>();
-            foreach (var item in orders)
-            {
-                if (item.Status.Title!="Получен")
-                {
-                    result.AddRange(_unitOfWork.OrderContents.GetAll().Where(oc => oc.OrderId == item.Id));
-                }
-            }
+            //foreach (var item in orders)
+            //{
+            //    if (item.Status.Title!="Получен")
+            //    {
+            //        result.AddRange(_unitOfWork.OrderContents.GetAllAsync().Where(oc => oc.OrderId == item.Id));
+            //    }
+            //}
 
             return result;
         }
-        public List<OrderContent> GetOrderContents(Order order)
+        public async Task<List<OrderContent>> GetOrderContents(Order order)
         {
-            return _unitOfWork.OrderContents.GetOrderContents(order);
+            return await _unitOfWork.OrderContents.GetOrderContents(order);
         }
 
-        public List<OrderContent> GetCancelledOrder()
+        public async Task<List<OrderContent>> GetCancelledOrder()
         {
-            return _unitOfWork.OrderContents.GetCanceledOrder(AccountManager.Client);
+            return await _unitOfWork.OrderContents.GetCanceledOrder(AccountManager.Client);
         }
     }
 }

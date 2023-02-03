@@ -31,29 +31,15 @@ namespace MMTRShop.Repository.Repositories
         #endregion
         #region Find
 
-        public TEntity Find(Expression<Func<TEntity, bool>> predicate)
-        {
-            return ShopContext.Set<TEntity>().FirstOrDefault(predicate);
-        }
-
         public async Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await ShopContext.Set<TEntity>().FirstOrDefaultAsync(predicate);
         }
         #endregion
         #region Get
-        public IEnumerable<TEntity> GetAll()
-        {
-            return ShopContext.Set<TEntity>().ToList();
-        }
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await ShopContext.Set<TEntity>().ToListAsync();
-        }
-
-        public TEntity GetById(Guid id)
-        {
-            return ShopContext.Set<TEntity>().Find(id);
         }
 
         public async Task<TEntity> GetByIdAsync(Guid id)

@@ -13,7 +13,7 @@ namespace MMTRShop.Repository.Repositories
 
         }
 
-        public IEnumerable<Favourites> GetFavourites(Client client)
+        public async Task<IEnumerable<Favourites>> GetFavourites(Client client)
         {
             return ShopContext.Favourites.Where(k => k.ClientId == client.Id).ToList();
         }

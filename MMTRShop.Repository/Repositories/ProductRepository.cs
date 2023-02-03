@@ -1,4 +1,5 @@
-﻿using MMTRShop.Model.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -13,24 +14,24 @@ namespace MMTRShop.Repository.Repositories
 
         }
 
-        public IEnumerable<Product> GetProductsPage(int numPage, int sizePage,Category category)
+        public async Task<IEnumerable<Product>> GetProductsPage(int numPage, int sizePage,Category category)
         {
-            return ShopContext.Product.OrderBy(product => product.Id).Where(product => product.CategoryId == category.Id).Skip((numPage - 1) * sizePage).Take(sizePage).ToList();
+            return await ShopContext.Product.OrderBy(product => product.Id).Where(product => product.CategoryId == category.Id).Skip((numPage - 1) * sizePage).Take(sizePage).ToListAsync();
         }
 
-        public IEnumerable<Product> GetProductsPage(int numPage, int sizePage,Brand brand)
+        public async Task<IEnumerable<Product>> GetProductsPage(int numPage, int sizePage,Brand brand)
         {
-            return ShopContext.Product.OrderBy(product => product.Id).Where(product => product.BrandId == brand.Id).Skip((numPage - 1) * sizePage).Take(sizePage).ToList();
+            return await ShopContext.Product.OrderBy(product => product.Id).Where(product => product.BrandId == brand.Id).Skip((numPage - 1) * sizePage).Take(sizePage).ToListAsync();
         }
 
-        public IEnumerable<Product> GetProductsPage(int numPage, int sizePage,Category category, Brand brand)
+        public async Task<IEnumerable<Product>> GetProductsPage(int numPage, int sizePage,Category category, Brand brand)
         {
-            return ShopContext.Product.OrderBy(product => product.Id).Where(product => product.CategoryId == category.Id && product.BrandId == brand.Id).Skip((numPage - 1) * sizePage).Take(sizePage).ToList();
+            return await ShopContext.Product.OrderBy(product => product.Id).Where(product => product.CategoryId == category.Id && product.BrandId == brand.Id).Skip((numPage - 1) * sizePage).Take(sizePage).ToListAsync();
         }
 
-        public IEnumerable<Product> GetProductsPage(int numPage, int sizePage)
+        public async Task<IEnumerable<Product>> GetProductsPage(int numPage, int sizePage)
         {
-            return ShopContext.Product.OrderBy(product=> product.Id).Skip((numPage-1)*sizePage).Take(sizePage).ToList();
+            return await ShopContext.Product.OrderBy(product=> product.Id).Skip((numPage-1)*sizePage).Take(sizePage).ToListAsync();
         }
     }
 }
