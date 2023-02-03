@@ -1,6 +1,7 @@
 ﻿using MMTRShop.Model;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Repositories;
+using MMTRShop.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +12,7 @@ using System.Windows;
 
 namespace MMTRShop.Service.Services
 {
-    public class ProductService
+    public class ProductService:IProductService
     {
         private readonly UnitOfWork _unitOfWork;
         public ProductService(UnitOfWork unitOfWork)
@@ -20,7 +21,11 @@ namespace MMTRShop.Service.Services
         }
         public Product GetProduct(Product product)
         {
-            return _unitOfWork.Products.Find(p=>p.Id == product.Id);
+            return _unitOfWork.Products.GetById(product.Id);
+        }
+        public Product GetProduct(Guid id)
+        {
+            return _unitOfWork.Products.GetById(id);
         }
         public void AddProduct(Product product)
         {

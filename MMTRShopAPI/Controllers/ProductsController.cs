@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
+using MMTRShop.Service.Interface;
 using MMTRShop.Service.Services;
 
 namespace MMTRShopAPI.Controllers
@@ -12,6 +13,7 @@ namespace MMTRShopAPI.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
+        private readonly ProductService productService;
         private readonly ShopContext _context;
         private readonly UnitOfWork _unitOfWork;
 
@@ -19,6 +21,7 @@ namespace MMTRShopAPI.Controllers
 {
             _context = context;
             _unitOfWork = new UnitOfWork(context);
+            productService = new ProductService(_unitOfWork);
         }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
@@ -42,7 +45,7 @@ namespace MMTRShopAPI.Controllers
             {
                 return NotFound();
             }
-            var product =await _unitOfWork.Products.GetByIdAsync(id);
+            var product = productService.GetProduct(id);
             if (product == null)
             {
                 return NotFound();
@@ -53,8 +56,8 @@ namespace MMTRShopAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProducts(Product product)
         {
-            _unitOfWork.Products.Add(product);
-            _unitOfWork.Products.Save();
+            productService.AddProduct(product);
+            productService.Save();
             return Ok(product);
         }
 
@@ -70,7 +73,7 @@ namespace MMTRShopAPI.Controllers
                 return NotFound();
             }
             _context.Update(product);
-            _unitOfWork.Products.Save();
+            productService.Save();
             return Ok(product);
         }
 
@@ -82,8 +85,8 @@ namespace MMTRShopAPI.Controllers
             {
                 return NotFound();
             }
-            _unitOfWork.Products.Remove(product);
-            _unitOfWork.Products.Save();
+            productService.RemoveProduct(product);
+            productService.Save();
             return Ok(product);
         }
     }
