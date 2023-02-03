@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMTRShop.Service.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Service.Services
 {
-    public class NavigationService
+    public class NavigationService: INavigationService
     {
         private Message Message = new Message();
         public Message CheckAutorisation()

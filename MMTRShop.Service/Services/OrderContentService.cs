@@ -1,5 +1,6 @@
 ﻿using MMTRShop.Model.Models;
 using MMTRShop.Repository.Repositories;
+using MMTRShop.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Service.Services
 {
-    public class OrderContentService
+    public class OrderContentService: IOrderContentService
     {
         private readonly UnitOfWork _unitOfWork;
         public OrderContentService(UnitOfWork unitOfWork)

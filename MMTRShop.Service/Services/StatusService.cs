@@ -1,5 +1,6 @@
 ﻿using MMTRShop.Model.Models;
 using MMTRShop.Repository.Repositories;
+using MMTRShop.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Service.Services
 {
-    public class StatusService
+    public class StatusService: IStatusService
     {
         private readonly UnitOfWork _unitOfWork;
         public StatusService(UnitOfWork unitOfWork)

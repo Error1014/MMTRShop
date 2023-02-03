@@ -1,5 +1,6 @@
 ﻿using MMTRShop.Model.Models;
 using MMTRShop.Repository.Repositories;
+using MMTRShop.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Service.Services
 {
-    public class CategoryService
+    public class CategoryService: ICategoryServise
     {
         private Message Message = new Message();
         private readonly UnitOfWork _unitOfWork;
@@ -33,10 +34,11 @@ namespace MMTRShop.Service.Services
         {
             return await _unitOfWork.Categories.FindAsync(category => category.Id == product.CategoryId);
         }
-        private async Task<Category> GetCategory(Category  category)
+        public async Task<Category> GetCategory(Category category)
         {
-            return await _unitOfWork.Categories.FindAsync(c=>c.Id ==category.Id);
+            return await _unitOfWork.Categories.FindAsync(c => c.Id == category.Id);
         }
+
         public async void SaveChanges(Category category)
         {
             if (category == null) return;
@@ -75,5 +77,8 @@ namespace MMTRShop.Service.Services
                 return Message.GetMessage(true, "Вы не можете удалить данную категорию, так как приведёт к удалению продуктов");
             }
         }
+
+ 
+
     }
 }

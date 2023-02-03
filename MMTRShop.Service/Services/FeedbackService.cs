@@ -1,5 +1,6 @@
 ﻿using MMTRShop.Model.Models;
 using MMTRShop.Repository.Repositories;
+using MMTRShop.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Windows.Input;
 
 namespace MMTRShop.Service.Services
 {
-    public class FeedbackService
+    public class FeedbackService: IFeedbackService
     {
         private readonly UnitOfWork _unitOfWork;
         public FeedbackService(UnitOfWork unitOfWork)

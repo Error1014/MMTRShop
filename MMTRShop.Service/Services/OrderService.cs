@@ -25,9 +25,9 @@ namespace MMTRShop.Service.Services
             var orders =await _unitOfWork.Orders.GetAllAsync();
             return new ObservableCollection<Order>(orders.ToList());
         }
-        public List<Order> GetOrderClient(Client client)
+        public async Task<IEnumerable<Order>> GetOrderClient(Client client)
         {
-            return _unitOfWork.Orders.GetOrdersByClientId(client.Id).ToList();
+            return await _unitOfWork.Orders.GetOrdersByClientId(client.Id);
         }
         public async Task<Order> GetOrder(Order order)
         {

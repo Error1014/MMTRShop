@@ -1,13 +1,14 @@
 ﻿using MMTRShop.Model;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Repositories;
+using MMTRShop.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MMTRShop.Service.Services
 {
-    public class FavouritesService
+    public class FavouritesService: IFavouritesService
     {
         private readonly UnitOfWork _unitOfWork;
         public FavouritesService(UnitOfWork unitOfWork)

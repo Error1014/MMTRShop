@@ -1,11 +1,12 @@
 ﻿using MMTRShop.Model.Models;
 using MMTRShop.Repository.Repositories;
+using MMTRShop.Service.Interface;
 using System;
 using System.Windows;
 
 namespace MMTRShop.Service.Services
 {
-    public class AutorizationService
+    public class AutorizationService:IAutorizationService
     {
         private Message Message = new Message();
         private readonly UnitOfWork _unitOfWork;
