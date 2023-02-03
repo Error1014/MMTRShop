@@ -11,7 +11,7 @@ namespace MMTRShop.Model.Models
     public class Category : BaseEntity<Guid>
     {
         public string Title { get; set; }
-        public virtual List<Product> Product { get; set; }
+        public virtual List<Product>? Product { get; set; }
 
 
         public Category()

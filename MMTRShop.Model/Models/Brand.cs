@@ -12,6 +12,6 @@ namespace MMTRShop.Model.Models
     {
         public string Name { get; set; }
 
-        public virtual List<Product> Products { get; set; }
+        public virtual List<Product>? Products { get; set; }
     }
 }

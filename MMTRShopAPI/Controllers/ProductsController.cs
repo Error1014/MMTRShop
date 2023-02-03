@@ -27,13 +27,13 @@ namespace MMTRShopAPI.Controllers
             {
                 return NotFound();
             }
-            var result = _context.Product.ToList();
+            var result =await _unitOfWork.Products.GetAllAsync();
             if (result == null)
             {
                 return NotFound();
             }
 
-            return result;
+            return result.ToList();
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(Guid id)
@@ -42,19 +42,49 @@ namespace MMTRShopAPI.Controllers
             {
                 return NotFound();
             }
-            //var product = _unitOfWork.Brands.GetById(id);
-            //if (product == null)
-            //{
-            //    return NotFound();
-            //}
-            return null;
+            var product = _unitOfWork.Products.GetById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return product;
         }
+
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<Product>>> PostProducts(Product product)
+        public async Task<ActionResult<Product>> PostProducts(Product product)
         {
-            //_unitOfWork.Products.Add(product);
-            //_unitOfWork.Products.Save();
-            return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
+            _unitOfWork.Products.Add(product);
+            _unitOfWork.Products.Save();
+            return Ok(product);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Product>> Put(Product product)
+        {
+            if (product == null)
+            {
+                return BadRequest();
+            }
+            if (!_context.Product.Any(x => x.Id == product.Id))
+            {
+                return NotFound();
+            }
+            _context.Update(product);
+            _unitOfWork.Products.Save();
+            return Ok(product);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Product>> Delete(Guid id)
+        {
+            Product product = _unitOfWork.Products.GetById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.Products.Remove(product);
+            _unitOfWork.Products.Save();
+            return Ok(product);
         }
     }
 }
