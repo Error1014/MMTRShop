@@ -13,12 +13,12 @@ namespace MMTRShop.Repository.Repositories
 
         }
 
-        public List<OrderContent> GetCanceledOrder(Client client)
+        public async Task<List<OrderContent>> GetCanceledOrder(Client client)
         {
             return ShopContext.OrderContent.Where(o=>o.Order.Status.Title== "Получен" && o.Order.ClientId == client.Id).ToList();
         }
 
-        public List<OrderContent> GetOrderContents(Order order)
+        public async Task<List<OrderContent>> GetOrderContents(Order order)
         {
             return ShopContext.OrderContent.Where(o=>o.OrderId == order.Id).ToList();
         }

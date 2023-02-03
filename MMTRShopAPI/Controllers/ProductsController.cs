@@ -30,7 +30,7 @@ namespace MMTRShopAPI.Controllers
             {
                 return NotFound();
             }
-            var result =await _unitOfWork.Products.GetAllAsync();
+            var result =await productService.GetAll();
             if (result == null)
             {
                 return NotFound();
@@ -45,7 +45,7 @@ namespace MMTRShopAPI.Controllers
             {
                 return NotFound();
             }
-            var product = productService.GetProduct(id);
+            var product =await productService.GetProduct(id);
             if (product == null)
             {
                 return NotFound();
@@ -80,7 +80,7 @@ namespace MMTRShopAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Product>> Delete(Guid id)
         {
-            Product product =await _unitOfWork.Products.GetByIdAsync(id);
+            Product product =await productService.GetProduct(id);
             if (product == null)
             {
                 return NotFound();

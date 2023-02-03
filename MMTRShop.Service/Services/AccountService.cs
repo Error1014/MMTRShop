@@ -15,13 +15,13 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public User GetUser()
+        public async Task<User> GetUser()
         {
-            return _unitOfWork.Users.Find(u=>u.Id == AccountManager.User.Id);
+            return await _unitOfWork.Users.FindAsync(u=>u.Id == AccountManager.User.Id);
         }
-        public Client GetClient()
+        public async Task<Client> GetClient()
         {
-            return _unitOfWork.Clients.Find(c=>c.Id == AccountManager.Client.Id);
+            return await _unitOfWork.Clients.FindAsync(c=>c.Id == AccountManager.Client.Id);
         }
         public void Save()
         {

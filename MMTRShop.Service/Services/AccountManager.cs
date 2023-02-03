@@ -69,37 +69,38 @@ namespace MMTRShop.Service.Services
         {
             return ShopContext.GetContext().User.Where(user => user.Id == Operator.UserId).FirstOrDefault();
         }
-        public static void SetRoleById(Guid id)
+        public static async void SetRoleById(Guid id)
         {
-            var user = UnitOfWork.Users.GetById(id);
-            User = user;
-            var admins = UnitOfWork.Admins.GetAll();
-            foreach (var item in admins)
-            {
-                if (user.Id == item.UserId)
-                {
-                    Admin = UnitOfWork.Admins.Find(a => a.UserId == user.Id);
-                    return;
-                }
-            }
-            var operators = UnitOfWork.Operators.GetAll();
-            foreach (var item in operators)
-            {
-                if (user.Id == item.UserId)
-                {
-                    Operator = UnitOfWork.Operators.Find(c => c.UserId == user.Id);
-                    return;
-                }
-            }
-            var clients = UnitOfWork.Clients.GetAll();
-            foreach (var item in clients)
-            {
-                if (user.Id == item.UserId)
-                {
-                    Client = UnitOfWork.Clients.Find(c => c.UserId == user.Id);
-                    return;
-                }
-            }
+            var user = UnitOfWork.Users.GetByIdAsync(id);
+            User =await user;
+            var admins =await UnitOfWork.Admins.GetAllAsync();
+
+            //foreach (var item in admins)
+            //{
+            //    if (user.Id == item.UserId)
+            //    {
+            //        Admin =await UnitOfWork.Admins.FindAsync(a => a.UserId == user.Id);
+            //        return;
+            //    }
+            //}
+            //var operators =await UnitOfWork.Operators.GetAllAsync();
+            //foreach (var item in operators)
+            //{
+            //    if (user.Id == item.UserId)
+            //    {
+            //        Operator = UnitOfWork.Operators.FindAsync(c => c.UserId == user.Id);
+            //        return;
+            //    }
+            //}
+            //var clients = await UnitOfWork.Clients.GetAllAsync();
+            //foreach (var item in clients)
+            //{
+            //    if (user.Id == item.UserId)
+            //    {
+            //        Client = UnitOfWork.Clients.FindAsync(c => c.UserId == user.Id);
+            //        return;
+            //    }
+            //}
 
         }
         public static void ResetAccount()

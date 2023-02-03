@@ -13,9 +13,9 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public Message Registration(User user, string password2)
+        public async Task<Message> Registration(User user, string password2)
         {
-            if (IsCheckUserInDB(user.Login))
+            if (await IsCheckUserInDB(user.Login))
             {
                 return Message.GetMessage(true, "Пользователь с таким логином уже существует");
             }
@@ -27,10 +27,10 @@ namespace MMTRShop.Service.Services
             AddNewClientInDB(u);
             return Message.GetMessage(false);
         }
-        public Message CheckCorrectLoginPassword(string login,string password)
+        public async Task<Message> CheckCorrectLoginPassword(string login,string password)
         {
             Message message = new Message(true, "Вы ввели неверный логин или пароль!");
-            var users = _unitOfWork.Users.GetAll();
+            var users =await _unitOfWork.Users.GetAllAsync();
             foreach (var user in users)
             {
                 if (user.Login == login && user.Password == password)
@@ -42,9 +42,9 @@ namespace MMTRShop.Service.Services
             return message;
         }
 
-        public Guid GetUserId(string login, string password)
+        public async Task<Guid> GetUserId(string login, string password)
         {
-            var users = _unitOfWork.Users.GetAll();
+            var users =await _unitOfWork.Users.GetAllAsync();
             foreach (var user in users)
             {
                 if (login==user.Login && password==user.Password)
@@ -54,9 +54,9 @@ namespace MMTRShop.Service.Services
             }
             return Guid.Empty;
         }
-        public bool IsCheckUserInDB(string login)
+        public async Task<bool> IsCheckUserInDB(string login)
         {
-            var users = _unitOfWork.Users.GetAll();
+            var users =await _unitOfWork.Users.GetAllAsync();
             foreach (var user in users)
             {
                 if (user.Login == login)

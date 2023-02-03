@@ -15,17 +15,17 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public  IEnumerable<Brand> GetAllBrand()
+        public  async Task<IEnumerable<Brand>> GetAllBrand()
         {
-            return _unitOfWork.Brands.GetAll();
+            return await _unitOfWork.Brands.GetAllAsync();
         }
         public async Task<IEnumerable<Brand>> GetAllBrandAsync()
         {
             return await _unitOfWork.Brands.GetAllAsync();
         }
-        public Brand GetBrand(Product product)
+        public async Task<Brand> GetBrand(Product product)
         {
-            return _unitOfWork.Brands.Find(b=>b.Id==product.BrandId);
+            return await _unitOfWork.Brands.FindAsync(b=>b.Id==product.BrandId);
         }
     }
 }

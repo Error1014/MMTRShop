@@ -12,28 +12,32 @@ using System.Windows;
 
 namespace MMTRShop.Service.Services
 {
-    public class ProductService:IProductService
+    public class ProductService: IProductService
     {
         private readonly UnitOfWork _unitOfWork;
         public ProductService(UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public Product GetProduct(Product product)
+        public async Task<IEnumerable<Product>> GetAll()
         {
-            return _unitOfWork.Products.GetById(product.Id);
+            return await _unitOfWork.Products.GetAllAsync();
         }
-        public Product GetProduct(Guid id)
+        public async Task<Product> GetProduct(Product product)
         {
-            return _unitOfWork.Products.GetById(id);
+            return await _unitOfWork.Products.GetByIdAsync(product.Id);
+        }
+        public async Task<Product> GetProduct(Guid id)
+        {
+            return await _unitOfWork.Products.GetByIdAsync(id);
         }
         public void AddProduct(Product product)
         {
             _unitOfWork.Products.Add(product);
         }
-        public void RemoveProduct(Product product)
+        public async void RemoveProduct(Product product)
         {
-            Product productDB = GetProduct(product);
+            Product productDB =await GetProduct(product);
             _unitOfWork.Products.Remove(productDB);
         }
         public void Save()
@@ -57,39 +61,39 @@ namespace MMTRShop.Service.Services
             }
             Save();
         }
-        public List<Product> GetProducts(List<Cart> carts)
+        public async Task<List<Product>> GetProducts(List<Cart> carts)
         {
-            var products = carts.Join(_unitOfWork.Products.GetAll(),
+            var products = carts.Join(await _unitOfWork.Products.GetAllAsync(),
             k => k.ProductId,
             p => p.Id, (k, p) => new { k, p }).Select(x => x.p).ToList();
             return products;
         }
-        public List<Product> GetProducts(List<Favourites> favourites)
+        public async Task<List<Product>> GetProducts(List<Favourites> favourites)
         {
-            var products = favourites.Join(_unitOfWork.Products.GetAll(),
+            var products = favourites.Join(await _unitOfWork.Products.GetAllAsync(),
             f => f.ProductId,
             p => p.Id, (f, p) => new { f, p }).Select(x => x.p).ToList();
             return products;
         }
 
-        public ObservableCollection<Product> GetPageProducts(int numPage,int sizePage)
+        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage,int sizePage)
         {
-            var products = _unitOfWork.Products.GetProductsPage(numPage, sizePage).ToList();
+            var products = await _unitOfWork.Products.GetProductsPage(numPage, sizePage);
             return new ObservableCollection<Product>(products);
         }
-        public ObservableCollection<Product> GetPageProducts(int numPage, int sizePage, Category category)
+        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Category category)
         {
-            var products = _unitOfWork.Products.GetProductsPage(numPage, sizePage,category).ToList();
+            var products =await _unitOfWork.Products.GetProductsPage(numPage, sizePage,category);
             return new ObservableCollection<Product>(products);
         }
-        public ObservableCollection<Product> GetPageProducts(int numPage, int sizePage, Brand brand)
+        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Brand brand)
         {
-            var products = _unitOfWork.Products.GetProductsPage(numPage, sizePage,brand).ToList();
+            var products =await _unitOfWork.Products.GetProductsPage(numPage, sizePage,brand);
             return new ObservableCollection<Product>(products);
         }
-        public ObservableCollection<Product> GetPageProducts(int numPage, int sizePage, Category category, Brand brand)
+        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Category category, Brand brand)
         {
-            var products = _unitOfWork.Products.GetProductsPage(numPage, sizePage, category,brand).ToList();
+            var products =await _unitOfWork.Products.GetProductsPage(numPage, sizePage, category,brand);
             return new ObservableCollection<Product>(products);
         }
         public int GetCountPage(int sizePage)
@@ -97,11 +101,11 @@ namespace MMTRShop.Service.Services
             return _unitOfWork.Carts.GetCountPage(sizePage);
         }
 
-        public void RemoveProductsInStorage(List<Cart> carts)
+        public async void RemoveProductsInStorage(List<Cart> carts)
         {
             foreach (var item in carts)
             {
-                var product = _unitOfWork.Products.Find(p => p.Id == item.ProductId);
+                var product =await _unitOfWork.Products.FindAsync(p => p.Id == item.ProductId);
                 product.CountInStarage -= item.ProductCount;
             }
             Save();
