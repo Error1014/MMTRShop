@@ -154,7 +154,7 @@ namespace MMTRShopAPI.Migrations
                     b.ToTable("Client");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Favourites", b =>
+            modelBuilder.Entity("MMTRShop.Model.Models.Favourite", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -417,7 +417,7 @@ namespace MMTRShopAPI.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Favourites", b =>
+            modelBuilder.Entity("MMTRShop.Model.Models.Favourite", b =>
                 {
                     b.HasOne("MMTRShop.Model.Models.Client", "Client")
                         .WithMany()

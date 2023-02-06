@@ -44,7 +44,7 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork.Products.Save();
         }
-        public void SeveResultEdit(bool isAdd, Product product)
+        public void CreateOrUpdateProduct(bool isAdd, Product product)
         {
             if (isAdd)
             {
@@ -53,7 +53,7 @@ namespace MMTRShop.Service.Services
 
             Save();
         }
-        public void RemoveResultEdit(bool isAdd, Product product)
+        public void RemoveOrUpdateProduct(bool isAdd, Product product)
         {
             if (!isAdd)
             {
@@ -68,7 +68,7 @@ namespace MMTRShop.Service.Services
             p => p.Id, (k, p) => new { k, p }).Select(x => x.p).ToList();
             return products;
         }
-        public async Task<List<Product>> GetProducts(List<Favourites> favourites)
+        public async Task<List<Product>> GetProducts(List<Favourite> favourites)
         {
             var products = favourites.Join(await _unitOfWork.Products.GetAllAsync(),
             f => f.ProductId,

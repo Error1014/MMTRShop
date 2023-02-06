@@ -65,7 +65,7 @@ namespace MMTRShop.Repository.Repositories
             ShopContext.SaveChanges();
         }
 
-        public async void SaveAsync()
+        public async Task SaveAsync()
         {
             await ShopContext.SaveChangesAsync();
         }

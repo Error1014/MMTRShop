@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 namespace MMTRShop.Repository.Interface
 {
-    public interface IFavouritesRepository: IRepository<Favourites,Guid>
+    public interface IFavouritesRepository: IRepository<Favourite,Guid>
     {
-        Task<IEnumerable<Favourites>> GetFavourites(Client client);
+        Task<IEnumerable<Favourite>> GetFavourites(Client client);
     }
 }

@@ -39,7 +39,7 @@ namespace MMTRShop.Model.Models
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderContent> OrderContent { get; set; }
         public DbSet<Feedback> Feedback { get; set; }
-        public DbSet<Favourites> Favourites { get; set; }
+        public DbSet<Favourite> Favourites { get; set; }
         public DbSet<BankCard> BankCard { get; set; }
 
 

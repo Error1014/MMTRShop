@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Model.Models
 {
-    public class Favourites:BaseEntity<Guid>
+    public class Favourite:BaseEntity<Guid>
     {
         public Guid ClientId { get; set; }
         public virtual Client Client { get; set; }
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; }
-        public Favourites()
+        public Favourite()
         {
         }
-        public Favourites(Guid clientId,Guid productId)
+        public Favourite(Guid clientId,Guid productId)
         {
             ClientId = clientId;
             ProductId = productId;

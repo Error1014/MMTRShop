@@ -20,6 +20,6 @@ namespace MMTRShop.Repository.Interface
         void RemoveRange(IEnumerable<TEntity> entities);
 
         void Save();
-        void SaveAsync();
+        Task SaveAsync();
     }
 }

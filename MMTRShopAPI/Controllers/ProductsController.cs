@@ -11,13 +11,13 @@ namespace MMTRShopAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TestController : ControllerBase
+    public class ProductController : ControllerBase
     {
         private readonly ProductService productService;
         private readonly ShopContext _context;
         private readonly UnitOfWork _unitOfWork;
 
-        public TestController(ShopContext context)
+        public ProductController(ShopContext context)
 {
             _context = context;
             _unitOfWork = new UnitOfWork(context);

@@ -6,14 +6,14 @@ using System.Linq;
 
 namespace MMTRShop.Repository.Repositories
 {
-    public class FavouritesRepository : Repository<Favourites,Guid>, IFavouritesRepository
+    public class FavouritesRepository : Repository<Favourite,Guid>, IFavouritesRepository
     {
         public FavouritesRepository(ShopContext context) : base(context)
         {
 
         }
 
-        public async Task<IEnumerable<Favourites>> GetFavourites(Client client)
+        public async Task<IEnumerable<Favourite>> GetFavourites(Client client)
         {
             return ShopContext.Favourites.Where(k => k.ClientId == client.Id).ToList();
         }

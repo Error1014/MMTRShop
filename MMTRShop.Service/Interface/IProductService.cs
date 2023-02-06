@@ -17,10 +17,10 @@ namespace MMTRShop.Service.Interface
         void AddProduct(Product product);
         void RemoveProduct(Product product);
         void Save();
-        void SeveResultEdit(bool isAdd, Product product);
-        void RemoveResultEdit(bool isAdd, Product product);
+        void CreateOrUpdateProduct(bool isAdd, Product product);
+        void RemoveOrUpdateProduct(bool isAdd, Product product);
         Task<List<Product>> GetProducts(List<Cart> carts);
-        Task<List<Product>> GetProducts(List<Favourites> favourites);
+        Task<List<Product>> GetProducts(List<Favourite> favourites);
 
         Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage);
         Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Category category);

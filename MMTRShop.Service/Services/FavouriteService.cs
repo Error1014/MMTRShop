@@ -8,36 +8,36 @@ using System.Linq;
 
 namespace MMTRShop.Service.Services
 {
-    public class FavouritesService: IFavouritesService
+    public class FavouriteService: IFavouritesService
     {
         private readonly UnitOfWork _unitOfWork;
-        public FavouritesService(UnitOfWork unitOfWork)
+        public FavouriteService(UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<IEnumerable<Favourites>> GetFavourites()
+        public async Task<IEnumerable<Favourite>> GetFavourites()
         {
             return await _unitOfWork.Favorites.GetFavourites(AccountManager.Client);
         }
-        public async Task<Favourites> GetFavourit(Product product)
+        public async Task<Favourite> GetFavourit(Product product)
         {
             return await _unitOfWork.Favorites.FindAsync(f=>f.ClientId == AccountManager.Client.Id && f.ProductId == product.Id);
         }
 
-        public async void RemoveFavouritById(Guid id)
+        public async void RemoveFavourietById(Guid id)
         {
-            Favourites favourit = await _unitOfWork.Favorites.FindAsync(f=>f.Id==id);
+            Favourite favourit = await _unitOfWork.Favorites.FindAsync(f=>f.Id==id);
             RemoveFavourite(favourit);
         }
 
-        public void AddFavourite(Favourites favourit)
+        public void AddFavourite(Favourite favourite)
         {
-            _unitOfWork.Favorites.Add(favourit);
+            _unitOfWork.Favorites.Add(favourite);
             _unitOfWork.Favorites.Save();
         }
-        public void RemoveFavourite(Favourites favourit)
+        public void RemoveFavourite(Favourite favourite)
         {
-            _unitOfWork.Favorites.Remove(favourit);
+            _unitOfWork.Favorites.Remove(favourite);
             _unitOfWork.Favorites.Save();
         }
     }
