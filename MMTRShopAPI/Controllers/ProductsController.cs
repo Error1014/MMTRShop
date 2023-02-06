@@ -11,18 +11,16 @@ namespace MMTRShopAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductController : Controller
     {
-        private readonly ProductService productService;
-        private readonly ShopContext _context;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IProductService _productService;
+        private readonly ShopContext _context = new ShopContext();
 
-        public ProductController(ShopContext context)
-{
-            _context = context;
-            _unitOfWork = new UnitOfWork(context);
-            productService = new ProductService(_unitOfWork);
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
         }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
@@ -30,7 +28,7 @@ namespace MMTRShopAPI.Controllers
             {
                 return NotFound();
             }
-            var result =await productService.GetAll();
+            var result =await _productService.GetAll();
             if (result == null)
             {
                 return NotFound();
@@ -45,7 +43,7 @@ namespace MMTRShopAPI.Controllers
             {
                 return NotFound();
             }
-            var product =await productService.GetProduct(id);
+            var product =await _productService.GetProduct(id);
             if (product == null)
             {
                 return NotFound();
@@ -56,8 +54,8 @@ namespace MMTRShopAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProducts(Product product)
         {
-            productService.AddProduct(product);
-            productService.Save();
+            _productService.AddProduct(product);
+            _productService.Save();
             return Ok(product);
         }
 
@@ -73,20 +71,20 @@ namespace MMTRShopAPI.Controllers
                 return NotFound();
             }
             _context.Update(product);
-            productService.Save();
+            _productService.Save();
             return Ok(product);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Product>> Delete(Guid id)
         {
-            Product product =await productService.GetProduct(id);
+            Product product =await _productService.GetProduct(id);
             if (product == null)
             {
                 return NotFound();
             }
-            productService.RemoveProduct(product);
-            productService.Save();
+            _productService.RemoveProduct(product);
+            _productService.Save();
             return Ok(product);
         }
     }

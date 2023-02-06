@@ -1,4 +1,5 @@
 ﻿using MMTRShop.Model.Models;
+using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
 using System;
@@ -11,8 +12,8 @@ namespace MMTRShop.Service.Services
 {
     public class AccountService:IAccountService
     {
-        private UnitOfWork _unitOfWork;
-        public AccountService(UnitOfWork unitOfWork)
+        private IUnitOfWork _unitOfWork;
+        public AccountService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

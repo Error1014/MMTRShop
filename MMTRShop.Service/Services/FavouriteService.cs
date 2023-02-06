@@ -1,5 +1,6 @@
 ﻿using MMTRShop.Model;
 using MMTRShop.Model.Models;
+using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
 using System;
@@ -8,10 +9,10 @@ using System.Linq;
 
 namespace MMTRShop.Service.Services
 {
-    public class FavouriteService: IFavouritesService
+    public class FavouriteService: IFavouriteService
     {
-        private readonly UnitOfWork _unitOfWork;
-        public FavouriteService(UnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public FavouriteService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

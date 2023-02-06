@@ -11,6 +11,7 @@ namespace MMTRShop.Service.Interface
 {
     public interface IProductService
     {
+        Task<IEnumerable<Product>> GetAll();
         Task<Product> GetProduct(Product product);
         Task<Product> GetProduct(Guid id);
 

@@ -1,4 +1,5 @@
 ﻿using MMTRShop.Model.Models;
+using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
 using System;
@@ -8,8 +9,8 @@ namespace MMTRShop.Service.Services
 {
     public  class BankCardService:IBankCardService
     {
-        private readonly UnitOfWork _unitOfWork;
-        public BankCardService(UnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public BankCardService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

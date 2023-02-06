@@ -1,4 +1,5 @@
 ﻿using MMTRShop.Model.Models;
+using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
 using System;
@@ -9,8 +10,8 @@ namespace MMTRShop.Service.Services
     public class AutorizationService:IAutorizationService
     {
         private Message Message = new Message();
-        private readonly UnitOfWork _unitOfWork;
-        public AutorizationService(UnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public AutorizationService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

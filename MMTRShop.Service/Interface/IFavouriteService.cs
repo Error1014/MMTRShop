@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Service.Interface
 {
-    public interface IFavouritesService
+    public interface IFavouriteService
     {
         Task<IEnumerable<Favourite>> GetFavourites();
         Task<Favourite> GetFavourit(Product product);

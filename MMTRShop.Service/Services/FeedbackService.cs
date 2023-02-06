@@ -1,4 +1,5 @@
 ﻿using MMTRShop.Model.Models;
+using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
 using System;
@@ -12,8 +13,8 @@ namespace MMTRShop.Service.Services
 {
     public class FeedbackService: IFeedbackService
     {
-        private readonly UnitOfWork _unitOfWork;
-        public FeedbackService(UnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public FeedbackService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

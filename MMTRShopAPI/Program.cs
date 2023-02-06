@@ -7,6 +7,7 @@ using MMTRShop.Service.Services;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Service.Interface;
+using MMTRShopAPI.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,14 +18,27 @@ builder.Services.AddDbContextPool<ShopContext>(
 builder.Services.AddDbContext<ShopContext>(options =>
                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-var services = new ServiceCollection()
+IServiceCollection allServices = builder.Services;
+builder.Services.AddControllers();
+builder.Services
+    .AddScoped<ShopContext>()
     .AddScoped<IUnitOfWork, UnitOfWork>()
-    .AddScoped<ProductService>();
-
+    .AddScoped<IProductService, ProductService>()
+    .AddScoped<IAccountService, AccountService>()
+    .AddScoped<IAutorizationService, AutorizationService>()
+    .AddScoped<IBankCardService, BankCardService>()
+    .AddScoped<IBrandService, BrandService>()
+    .AddScoped<ICartService, CartService>()
+    .AddScoped<ICategoryServise, CategoryService>()
+    .AddScoped<IClientService, ClientService>()
+    .AddScoped<IFavouriteService, FavouriteService>()
+    .AddScoped<IFeedbackService, FeedbackService>()
+    .AddScoped<IOrderService, OrderService>()
+    .AddScoped<IOrderContentService, OrderContentService>()
+    .AddScoped<IStatusService, StatusService>();
 
 
 var app = builder.Build();
@@ -42,5 +56,4 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();

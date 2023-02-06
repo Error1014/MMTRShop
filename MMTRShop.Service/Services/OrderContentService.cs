@@ -1,4 +1,5 @@
 ﻿using MMTRShop.Model.Models;
+using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
 using System;
@@ -11,8 +12,8 @@ namespace MMTRShop.Service.Services
 {
     public class OrderContentService: IOrderContentService
     {
-        private readonly UnitOfWork _unitOfWork;
-        public OrderContentService(UnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public OrderContentService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

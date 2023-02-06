@@ -1,5 +1,6 @@
 ﻿using MMTRShop.Model;
 using MMTRShop.Model.Models;
+using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
 using System;
@@ -12,8 +13,8 @@ namespace MMTRShop.Service.Services
 {
     public class CartService: ICartService
     {
-        private readonly UnitOfWork _unitOfWork;
-        public CartService(UnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public CartService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

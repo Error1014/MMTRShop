@@ -1,6 +1,8 @@
 ﻿using MMTRShop.Model;
 using MMTRShop.Model.Models;
+using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
+using MMTRShop.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,11 +14,11 @@ using System.Windows;
 
 namespace MMTRShop.Service.Services
 {
-    public class OrderService
+    public class OrderService: IOrderService
     {
         private Message Message = new Message();
-        private readonly UnitOfWork _unitOfWork;
-        public OrderService(UnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public OrderService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

@@ -1,4 +1,5 @@
 ﻿using MMTRShop.Model.Models;
+using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
 using System;
@@ -11,8 +12,8 @@ namespace MMTRShop.Service.Services
 {
     public class StatusService: IStatusService
     {
-        private readonly UnitOfWork _unitOfWork;
-        public StatusService(UnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public StatusService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

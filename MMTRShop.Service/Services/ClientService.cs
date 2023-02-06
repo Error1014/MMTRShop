@@ -1,4 +1,5 @@
 ﻿using MMTRShop.Model.Models;
+using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
 using System;
@@ -11,8 +12,8 @@ namespace MMTRShop.Service.Services
 {
     public class ClientService: IClientService
     {
-        private readonly UnitOfWork _unitOfWork;
-        public ClientService(UnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public ClientService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
