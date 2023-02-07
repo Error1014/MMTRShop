@@ -58,7 +58,14 @@ namespace MMTRShop.Repository.Repositories
         {
             ShopContext.Set<TEntity>().RemoveRange(entities);
         }
+
         #endregion
+
+        public void Update(TEntity entity)
+        {
+            ShopContext.Set<TEntity>().Update(entity);
+        }
+
         #region Save
         public void Save()
         {
@@ -69,6 +76,7 @@ namespace MMTRShop.Repository.Repositories
         {
             await ShopContext.SaveChangesAsync();
         }
+
         #endregion
     }
 }

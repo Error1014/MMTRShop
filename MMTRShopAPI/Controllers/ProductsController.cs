@@ -14,10 +14,11 @@ namespace MMTRShopAPI.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        private readonly ShopContext _context = new ShopContext();
+        private readonly ShopContext _context;
 
-        public ProductController(IProductService productService)
+        public ProductController(ShopContext context, IProductService productService)
         {
+            _context = context;
             _productService = productService;
         }
 
@@ -70,7 +71,7 @@ namespace MMTRShopAPI.Controllers
             {
                 return NotFound();
             }
-            _context.Update(product);
+            _productService.Update(product);
             _productService.Save();
             return Ok(product);
         }

@@ -32,35 +32,39 @@ namespace MMTRShop.Service.Services
         {
             return await _unitOfWork.Products.GetByIdAsync(id);
         }
-        public async Task AddProduct(Product product)
+        public void AddProduct(Product product)
         {
-            await _unitOfWork.Products.AddAsync(product);
+            _unitOfWork.Products.Add(product);
         }
-        public async Task RemoveProduct(Product product)
+        public async void RemoveProduct(Product product)
         {
-            Product productDB = await GetProduct(product);
+            Product productDB =await GetProduct(product);
             _unitOfWork.Products.Remove(productDB);
         }
-        public async Task Save()
+        public void Update(Product product)
         {
-             await _unitOfWork.Products.SaveAsync();
+            _unitOfWork.Products.Update(product);
         }
-        public async Task CreateOrUpdateProduct(bool isAdd, Product product)
+        public void Save()
+        {
+            _unitOfWork.Products.Save();
+        }
+        public void CreateOrUpdateProduct(bool isAdd, Product product)
         {
             if (isAdd)
             {
                 AddProduct(product);
             }
 
-            await Save();
+            Save();
         }
-        public async Task RemoveOrUpdateProduct(bool isAdd, Product product)
+        public void RemoveOrUpdateProduct(bool isAdd, Product product)
         {
             if (!isAdd)
             {
                 RemoveProduct(product);
             }
-            await Save();
+            Save();
         }
         public async Task<List<Product>> GetProducts(List<Cart> carts)
         {
@@ -102,14 +106,14 @@ namespace MMTRShop.Service.Services
             return _unitOfWork.Carts.GetCountPage(sizePage);
         }
 
-        public async Task RemoveProductsInStorage(List<Cart> carts)
+        public async void RemoveProductsInStorage(List<Cart> carts)
         {
             foreach (var item in carts)
             {
                 var product =await _unitOfWork.Products.FindAsync(p => p.Id == item.ProductId);
                 product.CountInStarage -= item.ProductCount;
             }
-            await Save();
+            Save();
         }
 
     }
