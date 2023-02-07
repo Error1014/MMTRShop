@@ -10,7 +10,7 @@ namespace MMTRShop.Service.Interface
 {
     public interface IOrderContentService
     {
-        void CreateOrderContent(Order order);
+        Task CreateOrderContent(Order order);
         List<OrderContent> GetOrderContentNoСompleted(List<Order> orders);
         Task<List<OrderContent>> GetOrderContents(Order order);
         Task<List<OrderContent>> GetCancelledOrder();

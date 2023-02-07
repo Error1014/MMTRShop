@@ -17,7 +17,7 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public async void CreateOrderContent(Order order)
+        public async Task CreateOrderContent(Order order)
         {
             var carts =await _unitOfWork.Carts.GetCartByClient(AccountManager.Client);
             List<OrderContent> cartOrders = new List<OrderContent>();
@@ -26,7 +26,7 @@ namespace MMTRShop.Service.Services
                 cartOrders.Add(new OrderContent(order, cartItem));
             }
             _unitOfWork.OrderContents.AddRange(cartOrders);
-            _unitOfWork.OrderContents.Save();
+             await _unitOfWork.OrderContents.SaveAsync();
         }
         public List<OrderContent> GetOrderContentNoСompleted(List<Order> orders)
         {

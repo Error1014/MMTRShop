@@ -11,11 +11,10 @@ namespace MMTRShop.Service.Interface
     public interface ICartService
     {
         Task<IEnumerable<Cart>> GetCart();
-        void AddProductInCart(Product product);
-        void CartMinusOneProduct(Guid id);
-        void CartPlusOneProduct(Guid id);
-        void CartRemoveProduct(Guid id);
-
-        void ClearCart();
+        Task AddProductInCart(Product product);
+        Task CartMinusOneProduct(Guid id);
+        Task CartPlusOneProduct(Guid id);
+        Task CartRemoveProduct(Guid id);
+        Task ClearCart();
     }
 }

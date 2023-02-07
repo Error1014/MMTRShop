@@ -11,6 +11,6 @@ namespace MMTRShop.Service.Interface
     {
         Task<User> GetUser();
         Task<Client> GetClient();
-        void Save();
+        Task Save();
     }
 }

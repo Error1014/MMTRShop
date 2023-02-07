@@ -25,21 +25,21 @@ namespace MMTRShop.Service.Services
             return await _unitOfWork.Favorites.FindAsync(f=>f.ClientId == AccountManager.Client.Id && f.ProductId == product.Id);
         }
 
-        public async void RemoveFavourietById(Guid id)
+        public async Task RemoveFavourietById(Guid id)
         {
             Favourite favourit = await _unitOfWork.Favorites.FindAsync(f=>f.Id==id);
-            RemoveFavourite(favourit);
+            await RemoveFavourite(favourit);
         }
 
-        public void AddFavourite(Favourite favourite)
+        public async Task AddFavourite(Favourite favourite)
         {
             _unitOfWork.Favorites.Add(favourite);
-            _unitOfWork.Favorites.Save();
+            await _unitOfWork.Favorites.SaveAsync();
         }
-        public void RemoveFavourite(Favourite favourite)
+        public async Task RemoveFavourite(Favourite favourite)
         {
             _unitOfWork.Favorites.Remove(favourite);
-            _unitOfWork.Favorites.Save();
+            await _unitOfWork.Favorites.SaveAsync();
         }
     }
 }

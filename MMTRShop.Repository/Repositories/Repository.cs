@@ -19,7 +19,7 @@ namespace MMTRShop.Repository.Repositories
             ShopContext.Set<TEntity>().Add(entity);
         }
 
-        public async void AddAsync(TEntity entity)
+        public async Task AddAsync(TEntity entity)
         {
             await ShopContext.Set<TEntity>().AddAsync(entity);
         }

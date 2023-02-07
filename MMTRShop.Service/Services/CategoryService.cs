@@ -40,30 +40,30 @@ namespace MMTRShop.Service.Services
             return await _unitOfWork.Categories.FindAsync(c => c.Id == category.Id);
         }
 
-        public async void SaveChanges(Category category)
+        public async Task SaveChanges(Category category)
         {
             if (category == null) return;
             Category categoryDB =await GetCategory(category);
             categoryDB.Title = category.Title;
-            _unitOfWork.Categories.Save();
+            await Save();
         }
-        public void Save()
+        public async Task Save()
         {
-            _unitOfWork.Categories.Save();
+            await _unitOfWork.Categories.SaveAsync();
         }
 
-        public void Add(string title)
+        public async Task Add(string title)
         {
             _unitOfWork.Categories.Add(new Category(title));
-            Save();
+            await Save();
         }
 
 
-        public async void Remove(Category category)
+        public async Task Remove(Category category)
         {
             if (category == null) return;
             _unitOfWork.Categories.Remove(await GetCategory(category));
-            Save();
+            await Save();
         }
 
         public Message CheckToRemove(Category category)
@@ -78,8 +78,6 @@ namespace MMTRShop.Service.Services
                 return Message.GetMessage(true, "Вы не можете удалить данную категорию, так как приведёт к удалению продуктов");
             }
         }
-
- 
 
     }
 }

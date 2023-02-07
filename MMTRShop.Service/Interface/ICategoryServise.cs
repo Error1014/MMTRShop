@@ -15,10 +15,10 @@ namespace MMTRShop.Service.Interface
         Task<List<Category>> GetAllCategory();
         Task<Category> GetCategory(Product product);
         Task<Category> GetCategory(Category category);
-        void SaveChanges(Category category);
-        void Save();
-        void Add(string title);
-        void Remove(Category category);
+        Task SaveChanges(Category category);
+        Task Save();
+        Task Add(string title);
+        Task Remove(Category category);
         Message CheckToRemove(Category category);
     }
 }

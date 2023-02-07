@@ -26,10 +26,10 @@ namespace MMTRShop.Service.Services
         {
             return await _unitOfWork.Clients.FindAsync(c => c.Id == AccountManager.Client.Id);
         }
-        public void Save()
+        public async Task Save()
         {
             _unitOfWork.Users.Save();
-            _unitOfWork.Clients.Save();
+            await _unitOfWork.Clients.SaveAsync();
         }
     }
 }

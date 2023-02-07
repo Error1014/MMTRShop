@@ -32,35 +32,35 @@ namespace MMTRShop.Service.Services
         {
             return await _unitOfWork.Products.GetByIdAsync(id);
         }
-        public void AddProduct(Product product)
+        public async Task AddProduct(Product product)
         {
-            _unitOfWork.Products.Add(product);
+            await _unitOfWork.Products.AddAsync(product);
         }
-        public async void RemoveProduct(Product product)
+        public async Task RemoveProduct(Product product)
         {
-            Product productDB =await GetProduct(product);
+            Product productDB = await GetProduct(product);
             _unitOfWork.Products.Remove(productDB);
         }
-        public void Save()
+        public async Task Save()
         {
-            _unitOfWork.Products.Save();
+             await _unitOfWork.Products.SaveAsync();
         }
-        public void CreateOrUpdateProduct(bool isAdd, Product product)
+        public async Task CreateOrUpdateProduct(bool isAdd, Product product)
         {
             if (isAdd)
             {
                 AddProduct(product);
             }
 
-            Save();
+            await Save();
         }
-        public void RemoveOrUpdateProduct(bool isAdd, Product product)
+        public async Task RemoveOrUpdateProduct(bool isAdd, Product product)
         {
             if (!isAdd)
             {
                 RemoveProduct(product);
             }
-            Save();
+            await Save();
         }
         public async Task<List<Product>> GetProducts(List<Cart> carts)
         {
@@ -102,14 +102,14 @@ namespace MMTRShop.Service.Services
             return _unitOfWork.Carts.GetCountPage(sizePage);
         }
 
-        public async void RemoveProductsInStorage(List<Cart> carts)
+        public async Task RemoveProductsInStorage(List<Cart> carts)
         {
             foreach (var item in carts)
             {
                 var product =await _unitOfWork.Products.FindAsync(p => p.Id == item.ProductId);
                 product.CountInStarage -= item.ProductCount;
             }
-            Save();
+            await Save();
         }
 
     }

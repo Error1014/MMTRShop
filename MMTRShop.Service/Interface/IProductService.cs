@@ -15,11 +15,11 @@ namespace MMTRShop.Service.Interface
         Task<Product> GetProduct(Product product);
         Task<Product> GetProduct(Guid id);
 
-        void AddProduct(Product product);
-        void RemoveProduct(Product product);
-        void Save();
-        void CreateOrUpdateProduct(bool isAdd, Product product);
-        void RemoveOrUpdateProduct(bool isAdd, Product product);
+        Task AddProduct(Product product);
+        Task RemoveProduct(Product product);
+        Task Save();
+        Task CreateOrUpdateProduct(bool isAdd, Product product);
+        Task RemoveOrUpdateProduct(bool isAdd, Product product);
         Task<List<Product>> GetProducts(List<Cart> carts);
         Task<List<Product>> GetProducts(List<Favourite> favourites);
 
@@ -29,6 +29,6 @@ namespace MMTRShop.Service.Interface
         Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Category category, Brand brand);
         int GetCountPage(int sizePage);
         
-        void RemoveProductsInStorage(List<Cart> carts);
+        Task RemoveProductsInStorage(List<Cart> carts);
     }
 }

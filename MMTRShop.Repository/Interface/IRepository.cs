@@ -13,7 +13,7 @@ namespace MMTRShop.Repository.Interface
         Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate);
 
         void Add(TEntity entity);
-        void AddAsync(TEntity entity);
+        Task AddAsync(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
 
         void Remove(TEntity entity);

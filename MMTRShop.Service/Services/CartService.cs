@@ -24,7 +24,7 @@ namespace MMTRShop.Service.Services
         }
 
 
-        public async void AddProductInCart(Product product)
+        public async Task AddProductInCart(Product product)
         {
             var myKorzine = await _unitOfWork.Carts.GetCartByClient(AccountManager.Client);
             var korzine = myKorzine.ToList();
@@ -41,9 +41,9 @@ namespace MMTRShop.Service.Services
             {
                 _unitOfWork.Carts.Add(new Cart(AccountManager.Client.Id, product.Id, 1));
             }
-            _unitOfWork.Carts.Save();
+            await _unitOfWork.Carts.SaveAsync();
         }
-        public async void CartMinusOneProduct(Guid id)
+        public async Task CartMinusOneProduct(Guid id)
         {
             var item =await _unitOfWork.Carts.GetByIdAsync(id);
             if (item.ProductCount > 0)
@@ -54,26 +54,26 @@ namespace MMTRShop.Service.Services
             {
                 CartRemoveProduct(id);
             }
-            _unitOfWork.Carts.Save();
+            await _unitOfWork.Carts.SaveAsync();
         }
-        public async void CartPlusOneProduct(Guid id)
+        public async Task CartPlusOneProduct(Guid id)
         {
             var item =await _unitOfWork.Carts.GetByIdAsync(id);
             item.ProductCount++;
-            _unitOfWork.Carts.Save();
+            await _unitOfWork.Carts.SaveAsync();
         }
-        public async void CartRemoveProduct(Guid id)
+        public async Task CartRemoveProduct(Guid id)
         {
             var item =await _unitOfWork.Carts.GetByIdAsync(id);
             _unitOfWork.Carts.Remove(item);
-            _unitOfWork.Carts.Save();
+            await _unitOfWork.Carts.SaveAsync();
         }
 
-        public async void ClearCart()
+        public async Task ClearCart()
         {
             var carts =await GetCart();
             _unitOfWork.Carts.RemoveRange(carts);
-            _unitOfWork.Carts.Save();
+            await _unitOfWork.Carts.SaveAsync();
         }
     }
 }
