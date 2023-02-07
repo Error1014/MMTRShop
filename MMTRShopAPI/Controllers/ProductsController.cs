@@ -37,6 +37,22 @@ namespace MMTRShopAPI.Controllers
 
             return result.ToList();
         }
+
+        [HttpGet("{numPage} {sizePage}")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductsPage(int numPage,int sizePage)
+        {
+            if (_context == null)
+            {
+                return NotFound();
+            }
+            var result = await _productService.GetPageProducts(numPage, sizePage);
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return result.ToList();
+        }
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(Guid id)
         {
