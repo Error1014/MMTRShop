@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace MMTRShopAPI.Migrations
+namespace MMTRShop.Repository.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230203081023_Init")]
+    [Migration("20230208090930_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -157,7 +157,7 @@ namespace MMTRShopAPI.Migrations
                     b.ToTable("Client");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Favourites", b =>
+            modelBuilder.Entity("MMTRShop.Model.Models.Favourite", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -420,7 +420,7 @@ namespace MMTRShopAPI.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Favourites", b =>
+            modelBuilder.Entity("MMTRShop.Model.Models.Favourite", b =>
                 {
                     b.HasOne("MMTRShop.Model.Models.Client", "Client")
                         .WithMany()

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MMTRShopAPI.Migrations
+namespace MMTRShop.Repository.Migrations
 {
     /// <inheritdoc />
     public partial class Init : Migration
@@ -15,7 +15,7 @@ namespace MMTRShopAPI.Migrations
                 name: "Brand",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false,defaultValueSql:"newid()"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newid()"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -387,7 +387,6 @@ namespace MMTRShopAPI.Migrations
                 table: "Product",
                 column: "CategoryId");
         }
-
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {

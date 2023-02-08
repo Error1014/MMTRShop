@@ -12,19 +12,18 @@ using MMTRShopAPI.Controllers;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// Необходимо для создания мигаций
 builder.Services.AddDbContextPool<ShopContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-                b => b.MigrationsAssembly("MMTRShopAPI")));
+                b => b.MigrationsAssembly("MMTRShop.Repository")));
 builder.Services.AddDbContext<ShopContext>(options =>
                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-IServiceCollection allServices = builder.Services;
 builder.Services.AddControllers();
 builder.Services
-    .AddScoped<ShopContext>()
     .AddScoped<IUnitOfWork, UnitOfWork>()
     .AddScoped<IProductService, ProductService>()
     .AddScoped<IAccountService, AccountService>()
