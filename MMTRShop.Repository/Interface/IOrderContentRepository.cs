@@ -6,8 +6,8 @@ namespace MMTRShop.Repository.Interface
 {
     public interface IOrderContentRepository:IRepository<OrderContent,Guid>
     {
-        Task<List<OrderContent>> GetOrderContents(Order order);
+        Task<IEnumerable<OrderContent>> GetOrderContentsByOrderId(Guid orderId);
 
-        Task<List<OrderContent>> GetCanceledOrder(Client client);
+        Task<IEnumerable<OrderContent>> GetCanceledOrderByClientId(Guid clientId);
     }
 }

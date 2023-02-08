@@ -18,11 +18,11 @@ namespace MMTRShop.Service.Services
         }
         public async Task<IEnumerable<Favourite>> GetFavourites()
         {
-            return await _unitOfWork.Favorites.GetFavourites(AccountManager.Client);
+            return await _unitOfWork.Favorites.GetFavouritesByClientId(AccountManager.Client.Id);
         }
-        public async Task<Favourite> GetFavourit(Product product)
+        public async Task<Favourite> GetFavourit(Guid productId)
         {
-            return await _unitOfWork.Favorites.FindAsync(f=>f.ClientId == AccountManager.Client.Id && f.ProductId == product.Id);
+            return await _unitOfWork.Favorites.FindAsync(f=>f.ClientId == AccountManager.Client.Id && f.ProductId == productId);
         }
 
         public async Task RemoveFavourietById(Guid id)

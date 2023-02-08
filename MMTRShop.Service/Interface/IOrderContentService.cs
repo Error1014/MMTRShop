@@ -12,7 +12,7 @@ namespace MMTRShop.Service.Interface
     {
         Task CreateOrderContent(Order order);
         List<OrderContent> GetOrderContentNoСompleted(List<Order> orders);
-        Task<List<OrderContent>> GetOrderContents(Order order);
-        Task<List<OrderContent>> GetCancelledOrder();
+        Task<IEnumerable<OrderContent>> GetOrderContents(Guid orderId);
+        Task<IEnumerable<OrderContent>> GetCancelledOrder();
     }
 }

@@ -27,13 +27,13 @@ namespace MMTRShop.Service.Services
             var orders =await _unitOfWork.Orders.GetAllAsync();
             return new ObservableCollection<Order>(orders.ToList());
         }
-        public async Task<IEnumerable<Order>> GetOrderClient(Client client)
+        public async Task<IEnumerable<Order>> GetOrderByClientId(Guid clientId)
         {
-            return await _unitOfWork.Orders.GetOrdersByClientId(client.Id);
+            return await _unitOfWork.Orders.GetOrdersByClientId(clientId);
         }
-        public async Task<Order> GetOrder(Order order)
+        public async Task<Order> GetOrderById(Guid orderId)
         {
-            return await _unitOfWork.Orders.FindAsync(o=>o.Id==order.Id);
+            return await _unitOfWork.Orders.FindAsync(o=>o.Id==orderId);
         }
         public void CreateOrder(Order order)
         {
@@ -44,9 +44,6 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork.Orders.Save();
         }
-
-        
-        
         #region Проверки введёных полей
 
         public Message CheckWrittenRequisitesBankCard(BankCard bankCard)

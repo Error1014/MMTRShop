@@ -28,7 +28,6 @@ namespace MMTRShop.Service.Services
         }
         public async Task Save()
         {
-            _unitOfWork.Users.Save();
             await _unitOfWork.Clients.SaveAsync();
         }
     }

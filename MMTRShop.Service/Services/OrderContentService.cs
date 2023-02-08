@@ -19,7 +19,7 @@ namespace MMTRShop.Service.Services
         }
         public async Task CreateOrderContent(Order order)
         {
-            var carts =await _unitOfWork.Carts.GetCartByClient(AccountManager.Client);
+            var carts =await _unitOfWork.Carts.GetCartByClient(AccountManager.Client.Id);
             List<OrderContent> cartOrders = new List<OrderContent>();
             foreach (var cartItem in carts)
             {
@@ -41,14 +41,14 @@ namespace MMTRShop.Service.Services
 
             return result;
         }
-        public async Task<List<OrderContent>> GetOrderContents(Order order)
+        public async Task<IEnumerable<OrderContent>> GetOrderContents(Guid orderId)
         {
-            return await _unitOfWork.OrderContents.GetOrderContents(order);
+            return await _unitOfWork.OrderContents.GetOrderContentsByOrderId(orderId);
         }
 
-        public async Task<List<OrderContent>> GetCancelledOrder()
+        public async Task<IEnumerable<OrderContent>> GetCancelledOrder()
         {
-            return await _unitOfWork.OrderContents.GetCanceledOrder(AccountManager.Client);
+            return await _unitOfWork.OrderContents.GetCanceledOrderByClientId(AccountManager.Client.Id);
         }
     }
 }

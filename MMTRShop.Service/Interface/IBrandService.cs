@@ -9,8 +9,7 @@ namespace MMTRShop.Service.Interface
 {
     public interface IBrandService
     {
-        Task<IEnumerable<Brand>> GetAllBrand();
-        Task<IEnumerable<Brand>> GetAllBrandAsync();
-        Task<Brand> GetBrand(Product product);
+        Task<IEnumerable<Brand>> GetAllBrandsAsync();
+        Task<Brand> GetBrand(Guid brandId);
     }
 }

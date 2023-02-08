@@ -7,7 +7,7 @@ namespace MMTRShop.Repository.Interface
     public interface ICartRepository:IRepository<Cart,Guid>
     {
         //List<Korzine> EditValueProduct(int id, int number);
-        Task<IEnumerable<Cart>> GetCartByClient(Client client);
+        Task<IEnumerable<Cart>> GetCartByClient(Guid clientId);
         int GetCountPage(int sizePage);
     }
 }

@@ -12,8 +12,8 @@ namespace MMTRShop.Service.Interface
     public interface IOrderService
     {
         Task<ObservableCollection<Order>> GetOrders();
-        Task<IEnumerable<Order>> GetOrderClient(Client client);
-        Task<Order> GetOrder(Order order);
+        Task<IEnumerable<Order>> GetOrderByClientId(Guid clientId);
+        Task<Order> GetOrderById(Guid orderId);
         void CreateOrder(Order order);
         void SaveOrder();
 

@@ -20,30 +20,21 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<ObservableCollection<Category>> GetCategories()
-        {
-            var categories =await _unitOfWork.Categories.GetAllAsync();
-            return new ObservableCollection<Category>(categories.ToList());
-        }
-        public async Task<List<Category>> GetAllCategory()
+        public async Task<IEnumerable<Category>> GetAllCategory()
         {
             var categories = await _unitOfWork.Categories.GetAllAsync();
-            return categories.ToList();
+            return categories;
         }
 
-        public async Task<Category> GetCategory(Product product)
+        public async Task<Category> GetCategory(Guid categoryId)
         {
-            return await _unitOfWork.Categories.FindAsync(category => category.Id == product.CategoryId);
-        }
-        public async Task<Category> GetCategory(Category category)
-        {
-            return await _unitOfWork.Categories.FindAsync(c => c.Id == category.Id);
+            return await _unitOfWork.Categories.FindAsync(category => category.Id == categoryId);
         }
 
         public async Task SaveChanges(Category category)
         {
             if (category == null) return;
-            Category categoryDB =await GetCategory(category);
+            Category categoryDB =await GetCategory(category.Id);
             categoryDB.Title = category.Title;
             await Save();
         }
@@ -58,11 +49,10 @@ namespace MMTRShop.Service.Services
             await Save();
         }
 
-
         public async Task Remove(Category category)
         {
             if (category == null) return;
-            _unitOfWork.Categories.Remove(await GetCategory(category));
+            _unitOfWork.Categories.Remove(await GetCategory(category.Id));
             await Save();
         }
 

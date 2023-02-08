@@ -9,6 +9,6 @@ namespace MMTRShop.Service.Interface
 {
     public interface IClientService
     {
-        Task<Client> GetClient(Order order);
+        Task<Client> GetClient(Guid clientId);
     }
 }

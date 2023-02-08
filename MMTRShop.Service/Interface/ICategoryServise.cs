@@ -11,10 +11,8 @@ namespace MMTRShop.Service.Interface
 {
     public interface ICategoryServise
     {
-        Task<ObservableCollection<Category>> GetCategories();
-        Task<List<Category>> GetAllCategory();
-        Task<Category> GetCategory(Product product);
-        Task<Category> GetCategory(Category category);
+        Task<IEnumerable<Category>> GetAllCategory();
+        Task<Category> GetCategory(Guid categoryId);
         Task SaveChanges(Category category);
         Task Save();
         Task Add(string title);

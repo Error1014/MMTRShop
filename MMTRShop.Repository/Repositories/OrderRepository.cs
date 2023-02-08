@@ -13,9 +13,9 @@ namespace MMTRShop.Repository.Repositories
 
         }
 
-        public async Task<IEnumerable<Order>> GetOrdersByClientId(Guid id)
+        public async Task<IEnumerable<Order>> GetOrdersByClientId(Guid clientId)
         {
-            return ShopContext.Order.Where(o=>o.ClientId == id).ToList();
+            return ShopContext.Order.Where(o=>o.ClientId == clientId).ToList();
         }
     }
 }
