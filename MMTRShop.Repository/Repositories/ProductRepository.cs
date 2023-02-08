@@ -13,25 +13,22 @@ namespace MMTRShop.Repository.Repositories
         {
 
         }
-
-        public async Task<IEnumerable<Product>> GetProductsPage(int numPage, int sizePage,Category category)
+        public async Task<IEnumerable<Product>> GetProductsPage(int numPage, int sizePage, Guid? categoryId, Guid? brandId)
         {
-            return await ShopContext.Product.OrderBy(product => product.Id).Where(product => product.CategoryId == category.Id).Skip((numPage - 1) * sizePage).Take(sizePage).ToListAsync();
-        }
-
-        public async Task<IEnumerable<Product>> GetProductsPage(int numPage, int sizePage,Brand brand)
-        {
-            return await ShopContext.Product.OrderBy(product => product.Id).Where(product => product.BrandId == brand.Id).Skip((numPage - 1) * sizePage).Take(sizePage).ToListAsync();
-        }
-
-        public async Task<IEnumerable<Product>> GetProductsPage(int numPage, int sizePage,Category category, Brand brand)
-        {
-            return await ShopContext.Product.OrderBy(product => product.Id).Where(product => product.CategoryId == category.Id && product.BrandId == brand.Id).Skip((numPage - 1) * sizePage).Take(sizePage).ToListAsync();
-        }
-
-        public async Task<IEnumerable<Product>> GetProductsPage(int numPage, int sizePage)
-        {
-            return await ShopContext.Product.OrderBy(product=> product.Id).Skip((numPage-1)*sizePage).Take(sizePage).ToListAsync();
+            var query = ShopContext.Product.AsQueryable();
+            if (categoryId.HasValue)
+            {
+                query = query.Where(x => x.CategoryId == categoryId);
+            }
+            if (brandId.HasValue)
+            {
+                query = query.Where(x => x.BrandId == brandId);
+            }
+            query = query
+                .OrderBy(x => x.Id)
+                .Skip((numPage - 1) * sizePage)
+                .Take(sizePage);
+            return await query.ToListAsync();
         }
     }
 }

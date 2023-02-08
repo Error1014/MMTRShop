@@ -11,7 +11,6 @@ namespace MMTRShop.Service.Interface
 {
     public interface IProductService
     {
-        Task<IEnumerable<Product>> GetAll();
         Task<Product> GetProduct(Product product);
         Task<Product> GetProduct(Guid id);
 
@@ -24,10 +23,7 @@ namespace MMTRShop.Service.Interface
         Task<List<Product>> GetProducts(List<Cart> carts);
         Task<List<Product>> GetProducts(List<Favourite> favourites);
 
-        Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage);
-        Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Category category);
-        Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Brand brand);
-        Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Category category, Brand brand);
+        Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Guid? categoryId, Guid? brandId);
         int GetCountPage(int sizePage);
         
         void RemoveProductsInStorage(List<Cart> carts);

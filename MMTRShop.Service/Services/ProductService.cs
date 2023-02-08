@@ -20,10 +20,7 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<IEnumerable<Product>> GetAll()
-        {
-            return await _unitOfWork.Products.GetAllAsync();
-        }
+
         public async Task<Product> GetProduct(Product product)
         {
             return await _unitOfWork.Products.GetByIdAsync(product.Id);
@@ -80,25 +77,10 @@ namespace MMTRShop.Service.Services
             p => p.Id, (f, p) => new { f, p }).Select(x => x.p).ToList();
             return products;
         }
-
-        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage,int sizePage)
+        
+        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage,int sizePage, Guid? categoryId,Guid? brandId)
         {
-            var products = await _unitOfWork.Products.GetProductsPage(numPage, sizePage);
-            return new ObservableCollection<Product>(products);
-        }
-        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Category category)
-        {
-            var products =await _unitOfWork.Products.GetProductsPage(numPage, sizePage,category);
-            return new ObservableCollection<Product>(products);
-        }
-        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Brand brand)
-        {
-            var products =await _unitOfWork.Products.GetProductsPage(numPage, sizePage,brand);
-            return new ObservableCollection<Product>(products);
-        }
-        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Category category, Brand brand)
-        {
-            var products =await _unitOfWork.Products.GetProductsPage(numPage, sizePage, category,brand);
+            var products = await _unitOfWork.Products.GetProductsPage(numPage, sizePage, categoryId, brandId);
             return new ObservableCollection<Product>(products);
         }
         public int GetCountPage(int sizePage)
