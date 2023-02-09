@@ -46,10 +46,6 @@ namespace MMTRShopAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(Product product)
         {
-            if (product == null)
-            {
-                return BadRequest();
-            }
             //if (!_context.Product.Any(x => x.Id == product.Id))
             //{
             //    return NotFound();
