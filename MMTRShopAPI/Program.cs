@@ -8,6 +8,7 @@ using MMTRShop.Repository.Repositories;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Service.Interface;
 using MMTRShopAPI.Controllers;
+using MMTRShopAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,7 +40,7 @@ builder.Services
     .AddScoped<IOrderContentService, OrderContentService>()
     .AddScoped<IStatusService, StatusService>();
 
-
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 var app = builder.Build();
 
 
