@@ -1,19 +1,11 @@
-﻿using MMTRShop.Model;
-using MMTRShop.Model.Models;
+﻿using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
-using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace MMTRShop.Service.Services
 {
-    public class ProductService: IProductService
+    public class ProductService : IProductService
     {
         private readonly IUnitOfWork _unitOfWork;
         public ProductService(IUnitOfWork unitOfWork)
@@ -21,21 +13,22 @@ namespace MMTRShop.Service.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Product> GetProduct(Product product)
-        {
-            return await _unitOfWork.Products.GetByIdAsync(product.Id);
-        }
         public async Task<Product> GetProduct(Guid id)
         {
-            return await _unitOfWork.Products.GetByIdAsync(id);
+            var result = await _unitOfWork.Products.GetByIdAsync(id);
+            if (result == null)
+            {
+                throw new Exception("Товар не найден");
+            }
+            return result;
         }
         public void AddProduct(Product product)
         {
             _unitOfWork.Products.Add(product);
         }
-        public async void RemoveProduct(Product product)
+        public async Task RemoveProduct(Product product)
         {
-            Product productDB =await GetProduct(product);
+            Product? productDB = await GetProduct(product.Id);
             _unitOfWork.Products.Remove(productDB);
         }
         public void Update(Product product)
@@ -63,22 +56,22 @@ namespace MMTRShop.Service.Services
             }
             Save();
         }
-        public async Task<List<Product>> GetProducts(List<Cart> carts)
+        public async Task<List<Product>> GetProductsByCart(List<Cart> carts)
         {
             var products = carts.Join(await _unitOfWork.Products.GetAllAsync(),
             k => k.ProductId,
             p => p.Id, (k, p) => new { k, p }).Select(x => x.p).ToList();
             return products;
         }
-        public async Task<List<Product>> GetProducts(List<Favourite> favourites)
+        public async Task<List<Product>> GetProductsByFavourite(List<Favourite> favourites)
         {
             var products = favourites.Join(await _unitOfWork.Products.GetAllAsync(),
             f => f.ProductId,
             p => p.Id, (f, p) => new { f, p }).Select(x => x.p).ToList();
             return products;
         }
-        
-        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage,int sizePage, Guid? categoryId,Guid? brandId)
+
+        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Guid? categoryId, Guid? brandId)
         {
             var products = await _unitOfWork.Products.GetProductsPage(numPage, sizePage, categoryId, brandId);
             return new ObservableCollection<Product>(products);
@@ -92,7 +85,7 @@ namespace MMTRShop.Service.Services
         {
             foreach (var item in carts)
             {
-                var product =await _unitOfWork.Products.FindAsync(p => p.Id == item.ProductId);
+                var product = await _unitOfWork.Products.FindAsync(p => p.Id == item.ProductId);
                 product.CountInStarage -= item.ProductCount;
             }
             Save();

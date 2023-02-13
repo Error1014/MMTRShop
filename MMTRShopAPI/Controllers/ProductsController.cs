@@ -8,6 +8,7 @@ using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
 using MMTRShop.Service.Services;
+using System.Net.Mail;
 
 namespace MMTRShopAPI.Controllers
 {
@@ -23,19 +24,20 @@ namespace MMTRShopAPI.Controllers
             _productService = productService;
         }
 
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProductsPage(int numPage,int sizePage,Guid? categoryId, Guid? bandId)
+        public async Task<IEnumerable<ProductDTO>> GetProductsPage(int numPage,int sizePage,Guid? categoryId, Guid? bandId)
         {
             var products = await _productService.GetPageProducts(numPage, sizePage, categoryId, bandId);
             var result = _mapper.Map<IEnumerable<ProductDTO>>(products);
             return result.ToList();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(Guid id)
+        public async Task<ProductDTO> GetProduct(Guid id)
         {
-            var product =await _productService.GetProduct(id);
-
-            return product;
+            var product = await _productService.GetProduct(id);
+            var result = _mapper.Map<ProductDTO>(product);
+            return result;
         }
 
         [HttpPost]
@@ -50,10 +52,6 @@ namespace MMTRShopAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(ProductDTO productDTO)
         {
-            //if (!_context.Product.Any(x => x.Id == product.Id))
-            //{
-            //    return NotFound();
-            //}
             var product = _mapper.Map<Product>(productDTO);
             _productService.Update(product);
             _productService.Save();
@@ -63,11 +61,7 @@ namespace MMTRShopAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            Product product =await _productService.GetProduct(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+            Product product = (await _productService.GetProduct(id) as Product);
             _productService.RemoveProduct(product);
             _productService.Save();
             return Ok(product);

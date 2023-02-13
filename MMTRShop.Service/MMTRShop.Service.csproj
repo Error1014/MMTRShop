@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MMTRShop.Model\MMTRShop.Model.csproj" />
     <ProjectReference Include="..\MMTRShop.Repository\MMTRShop.Repository.csproj" />
   </ItemGroup>

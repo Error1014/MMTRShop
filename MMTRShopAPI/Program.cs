@@ -9,6 +9,7 @@ using MMTRShop.Repository.Interface;
 using MMTRShop.Service.Interface;
 using MMTRShopAPI.Controllers;
 using MMTRShopAPI;
+using MMTRShopAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +55,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStatusCodePages();
 app.UseAuthorization();
-
 app.MapControllers();
+app.UseMiddleware<ExceptionMiddleware>();
 app.Run();
