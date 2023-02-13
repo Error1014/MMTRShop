@@ -1,10 +1,11 @@
-﻿using MMTRShop.Service.Interface;
-using MMTRShop.Service.Services;
-using MMTRShopAPI.Middleware.Exceptions;
+﻿using Microsoft.AspNetCore.Http;
+using MMTRShop.MiddlewareException;
+using MMTRShop.MiddlewareException.Exceptions;
 using System.Net;
 using System.Text.Json;
+using System.Threading.Tasks;
 
-namespace MMTRShopAPI.Middleware
+namespace MMTRShop.MiddlewareException
 {
     public class ExceptionMiddleware
     {
@@ -38,8 +39,13 @@ namespace MMTRShopAPI.Middleware
                     message = exception.Message;
                     code = HttpStatusCode.NotFound;
                     break;
-                default:
+                case NotAuthorizedException:
                     message = exception.Message;
+                    code = HttpStatusCode.Unauthorized;
+                    break;
+                case ValidationException:
+                    message = exception.Message;
+                    code = HttpStatusCode.BadRequest;
                     break;
             }
 

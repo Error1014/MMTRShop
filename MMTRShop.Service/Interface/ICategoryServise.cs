@@ -17,6 +17,6 @@ namespace MMTRShop.Service.Interface
         Task Save();
         Task Add(string title);
         Task Remove(Category category);
-        Message CheckToRemove(Category category);
+        bool CheckToRemove(Category category);
     }
 }

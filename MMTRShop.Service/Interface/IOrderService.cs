@@ -21,10 +21,10 @@ namespace MMTRShop.Service.Interface
 
         #region Проверки введёных полей
 
-        Message CheckWrittenRequisitesBankCard(BankCard bankCard);
-        Message CheckCorrectnessRequisitesBankCard(BankCard bankCard);
+        bool CheckWrittenRequisitesBankCard(BankCard bankCard);
+        bool CheckCorrectnessRequisitesBankCard(BankCard bankCard);
         
-        Message CheckAddress(string address);
+        bool CheckAddress(string address);
         #endregion
 
     }

@@ -20,7 +20,7 @@ namespace MMTRShop.Service.Services
         {
             return await _unitOfWork.Favorites.GetFavouritesByClientId(AccountManager.Client.Id);
         }
-        public async Task<Favourite> GetFavourit(Guid productId)
+        public async Task<Favourite> GetFavouritByProductId(Guid productId)
         {
             return await _unitOfWork.Favorites.FindAsync(f=>f.ClientId == AccountManager.Client.Id && f.ProductId == productId);
         }

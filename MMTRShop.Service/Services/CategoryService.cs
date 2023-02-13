@@ -1,4 +1,5 @@
-﻿using MMTRShop.Model.Models;
+﻿using MMTRShop.MiddlewareException.Exceptions;
+using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
@@ -13,7 +14,6 @@ namespace MMTRShop.Service.Services
 {
     public class CategoryService: ICategoryServise
     {
-        private Message Message = new Message();
         private readonly IUnitOfWork _unitOfWork;
 
         public CategoryService(IUnitOfWork unitOfWork)
@@ -56,16 +56,16 @@ namespace MMTRShop.Service.Services
             await Save();
         }
 
-        public Message CheckToRemove(Category category)
+        public bool CheckToRemove(Category category)
         {
             var products = _unitOfWork.Products.FindAsync(c => c.CategoryId == category.Id);
             if (products==null)
             {
-                return new Message(false);
+                return true;
             }
             else
             {
-                return Message.GetMessage(true, "Вы не можете удалить данную категорию, так как приведёт к удалению продуктов");
+                throw new ValidationException("Вы не можете удалить данную категорию, так как приведёт к удалению продуктов");
             }
         }
 

@@ -1,6 +1,4 @@
-﻿using MMTRShop.Service.Services;
-
-namespace MMTRShopAPI.Middleware.Exceptions
+﻿namespace MMTRShop.MiddlewareException.Exceptions
 {
     public class NotFoundException: Exception
 {

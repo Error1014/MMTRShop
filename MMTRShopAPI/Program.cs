@@ -1,15 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using MMTRShop.Model.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System;
-using Microsoft.Extensions.Configuration;
 using MMTRShop.Service.Services;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Service.Interface;
-using MMTRShopAPI.Controllers;
 using MMTRShopAPI;
-using MMTRShopAPI.Middleware;
+using MMTRShop.MiddlewareException;
 
 var builder = WebApplication.CreateBuilder(args);
 

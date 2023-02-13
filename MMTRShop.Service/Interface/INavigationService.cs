@@ -9,6 +9,6 @@ namespace MMTRShop.Service.Interface
 {
     public interface INavigationService
     {
-        Message CheckAutorisation();
+        bool CheckAutorisation();
     }
 }

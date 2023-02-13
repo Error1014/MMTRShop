@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MMTRShop.DTO\MMTRShop.DTO.csproj" />
+    <ProjectReference Include="..\MMTRShop.MiddlewareException\MMTRShop.MiddlewareException.csproj" />
     <ProjectReference Include="..\MMTRShop.Model\MMTRShop.Model.csproj" />
     <ProjectReference Include="..\MMTRShop.Repository\MMTRShop.Repository.csproj" />
     <ProjectReference Include="..\MMTRShop.Service\MMTRShop.Service.csproj" />

@@ -1,4 +1,5 @@
-﻿using MMTRShop.Model.Models;
+﻿using MMTRShop.MiddlewareException.Exceptions;
+using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
@@ -9,39 +10,39 @@ namespace MMTRShop.Service.Services
 {
     public class AutorizationService:IAutorizationService
     {
-        private Message Message = new Message();
         private readonly IUnitOfWork _unitOfWork;
         public AutorizationService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<Message> Registration(User user, string password2)
+        public async Task<bool> Registration(User user, string password2)
         {
             if (await IsCheckUserInDB(user.Login))
             {
-                return Message.GetMessage(true, "Пользователь с таким логином уже существует");
+                throw new ValidationException("Пользователь с таким логином уже существует");
             }
             if (!IsCheckEqualTwoPassword(user.Password, password2))
             {
-                return Message.GetMessage(true, "Пароли должны совпадать!");
+                throw new ValidationException("Пароли должны совпадать!");
             }
             User u = new User(user.Login, user.Password, user.LastName, user.FirstName, user.Patronymic);
             AddNewClientInDB(u);
-            return Message.GetMessage(false);
+            return true;
         }
-        public async Task<Message> CheckCorrectLoginPassword(string login,string password)
+        public async Task<bool> CheckCorrectLoginPassword(string login,string password)
         {
-            Message message = new Message(true, "Вы ввели неверный логин или пароль!");
+            bool isCorrect = false;
+            throw new ValidationException("Вы ввели неверный логин или пароль!");
             var users =await _unitOfWork.Users.GetAllAsync();
             foreach (var user in users)
             {
                 if (user.Login == login && user.Password == password)
                 {
-                    message.VisibilityError = false;
+                    isCorrect = true;
                     break;
                 }
             }
-            return message;
+            return isCorrect;
         }
 
         public async Task<Guid> GetUserId(string login, string password)

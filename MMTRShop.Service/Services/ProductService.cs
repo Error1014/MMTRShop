@@ -1,4 +1,6 @@
-﻿using MMTRShop.Model.Models;
+﻿using MMTRShop.MiddlewareException;
+using MMTRShop.MiddlewareException.Exceptions;
+using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Service.Interface;
 using System.Collections.ObjectModel;
@@ -18,7 +20,7 @@ namespace MMTRShop.Service.Services
             var result = await _unitOfWork.Products.GetByIdAsync(id);
             if (result == null)
             {
-                throw new Exception("Товар не найден");
+                throw new NotFoundException("Товар не найден");
             }
             return result;
         }

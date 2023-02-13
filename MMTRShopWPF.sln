@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShop.Service", "MMTRSho
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShopAPI", "MMTRShopAPI\MMTRShopAPI.csproj", "{FBE191AE-E3E9-49F3-B75A-02FF036D3778}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMTRShop.DTO", "MMTRShop.DTO\MMTRShop.DTO.csproj", "{C50B3A2D-8AE9-4A5C-A93E-C017DD3D0467}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShop.DTO", "MMTRShop.DTO\MMTRShop.DTO.csproj", "{C50B3A2D-8AE9-4A5C-A93E-C017DD3D0467}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMTRShop.MiddlewareException", "MMTRShop.MiddlewareException\MMTRShop.MiddlewareException.csproj", "{FC8D0875-3B06-41FB-8340-DC7B40AD2DE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C50B3A2D-8AE9-4A5C-A93E-C017DD3D0467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C50B3A2D-8AE9-4A5C-A93E-C017DD3D0467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C50B3A2D-8AE9-4A5C-A93E-C017DD3D0467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC8D0875-3B06-41FB-8340-DC7B40AD2DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC8D0875-3B06-41FB-8340-DC7B40AD2DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC8D0875-3B06-41FB-8340-DC7B40AD2DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC8D0875-3B06-41FB-8340-DC7B40AD2DE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

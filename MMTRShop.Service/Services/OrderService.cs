@@ -1,4 +1,5 @@
-﻿using MMTRShop.Model;
+﻿using MMTRShop.MiddlewareException.Exceptions;
+using MMTRShop.Model;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
@@ -16,7 +17,6 @@ namespace MMTRShop.Service.Services
 {
     public class OrderService: IOrderService
     {
-        private Message Message = new Message();
         private readonly IUnitOfWork _unitOfWork;
         public OrderService(IUnitOfWork unitOfWork)
         {
@@ -46,29 +46,29 @@ namespace MMTRShop.Service.Services
         }
         #region Проверки введёных полей
 
-        public Message CheckWrittenRequisitesBankCard(BankCard bankCard)
+        public bool CheckWrittenRequisitesBankCard(BankCard bankCard)
         {
             if (String.IsNullOrEmpty(bankCard.Number)
                 || String.IsNullOrEmpty(bankCard.Name)
                 || String.IsNullOrEmpty(bankCard.Code)
-                //|| bankCard.Month == 0
-                //|| bankCard.Year == 0
-                ) return Message.GetMessage(true, "Вы ввели не все данные карты");
-            else return Message.GetMessage(false);
+                || bankCard.Month == 0
+                || bankCard.Year == 0
+                ) throw new ValidationException("Вы ввели не все данные карты");
+            else return true;
         }
-        public Message CheckCorrectnessRequisitesBankCard(BankCard bankCard)
+        public bool CheckCorrectnessRequisitesBankCard(BankCard bankCard)
         {
             //В дальнейшем будет реализовано
-            return Message.GetMessage(false);
+            return false;
         }
 
-        public Message CheckAddress(string address)
+        public bool CheckAddress(string address)
         {
             if (String.IsNullOrEmpty(address))
             {
-                return Message.GetMessage(true, "Вы не указали адрес");
+                throw new ValidationException("Вы не указали адрес");
             }
-            return new Message(false);
+            return true;
         }
         #endregion
 
