@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.DTO.DTO
 {
-    public class ProductDTO
+    public class ProductDTO: BaseDTO<Guid>
     {
-        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }

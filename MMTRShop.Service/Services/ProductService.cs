@@ -61,40 +61,12 @@ namespace MMTRShop.Service.Services
             }
             Save();
         }
-        public async Task<List<Product>> GetProductsByCart(List<Cart> carts)
+
+        public async Task<IEnumerable<Product>> GetPageProducts(ProductPageFilter filter)
         {
-            var products = carts.Join(await _unitOfWork.Products.GetAllAsync(),
-            k => k.ProductId,
-            p => p.Id, (k, p) => new { k, p }).Select(x => x.p).ToList();
-            return products;
-        }
-        public async Task<List<Product>> GetProductsByFavourite(List<Favourite> favourites)
-        {
-            var products = favourites.Join(await _unitOfWork.Products.GetAllAsync(),
-            f => f.ProductId,
-            p => p.Id, (f, p) => new { f, p }).Select(x => x.p).ToList();
-            return products;
+            return await _unitOfWork.Products.GetProductsPage(filter);
         }
 
-        public async Task<ObservableCollection<Product>> GetPageProducts(ProductPageFilter filter)
-        {
-            var products = await _unitOfWork.Products.GetProductsPage(filter);
-            return new ObservableCollection<Product>(products);
-        }
-        public int GetCountPage(int sizePage)
-        {
-            return _unitOfWork.Carts.GetCountPage(sizePage);
-        }
-
-        public async void RemoveProductsInStorage(List<Cart> carts)
-        {
-            foreach (var item in carts)
-            {
-                var product = await _unitOfWork.Products.FindAsync(p => p.Id == item.ProductId);
-                product.CountInStarage -= item.ProductCount;
-            }
-            Save();
-        }
 
     }
 }

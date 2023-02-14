@@ -27,11 +27,13 @@ namespace MMTRShopAPI.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<ProductDTO>> GetProductsPage(ProductPageFilter filter)
+        public async Task<IEnumerable<ProductDTO>> GetProductsPage()
         {
+            //понять как передать фильтр в качестве параметра когтроллера
+            ProductPageFilter filter = new ProductPageFilter(1,5,null,null);
             var products = await _productService.GetPageProducts(filter);
             var result = _mapper.Map<IEnumerable<ProductDTO>>(products);
-            return result.ToList();
+            return result;
         }
         [HttpGet("{id}")]
         public async Task<ProductDTO> GetProduct(Guid id)

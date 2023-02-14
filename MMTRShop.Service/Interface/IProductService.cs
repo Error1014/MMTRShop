@@ -21,12 +21,8 @@ namespace MMTRShop.Service.Interface
         void Save();
         void CreateOrUpdateProduct(bool isAdd, Product product);
         void RemoveOrUpdateProduct(bool isAdd, Product product);
-        Task<List<Product>> GetProductsByCart(List<Cart> carts);
-        Task<List<Product>> GetProductsByFavourite(List<Favourite> favourites);
 
-        Task<ObservableCollection<Product>> GetPageProducts(ProductPageFilter filter);
-        int GetCountPage(int sizePage);
-        
-        void RemoveProductsInStorage(List<Cart> carts);
+        Task<IEnumerable<Product>> GetPageProducts(ProductPageFilter filter);
+
     }
 }
