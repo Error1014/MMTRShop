@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MMTRShop.DTO.DTO;
+using MMTRShop.Model.HelperModels;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
@@ -26,9 +27,9 @@ namespace MMTRShopAPI.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<ProductDTO>> GetProductsPage(int numPage,int sizePage,Guid? categoryId, Guid? bandId)
+        public async Task<IEnumerable<ProductDTO>> GetProductsPage(ProductPageFilter filter)
         {
-            var products = await _productService.GetPageProducts(numPage, sizePage, categoryId, bandId);
+            var products = await _productService.GetPageProducts(filter);
             var result = _mapper.Map<IEnumerable<ProductDTO>>(products);
             return result.ToList();
         }
@@ -45,7 +46,6 @@ namespace MMTRShopAPI.Controllers
         {
             var product = _mapper.Map<Product>(productDTO);
             _productService.AddProduct(product);
-            _productService.Save();
             return Ok(product);
         }
 
@@ -54,7 +54,6 @@ namespace MMTRShopAPI.Controllers
         {
             var product = _mapper.Map<Product>(productDTO);
             _productService.Update(product);
-            _productService.Save();
             return Ok(product);
         }
 
@@ -63,7 +62,6 @@ namespace MMTRShopAPI.Controllers
         {
             Product product = await _productService.GetProduct(id);
             _productService.RemoveProduct(product);
-            _productService.Save();
             return Ok(product);
         }
     }

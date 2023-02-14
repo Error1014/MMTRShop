@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MMTRShop.Model.HelperModels;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Repositories;
 using System;
@@ -23,7 +24,7 @@ namespace MMTRShop.Service.Interface
         Task<List<Product>> GetProductsByCart(List<Cart> carts);
         Task<List<Product>> GetProductsByFavourite(List<Favourite> favourites);
 
-        Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Guid? categoryId, Guid? brandId);
+        Task<ObservableCollection<Product>> GetPageProducts(ProductPageFilter filter);
         int GetCountPage(int sizePage);
         
         void RemoveProductsInStorage(List<Cart> carts);

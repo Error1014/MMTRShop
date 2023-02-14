@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MMTRShop.Model.HelperModels;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Contexts;
 using MMTRShop.Repository.Interface;
@@ -14,21 +15,21 @@ namespace MMTRShop.Repository.Repositories
         {
 
         }
-        public async Task<IEnumerable<Product>> GetProductsPage(int numPage, int sizePage, Guid? categoryId, Guid? brandId)
+        public async Task<IEnumerable<Product>> GetProductsPage(ProductPageFilter filter)
         {
             var query = ShopContext.Product.AsQueryable();
-            if (categoryId.HasValue)
+            if (filter.CategoryId.HasValue)
             {
-                query = query.Where(x => x.CategoryId == categoryId);
+                query = query.Where(x => x.CategoryId == filter.CategoryId);
             }
-            if (brandId.HasValue)
+            if (filter.BrandId.HasValue)
             {
-                query = query.Where(x => x.BrandId == brandId);
+                query = query.Where(x => x.BrandId == filter.BrandId);
             }
             query = query
                 .OrderBy(x => x.Id)
-                .Skip((numPage - 1) * sizePage)
-                .Take(sizePage);
+                .Skip((filter.NumPage - 1) * filter.SizePage)
+                .Take(filter.SizePage);
             return await query.ToListAsync();
         }
     }

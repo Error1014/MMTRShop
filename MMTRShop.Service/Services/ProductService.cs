@@ -1,5 +1,6 @@
 ﻿using MMTRShop.MiddlewareException;
 using MMTRShop.MiddlewareException.Exceptions;
+using MMTRShop.Model.HelperModels;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Service.Interface;
@@ -27,15 +28,18 @@ namespace MMTRShop.Service.Services
         public void AddProduct(Product product)
         {
             _unitOfWork.Products.Add(product);
+            Save();
         }
         public async Task RemoveProduct(Product product)
         {
             Product? productDB = await GetProduct(product.Id);
             _unitOfWork.Products.Remove(productDB);
+            Save();
         }
         public void Update(Product product)
         {
             _unitOfWork.Products.Update(product);
+            Save();
         }
         public void Save()
         {
@@ -47,7 +51,6 @@ namespace MMTRShop.Service.Services
             {
                 AddProduct(product);
             }
-
             Save();
         }
         public void RemoveOrUpdateProduct(bool isAdd, Product product)
@@ -73,9 +76,9 @@ namespace MMTRShop.Service.Services
             return products;
         }
 
-        public async Task<ObservableCollection<Product>> GetPageProducts(int numPage, int sizePage, Guid? categoryId, Guid? brandId)
+        public async Task<ObservableCollection<Product>> GetPageProducts(ProductPageFilter filter)
         {
-            var products = await _unitOfWork.Products.GetProductsPage(numPage, sizePage, categoryId, brandId);
+            var products = await _unitOfWork.Products.GetProductsPage(filter);
             return new ObservableCollection<Product>(products);
         }
         public int GetCountPage(int sizePage)
