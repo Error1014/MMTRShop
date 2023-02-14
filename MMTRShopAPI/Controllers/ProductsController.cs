@@ -18,10 +18,8 @@ namespace MMTRShopAPI.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        private readonly IMapper _mapper;
-        public ProductController(IMapper mapper, IProductService productService)
+        public ProductController(IProductService productService)
         {
-            _mapper = mapper;
             _productService = productService;
         }
 
@@ -32,37 +30,33 @@ namespace MMTRShopAPI.Controllers
             //понять как передать фильтр в качестве параметра когтроллера
             ProductPageFilter filter = new ProductPageFilter(1,5,null,null);
             var products = await _productService.GetPageProducts(filter);
-            var result = _mapper.Map<IEnumerable<ProductDTO>>(products);
-            return result;
+            return products;
         }
         [HttpGet("{id}")]
         public async Task<ProductDTO> GetProduct(Guid id)
         {
             var product = await _productService.GetProduct(id);
-            var result = _mapper.Map<ProductDTO>(product);
-            return result;
+            return product;
         }
 
         [HttpPost]
         public async Task<IActionResult> PostProducts(ProductDTO productDTO)
         {
-            var product = _mapper.Map<Product>(productDTO);
-            _productService.AddProduct(product);
-            return Ok(product);
+            _productService.AddProduct(productDTO);
+            return Ok(productDTO);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(ProductDTO productDTO)
+        public async Task<IActionResult> PutProduct(ProductDTO productDTO)
         {
-            var product = _mapper.Map<Product>(productDTO);
-            _productService.Update(product);
-            return Ok(product);
+            _productService.Update(productDTO);
+            return Ok(productDTO);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> DeleteProduct(Guid id)
         {
-            Product product = await _productService.GetProduct(id);
+            ProductDTO product = await _productService.GetProduct(id);
             _productService.RemoveProduct(product);
             return Ok(product);
         }

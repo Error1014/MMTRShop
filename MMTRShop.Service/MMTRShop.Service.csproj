@@ -8,10 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MMTRShop.DTO\MMTRShop.DTO.csproj" />
     <ProjectReference Include="..\MMTRShop.MiddlewareException\MMTRShop.MiddlewareException.csproj" />
     <ProjectReference Include="..\MMTRShop.Model\MMTRShop.Model.csproj" />
     <ProjectReference Include="..\MMTRShop.Repository\MMTRShop.Repository.csproj" />

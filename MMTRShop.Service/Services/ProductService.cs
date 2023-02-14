@@ -1,4 +1,6 @@
-﻿using MMTRShop.MiddlewareException;
+﻿using AutoMapper;
+using MMTRShop.DTO.DTO;
+using MMTRShop.MiddlewareException;
 using MMTRShop.MiddlewareException.Exceptions;
 using MMTRShop.Model.HelperModels;
 using MMTRShop.Model.Models;
@@ -11,33 +13,39 @@ namespace MMTRShop.Service.Services
     public class ProductService : IProductService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ProductService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        public async Task<Product> GetProduct(Guid id)
+        public async Task<ProductDTO> GetProduct(Guid id)
         {
-            var result = await _unitOfWork.Products.GetByIdAsync(id);
-            if (result == null)
+            var product = await _unitOfWork.Products.GetByIdAsync(id);
+            if (product == null)
             {
                 throw new NotFoundException("Товар не найден");
             }
+            var result = _mapper.Map<ProductDTO>(product);
             return result;
         }
-        public void AddProduct(Product product)
+        public void AddProduct(ProductDTO productDTO)
         {
+            var product = _mapper.Map<Product>(productDTO);
             _unitOfWork.Products.Add(product);
             Save();
         }
-        public async Task RemoveProduct(Product product)
+        public async Task RemoveProduct(ProductDTO productDTO)
         {
-            Product? productDB = await GetProduct(product.Id);
+            ProductDTO? product = await GetProduct(productDTO.Id);
+            var productDB = _mapper.Map<Product>(product);
             _unitOfWork.Products.Remove(productDB);
             Save();
         }
-        public void Update(Product product)
+        public void Update(ProductDTO productDTO)
         {
+            var product = _mapper.Map<Product>(productDTO);
             _unitOfWork.Products.Update(product);
             Save();
         }
@@ -45,26 +53,12 @@ namespace MMTRShop.Service.Services
         {
             _unitOfWork.Products.Save();
         }
-        public void CreateOrUpdateProduct(bool isAdd, Product product)
-        {
-            if (isAdd)
-            {
-                AddProduct(product);
-            }
-            Save();
-        }
-        public void RemoveOrUpdateProduct(bool isAdd, Product product)
-        {
-            if (!isAdd)
-            {
-                RemoveProduct(product);
-            }
-            Save();
-        }
 
-        public async Task<IEnumerable<Product>> GetPageProducts(ProductPageFilter filter)
+        public async Task<IEnumerable<ProductDTO>> GetPageProducts(ProductPageFilter filter)
         {
-            return await _unitOfWork.Products.GetProductsPage(filter);
+            var products = await _unitOfWork.Products.GetProductsPage(filter);
+            var result = _mapper.Map<IEnumerable<ProductDTO>>(products);
+            return result;
         }
 
 

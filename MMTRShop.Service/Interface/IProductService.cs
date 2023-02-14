@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MMTRShop.DTO.DTO;
 using MMTRShop.Model.HelperModels;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Repositories;
@@ -13,16 +14,14 @@ namespace MMTRShop.Service.Interface
 {
     public interface IProductService
     {
-        Task<Product> GetProduct(Guid id);
+        Task<ProductDTO> GetProduct(Guid id);
 
-        void AddProduct(Product product);
-        Task RemoveProduct(Product product);
-        void Update(Product product);
+        void AddProduct(ProductDTO product);
+        Task RemoveProduct(ProductDTO product);
+        void Update(ProductDTO product);
         void Save();
-        void CreateOrUpdateProduct(bool isAdd, Product product);
-        void RemoveOrUpdateProduct(bool isAdd, Product product);
 
-        Task<IEnumerable<Product>> GetPageProducts(ProductPageFilter filter);
+        Task<IEnumerable<ProductDTO>> GetPageProducts(ProductPageFilter filter);
 
     }
 }
