@@ -6,6 +6,7 @@ using MMTRShop.Repository.Interface;
 using MMTRShop.Service.Interface;
 using MMTRShopAPI;
 using MMTRShop.MiddlewareException;
+using MMTRShop.Repository.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
