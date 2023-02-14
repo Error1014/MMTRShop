@@ -1,4 +1,5 @@
-﻿using MMTRShop.Model.Models;
+﻿using MMTRShop.DTO.DTO;
+using MMTRShop.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace MMTRShop.Service.Interface
 {
     public interface IBrandService
     {
-        Task<IEnumerable<Brand>> GetBrands();
-        Task<Brand> GetBrand(Guid brandId);
-        void AddBrand(Brand brand);
-        Task RemoveBrand(Brand brand);
-        void Update(Brand brand);
+        Task<IEnumerable<BrandDTO>> GetBrands();
+        Task<BrandDTO> GetBrand(Guid brandId);
+        void AddBrand(BrandDTO brand);
+        Task RemoveBrand(Guid brand);
+        Task Update(BrandDTO brand);
         Task Save();
     }
 }

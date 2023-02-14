@@ -7,6 +7,7 @@ using MMTRShop.Service.Interface;
 using MMTRShopAPI;
 using MMTRShop.MiddlewareException;
 using MMTRShop.Repository.Contexts;
+using MMTRShop.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,3 +53,4 @@ app.UseAuthorization();
 app.MapControllers();
 app.UseMiddleware<ExceptionMiddleware>();
 app.Run();
+

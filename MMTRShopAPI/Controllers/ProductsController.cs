@@ -56,9 +56,8 @@ namespace MMTRShopAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
-            ProductDTO product = await _productService.GetProduct(id);
-            _productService.RemoveProduct(product);
-            return Ok(product);
+            await _productService.RemoveProduct(id);
+            return Ok($"Продукт с id={id} успешно удалён");;
         }
     }
 }

@@ -36,12 +36,10 @@ namespace MMTRShop.Service.Services
             _unitOfWork.Products.Add(product);
             Save();
         }
-        public async Task RemoveProduct(ProductDTO productDTO)
+        public async Task RemoveProduct(Guid productId)
         {
-            ProductDTO? product = await GetProduct(productDTO.Id);
-            var productDB = _mapper.Map<Product>(product);
-            _unitOfWork.Products.Remove(productDB);
-            Save();
+           _unitOfWork.Products.Remove(productId);
+           await _unitOfWork.Products.SaveAsync();
         }
         public void Update(ProductDTO productDTO)
         {

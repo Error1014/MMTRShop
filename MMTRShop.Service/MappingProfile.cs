@@ -1,14 +1,18 @@
 ﻿using AutoMapper;
+using MMTRShop.DTO.DTO;
 using MMTRShop.Model.Models;
 
 namespace MMTRShop.Service
 {
-    public class MappingProfile<TEntity,DTO> : Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {
-            CreateMap<TEntity, DTO>(); 
-            CreateMap<TEntity, DTO>().ReverseMap();
+            CreateMap<Product, ProductDTO>(); 
+            CreateMap<Product, ProductDTO>().ReverseMap();
+            CreateMap<Brand, BrandDTO>();
+            CreateMap<Brand, BrandDTO>().ReverseMap();
+
         }
     }
 }

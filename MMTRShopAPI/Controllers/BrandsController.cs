@@ -13,10 +13,8 @@ namespace MMTRShopAPI.Controllers
     public class BrandsController : Controller
     {
         private readonly IBrandService _brandService;
-        private readonly IMapper _mapper;
-        public BrandsController(IMapper mapper, IBrandService brandService)
+        public BrandsController(IBrandService brandService)
         {
-            _mapper = mapper;
             _brandService = brandService;
         }
 
@@ -25,39 +23,34 @@ namespace MMTRShopAPI.Controllers
         public async Task<IEnumerable<BrandDTO>> GetBrands()
         {
             var brand = await _brandService.GetBrands();
-            var result = _mapper.Map<IEnumerable<BrandDTO>>(brand);
-            return result;
+            return brand;
         }
         [HttpGet("{id}")]
         public async Task<BrandDTO> GetBrand(Guid id)
         {
             var brand = await _brandService.GetBrand(id);
-            var result = _mapper.Map<BrandDTO>(brand);
-            return result;
+            return brand;
         }
 
         [HttpPost]
         public async Task<IActionResult> PostBrands(BrandDTO brandDTO)
         {
-            var brand = _mapper.Map<Brand>(brandDTO);
-            _brandService.AddBrand(brand);
-            return Ok(brand);
+            _brandService.AddBrand(brandDTO);
+            return Ok(brandDTO);
         }
 
         [HttpPut]
         public async Task<IActionResult> Put(BrandDTO brandDTO)
         {
-            var brand = _mapper.Map<Brand>(brandDTO);
-            _brandService.Update(brand);
-            return Ok(brand);
+            _brandService.Update(brandDTO);
+            return Ok(brandDTO);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            Brand brand = await _brandService.GetBrand(id);
-            _brandService.RemoveBrand(brand);
-            return Ok(brand);
+            await _brandService.RemoveBrand(id);
+            return Ok($"Бренд с id={id} успешно удалён");
         }
     }
 }

@@ -17,7 +17,7 @@ namespace MMTRShop.Service.Interface
         Task<ProductDTO> GetProduct(Guid id);
 
         void AddProduct(ProductDTO product);
-        Task RemoveProduct(ProductDTO product);
+        Task RemoveProduct(Guid productId);
         void Update(ProductDTO product);
         void Save();
 

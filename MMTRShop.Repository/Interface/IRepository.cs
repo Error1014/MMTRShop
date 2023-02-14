@@ -17,6 +17,7 @@ namespace MMTRShop.Repository.Interface
         void AddRange(IEnumerable<TEntity> entities);
 
         void Remove(TEntity entity);
+        void Remove(TKey key);
         void RemoveRange(IEnumerable<TEntity> entities);
         void Update(TEntity entity);
         void Save();

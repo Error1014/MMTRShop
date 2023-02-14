@@ -1,4 +1,6 @@
-﻿using MMTRShop.MiddlewareException.Exceptions;
+﻿using AutoMapper;
+using MMTRShop.DTO.DTO;
+using MMTRShop.MiddlewareException.Exceptions;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
@@ -14,40 +16,51 @@ namespace MMTRShop.Service.Services
     public class BrandService: IBrandService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public BrandService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public BrandService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        public void AddBrand(Brand brand)
+        public void AddBrand(BrandDTO brandDTO)
         {
+            var brand = _mapper.Map<Brand>(brandDTO);
             _unitOfWork.Brands.Add(brand);
-            Save();
+            _unitOfWork.Brands.Save();
         }
 
-        public async Task<IEnumerable<Brand>> GetBrands()
+        public async Task<IEnumerable<BrandDTO>> GetBrands()
         {
-            return await _unitOfWork.Brands.GetAllAsync();
+            var brands = await _unitOfWork.Brands.GetAllAsync();
+            var result = _mapper.Map<IEnumerable<BrandDTO>>(brands);
+            return result;
         }
-        public async Task<Brand> GetBrand(Guid brandId)
+        public async Task<BrandDTO> GetBrand(Guid brandId)
         {
-            return await _unitOfWork.Brands.FindAsync(b=>b.Id==brandId);
+            var brand = await _unitOfWork.Brands.FindAsync(b => b.Id == brandId);
+            if (brand == null)
+            {
+                throw new NotFoundException("Бренд не найден");
+            }
+            var result = _mapper.Map<BrandDTO>(brand);
+            return result;
         }
 
-        public async Task RemoveBrand(Brand brand)
+        public async Task RemoveBrand(Guid id)
         {
-            Brand? brandDB = await GetBrand(brand.Id);
-            _unitOfWork.Brands.Remove(brandDB);
+            _unitOfWork.Brands.Remove(id);
             Save();
         }
 
         public async Task Save()
         {
-           await _unitOfWork.Brands.SaveAsync();
+            _unitOfWork.Brands.Save();
         }
 
-        public void Update(Brand brand)
+        public async Task Update(BrandDTO brandDTO)
         {
+            var brand = _mapper.Map<Brand>(brandDTO);
             _unitOfWork.Brands.Update(brand);
             Save();
         }

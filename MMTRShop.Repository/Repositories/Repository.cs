@@ -53,7 +53,11 @@ namespace MMTRShop.Repository.Repositories
         {
             ShopContext.Set<TEntity>().Remove(entity);
         }
-
+        public void Remove(TKey key)
+        {
+            var entity = ShopContext.Set<TEntity>().Find(key);
+            ShopContext.Set<TEntity>().Remove(entity);
+        }
 
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
@@ -77,6 +81,7 @@ namespace MMTRShop.Repository.Repositories
         {
             await ShopContext.SaveChangesAsync();
         }
+        
 
         #endregion
     }
