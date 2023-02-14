@@ -11,9 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Необходимо для создания мигаций
-builder.Services.AddDbContextPool<ShopContext>(
-                options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-                b => b.MigrationsAssembly("MMTRShop.Repository")));
 builder.Services.AddDbContext<ShopContext>(options =>
                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
