@@ -12,7 +12,8 @@ namespace MMTRShop.Service
             CreateMap<Product, ProductDTO>().ReverseMap();
             CreateMap<Brand, BrandDTO>();
             CreateMap<Brand, BrandDTO>().ReverseMap();
-
+            CreateMap<BankCard, BankCardDTO>();
+            CreateMap<BankCard, BankCardDTO>().ReverseMap();
         }
     }
 }

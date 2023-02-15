@@ -20,9 +20,9 @@ namespace MMTRShop.Service.Services
             _mapper = mapper;
         }
 
-        public async Task<ProductDTO> GetProduct(Guid id)
+        public async Task<ProductDTO> GetProduct(Guid productId)
         {
-            var product = await _unitOfWork.Products.GetByIdAsync(id);
+            var product = await _unitOfWork.Products.GetByIdAsync(productId);
             if (product == null)
             {
                 throw new NotFoundException("Товар не найден");
@@ -30,26 +30,31 @@ namespace MMTRShop.Service.Services
             var result = _mapper.Map<ProductDTO>(product);
             return result;
         }
-        public void AddProduct(ProductDTO productDTO)
+        public async Task AddProduct(ProductDTO productDTO)
         {
             var product = _mapper.Map<Product>(productDTO);
             _unitOfWork.Products.Add(product);
-            Save();
+            await Save();
         }
         public async Task RemoveProduct(Guid productId)
         {
-           _unitOfWork.Products.Remove(productId);
-           await _unitOfWork.Products.SaveAsync();
+            var product = await _unitOfWork.Products.GetByIdAsync(productId);
+            if (product == null)
+            {
+                throw new NotFoundException("Товар не найден");
+            }
+            _unitOfWork.Products.Remove(productId);
+            await Save();
         }
-        public void Update(ProductDTO productDTO)
+        public async Task Update(ProductDTO productDTO)
         {
             var product = _mapper.Map<Product>(productDTO);
             _unitOfWork.Products.Update(product);
-            Save();
+            await Save();
         }
-        public void Save()
+        public async Task Save()
         {
-            _unitOfWork.Products.Save();
+            await _unitOfWork.Products.SaveAsync();
         }
 
         public async Task<IEnumerable<ProductDTO>> GetPageProducts(ProductPageFilter filter)

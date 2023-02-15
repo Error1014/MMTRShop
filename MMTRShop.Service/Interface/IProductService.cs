@@ -16,10 +16,10 @@ namespace MMTRShop.Service.Interface
     {
         Task<ProductDTO> GetProduct(Guid id);
 
-        void AddProduct(ProductDTO product);
+        Task AddProduct(ProductDTO product);
         Task RemoveProduct(Guid productId);
-        void Update(ProductDTO product);
-        void Save();
+        Task Update(ProductDTO product);
+        Task Save();
 
         Task<IEnumerable<ProductDTO>> GetPageProducts(ProductPageFilter filter);
 

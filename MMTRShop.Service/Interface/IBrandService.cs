@@ -12,7 +12,7 @@ namespace MMTRShop.Service.Interface
     {
         Task<IEnumerable<BrandDTO>> GetBrands();
         Task<BrandDTO> GetBrand(Guid brandId);
-        void AddBrand(BrandDTO brand);
+        Task AddBrand(BrandDTO brand);
         Task RemoveBrand(Guid brand);
         Task Update(BrandDTO brand);
         Task Save();

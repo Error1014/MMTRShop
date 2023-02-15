@@ -23,11 +23,11 @@ namespace MMTRShop.Service.Services
             _mapper = mapper;
         }
 
-        public void AddBrand(BrandDTO brandDTO)
+        public async Task AddBrand(BrandDTO brandDTO)
         {
             var brand = _mapper.Map<Brand>(brandDTO);
-            _unitOfWork.Brands.Add(brand);
-            _unitOfWork.Brands.Save();
+            await _unitOfWork.Brands.AddAsync(brand);
+            await Save();
         }
 
         public async Task<IEnumerable<BrandDTO>> GetBrands()
@@ -47,22 +47,27 @@ namespace MMTRShop.Service.Services
             return result;
         }
 
-        public async Task RemoveBrand(Guid id)
+        public async Task RemoveBrand(Guid brandId)
         {
-            _unitOfWork.Brands.Remove(id);
-            Save();
+            var brand = await _unitOfWork.Brands.FindAsync(b => b.Id == brandId);
+            if (brand == null)
+            {
+                throw new NotFoundException("Бренд не найден");
+            }
+            _unitOfWork.Brands.Remove(brandId);
+            await Save();
         }
 
         public async Task Save()
         {
-            _unitOfWork.Brands.Save();
+            await _unitOfWork.Brands.SaveAsync();
         }
 
         public async Task Update(BrandDTO brandDTO)
         {
             var brand = _mapper.Map<Brand>(brandDTO);
             _unitOfWork.Brands.Update(brand);
-            Save();
+            await Save();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMTRShop.DTO.DTO;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,7 +10,13 @@ namespace MMTRShop.Service.Interface
 {
     public interface IBankCardService
     {
-       ObservableCollection<int> GetAllMonth();
-       ObservableCollection<int> GetYear(int quantityYear);
+        Task<IEnumerable<BankCardDTO>> GetBankCards();
+        Task<BankCardDTO> GetBankCard(Guid id);
+        Task AddBankCard(BankCardDTO bankCardDTO);
+        Task Update(BankCardDTO bankCardDTO);
+        Task Remove(Guid id);
+        Task Save();
+        ObservableCollection<int> GetAllMonth();
+        ObservableCollection<int> GetYear(int quantityYear);
     }
 }

@@ -42,14 +42,14 @@ namespace MMTRShopAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> PostProducts(ProductDTO productDTO)
         {
-            _productService.AddProduct(productDTO);
+            await _productService.AddProduct(productDTO);
             return Ok(productDTO);
         }
 
         [HttpPut]
         public async Task<IActionResult> PutProduct(ProductDTO productDTO)
         {
-            _productService.Update(productDTO);
+            await _productService.Update(productDTO);
             return Ok(productDTO);
         }
 

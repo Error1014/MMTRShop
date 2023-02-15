@@ -35,14 +35,14 @@ namespace MMTRShopAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> PostBrands(BrandDTO brandDTO)
         {
-            _brandService.AddBrand(brandDTO);
+            await _brandService.AddBrand(brandDTO);
             return Ok(brandDTO);
         }
 
         [HttpPut]
         public async Task<IActionResult> Put(BrandDTO brandDTO)
         {
-            _brandService.Update(brandDTO);
+            await _brandService.Update(brandDTO);
             return Ok(brandDTO);
         }
 
