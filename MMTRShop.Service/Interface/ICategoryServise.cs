@@ -1,4 +1,6 @@
-﻿using MMTRShop.Model.Models;
+﻿using MMTRShop.DTO.DTO;
+using MMTRShop.Model.HelperModels;
+using MMTRShop.Model.Models;
 using MMTRShop.Service.Services;
 using System;
 using System.Collections.Generic;
@@ -11,12 +13,12 @@ namespace MMTRShop.Service.Interface
 {
     public interface ICategoryServise
     {
-        Task<IEnumerable<Category>> GetAllCategory();
-        Task<Category> GetCategory(Guid categoryId);
-        Task SaveChanges(Category category);
+        Task<IEnumerable<CategoryDTO>> GetPageCategories(BaseFilter filter);
+        Task<CategoryDTO> GetCategory(Guid categoryId);
+        Task Update(CategoryDTO category);
         Task Save();
-        Task Add(string title);
-        Task Remove(Category category);
-        bool CheckToRemove(Category category);
+        Task AddCategory(CategoryDTO category);
+        Task Remove(Guid categoryId);
+        void CheckToRemove(Guid categoryId);
     }
 }

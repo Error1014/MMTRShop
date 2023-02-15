@@ -10,7 +10,7 @@ using MMTRShop.Repository.Contexts;
 
 #nullable disable
 
-namespace MMTRShop.Repository.Migrations
+namespace MMTRShop.Repository.Contexts.Migrations
 {
     [DbContext(typeof(ShopContext))]
     [Migration("20230208090930_Init")]

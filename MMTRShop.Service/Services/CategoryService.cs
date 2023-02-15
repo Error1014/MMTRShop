@@ -1,4 +1,7 @@
-﻿using MMTRShop.MiddlewareException.Exceptions;
+﻿using AutoMapper;
+using MMTRShop.DTO.DTO;
+using MMTRShop.MiddlewareException.Exceptions;
+using MMTRShop.Model.HelperModels;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
@@ -15,59 +18,69 @@ namespace MMTRShop.Service.Services
     public class CategoryService: ICategoryServise
     {
         private readonly IUnitOfWork _unitOfWork;
-
-        public CategoryService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public CategoryService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-        }
-        public async Task<IEnumerable<Category>> GetAllCategory()
-        {
-            var categories = await _unitOfWork.Categories.GetAllAsync();
-            return categories;
+            _mapper = mapper;
         }
 
-        public async Task<Category> GetCategory(Guid categoryId)
+        public async Task AddCategory(CategoryDTO categoryDTO)
         {
-            return await _unitOfWork.Categories.FindAsync(category => category.Id == categoryId);
-        }
-
-        public async Task SaveChanges(Category category)
-        {
-            if (category == null) return;
-            Category categoryDB =await GetCategory(category.Id);
-            categoryDB.Title = category.Title;
+            var category = _mapper.Map<Category>(categoryDTO);
+            _unitOfWork.Categories.Add(category);
             await Save();
         }
+
+        public async Task<CategoryDTO> GetCategory(Guid categoryId)
+        {
+            var category = await _unitOfWork.Categories.GetByIdAsync(categoryId);
+            if (category == null)
+            {
+                throw new NotFoundException("Категория не найдена");
+            }
+            var result = _mapper.Map<CategoryDTO>(category);
+            return result;
+        }
+
+        public async Task<IEnumerable<CategoryDTO>> GetPageCategories(BaseFilter filter)
+        {
+            var categories = await _unitOfWork.Categories.GetPageElements(filter);
+            var result = _mapper.Map<IEnumerable<CategoryDTO>>(categories);
+            return result;
+        }
+
+        public async Task Remove(Guid categoryId)
+        {
+            var category = await _unitOfWork.Categories.GetByIdAsync(categoryId);
+            if (category == null)
+            {
+                throw new NotFoundException("Категория не найдена");
+            }
+            CheckToRemove(categoryId);
+            _unitOfWork.Categories.Remove(categoryId);
+            await Save();
+        }
+
         public async Task Save()
         {
             await _unitOfWork.Categories.SaveAsync();
         }
 
-        public async Task Add(string title)
+        public async Task Update(CategoryDTO categoryDTO)
         {
-            _unitOfWork.Categories.Add(new Category(title));
+            var category = _mapper.Map<Category>(categoryDTO);
+            _unitOfWork.Categories.Update(category);
             await Save();
         }
-
-        public async Task Remove(Category category)
+        public void CheckToRemove(Guid categoryId)
         {
-            if (category == null) return;
-            _unitOfWork.Categories.Remove(await GetCategory(category.Id));
-            await Save();
-        }
-
-        public bool CheckToRemove(Category category)
-        {
-            var products = _unitOfWork.Products.FindAsync(c => c.CategoryId == category.Id);
-            if (products==null)
-            {
-                return true;
-            }
-            else
+            var task = _unitOfWork.Products.FindAsync(c => c.CategoryId == categoryId);
+            var product = task.Result;
+            if (product != null)
             {
                 throw new ValidationException("Вы не можете удалить данную категорию, так как приведёт к удалению продуктов");
             }
         }
-
     }
 }

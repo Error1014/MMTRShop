@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MMTRShop.Model.HelperModels;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Contexts;
 using MMTRShop.Repository.Interface;
@@ -42,7 +43,15 @@ namespace MMTRShop.Repository.Repositories
         {
             return await ShopContext.Set<TEntity>().ToListAsync();
         }
-
+        public async Task<IEnumerable<TEntity>> GetPageElements(BaseFilter filter)
+        {
+            var query = ShopContext.Set<TEntity>().AsQueryable();
+            query = query
+                .OrderBy(x => x.Id)
+                .Skip((filter.NumPage - 1) * filter.SizePage)
+                .Take(filter.SizePage);
+            return await query.ToListAsync();
+        }
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
             return await ShopContext.Set<TEntity>().FindAsync(id);
@@ -81,8 +90,6 @@ namespace MMTRShop.Repository.Repositories
         {
             await ShopContext.SaveChangesAsync();
         }
-        
-
         #endregion
     }
 }

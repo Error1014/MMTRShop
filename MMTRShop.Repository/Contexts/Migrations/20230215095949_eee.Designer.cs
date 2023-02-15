@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace MMTRShop.Repository.Migrations
+namespace MMTRShop.Repository.Contexts.Migrations
 {
     [DbContext(typeof(ShopContext))]
     [Migration("20230215095949_eee")]

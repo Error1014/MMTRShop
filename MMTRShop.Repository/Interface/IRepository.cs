@@ -1,4 +1,5 @@
-﻿using MMTRShop.Model.Models;
+﻿using MMTRShop.Model.HelperModels;
+using MMTRShop.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,11 @@ namespace MMTRShop.Repository.Interface
     {
         Task<TEntity> GetByIdAsync(Guid id);
         Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<IEnumerable<TEntity>> GetPageElements(BaseFilter filter);
         Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate);
-
         void Add(TEntity entity);
         Task AddAsync(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
-
         void Remove(TEntity entity);
         void Remove(TKey key);
         void RemoveRange(IEnumerable<TEntity> entities);
