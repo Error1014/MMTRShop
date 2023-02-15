@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MMTRShop.Repository.Migrations
+namespace MMTRShop.Repository.Contexts.Migrations
 {
     /// <inheritdoc />
     public partial class eee : Migration
