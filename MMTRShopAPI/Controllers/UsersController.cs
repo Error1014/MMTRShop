@@ -8,7 +8,7 @@ namespace MMTRShopAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : Controller
     {
         private readonly IUserService _userService;
         public UsersController(IUserService userService)
