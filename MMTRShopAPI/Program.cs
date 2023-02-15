@@ -23,6 +23,7 @@ builder.Services.AddControllers();
 builder.Services
     .AddScoped<IUnitOfWork, UnitOfWork>()
     .AddScoped<IProductService, ProductService>()
+    .AddScoped<IUserService, UserService>()
     .AddScoped<IAccountService, AccountService>()
     .AddScoped<IAutorizationService, AutorizationService>()
     .AddScoped<IBankCardService, BankCardService>()

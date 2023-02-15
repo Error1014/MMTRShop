@@ -50,11 +50,7 @@ namespace MMTRShop.Service.Services
         }
         public async Task Remove(Guid bankCardId)
         {
-            var bancCard = await _unitOfWork.BankCards.GetByIdAsync(bankCardId);
-            if (bancCard == null)
-            {
-                throw new NotFoundException("Банковская карта не найдена");
-            }
+            var bancCard = await GetBankCard(bankCardId);
             _unitOfWork.BankCards.Remove(bankCardId);
             await Save();
         }

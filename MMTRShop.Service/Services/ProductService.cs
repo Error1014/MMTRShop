@@ -38,11 +38,7 @@ namespace MMTRShop.Service.Services
         }
         public async Task RemoveProduct(Guid productId)
         {
-            var product = await _unitOfWork.Products.GetByIdAsync(productId);
-            if (product == null)
-            {
-                throw new NotFoundException("Товар не найден");
-            }
+            var product = await GetProduct(productId);
             _unitOfWork.Products.Remove(productId);
             await Save();
         }

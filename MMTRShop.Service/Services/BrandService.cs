@@ -38,11 +38,7 @@ namespace MMTRShop.Service.Services
         }
         public async Task<BrandDTO> GetBrand(Guid brandId)
         {
-            var brand = await _unitOfWork.Brands.FindAsync(b => b.Id == brandId);
-            if (brand == null)
-            {
-                throw new NotFoundException("Бренд не найден");
-            }
+            var brand = await GetBrand(brandId);
             var result = _mapper.Map<BrandDTO>(brand);
             return result;
         }

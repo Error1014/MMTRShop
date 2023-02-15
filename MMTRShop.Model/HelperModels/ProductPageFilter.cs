@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Model.HelperModels
 {
-    public class ProductPageFilter
+    public class ProductPageFilter:BaseFilter
     {
-        public int NumPage;
-        public int SizePage;
+        
         public Guid? CategoryId;
         public Guid? BrandId;
-        public ProductPageFilter(int numPage, int sizePage, Guid? categoryId, Guid? bandId)
+        public ProductPageFilter(int numPage, int sizePage, Guid? categoryId, Guid? bandId):base(numPage,sizePage)
         {
-            NumPage = numPage;
-            SizePage = sizePage;
             CategoryId = categoryId;
             BrandId = bandId;
         }
