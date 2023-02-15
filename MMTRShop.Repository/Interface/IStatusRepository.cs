@@ -3,7 +3,7 @@ using System;
 
 namespace MMTRShop.Repository.Interface
 {
-    public interface IStatusRepository:IRepository<Status,Guid>
+    public interface IStatusRepository:IRepository<Status, int>
     {
         Status SetStatusWaitingPlaced();
         Status SetStatusPlaced();

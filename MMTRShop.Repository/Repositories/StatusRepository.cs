@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MMTRShop.Repository.Repositories
 {
-    public class StatusRepository:Repository<Status,Guid>,IStatusRepository
+    public class StatusRepository:Repository<Status,int>,IStatusRepository
     {
         public StatusRepository(ShopContext context) : base(context)
         {

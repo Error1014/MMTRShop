@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Model.Models
 {
-    public class Status:BaseEntity<Guid>
+    public class Status:BaseEntity<int>
     {
         public string Title { get; set; }
     }

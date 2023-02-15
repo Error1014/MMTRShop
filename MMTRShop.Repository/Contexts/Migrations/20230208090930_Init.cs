@@ -39,7 +39,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                 name: "Status",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "newid()"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -262,7 +262,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     DateOrder = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateDelivery = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsPaid = table.Column<bool>(type: "bit", nullable: false),
-                    StatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    StatusId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

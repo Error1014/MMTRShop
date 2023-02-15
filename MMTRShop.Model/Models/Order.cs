@@ -14,7 +14,7 @@ namespace MMTRShop.Model.Models
         public DateTime DateOrder { get; set; }
         public DateTime DateDelivery { get; set; }
         public bool IsPaid { get; set; }
-        public Guid StatusId { get; set; }
+        public int StatusId { get; set; }
         public virtual Status Status { get; set; }
 
         public Order()
@@ -23,7 +23,7 @@ namespace MMTRShop.Model.Models
         }
 
 
-        public Order(Client client, string address, bool isPaid, Guid statusId)
+        public Order(Client client, string address, bool isPaid, int statusId)
         {
             ClientId = client.Id;
             Address = address;

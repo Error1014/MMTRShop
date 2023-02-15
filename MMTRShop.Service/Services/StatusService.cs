@@ -25,7 +25,7 @@ namespace MMTRShop.Service.Services
         }
         public async Task<Status> GetStatus(Order order)
         {
-            return await _unitOfWork.Status.FindAsync(s=>s.Id == order.StatusId);
+            return await _unitOfWork.Status.FindAsync(s=>s.Id == 1);
         }
         public Status GetStatusWaitingPlaced()
         {

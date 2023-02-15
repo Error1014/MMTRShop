@@ -20,6 +20,8 @@ namespace MMTRShop.Service
             CreateMap<Client, ClientDTO>().ReverseMap();
             CreateMap<Category, CategoryDTO>();
             CreateMap<Category, CategoryDTO>().ReverseMap();
+            CreateMap<Status, StatusDTO>();
+            CreateMap<Status, StatusDTO>().ReverseMap();
         }
     }
 }
