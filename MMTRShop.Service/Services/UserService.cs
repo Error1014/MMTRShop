@@ -24,7 +24,13 @@ namespace MMTRShop.Service.Services
         }
         public async Task AddUser(UserDTO userDTO)
         {
+            var chekUser = await _unitOfWork.Users.FindAsync(u => u.Login == userDTO.Login);
+            if (chekUser != null)
+            {
+                throw new DublicateException("Пользователь с таким логином уже существует");
+            }
             var user = _mapper.Map<User>(userDTO);
+            
             _unitOfWork.Users.Add(user);
             await Save();
         }
@@ -45,6 +51,28 @@ namespace MMTRShop.Service.Services
             }
             var result = _mapper.Map<UserDTO>(user);
             return result;
+        }
+
+        public async Task<UserDTO> GetUser(string login, string password)
+        {
+            bool isCorrect = false;
+            var users = await _unitOfWork.Users.GetAllAsync();
+            User? user = null;
+            foreach (var item in users)
+            {
+                if (item.Login == login && item.Password == password)
+                {
+                    isCorrect = true;
+                    user = item;
+                    break;
+                }
+            }
+            if (isCorrect==false)
+            {
+                throw new ValidationException("Вы ввели неверный логин или пароль!");
+            }
+            var userDTO = _mapper.Map<UserDTO>(user);
+            return userDTO;
         }
 
         public async Task RemoveUser(Guid userId)

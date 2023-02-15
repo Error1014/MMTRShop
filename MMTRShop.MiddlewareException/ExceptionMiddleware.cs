@@ -47,6 +47,10 @@ namespace MMTRShop.MiddlewareException
                     message = exception.Message;
                     code = HttpStatusCode.BadRequest;
                     break;
+                case DublicateException:
+                    message = exception.Message;
+                    code = HttpStatusCode.BadRequest;
+                    break;
             }
 
 

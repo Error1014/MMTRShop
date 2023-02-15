@@ -24,8 +24,6 @@ builder.Services
     .AddScoped<IUnitOfWork, UnitOfWork>()
     .AddScoped<IProductService, ProductService>()
     .AddScoped<IUserService, UserService>()
-    .AddScoped<IAccountService, AccountService>()
-    .AddScoped<IAutorizationService, AutorizationService>()
     .AddScoped<IBankCardService, BankCardService>()
     .AddScoped<IBrandService, BrandService>()
     .AddScoped<ICartService, CartService>()
