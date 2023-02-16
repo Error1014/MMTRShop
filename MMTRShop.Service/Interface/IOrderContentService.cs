@@ -1,4 +1,5 @@
-﻿using MMTRShop.Model.Models;
+﻿using MMTRShop.DTO.DTO;
+using MMTRShop.Model.Models;
 using MMTRShop.Service.Services;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,10 @@ namespace MMTRShop.Service.Interface
 {
     public interface IOrderContentService
     {
-        Task CreateOrderContent(Order order);
-        List<OrderContent> GetOrderContentNoСompleted(List<Order> orders);
-        Task<IEnumerable<OrderContent>> GetOrderContents(Guid orderId);
-        Task<IEnumerable<OrderContent>> GetCancelledOrder();
+        Task AddOrderContent(OrderContentDTO orderContentDTO);
+        Task Remove(Guid orderId);
+        Task Update(OrderContentDTO order);
+        Task Save();
+        Task<IEnumerable<OrderContentDTO>> GetOrderContents(Guid orderId);
     }
 }

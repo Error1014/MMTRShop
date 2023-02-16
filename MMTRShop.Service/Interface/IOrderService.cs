@@ -1,4 +1,6 @@
-﻿using MMTRShop.Model.Models;
+﻿using MMTRShop.DTO.DTO;
+using MMTRShop.Model.HelperModels;
+using MMTRShop.Model.Models;
 using MMTRShop.Service.Services;
 using System;
 using System.Collections.Generic;
@@ -11,21 +13,22 @@ namespace MMTRShop.Service.Interface
 {
     public interface IOrderService
     {
-        Task<ObservableCollection<Order>> GetOrders();
-        Task<IEnumerable<Order>> GetOrderByClientId(Guid clientId);
-        Task<Order> GetOrderById(Guid orderId);
-        void CreateOrder(Order order);
-        void SaveOrder();
+        Task<IEnumerable<OrderDTO>> GetOrders();
+        Task<IEnumerable<OrderDTO>> GetOrders(FilterByClient filterByClient);
+        Task<OrderDTO> GetOrder(Guid orderId);
+        Task AddOrder(OrderDTO order);
+        Task Save();
+        Task Update(OrderDTO orderDTO);
+        Task Remove(Guid orderId);
 
 
+        //#region Проверки введёных полей
 
-        #region Проверки введёных полей
-
-        bool CheckWrittenRequisitesBankCard(BankCard bankCard);
-        bool CheckCorrectnessRequisitesBankCard(BankCard bankCard);
+        //bool CheckWrittenRequisitesBankCard(BankCard bankCard);
+        //bool CheckCorrectnessRequisitesBankCard(BankCard bankCard);
         
-        bool CheckAddress(string address);
-        #endregion
+        //bool CheckAddress(string address);
+        //#endregion
 
     }
 }

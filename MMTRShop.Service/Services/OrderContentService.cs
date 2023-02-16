@@ -1,4 +1,6 @@
-﻿using MMTRShop.Model.Models;
+﻿using AutoMapper;
+using MMTRShop.DTO.DTO;
+using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
@@ -13,42 +15,40 @@ namespace MMTRShop.Service.Services
     public class OrderContentService: IOrderContentService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public OrderContentService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public OrderContentService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
-        public async Task CreateOrderContent(Order order)
+        public async Task AddOrderContent(OrderContentDTO orderContentDTO)
         {
-            var carts =await _unitOfWork.Carts.GetCartsByClient(AccountManager.Client.Id);
-            List<OrderContent> cartOrders = new List<OrderContent>();
-            foreach (var cartItem in carts)
-            {
-                cartOrders.Add(new OrderContent(order, cartItem));
-            }
-            _unitOfWork.OrderContents.AddRange(cartOrders);
-             await _unitOfWork.OrderContents.SaveAsync();
+            var orderContent = _mapper.Map<OrderContent>(orderContentDTO);
+            _unitOfWork.OrderContents.Add(orderContent);
+            await Save();
         }
-        public List<OrderContent> GetOrderContentNoСompleted(List<Order> orders)
+        
+        public async Task<IEnumerable<OrderContentDTO>> GetOrderContents(Guid orderId)
         {
-            List<OrderContent> result = new List<OrderContent>();
-            //foreach (var item in orders)
-            //{
-            //    if (item.Status.Title!="Получен")
-            //    {
-            //        result.AddRange(_unitOfWork.OrderContents.GetAllAsync().Where(oc => oc.OrderId == item.Id));
-            //    }
-            //}
-
+            var orderContents = await _unitOfWork.OrderContents.GetOrderContentsByOrderId(orderId);
+            var result = _mapper.Map<IEnumerable<OrderContentDTO>>(orderContents);
             return result;
         }
-        public async Task<IEnumerable<OrderContent>> GetOrderContents(Guid orderId)
-        {
-            return await _unitOfWork.OrderContents.GetOrderContentsByOrderId(orderId);
-        }
 
-        public async Task<IEnumerable<OrderContent>> GetCancelledOrder()
+        public async Task Remove(Guid orderId)
         {
-            return await _unitOfWork.OrderContents.GetCanceledOrderByClientId(AccountManager.Client.Id);
+            _unitOfWork.OrderContents.Remove(orderId);
+            await Save();
+        }
+        public async Task Update(OrderContentDTO orderDTO)
+        {
+            var orderContent = _mapper.Map<OrderContent>(orderDTO);
+            _unitOfWork.OrderContents.Update(orderContent);
+            await Save();
+        }
+        public async Task Save()
+        {
+            await _unitOfWork.OrderContents.SaveAsync();
         }
     }
 }
