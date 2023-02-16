@@ -16,7 +16,7 @@ namespace MMTRShop.Repositories.Repository
         }
 
 
-        public async Task<IEnumerable<Cart>> GetCartByClient(Guid clientId)
+        public async Task<IEnumerable<Cart>> GetCartsByClient(Guid clientId)
         {
             return ShopContext.Cart.Where(k=>k.ClientId==clientId);
         }

@@ -19,7 +19,7 @@ namespace MMTRShop.Service.Services
         }
         public async Task CreateOrderContent(Order order)
         {
-            var carts =await _unitOfWork.Carts.GetCartByClient(AccountManager.Client.Id);
+            var carts =await _unitOfWork.Carts.GetCartsByClient(AccountManager.Client.Id);
             List<OrderContent> cartOrders = new List<OrderContent>();
             foreach (var cartItem in carts)
             {

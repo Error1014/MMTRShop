@@ -4,7 +4,6 @@ namespace MMTRShop.Model.Models
 {
     public class Cart : BaseEntity<Guid>
     {
-        
         public Guid ClientId { get; set; }
         public virtual Client Client { get; set; }
         public Guid ProductId { get; set; }
