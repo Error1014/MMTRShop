@@ -1,4 +1,8 @@
-﻿using MMTRShop.Model;
+﻿using AutoMapper;
+using MMTRShop.DTO.DTO;
+using MMTRShop.MiddlewareException.Exceptions;
+using MMTRShop.Model;
+using MMTRShop.Model.HelperModels;
 using MMTRShop.Model.Models;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
@@ -12,33 +16,62 @@ namespace MMTRShop.Service.Services
     public class FavouriteService: IFavouriteService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public FavouriteService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public FavouriteService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
-        public async Task<IEnumerable<Favourite>> GetFavourites()
+        public async Task<IEnumerable<FavouriteDTO>> GetFavourites(Guid clientId)
         {
-            return await _unitOfWork.Favorites.GetFavouritesByClientId(AccountManager.Client.Id);
+            var favourites = await _unitOfWork.Favorites.GetFavouritesByClientId(clientId);
+            var result = _mapper.Map<IEnumerable<FavouriteDTO>>(favourites);
+            return result;
         }
-        public async Task<Favourite> GetFavouritByProductId(Guid productId)
+        public async Task<FavouriteDTO> GetFavourite(Guid favouriteId)
         {
-            return await _unitOfWork.Favorites.FindAsync(f=>f.ClientId == AccountManager.Client.Id && f.ProductId == productId);
+            var favourite = await _unitOfWork.Favorites.GetByIdAsync(favouriteId);
+            if (favourite == null)
+            {
+                throw new NotFoundException("Избраное не найдено");
+            }
+            var result = _mapper.Map<FavouriteDTO>(favourite);
+            return result;
         }
 
-        public async Task RemoveFavourietById(Guid id)
+        public async Task RemoveFavourite(Guid id)
         {
-            Favourite favourit = await _unitOfWork.Favorites.FindAsync(f=>f.Id==id);
-            await RemoveFavourite(favourit);
+            var favourite = await _unitOfWork.Favorites.GetByIdAsync(id);
+            if (favourite == null)
+            {
+                throw new NotFoundException("Избраное не найдено");
+            }
+            _unitOfWork.Favorites.Remove(id);
+            await Save();
         }
 
-        public async Task AddFavourite(Favourite favourite)
+        public async Task AddFavourite(FavouriteDTO favouriteDTO)
         {
+            var favourites = await GetFavourites(favouriteDTO.ClientId);
+            foreach (var item in favourites)
+            {
+                if (item.ProductId== favouriteDTO.ProductId)
+                {
+                    throw new DublicateException("Товар уже находится в избраном");
+                }
+            }
+            var favourite = _mapper.Map<Favourite>(favouriteDTO);
             _unitOfWork.Favorites.Add(favourite);
-            await _unitOfWork.Favorites.SaveAsync();
+            await Save();
         }
-        public async Task RemoveFavourite(Favourite favourite)
+        public async Task Update(FavouriteDTO favouriteDTO)
+{
+            var favourite = _mapper.Map<Favourite>(favouriteDTO);
+            _unitOfWork.Favorites.Update(favourite);
+            await Save();
+        }
+        public async Task Save()
         {
-            _unitOfWork.Favorites.Remove(favourite);
             await _unitOfWork.Favorites.SaveAsync();
         }
     }
