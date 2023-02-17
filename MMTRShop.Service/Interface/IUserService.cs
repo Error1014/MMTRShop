@@ -12,7 +12,7 @@ namespace MMTRShop.Service.Interface
     {
         Task<IEnumerable<UserDTO>> GetPageUser(BaseFilter filter);
         Task<UserDTO> GetUser(Guid id);
-        Task<UserDTO> GetUser(string login, string password);
+        Task<UserDTO> GetUser(LoginPasswordModel loginPassword);
         Task AddUser(UserDTO user);
         Task RemoveUser(Guid userId);
         Task Update(UserDTO user);

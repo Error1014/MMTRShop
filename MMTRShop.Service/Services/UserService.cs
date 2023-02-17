@@ -53,14 +53,14 @@ namespace MMTRShop.Service.Services
             return result;
         }
 
-        public async Task<UserDTO> GetUser(string login, string password)
+        public async Task<UserDTO> GetUser(LoginPasswordModel loginPassword)
         {
             bool isCorrect = false;
             var users = await _unitOfWork.Users.GetAllAsync();
             User? user = null;
             foreach (var item in users)
             {
-                if (item.Login == login && item.Password == password)
+                if (item.Login == loginPassword.Login && item.Password == loginPassword.Password)
                 {
                     isCorrect = true;
                     user = item;
