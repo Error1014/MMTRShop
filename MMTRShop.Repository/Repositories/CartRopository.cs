@@ -1,4 +1,6 @@
-﻿using MMTRShop.Model.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MMTRShop.Model.HelperModels;
+using MMTRShop.Model.Models;
 using MMTRShop.Repository.Contexts;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
@@ -15,7 +17,15 @@ namespace MMTRShop.Repositories.Repository
 
         }
 
-
+        public async Task<IEnumerable<Cart>> GetCarts(FilterByClient filter)
+        {
+            var query = ShopContext.Cart.AsQueryable();
+            if (filter.ClientId.HasValue)
+            {
+                query = query.Where(x => x.ClientId == filter.ClientId);
+            }
+            return await query.ToListAsync();
+        }
         public async Task<IEnumerable<Cart>> GetCartsByClient(Guid clientId)
         {
             return ShopContext.Cart.Where(k=>k.ClientId==clientId);

@@ -29,9 +29,9 @@ namespace MMTRShop.Service.Services
             var result = _mapper.Map<IEnumerable<CartDTO>>(carts);
             return result;
         }
-        public async Task<IEnumerable<CartDTO>> GetCarts(Guid clientId, BaseFilter filter)
+        public async Task<IEnumerable<CartDTO>> GetCarts(FilterByClient filter)
         {
-            var carts = await _unitOfWork.Carts.GetCartsByClient(clientId);
+            var carts = await _unitOfWork.Carts.GetCarts(filter);
             var result = _mapper.Map<IEnumerable<CartDTO>>(carts);
             return result;
         }

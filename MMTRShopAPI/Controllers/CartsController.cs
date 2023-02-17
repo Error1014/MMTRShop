@@ -18,23 +18,22 @@ namespace MMTRShopAPI.Controllers
         }
 
 
-        [HttpGet("{clientId}")]
-        public async Task<IEnumerable<CartDTO>> GetCartsPage(Guid clientId)
+        [HttpPost(nameof(GetCartsPage))]
+        public async Task<IEnumerable<CartDTO>> GetCartsPage([FromBody] FilterByClient filter)
         {
-            BaseFilter filter = new BaseFilter(1, 10);
-            var carts = await _cartService.GetCarts(clientId, filter);
+            var carts = await _cartService.GetCarts(filter);
             return carts;
         }
-        //[HttpGet("{id}")]
-        //public async Task<CartDTO> GetCart(Guid id)
-        //{
-        //    var user = await _cartService.GetCart(id);
-        //    if (user==null)
-        //    {
-        //        throw new NotFoundException("Элемент корзины не найден");
-        //    }
-        //    return user;
-        //}
+        [HttpGet("{id}")]
+        public async Task<CartDTO> GetCart(Guid id)
+        {
+            var user = await _cartService.GetCart(id);
+            if (user == null)
+            {
+                throw new NotFoundException("Элемент корзины не найден");
+            }
+            return user;
+        }
 
         [HttpPost]
         public async Task<IActionResult> PostCart(CartDTO cartDTO)

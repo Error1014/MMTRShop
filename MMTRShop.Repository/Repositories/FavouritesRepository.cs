@@ -1,4 +1,6 @@
-﻿using MMTRShop.Model.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MMTRShop.Model.HelperModels;
+using MMTRShop.Model.Models;
 using MMTRShop.Repository.Contexts;
 using MMTRShop.Repository.Interface;
 using System;
@@ -14,10 +16,22 @@ namespace MMTRShop.Repository.Repositories
 
         }
 
-        public async Task<IEnumerable<Favourite>> GetFavouritesByClientId(Guid clientId)
+        public async Task<IEnumerable<Favourite>> GetFavourites(Guid clientId)
         {
             return ShopContext.Favourites.Where(k => k.ClientId == clientId);
         }
-
+        public async Task<IEnumerable<Favourite>> GetFavourites(FilterByClient filter)
+        {
+            var query = ShopContext.Favourites.AsQueryable();
+            if (filter.ClientId.HasValue)
+            {
+                query = query.Where(x => x.ClientId == filter.ClientId);
+            }
+            query = query
+                .OrderBy(x => x.Id)
+                .Skip((filter.NumPage - 1) * filter.SizePage)
+                .Take(filter.SizePage);
+            return await query.ToListAsync();
+        }
     }
 }

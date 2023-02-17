@@ -12,7 +12,8 @@ namespace MMTRShop.Service.Interface
 {
     public interface IFavouriteService
     {
-        Task<IEnumerable<FavouriteDTO>> GetFavourites(Guid clientId);
+        Task<IEnumerable<FavouriteDTO>> GetFavouritesByClientId(Guid clientId);
+        Task<IEnumerable<FavouriteDTO>> GetFavourites(FilterByClient filter);
         Task<FavouriteDTO> GetFavourite(Guid favouriteId);
         Task RemoveFavourite(Guid id);
         Task AddFavourite(FavouriteDTO favourite);

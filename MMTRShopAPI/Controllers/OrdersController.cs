@@ -18,9 +18,8 @@ namespace MMTRShopAPI.Controllers
 
 
         [HttpGet("{filter}")]
-        public async Task<IEnumerable<OrderDTO>> GetProductsPage(FilterByClient filter)
+        public async Task<IEnumerable<OrderDTO>> GetProductsPage([FromBody]FilterByClient filter)
         {
-            //понять как передать фильтр в качестве параметра когтроллера
             var orders = await _orderService.GetOrders(filter);
             return orders;
         }

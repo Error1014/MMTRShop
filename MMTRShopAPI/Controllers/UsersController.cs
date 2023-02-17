@@ -17,11 +17,9 @@ namespace MMTRShopAPI.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IEnumerable<UserDTO>> GetUsersPage()
+        [HttpPost(nameof(GetUsersPage))]
+        public async Task<IEnumerable<UserDTO>> GetUsersPage([FromBody] BaseFilter filter)
         {
-            //понять как передать фильтр в качестве параметра когтроллера
-            BaseFilter filter = new BaseFilter(1, 5);
             var users = await _userService.GetPageUser(filter);
             return users;
         }

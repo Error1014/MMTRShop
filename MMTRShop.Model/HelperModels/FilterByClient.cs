@@ -9,10 +9,5 @@ namespace MMTRShop.Model.HelperModels
     public class FilterByClient:BaseFilter
     {
         public Guid? ClientId { get; set; }
-
-        public FilterByClient(int numPage, int sizePage, Guid? clietId):base(numPage, sizePage)
-        {
-            ClientId = clietId;
-        }
     }
 }

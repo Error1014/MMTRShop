@@ -17,28 +17,28 @@ namespace MMTRShopAPI.Controllers
         }
 
 
-        [HttpGet("{clientId}")]
-        public async Task<IEnumerable<FavouriteDTO>> GetCarts(Guid clientId)
+        [HttpPost(nameof(GetFavourites))]
+        public async Task<IEnumerable<FavouriteDTO>> GetFavourites([FromBody] FilterByClient filter)
         {
-            var carts = await _favouriteService.GetFavourites(clientId);
+            var carts = await _favouriteService.GetFavourites(filter);
             return carts;
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostCart(FavouriteDTO cartDTO)
+        public async Task<IActionResult> PostFavourite(FavouriteDTO cartDTO)
         {
             await _favouriteService.AddFavourite(cartDTO);
             return Ok(cartDTO);
         }
 
         [HttpPut]
-        public async Task<IActionResult> PutCart(FavouriteDTO cartDTO)
+        public async Task<IActionResult> PutFavourite(FavouriteDTO cartDTO)
         {
             await _favouriteService.Update(cartDTO);
             return Ok(cartDTO);
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCart(Guid id)
+        public async Task<IActionResult> DeleteFavourite(Guid id)
         {
             await _favouriteService.RemoveFavourite(id);
             return Ok($"Избраное с id={id} успешно удалено"); ;

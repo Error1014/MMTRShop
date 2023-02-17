@@ -51,6 +51,9 @@ namespace MMTRShop.MiddlewareException
                     message = exception.Message;
                     code = HttpStatusCode.BadRequest;
                     break;
+                default:
+                    message = exception.Message;
+                    break;
             }
 
 

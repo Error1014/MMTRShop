@@ -22,9 +22,15 @@ namespace MMTRShop.Service.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<FavouriteDTO>> GetFavourites(Guid clientId)
+        public async Task<IEnumerable<FavouriteDTO>> GetFavouritesByClientId(Guid clientId)
         {
-            var favourites = await _unitOfWork.Favorites.GetFavouritesByClientId(clientId);
+            var favourites = await _unitOfWork.Favorites.GetFavourites(clientId);
+            var result = _mapper.Map<IEnumerable<FavouriteDTO>>(favourites);
+            return result;
+        }
+        public async Task<IEnumerable<FavouriteDTO>> GetFavourites(FilterByClient filter)
+        {
+            var favourites = await _unitOfWork.Favorites.GetFavourites(filter);
             var result = _mapper.Map<IEnumerable<FavouriteDTO>>(favourites);
             return result;
         }
@@ -52,7 +58,7 @@ namespace MMTRShop.Service.Services
 
         public async Task AddFavourite(FavouriteDTO favouriteDTO)
         {
-            var favourites = await GetFavourites(favouriteDTO.ClientId);
+            var favourites = await GetFavouritesByClientId(favouriteDTO.ClientId);
             foreach (var item in favourites)
             {
                 if (item.ProductId== favouriteDTO.ProductId)

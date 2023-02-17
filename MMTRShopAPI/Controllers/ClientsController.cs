@@ -16,37 +16,35 @@ namespace MMTRShopAPI.Controllers
             _clientService = clientService;
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<ClientDTO>> GetUsersPage()
+        [HttpPost(nameof(GetClientsPage))]
+        public async Task<IEnumerable<ClientDTO>> GetClientsPage([FromBody] BaseFilter filter)
         {
-            //понять как передать фильтр в качестве параметра когтроллера
-            BaseFilter filter = new BaseFilter(1, 5);
             var users = await _clientService.GetPageClients(filter);
             return users;
         }
         [HttpGet("{id}")]
-        public async Task<ClientDTO> GetUser(Guid id)
+        public async Task<ClientDTO> GetClient(Guid id)
         {
             var client = await _clientService.GetClient(id);
             return client;
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostUser(ClientDTO clientDTO)
+        public async Task<IActionResult> PostClient(ClientDTO clientDTO)
         {
             await _clientService.AddClient(clientDTO);
             return Ok(clientDTO);
         }
 
         [HttpPut]
-        public async Task<IActionResult> PutUser(ClientDTO clientDTO)
+        public async Task<IActionResult> PutClient(ClientDTO clientDTO)
         {
             await _clientService.Update(clientDTO);
             return Ok(clientDTO);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(Guid id)
+        public async Task<IActionResult> DeleteClient(Guid id)
         {
             await _clientService.RemoveClient(id);
             return Ok($"Клиент с id={id} успешно удалён"); ;

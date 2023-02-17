@@ -23,12 +23,9 @@ namespace MMTRShopAPI.Controllers
             _productService = productService;
         }
 
-
-        [HttpGet]
-        public async Task<IEnumerable<ProductDTO>> GetProductsPage()
+        [HttpPost(nameof(GetProductsPage))]
+        public async Task<IEnumerable<ProductDTO>> GetProductsPage([FromBody] ProductPageFilter filter)
         {
-            //понять как передать фильтр в качестве параметра когтроллера
-            ProductPageFilter filter = new ProductPageFilter(1,5,null,null);
             var products = await _productService.GetPageProducts(filter);
             return products;
         }

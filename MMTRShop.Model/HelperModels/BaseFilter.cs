@@ -9,13 +9,8 @@ namespace MMTRShop.Model.HelperModels
 {
     public class BaseFilter
     {
-        public int NumPage;
-        public int SizePage;
+        public int NumPage { get; set; }
+        public int SizePage { get; set; }
 
-        public BaseFilter(int numPage, int sizePage)
-{
-            NumPage = numPage;
-            SizePage = sizePage;
-        }
     }
 }
