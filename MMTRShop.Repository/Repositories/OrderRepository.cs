@@ -16,12 +16,16 @@ namespace MMTRShop.Repository.Repositories
 
         }
 
-        public async Task<IEnumerable<Order>> GetOrders(FilterByClient filter)
+        public async Task<IEnumerable<Order>> GetOrders(OrderFilter filter)
         {
             var query = ShopContext.Order.AsQueryable();
             if (filter.ClientId.HasValue)
             {
                 query = query.Where(x => x.ClientId == filter.ClientId);
+            }
+            if (filter.StatusId.HasValue)
+            {
+                query = query.Where(x => x.StatusId == filter.StatusId);
             }
             query = query
                 .OrderBy(x => x.Id)

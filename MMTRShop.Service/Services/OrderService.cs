@@ -33,9 +33,9 @@ namespace MMTRShop.Service.Services
             var result = _mapper.Map<IEnumerable<OrderDTO>>(orders);
             return result;
         }
-        public async Task<IEnumerable<OrderDTO>> GetOrders(FilterByClient filterByClient)
+        public async Task<IEnumerable<OrderDTO>> GetOrders(OrderFilter filter)
         {
-            var orders = await _unitOfWork.Orders.GetOrders(filterByClient);
+            var orders = await _unitOfWork.Orders.GetOrders(filter);
             var result = _mapper.Map<IEnumerable<OrderDTO>>(orders);
             return result;
         }

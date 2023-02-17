@@ -14,7 +14,7 @@ namespace MMTRShop.Service.Interface
     public interface IOrderService
     {
         Task<IEnumerable<OrderDTO>> GetOrders();
-        Task<IEnumerable<OrderDTO>> GetOrders(FilterByClient filterByClient);
+        Task<IEnumerable<OrderDTO>> GetOrders(OrderFilter filter);
         Task<OrderDTO> GetOrder(Guid orderId);
         Task AddOrder(OrderDTO order);
         Task Save();
