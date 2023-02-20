@@ -5,9 +5,7 @@ using MMTRShop.Service.Interface;
 
 namespace MMTRShopAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BankCardsController : Controller
+    public class BankCardsController : BaseApiController
     {
         private readonly IBankCardService _bankCardService;
         public BankCardsController(IBankCardService bankCardService)

@@ -6,9 +6,8 @@ using MMTRShop.Service.Interface;
 
 namespace MMTRShopAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class FavouritesController : Controller
+
+    public class FavouritesController : BaseApiController
     {
         private readonly IFavouriteService _favouriteService;
         public FavouritesController(IFavouriteService favouriteService)

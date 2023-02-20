@@ -8,9 +8,8 @@ using MMTRShop.Service.Interface;
 
 namespace MMTRShopAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BrandsController : Controller
+
+    public class BrandsController : BaseApiController
     {
         private readonly IBrandService _brandService;
         public BrandsController(IBrandService brandService)

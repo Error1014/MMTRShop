@@ -6,9 +6,8 @@ using MMTRShop.Service.Interface;
 
 namespace MMTRShopAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class OrdersController : Controller
+
+    public class OrdersController : BaseApiController
     {
         private readonly IOrderService _orderService;
         public OrdersController(IOrderService orderService)

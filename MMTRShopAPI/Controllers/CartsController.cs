@@ -7,9 +7,8 @@ using MMTRShop.Service.Interface;
 
 namespace MMTRShopAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CartsController : Controller
+
+    public class CartsController : BaseApiController
     {
         private readonly ICartService _cartService;
         public CartsController(ICartService cartService)

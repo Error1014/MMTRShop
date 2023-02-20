@@ -6,9 +6,8 @@ using MMTRShop.Service.Interface;
 
 namespace MMTRShopAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoriesController : Controller
+
+    public class CategoriesController : BaseApiController
     {
         private readonly ICategoryServise _categoryService;
         public CategoriesController(ICategoryServise categoryService)

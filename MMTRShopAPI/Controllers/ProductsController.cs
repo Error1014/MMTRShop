@@ -13,9 +13,8 @@ using System.Net.Mail;
 
 namespace MMTRShopAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductController : Controller
+
+    public class ProductController : BaseApiController
     {
         private readonly IProductService _productService;
         public ProductController(IProductService productService)
@@ -23,8 +22,8 @@ namespace MMTRShopAPI.Controllers
             _productService = productService;
         }
 
-        [HttpPost(nameof(GetProductsPage))]
-        public async Task<IEnumerable<ProductDTO>> GetProductsPage([FromBody] ProductPageFilter filter)
+        [HttpGet(nameof(GetProductsPage))]
+        public async Task<IEnumerable<ProductDTO>> GetProductsPage([FromQuery] ProductPageFilter filter)
         {
             var products = await _productService.GetPageProducts(filter);
             return products;
