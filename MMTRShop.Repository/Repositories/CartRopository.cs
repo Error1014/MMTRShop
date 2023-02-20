@@ -28,7 +28,12 @@ namespace MMTRShop.Repositories.Repository
         }
         public async Task<IEnumerable<Cart>> GetCartsByClient(Guid clientId)
         {
-            return ShopContext.Cart.Where(k=>k.ClientId==clientId);
+            return await ShopContext.Cart.Where(c=>c.ClientId==clientId).ToListAsync();
+        }
+
+        public async Task<Cart> GetCartByClientIdAndProductId(Guid clientId, Guid productId)
+        {
+            return await ShopContext.Cart.Where(c => c.ClientId == clientId && c.ProductId == productId).FirstOrDefaultAsync();
         }
 
         public int GetCountPage(int sizePage)

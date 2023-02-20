@@ -16,8 +16,8 @@ namespace MMTRShopAPI.Controllers
         }
 
 
-        [HttpPost(nameof(GetFavourites))]
-        public async Task<IEnumerable<FavouriteDTO>> GetFavourites([FromBody] FilterByClient filter)
+        [HttpGet]
+        public async Task<IEnumerable<FavouriteDTO>> GetFavourites([FromQuery] FilterByClient filter)
         {
             var carts = await _favouriteService.GetFavourites(filter);
             return carts;

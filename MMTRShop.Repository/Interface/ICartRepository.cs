@@ -9,6 +9,7 @@ namespace MMTRShop.Repository.Interface
     {
         //List<Korzine> EditValueProduct(int id, int number);
         Task<IEnumerable<Cart>> GetCartsByClient(Guid clientId);
+        Task<Cart> GetCartByClientIdAndProductId(Guid clientId,Guid productId);
         Task<IEnumerable<Cart>> GetCarts(FilterByClient filter);
         int GetCountPage(int sizePage);
     }

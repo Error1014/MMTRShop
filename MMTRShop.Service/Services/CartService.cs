@@ -23,9 +23,9 @@ namespace MMTRShop.Service.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<CartDTO>> GetAll()
+        public async Task<IEnumerable<CartDTO>> GetAllProductInCart(Guid clientId)
         {
-            var carts = await _unitOfWork.Carts.GetAllAsync();
+            var carts = await _unitOfWork.Carts.GetCartsByClient(clientId);
             var result = _mapper.Map<IEnumerable<CartDTO>>(carts);
             return result;
         }
@@ -35,13 +35,24 @@ namespace MMTRShop.Service.Services
             var result = _mapper.Map<IEnumerable<CartDTO>>(carts);
             return result;
         }
-        public async Task<CartDTO> GetCart(Guid clientId)
+        public async Task<IEnumerable<CartDTO>> GetCarts(Guid clientId)
         {
-            var cart = await _unitOfWork.Carts.GetByIdAsync(clientId);
+            var carts = await _unitOfWork.Carts.GetCartsByClient(clientId);
+            var result = _mapper.Map<IEnumerable<CartDTO>>(carts);
+            return result;
+        }
+        public async Task<CartDTO> GetCart(Guid id)
+        {
+            var cart = await _unitOfWork.Carts.GetByIdAsync(id);
             var result = _mapper.Map<CartDTO>(cart);
             return result;
         }
-
+        public async Task<CartDTO> GetCartByClientIdAndProductId(Guid clientId,Guid productId)
+        {
+            var cart = await _unitOfWork.Carts.GetCartByClientIdAndProductId(clientId,productId);
+            var result = _mapper.Map<CartDTO>(cart);
+            return result;
+        }
         public async Task AddProductInCart(CartDTO cartDTO)
         {
             var myKorzine = await _unitOfWork.Carts.GetCartsByClient(cartDTO.ClientId);
@@ -83,15 +94,15 @@ namespace MMTRShop.Service.Services
 
         public async Task ClearCart(Guid clientId)
         {
-            var cartsDTO = await GetAll();
+            var cartsDTO = await GetAllProductInCart(clientId);
             var carts = _mapper.Map<IEnumerable<Cart>>(cartsDTO);
-            _unitOfWork.Carts.RemoveRange(carts);
+            _unitOfWork.Carts.RemoveRange(carts.ToList());
             await Save();
         }
-        public async Task RemoveCart(Guid id)
+        public async Task RemoveProductInCart(Guid clientId, Guid productId)
         {
-            var product = await GetCart(id);
-            _unitOfWork.Products.Remove(id);
+            var cart = await GetCartByClientIdAndProductId(clientId,productId);
+            _unitOfWork.Carts.Remove(cart.Id);
             await Save(); 
         }
         public async Task Update(CartDTO cartDTO)

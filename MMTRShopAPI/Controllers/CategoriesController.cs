@@ -15,8 +15,8 @@ namespace MMTRShopAPI.Controllers
             _categoryService = categoryService;
         }
 
-        [HttpPost(nameof(GetCategories))]
-        public async Task<IEnumerable<CategoryDTO>> GetCategories([FromBody]BaseFilter filter)
+        [HttpGet]
+        public async Task<IEnumerable<CategoryDTO>> GetCategories([FromQuery]BaseFilter filter)
         {
             var brand = await _categoryService.GetPageCategories(filter);
             if (brand==null)

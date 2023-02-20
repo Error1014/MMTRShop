@@ -16,42 +16,39 @@ namespace MMTRShopAPI.Controllers
             _cartService = cartService;
         }
 
-
-        [HttpPost(nameof(GetCartsPage))]
-        public async Task<IEnumerable<CartDTO>> GetCartsPage([FromBody] FilterByClient filter)
+        // редактирование (добавить, удалить товар, количество и тд), возможность очистить корзину)
+        [HttpGet]
+        public async Task<IEnumerable<CartDTO>> GetCartsPage([FromQuery] FilterByClient filter)
         {
             var carts = await _cartService.GetCarts(filter);
             return carts;
         }
-        [HttpGet("{id}")]
-        public async Task<CartDTO> GetCart(Guid id)
-        {
-            var user = await _cartService.GetCart(id);
-            if (user == null)
-            {
-                throw new NotFoundException("Элемент корзины не найден");
-            }
-            return user;
-        }
 
         [HttpPost]
-        public async Task<IActionResult> PostCart(CartDTO cartDTO)
+        public async Task<IActionResult> PostProductInCart(CartDTO cartDTO)
         {
             await _cartService.AddProductInCart(cartDTO);
             return Ok(cartDTO);
         }
 
         [HttpPut]
-        public async Task<IActionResult> PutCart(CartDTO cartDTO)
+        public async Task<IActionResult> PutProductInCart(CartDTO cartDTO)
         {
             await _cartService.Update(cartDTO);
             return Ok(cartDTO);
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCart(Guid id)
+        //3fa85f64-5717-c001-b3fc-2c963f66afa6
+        [HttpDelete(nameof(ClearCart))]
+        public async Task<IActionResult> ClearCart(Guid clientId)
         {
-            await _cartService.RemoveCart(id);
-            return Ok($"Пользователь с id={id} успешно удалён"); ;
+            await _cartService.ClearCart(clientId);
+            return Ok($"Корзина успешно очищена"); ;
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProductInCart(Guid clientId, Guid productId)
+        {
+            await _cartService.RemoveProductInCart(clientId, productId);
+            return Ok($"Успешно"); ;
         }
     }
 }

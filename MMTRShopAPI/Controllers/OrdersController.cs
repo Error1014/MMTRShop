@@ -16,8 +16,8 @@ namespace MMTRShopAPI.Controllers
         }
 
 
-        [HttpPost(nameof(GetProductsPage))]
-        public async Task<IEnumerable<OrderDTO>> GetProductsPage([FromBody]OrderFilter filter)
+        [HttpGet]
+        public async Task<IEnumerable<OrderDTO>> GetProductsPage([FromQuery]OrderFilter filter)
         {
             var orders = await _orderService.GetOrders(filter);
             return orders;

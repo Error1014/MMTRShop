@@ -22,7 +22,7 @@ namespace MMTRShopAPI.Controllers
             _productService = productService;
         }
 
-        [HttpGet(nameof(GetProductsPage))]
+        [HttpGet]
         public async Task<IEnumerable<ProductDTO>> GetProductsPage([FromQuery] ProductPageFilter filter)
         {
             var products = await _productService.GetPageProducts(filter);

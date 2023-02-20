@@ -15,8 +15,8 @@ namespace MMTRShopAPI.Controllers
             _clientService = clientService;
         }
 
-        [HttpPost(nameof(GetClientsPage))]
-        public async Task<IEnumerable<ClientDTO>> GetClientsPage([FromBody] BaseFilter filter)
+        [HttpGet]
+        public async Task<IEnumerable<ClientDTO>> GetClientsPage([FromQuery] BaseFilter filter)
         {
             var users = await _clientService.GetPageClients(filter);
             return users;

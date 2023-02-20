@@ -16,8 +16,8 @@ namespace MMTRShopAPI.Controllers
         }
 
 
-        [HttpPost(nameof(GetUsersPage))]
-        public async Task<IEnumerable<UserDTO>> GetUsersPage([FromBody] BaseFilter filter)
+        [HttpGet]
+        public async Task<IEnumerable<UserDTO>> GetUsersPage([FromQuery] BaseFilter filter)
         {
             var users = await _userService.GetPageUser(filter);
             return users;
@@ -29,7 +29,7 @@ namespace MMTRShopAPI.Controllers
             return user;
         }
         [HttpPost(nameof(GetUser))]
-        public async Task<UserDTO> GetUser([FromBody]LoginPasswordModel loginPassword)
+        public async Task<UserDTO> GetUser([FromQuery]LoginPasswordModel loginPassword)
         {
             var user = await _userService.GetUser(loginPassword);
             return user;
