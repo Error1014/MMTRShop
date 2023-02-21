@@ -37,6 +37,18 @@ namespace MMTRShopAPI.Controllers
             await _cartService.Update(cartDTO);
             return Ok(cartDTO);
         }
+        [HttpPut(nameof(AddCountProductInCart))]
+        public async Task<IActionResult> AddCountProductInCart(Guid cartId)
+        {
+            await _cartService.CartPlusOneProduct(cartId);
+            return Ok("+1");
+        }
+        [HttpPut(nameof(RemoveCountProductInCart))]
+        public async Task<IActionResult> RemoveCountProductInCart(Guid cartId)
+        {
+            await _cartService.CartMinusOneProduct(cartId);
+            return Ok("-1");
+        }
         //3fa85f64-5717-c001-b3fc-2c963f66afa6
         [HttpDelete(nameof(ClearCart))]
         public async Task<IActionResult> ClearCart(Guid clientId)
