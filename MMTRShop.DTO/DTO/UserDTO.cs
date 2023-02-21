@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.DTO.DTO
 {
-    public class UserDTO:BaseDTO<Guid>
+    public class UserDTO
     {
         public string Login { get; set; }
         public string Password { get; set; }

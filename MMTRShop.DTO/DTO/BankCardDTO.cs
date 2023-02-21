@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.DTO.DTO
 {
-    public class BankCardDTO:BaseDTO<Guid>
+    public class BankCardDTO
     {
         public string Number { get; set; }
         public string Name { get; set; }

@@ -58,7 +58,7 @@ namespace MMTRShop.Service.Services
                 throw new NotFoundException("Категория не найдена");
             }
             CheckToRemove(categoryId);
-            _unitOfWork.Categories.Remove(categoryId);
+            _unitOfWork.Categories.Remove(category);
             await Save();
         }
 

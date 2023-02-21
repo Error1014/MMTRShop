@@ -50,7 +50,7 @@ namespace MMTRShop.Service.Services
             {
                 throw new NotFoundException("Бренд не найден");
             }
-            _unitOfWork.Brands.Remove(brandId);
+            _unitOfWork.Brands.Remove(brand);
             await Save();
         }
 

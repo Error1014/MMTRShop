@@ -20,7 +20,7 @@ namespace MMTRShopAPI.Controllers
         [HttpGet]
         public async Task<IEnumerable<CartDTO>> GetCartsPage([FromQuery] FilterByClient filter)
         {
-            var carts = await _cartService.GetCarts(filter);
+            var carts = await _cartService.GetCartsDTO(filter);
             return carts;
         }
 

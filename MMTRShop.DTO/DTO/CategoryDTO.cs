@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.DTO.DTO
 {
-    public class CategoryDTO:BaseDTO<Guid>
+    public class CategoryDTO
     {
         public string Title { get; set; }
     }

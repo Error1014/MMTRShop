@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.DTO.DTO
 {
-    public class CartDTO:BaseDTO<Guid>
+    public class CartDTO
     {
         public Guid ClientId { get; set; }
         public Guid ProductId { get; set; }

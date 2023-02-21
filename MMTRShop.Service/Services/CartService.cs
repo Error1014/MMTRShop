@@ -23,21 +23,19 @@ namespace MMTRShop.Service.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<CartDTO>> GetAllProductInCart(Guid clientId)
-        {
-            var carts = await _unitOfWork.Carts.GetCartsByClient(clientId);
-            var result = _mapper.Map<IEnumerable<CartDTO>>(carts);
-            return result;
-        }
-        public async Task<IEnumerable<CartDTO>> GetCarts(FilterByClient filter)
+        public async Task<IEnumerable<CartDTO>> GetCartsDTO(FilterByClient filter)
         {
             var carts = await _unitOfWork.Carts.GetCarts(filter);
             var result = _mapper.Map<IEnumerable<CartDTO>>(carts);
             return result;
         }
-        public async Task<IEnumerable<CartDTO>> GetCarts(Guid clientId)
+        private async Task<IEnumerable<Cart>> GetCarts(Guid clientId)
         {
-            var carts = await _unitOfWork.Carts.GetCartsByClient(clientId);
+            return await _unitOfWork.Carts.GetCartsByClient(clientId);
+        }
+        public async Task<IEnumerable<CartDTO>> GetCartsDTO(Guid clientId)
+        {
+            var carts = await GetCarts(clientId);
             var result = _mapper.Map<IEnumerable<CartDTO>>(carts);
             return result;
         }
@@ -91,18 +89,18 @@ namespace MMTRShop.Service.Services
             item.ProductCount++;
             await Save();
         }
-
         public async Task ClearCart(Guid clientId)
         {
-            var cartsDTO = await GetAllProductInCart(clientId);
+            var cartsDTO = await GetCarts(clientId);
             var carts = _mapper.Map<IEnumerable<Cart>>(cartsDTO);
             _unitOfWork.Carts.RemoveRange(carts.ToList());
             await Save();
         }
         public async Task RemoveProductInCart(Guid clientId, Guid productId)
         {
-            var cart = await GetCartByClientIdAndProductId(clientId,productId);
-            _unitOfWork.Carts.Remove(cart.Id);
+            var cartDTO = await _unitOfWork.Carts.GetCartByClientIdAndProductId(clientId, productId);
+            var cart = _mapper.Map<Cart>(cartDTO);
+            _unitOfWork.Carts.Remove(cart);
             await Save(); 
         }
         public async Task Update(CartDTO cartDTO)
