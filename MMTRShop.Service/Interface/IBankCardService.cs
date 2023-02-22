@@ -1,4 +1,4 @@
-﻿using MMTRShop.DTO.DTO;
+﻿using Shop.Infrastructure.DTO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

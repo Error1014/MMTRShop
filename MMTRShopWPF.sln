@@ -3,17 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShop.Model", "MMTRShop.Model\MMTRShop.Model.csproj", "{D3EFF983-FF01-44CA-BB06-055F630C68D7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShop.Repository", "MMTRShop.Repository\MMTRShop.Repository.csproj", "{6A36A9DC-38EE-4442-9F23-A8B87DE1493B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShop.Service", "MMTRShop.Service\MMTRShop.Service.csproj", "{2D10C12E-F6D1-43E0-9783-70938BA1B09F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShopAPI", "MMTRShopAPI\MMTRShopAPI.csproj", "{FBE191AE-E3E9-49F3-B75A-02FF036D3778}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShop.DTO", "MMTRShop.DTO\MMTRShop.DTO.csproj", "{C50B3A2D-8AE9-4A5C-A93E-C017DD3D0467}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShop.MiddlewareException", "MMTRShop.MiddlewareException\MMTRShop.MiddlewareException.csproj", "{FC8D0875-3B06-41FB-8340-DC7B40AD2DE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Infrastructure", "Shop.Infrastructure\Shop.Infrastructure.csproj", "{F5CDA9BC-1813-4171-A7CB-CBC83D4CEBD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D3EFF983-FF01-44CA-BB06-055F630C68D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3EFF983-FF01-44CA-BB06-055F630C68D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3EFF983-FF01-44CA-BB06-055F630C68D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3EFF983-FF01-44CA-BB06-055F630C68D7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6A36A9DC-38EE-4442-9F23-A8B87DE1493B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6A36A9DC-38EE-4442-9F23-A8B87DE1493B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A36A9DC-38EE-4442-9F23-A8B87DE1493B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,14 +29,10 @@ Global
 		{FBE191AE-E3E9-49F3-B75A-02FF036D3778}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBE191AE-E3E9-49F3-B75A-02FF036D3778}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBE191AE-E3E9-49F3-B75A-02FF036D3778}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C50B3A2D-8AE9-4A5C-A93E-C017DD3D0467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C50B3A2D-8AE9-4A5C-A93E-C017DD3D0467}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C50B3A2D-8AE9-4A5C-A93E-C017DD3D0467}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C50B3A2D-8AE9-4A5C-A93E-C017DD3D0467}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC8D0875-3B06-41FB-8340-DC7B40AD2DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC8D0875-3B06-41FB-8340-DC7B40AD2DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC8D0875-3B06-41FB-8340-DC7B40AD2DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC8D0875-3B06-41FB-8340-DC7B40AD2DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5CDA9BC-1813-4171-A7CB-CBC83D4CEBD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5CDA9BC-1813-4171-A7CB-CBC83D4CEBD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5CDA9BC-1813-4171-A7CB-CBC83D4CEBD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5CDA9BC-1813-4171-A7CB-CBC83D4CEBD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

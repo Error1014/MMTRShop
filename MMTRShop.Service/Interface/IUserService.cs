@@ -1,5 +1,5 @@
-﻿using MMTRShop.DTO.DTO;
-using MMTRShop.Model.HelperModels;
+﻿using Shop.Infrastructure.DTO;
+using Shop.Infrastructure.HelperModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

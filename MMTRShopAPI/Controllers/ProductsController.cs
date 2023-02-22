@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MMTRShop.DTO.DTO;
-using MMTRShop.Model.HelperModels;
-using MMTRShop.Model.Models;
+using Shop.Infrastructure.DTO;
+using Shop.Infrastructure.HelperModels;
+using MMTRShop.Repository.Entities;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
@@ -53,7 +53,7 @@ namespace MMTRShopAPI.Controllers
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
             await _productService.RemoveProduct(id);
-            return Ok($"Продукт с id={id} успешно удалён");;
+            return Ok($"Продукт с id={id} успешно удалён");
         }
     }
 }

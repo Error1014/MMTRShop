@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MMTRShop.Model.Models
+namespace MMTRShop.Repository.Entities
 {
     public class Cart : BaseEntity<Guid>
     {

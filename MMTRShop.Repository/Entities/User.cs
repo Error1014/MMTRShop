@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMTRShop.Model.Models
+namespace MMTRShop.Repository.Entities
 {
     public class User : BaseEntity<Guid>
     {

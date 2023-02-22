@@ -6,12 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMTRShop.Model.Models
+namespace MMTRShop.Repository.Entities
 {
-    public abstract class BaseEntity<TKey> where TKey : struct
+    public class Admin:BaseEntity<Guid>
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
-        public TKey Id { get; set; }
+        public Guid UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }

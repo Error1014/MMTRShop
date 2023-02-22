@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MMTRShop.DTO.DTO;
-using MMTRShop.Model.HelperModels;
-using MMTRShop.Model.Models;
+using Shop.Infrastructure.DTO;
+using Shop.Infrastructure.HelperModels;
+using MMTRShop.Repository.Entities;
 using MMTRShop.Repository.Repositories;
 using System;
 using System.Collections.Generic;

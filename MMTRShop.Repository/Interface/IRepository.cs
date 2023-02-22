@@ -1,5 +1,5 @@
-﻿using MMTRShop.Model.HelperModels;
-using MMTRShop.Model.Models;
+﻿using Shop.Infrastructure.HelperModels;
+using MMTRShop.Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

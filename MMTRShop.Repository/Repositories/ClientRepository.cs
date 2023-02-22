@@ -1,10 +1,10 @@
-﻿using MMTRShop.Model.Models;
+﻿using MMTRShop.Repository.Entities;
 using MMTRShop.Repository.Interface;
 using System.Linq;
 using System;
 using MMTRShop.Repository.Contexts;
 using Microsoft.EntityFrameworkCore;
-using MMTRShop.Model.HelperModels;
+using Shop.Infrastructure.HelperModels;
 
 namespace MMTRShop.Repository.Repositories
 {

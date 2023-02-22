@@ -1,5 +1,5 @@
-﻿using MMTRShop.DTO.DTO;
-using MMTRShop.Model.Models;
+﻿using Shop.Infrastructure.DTO;
+using MMTRShop.Repository.Entities;
 using MMTRShop.Service.Services;
 using System;
 using System.Collections.Generic;

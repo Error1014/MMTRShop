@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using MMTRShop.DTO.DTO;
-using MMTRShop.Model;
-using MMTRShop.Model.HelperModels;
-using MMTRShop.Model.Models;
+using Shop.Infrastructure.DTO;
+using MMTRShop.Repository;
+using Shop.Infrastructure.HelperModels;
+using MMTRShop.Repository.Entities;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;

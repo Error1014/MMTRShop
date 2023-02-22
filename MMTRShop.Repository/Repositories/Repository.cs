@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MMTRShop.Model.HelperModels;
-using MMTRShop.Model.Models;
+using Shop.Infrastructure.HelperModels;
+using MMTRShop.Repository.Entities;
 using MMTRShop.Repository.Contexts;
 using MMTRShop.Repository.Interface;
 using System.Linq.Expressions;
@@ -10,7 +10,7 @@ namespace MMTRShop.Repository.Repositories
     public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : struct
     {
         protected readonly ShopContext ShopContext;
-
+        protected IQueryable<TEntity> Set => ShopContext.Set<TEntity>().AsQueryable();
         public Repository(ShopContext context)
         {
             ShopContext = context;
@@ -38,6 +38,7 @@ namespace MMTRShop.Repository.Repositories
             return await ShopContext.Set<TEntity>().FirstOrDefaultAsync(predicate);
         }
         #endregion
+
         #region Get
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {

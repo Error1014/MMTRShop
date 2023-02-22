@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using MMTRShop.DTO.DTO;
-using MMTRShop.MiddlewareException;
-using MMTRShop.MiddlewareException.Exceptions;
-using MMTRShop.Model.HelperModels;
-using MMTRShop.Model.Models;
+using Shop.Infrastructure.DTO;
+using Shop.Infrastructure.Exceptions;
+using Shop.Infrastructure.HelperModels;
+using MMTRShop.Repository.Entities;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Service.Interface;
 using System.Collections.ObjectModel;

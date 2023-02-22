@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MMTRShop.Model.HelperModels;
-using MMTRShop.Model.Models;
+using Shop.Infrastructure.HelperModels;
+using MMTRShop.Repository.Entities;
 using MMTRShop.Repository.Contexts;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;

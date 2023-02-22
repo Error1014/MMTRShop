@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using MMTRShop.Model.Models;
+using MMTRShop.Repository.Entities;
 using MMTRShop.Service.Services;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Service.Interface;
 using MMTRShopAPI;
-using MMTRShop.MiddlewareException;
+using Shop.Infrastructure;
 using MMTRShop.Repository.Contexts;
 using MMTRShop.Service;
 

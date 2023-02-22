@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MMTRShop.Model.HelperModels;
-using MMTRShop.Model.Models;
+using Shop.Infrastructure.HelperModels;
+using MMTRShop.Repository.Entities;
 using MMTRShop.Repository.Contexts;
 using MMTRShop.Repository.Interface;
 using System;
@@ -17,7 +17,7 @@ namespace MMTRShop.Repository.Repositories
         }
         public async Task<IEnumerable<Product>> GetProductsPage(ProductPageFilter filter)
         {
-            var query = ShopContext.Product.AsQueryable();
+            var query = Set;
             if (filter.CategoryId.HasValue)
             {
                 query = query.Where(x => x.CategoryId == filter.CategoryId);

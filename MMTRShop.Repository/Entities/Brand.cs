@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMTRShop.Model.Models
+namespace MMTRShop.Repository.Entities
 {
-    public class Admin:BaseEntity<Guid>
+    public class Brand : BaseEntity<Guid>
     {
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; }
+        public string Name { get; set; }
+
+        public virtual List<Product>? Products { get; set; }
     }
 }

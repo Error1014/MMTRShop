@@ -1,4 +1,4 @@
-﻿using MMTRShop.Model.Models;
+﻿using MMTRShop.Repository.Entities;
 using MMTRShop.Repository.Interface;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;

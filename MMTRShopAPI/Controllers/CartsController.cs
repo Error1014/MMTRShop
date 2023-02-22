@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MMTRShop.DTO.DTO;
-using MMTRShop.MiddlewareException.Exceptions;
-using MMTRShop.Model.HelperModels;
+using Shop.Infrastructure.DTO;
+using Shop.Infrastructure.Exceptions;
+using Shop.Infrastructure.HelperModels;
 using MMTRShop.Service.Interface;
 
 namespace MMTRShopAPI.Controllers

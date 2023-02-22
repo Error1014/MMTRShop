@@ -4,19 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMTRShop.Model.Models
+namespace Shop.Infrastructure.DTO
 {
-    public class BankCard:BaseEntity<Guid>
+    public class BankCardDTO
     {
         public string Number { get; set; }
         public string Name { get; set; }
         public int Month { get; set; }
         public int Year { get; set; }
         public string Code { get; set; }
-
         public Guid? ClientId { get; set; }
-        public virtual Client Client { get; set; }
-
-
     }
 }

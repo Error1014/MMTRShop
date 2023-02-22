@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MMTRShop.DTO.DTO;
+using Shop.Infrastructure.DTO;
 using MMTRShop.Service.Interface;
 
 namespace MMTRShopAPI.Controllers

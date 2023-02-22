@@ -1,6 +1,6 @@
-﻿using MMTRShop.DTO.DTO;
-using MMTRShop.Model.HelperModels;
-using MMTRShop.Model.Models;
+﻿using Shop.Infrastructure.DTO;
+using Shop.Infrastructure.HelperModels;
+using MMTRShop.Repository.Entities;
 using MMTRShop.Service.Services;
 using System;
 using System.Collections.Generic;

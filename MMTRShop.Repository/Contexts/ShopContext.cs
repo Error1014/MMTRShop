@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using MMTRShop.Model.Models;
+using MMTRShop.Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
