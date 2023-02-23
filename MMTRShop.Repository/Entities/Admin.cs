@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Repository.Entities
 {
-    public class Admin:BaseEntity<Guid>
+    public class Admin:User
     {
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; }
+
     }
 }

@@ -11,7 +11,6 @@ namespace MMTRShop.Repository.Entities
     public abstract class BaseEntity<TKey> where TKey : struct
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public TKey Id { get; set; }
     }
 }

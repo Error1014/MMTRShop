@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Repository.Entities
 {
-    public class Operator: BaseEntity<Guid>
+    public class Operator:User
     {
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; }
+
     }
 }

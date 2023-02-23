@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Repository.Entities
 {
-    public class Client: BaseEntity<Guid>
+    public class Client: User
     {
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
@@ -26,7 +24,7 @@ namespace MMTRShop.Repository.Entities
 
         public Client(Guid userId,string email, string phone, string address)
         {
-            UserId = userId;
+            //UserId = userId;
             Email = email;
             Phone = phone;
             Address = address;

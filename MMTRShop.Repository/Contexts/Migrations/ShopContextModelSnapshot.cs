@@ -22,23 +22,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Admin", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Admin");
-                });
-
-            modelBuilder.Entity("MMTRShop.Model.Models.BankCard", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.BankCard", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,7 +56,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.ToTable("BankCard");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Brand", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Brand", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,7 +71,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.ToTable("Brand");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Cart", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Cart", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,7 +95,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.ToTable("Cart");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Category", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -126,35 +110,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Client", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Client");
-                });
-
-            modelBuilder.Entity("MMTRShop.Model.Models.Favourite", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Favourite", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -175,7 +131,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.ToTable("Favourites");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Feedback", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Feedback", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -203,23 +159,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.ToTable("Feedback");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Operator", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Operator");
-                });
-
-            modelBuilder.Entity("MMTRShop.Model.Models.Order", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -253,7 +193,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.ToTable("Order");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.OrderContent", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.OrderContent", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -277,7 +217,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.ToTable("OrderContent");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Product", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -319,7 +259,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Status", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Status", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -336,11 +276,15 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.ToTable("Status");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.User", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -365,37 +309,63 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
+
+                    b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Admin", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Admin", b =>
                 {
-                    b.HasOne("MMTRShop.Model.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasBaseType("MMTRShop.Repository.Entities.User");
 
-                    b.Navigation("User");
+                    b.HasDiscriminator().HasValue("Admin");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.BankCard", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Client", b =>
                 {
-                    b.HasOne("MMTRShop.Model.Models.Client", "Client")
+                    b.HasBaseType("MMTRShop.Repository.Entities.User");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Client");
+                });
+
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Operator", b =>
+                {
+                    b.HasBaseType("MMTRShop.Repository.Entities.User");
+
+                    b.HasDiscriminator().HasValue("Operator");
+                });
+
+            modelBuilder.Entity("MMTRShop.Repository.Entities.BankCard", b =>
+                {
+                    b.HasOne("MMTRShop.Repository.Entities.Client", "Client")
                         .WithMany("BankCards")
                         .HasForeignKey("ClientId");
 
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Cart", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Cart", b =>
                 {
-                    b.HasOne("MMTRShop.Model.Models.Client", "Client")
+                    b.HasOne("MMTRShop.Repository.Entities.Client", "Client")
                         .WithMany("Cart")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MMTRShop.Model.Models.Product", "Product")
+                    b.HasOne("MMTRShop.Repository.Entities.Product", "Product")
                         .WithMany("Cart")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -406,26 +376,15 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Client", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Favourite", b =>
                 {
-                    b.HasOne("MMTRShop.Model.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MMTRShop.Model.Models.Favourite", b =>
-                {
-                    b.HasOne("MMTRShop.Model.Models.Client", "Client")
+                    b.HasOne("MMTRShop.Repository.Entities.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MMTRShop.Model.Models.Product", "Product")
+                    b.HasOne("MMTRShop.Repository.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -436,15 +395,15 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Feedback", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Feedback", b =>
                 {
-                    b.HasOne("MMTRShop.Model.Models.Client", "Client")
+                    b.HasOne("MMTRShop.Repository.Entities.Client", "Client")
                         .WithMany("Feedback")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MMTRShop.Model.Models.Product", "Product")
+                    b.HasOne("MMTRShop.Repository.Entities.Product", "Product")
                         .WithMany("Feedback")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -455,26 +414,15 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Operator", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Order", b =>
                 {
-                    b.HasOne("MMTRShop.Model.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MMTRShop.Model.Models.Order", b =>
-                {
-                    b.HasOne("MMTRShop.Model.Models.Client", "Client")
+                    b.HasOne("MMTRShop.Repository.Entities.Client", "Client")
                         .WithMany("Order")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MMTRShop.Model.Models.Status", "Status")
+                    b.HasOne("MMTRShop.Repository.Entities.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -485,15 +433,15 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.Navigation("Status");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.OrderContent", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.OrderContent", b =>
                 {
-                    b.HasOne("MMTRShop.Model.Models.Order", "Order")
+                    b.HasOne("MMTRShop.Repository.Entities.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MMTRShop.Model.Models.Product", "Product")
+                    b.HasOne("MMTRShop.Repository.Entities.Product", "Product")
                         .WithMany("Content")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -504,15 +452,15 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Product", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Product", b =>
                 {
-                    b.HasOne("MMTRShop.Model.Models.Brand", "Brand")
+                    b.HasOne("MMTRShop.Repository.Entities.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MMTRShop.Model.Models.Category", "Category")
+                    b.HasOne("MMTRShop.Repository.Entities.Category", "Category")
                         .WithMany("Product")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -523,17 +471,26 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Brand", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Brand", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Category", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Category", b =>
                 {
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("MMTRShop.Model.Models.Client", b =>
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Product", b =>
+                {
+                    b.Navigation("Cart");
+
+                    b.Navigation("Content");
+
+                    b.Navigation("Feedback");
+                });
+
+            modelBuilder.Entity("MMTRShop.Repository.Entities.Client", b =>
                 {
                     b.Navigation("BankCards");
 
@@ -542,15 +499,6 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.Navigation("Feedback");
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("MMTRShop.Model.Models.Product", b =>
-                {
-                    b.Navigation("Cart");
-
-                    b.Navigation("Content");
-
-                    b.Navigation("Feedback");
                 });
 #pragma warning restore 612, 618
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MMTRShop.Repository.Entities
 {
-    public class User : BaseEntity<Guid>
+    public abstract class User : BaseEntity<Guid>
     {
         public string Login { get; set; }
         public string Password { get; set; }
