@@ -5,10 +5,10 @@ using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
 using MMTRShop.Repository.Entities;
 using MMTRShop.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MMTRShopAPI.Controllers
-{
-
+{   
     public class BrandsController : BaseApiController
     {
         private readonly IBrandService _brandService;
@@ -16,8 +16,6 @@ namespace MMTRShopAPI.Controllers
         {
             _brandService = brandService;
         }
-
-
         [HttpGet]
         public async Task<IEnumerable<BrandDTO>> GetBrands()
         {

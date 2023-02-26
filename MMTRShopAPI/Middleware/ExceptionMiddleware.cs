@@ -5,7 +5,7 @@ using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Shop.Infrastructure
+namespace MMTRShopAPI.Middleware
 {
     public class ExceptionMiddleware
     {
