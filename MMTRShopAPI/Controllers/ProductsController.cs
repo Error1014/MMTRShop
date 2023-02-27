@@ -10,6 +10,8 @@ using MMTRShop.Repository.Repositories;
 using MMTRShop.Service.Interface;
 using MMTRShop.Service.Services;
 using System.Net.Mail;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace MMTRShopAPI.Controllers
 {
@@ -21,7 +23,6 @@ namespace MMTRShopAPI.Controllers
         {
             _productService = productService;
         }
-
         [HttpGet]
         public async Task<IEnumerable<ProductDTO>> GetProductsPage([FromQuery] ProductPageFilter filter)
         {
@@ -34,21 +35,21 @@ namespace MMTRShopAPI.Controllers
             var product = await _productService.GetProduct(id);
             return product;
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> PostProducts(ProductDTO productDTO)
         {
             await _productService.AddProduct(productDTO);
             return Ok(productDTO);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public async Task<IActionResult> PutProduct(ProductDTO productDTO)
         {
             await _productService.Update(productDTO);
             return Ok(productDTO);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {

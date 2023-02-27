@@ -24,8 +24,12 @@ namespace MMTRShopAPI.Controllers
 {
             // находим пользователя 
             var person =await _userService.GetUser(loginPasswordModel);
-                
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, person.Login) };
+            string role = "Admin"; 
+            var claims = new List<Claim> 
+            { 
+                new Claim(ClaimTypes.Name, person.Login),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType,role)
+            };
             // создаем JWT-токен
             var jwt = new JwtSecurityToken(
                     issuer: AuthOptions.ISSUER,
@@ -39,7 +43,8 @@ namespace MMTRShopAPI.Controllers
             var response = new
             {
                 access_token = encodedJwt,
-                username = person.Login
+                username = person.Login,
+                role = role
             };
 
             return Results.Json(response);
