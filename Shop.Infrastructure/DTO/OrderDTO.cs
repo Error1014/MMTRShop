@@ -14,5 +14,6 @@ namespace Shop.Infrastructure.DTO
         public DateTime DateDelivery { get; set; }
         public bool IsPaid { get; set; }
         public int StatusId { get; set; }
+
     }
 }

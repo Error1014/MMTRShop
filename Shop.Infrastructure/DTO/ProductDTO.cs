@@ -17,5 +17,14 @@ namespace Shop.Infrastructure.DTO
         public int CountInStarage { get; set; }
         public Guid CategoryId { get; set; }
         public Guid BrandId { get; set; }
+
+        public string Status 
+        {
+            get
+            {
+                if (CountInStarage==0) return "Закончился";
+                else return "Доступен";
+            }
+        }
     }
 }
