@@ -21,9 +21,9 @@ namespace MMTRShopAPI.Controllers
 
         [Authorize(Roles = "Admin, Client")]
         [HttpGet]
-        public async Task<IEnumerable<CartDTO>> GetCartsPage()
+        public async Task<IEnumerable<CartDTO>> GetCartsPage([FromQuery]FilterByClient filter)
         {
-            var carts = await _cartService.GetCartsDTO(UserId);
+            var carts = await _cartService.GetCartsDTO(filter);
             return carts;
         }
 
