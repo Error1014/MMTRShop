@@ -16,12 +16,12 @@ namespace MMTRShop.Repository.Repositories
 
         public async Task<IEnumerable<User>> GetUsersPage(BaseFilter filter)
         {
-            //var query = ShopContext.User.AsQueryable();
-            //query = query
-            //    .OrderBy(x => x.Id)
-            //    .Skip((filter.NumPage - 1) * filter.SizePage)
-            //    .Take(filter.SizePage);
-            return null;// await query.ToListAsync();
+            var query = ShopContext.User.AsQueryable();
+            query = query
+                .OrderBy(x => x.Id)
+                .Skip((filter.NumPage - 1) * filter.SizePage)
+                .Take(filter.SizePage);
+            return await query.ToListAsync();
         }
 
     }
