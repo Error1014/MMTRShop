@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
 using MMTRShop.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace MMTRShopAPI.Controllers
 {
@@ -15,14 +17,14 @@ namespace MMTRShopAPI.Controllers
             _favouriteService = favouriteService;
         }
 
-
+        [Authorize(Roles = "Admin, Client")]
         [HttpGet]
         public async Task<IEnumerable<FavouriteDTO>> GetFavourites([FromQuery] FilterByClient filter)
         {
             var carts = await _favouriteService.GetFavourites(filter);
             return carts;
         }
-
+        [Authorize(Roles = "Admin, Client")]
         [HttpPost]
         public async Task<IActionResult> PostFavourite(FavouriteDTO cartDTO)
         {

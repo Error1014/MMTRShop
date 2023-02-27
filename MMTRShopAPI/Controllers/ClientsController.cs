@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
 using MMTRShop.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using System.Security.Authentication;
+using System.Security.Claims;
 
 namespace MMTRShopAPI.Controllers
 {
@@ -27,14 +31,14 @@ namespace MMTRShopAPI.Controllers
             var client = await _clientService.GetClient(id);
             return client;
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> PostClient(ClientDTO clientDTO)
         {
             await _clientService.AddClient(clientDTO);
             return Ok(clientDTO);
         }
-
+        [Authorize(Roles = "Client")]
         [HttpPut]
         public async Task<IActionResult> PutClient(ClientDTO clientDTO)
         {

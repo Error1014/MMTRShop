@@ -23,6 +23,7 @@ namespace MMTRShopAPI.Controllers
         {
             _productService = productService;
         }
+        [Authorize(Roles = "Admin, Client")]
         [HttpGet]
         public async Task<IEnumerable<ProductDTO>> GetProductsPage([FromQuery] ProductPageFilter filter)
         {
@@ -42,7 +43,7 @@ namespace MMTRShopAPI.Controllers
             await _productService.AddProduct(productDTO);
             return Ok(productDTO);
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Operator")]
         [HttpPut]
         public async Task<IActionResult> PutProduct(ProductDTO productDTO)
         {

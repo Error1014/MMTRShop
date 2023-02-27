@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
 using MMTRShop.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace MMTRShopAPI.Controllers
 {
@@ -11,11 +13,11 @@ namespace MMTRShopAPI.Controllers
     {
         private readonly IOrderService _orderService;
         public OrdersController(IOrderService orderService)
-        {
+{
             _orderService = orderService;
         }
 
-
+        [Authorize(Roles = "Admin, Client")]
         [HttpGet]
         public async Task<IEnumerable<OrderDTO>> GetProductsPage([FromQuery]OrderFilter filter)
         {

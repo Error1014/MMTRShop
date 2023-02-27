@@ -4,10 +4,12 @@ using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Exceptions;
 using Shop.Infrastructure.HelperModels;
 using MMTRShop.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace MMTRShopAPI.Controllers
 {
-
+    [Authorize(Roles = "Admin, Client")]
     public class CartsController : BaseApiController
     {
         private readonly ICartService _cartService;
@@ -16,7 +18,6 @@ namespace MMTRShopAPI.Controllers
             _cartService = cartService;
         }
 
-        // редактирование (добавить, удалить товар, количество и тд), возможность очистить корзину)
         [HttpGet]
         public async Task<IEnumerable<CartDTO>> GetCartsPage([FromQuery] FilterByClient filter)
         {
