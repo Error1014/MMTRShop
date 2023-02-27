@@ -31,7 +31,7 @@ namespace MMTRShopAPI.Controllers
             else if (person is Operator) role = "Operator";
             var claims = new List<Claim> 
             { 
-                new Claim(ClaimTypes.Name, person.Login),
+                new Claim(ClaimTypes.Name, person.Id.ToString()),
                 new Claim(ClaimsIdentity.DefaultRoleClaimType,role)
             };
             // создаем JWT-токен

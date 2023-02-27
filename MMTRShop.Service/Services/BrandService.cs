@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace MMTRShop.Service.Services
 {
@@ -22,14 +24,12 @@ namespace MMTRShop.Service.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-
         public async Task AddBrand(BrandDTO brandDTO)
         {
             var brand = _mapper.Map<Brand>(brandDTO);
             await _unitOfWork.Brands.AddAsync(brand);
             await Save();
         }
-
         public async Task<IEnumerable<BrandDTO>> GetBrands()
         {
             var brands = await _unitOfWork.Brands.GetAllAsync();
@@ -42,7 +42,6 @@ namespace MMTRShop.Service.Services
             var result = _mapper.Map<BrandDTO>(brand);
             return result;
         }
-
         public async Task RemoveBrand(Guid brandId)
         {
             var brand = await _unitOfWork.Brands.FindAsync(b => b.Id == brandId);
@@ -53,7 +52,6 @@ namespace MMTRShop.Service.Services
             _unitOfWork.Brands.Remove(brand);
             await Save();
         }
-
         public async Task Save()
         {
             await _unitOfWork.Brands.SaveAsync();

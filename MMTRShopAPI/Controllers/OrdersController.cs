@@ -19,32 +19,33 @@ namespace MMTRShopAPI.Controllers
 
         [Authorize(Roles = "Admin, Client")]
         [HttpGet]
-        public async Task<IEnumerable<OrderDTO>> GetProductsPage([FromQuery]OrderFilter filter)
+        public async Task<IEnumerable<OrderDTO>> GetOrdersPage([FromQuery]OrderFilter filter)
         {
             var orders = await _orderService.GetOrders(filter);
             return orders;
         }
+        [Authorize(Roles = "Admin, Client")]
         [HttpGet("{id}")]
         public async Task<OrderDTO> GetOrder(Guid id)
         {
             var order = await _orderService.GetOrder(id);
             return order;
         }
-
+        [Authorize(Roles = "Admin, Client")]
         [HttpPost]
         public async Task<IActionResult> PostOrder(OrderDTO orderDTO)
         {
             await _orderService.AddOrder(orderDTO);
             return Ok(orderDTO);
         }
-
+        [Authorize(Roles = "Admin, Client")]
         [HttpPut]
         public async Task<IActionResult> PutOrder(OrderDTO orderDTO)
         {
             await _orderService.Update(orderDTO);
             return Ok(orderDTO);
         }
-
+        [Authorize(Roles = "Admin, Client")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(Guid id)
         {

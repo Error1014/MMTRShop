@@ -10,5 +10,13 @@ namespace MMTRShopAPI.Controllers
     [ApiController]
     public class BaseApiController : ControllerBase
     {
+        public Guid UserId
+        {
+            get {
+                var claimsIdentity = this.User.Identity as ClaimsIdentity;
+                var userId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+                return Guid.Parse(userId);
+            }
+        }
     }
 }

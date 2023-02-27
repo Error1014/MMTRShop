@@ -28,7 +28,7 @@ namespace MMTRShopAPI.Controllers
             var brand = await _brandService.GetBrand(id);
             return brand;
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> PostBrands(BrandDTO brandDTO)
         {
@@ -36,6 +36,7 @@ namespace MMTRShopAPI.Controllers
             return Ok(brandDTO);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public async Task<IActionResult> Put(BrandDTO brandDTO)
         {
@@ -43,6 +44,7 @@ namespace MMTRShopAPI.Controllers
             return Ok(brandDTO);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

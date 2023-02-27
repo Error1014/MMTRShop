@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using System.Security.Authentication;
 using System.Security.Claims;
+using Microsoft.AspNetCore.SignalR;
+using System;
 
 namespace MMTRShopAPI.Controllers
 {
- 
+
     public class ClientsController : BaseApiController
     {
         private readonly IClientService _clientService;
@@ -18,13 +20,14 @@ namespace MMTRShopAPI.Controllers
         {
             _clientService = clientService;
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IEnumerable<ClientDTO>> GetClientsPage([FromQuery] BaseFilter filter)
         {
             var users = await _clientService.GetPageClients(filter);
             return users;
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
         public async Task<ClientDTO> GetClient(Guid id)
         {
@@ -42,10 +45,10 @@ namespace MMTRShopAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> PutClient(ClientDTO clientDTO)
         {
-            await _clientService.Update(clientDTO);
+            await _clientService.Update(UserId,clientDTO);
             return Ok(clientDTO);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClient(Guid id)
         {

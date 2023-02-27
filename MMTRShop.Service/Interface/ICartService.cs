@@ -12,7 +12,6 @@ namespace MMTRShop.Service.Interface
 {
     public interface ICartService
     {
-        Task<IEnumerable<CartDTO>> GetCartsDTO(FilterByClient filter);
         Task<IEnumerable<CartDTO>> GetCartsDTO(Guid clientId);
         Task<CartDTO> GetCart(Guid cartId);
         Task<CartDTO> GetCartByClientIdAndProductId(Guid clientId,Guid productId);

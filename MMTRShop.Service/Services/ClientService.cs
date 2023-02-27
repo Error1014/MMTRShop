@@ -58,14 +58,15 @@ namespace MMTRShop.Service.Services
             await Save();
         }
 
-        public async Task Save()
+        public async Task Save() 
         {
             await _unitOfWork.Clients.SaveAsync();
         }
 
-        public async Task Update(ClientDTO clientDTO)
+        public async Task Update(Guid clientId,ClientDTO clientDTO)
         {
             var client = _mapper.Map<Client>(clientDTO);
+            client.Id = clientId;
             _unitOfWork.Clients.Update(client);
             await Save();
         }

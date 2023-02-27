@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
 using MMTRShop.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace MMTRShopAPI.Controllers
 {
@@ -14,7 +16,7 @@ namespace MMTRShopAPI.Controllers
         {
             _orderContentService = orderContentService;
         }
-
+        [Authorize(Roles = "Admin,Client")]
         [HttpGet("{id}")]
         public async Task<IEnumerable<OrderContentDTO>> GetOrderContentsByOrderId(Guid id)
         {
@@ -22,20 +24,21 @@ namespace MMTRShopAPI.Controllers
             return order;
         }
 
+        [Authorize(Roles = "Admin,Client")]
         [HttpPost]
         public async Task<IActionResult> PostOrderContent(OrderContentDTO orderContentDTO)
         {
             await _orderContentService.AddOrderContent(orderContentDTO);
             return Ok(orderContentDTO);
         }
-
+        [Authorize(Roles = "Admin,Client")]
         [HttpPut]
         public async Task<IActionResult> PutOrderContent(OrderContentDTO orderContentDTO)
         {
             await _orderContentService.Update(orderContentDTO);
             return Ok(orderContentDTO);
         }
-
+        [Authorize(Roles = "Admin,Client")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrderContent(Guid id)
         {
