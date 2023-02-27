@@ -53,7 +53,7 @@ namespace MMTRShop.Service.Services
             return result;
         }
 
-        public async Task<UserDTO> GetUser(LoginPasswordModel loginPassword)
+        public async Task<User> GetUser(LoginPasswordModel loginPassword)
         {
             bool isCorrect = false;
             var users = await _unitOfWork.Users.GetAllAsync();
@@ -71,8 +71,8 @@ namespace MMTRShop.Service.Services
             {
                 throw new ValidationException("Вы ввели неверный логин или пароль!");
             }
-            var userDTO = _mapper.Map<UserDTO>(user);
-            return userDTO;
+            //var userDTO = _mapper.Map<UserDTO>(user);
+            return user;
         }
 
         public async Task RemoveUser(Guid userId)

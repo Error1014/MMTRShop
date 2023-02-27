@@ -28,12 +28,6 @@ namespace MMTRShopAPI.Controllers
             var user = await _userService.GetUser(id);
             return user;
         }
-        [HttpPost(nameof(GetUser))]
-        public async Task<UserDTO> GetUser([FromQuery]LoginPasswordModel loginPassword)
-        {
-            var user = await _userService.GetUser(loginPassword);
-            return user;
-        }
 
         [HttpPost]
         public async Task<IActionResult> PostUser(UserDTO userDTO)

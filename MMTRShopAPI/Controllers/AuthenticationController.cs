@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System;
 using MMTRShop.Service.Interface;
 using Shop.Infrastructure.DTO;
+using MMTRShop.Repository.Entities;
 
 namespace MMTRShopAPI.Controllers
 {
@@ -24,7 +25,10 @@ namespace MMTRShopAPI.Controllers
 {
             // находим пользователя 
             var person =await _userService.GetUser(loginPasswordModel);
-            string role = "Admin"; 
+            string role = "";
+            if (person is Client) role = "Client";
+            else if (person is Admin) role = "Admin";
+            else if (person is Operator) role = "Operator";
             var claims = new List<Claim> 
             { 
                 new Claim(ClaimTypes.Name, person.Login),
