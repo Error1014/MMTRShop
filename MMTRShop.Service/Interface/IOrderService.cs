@@ -19,6 +19,7 @@ namespace MMTRShop.Service.Interface
         Task AddOrder(OrderDTO order);
         Task Save();
         Task Update(OrderDTO orderDTO);
+        Task Update(Guid orderId, int statusId);
         Task Remove(Guid orderId);
 
 

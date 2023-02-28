@@ -58,6 +58,13 @@ namespace MMTRShop.Service.Services
             _unitOfWork.Orders.Update(order);
             await Save();
         }
+        public async Task Update(Guid orderId, int statusId)
+        {
+            var order = await _unitOfWork.Orders.GetByIdAsync(orderId);
+            order.StatusId=statusId;
+            _unitOfWork.Orders.Update(order);
+            await Save();
+        }
         public async Task Remove(Guid orderId)
         {
             var user = await GetOrder(orderId);

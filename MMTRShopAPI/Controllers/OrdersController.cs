@@ -13,13 +13,13 @@ namespace MMTRShopAPI.Controllers
     {
         private readonly IOrderService _orderService;
         public OrdersController(IOrderService orderService)
-{
+        {
             _orderService = orderService;
         }
 
         [Authorize(Roles = "Admin, Client")]
         [HttpGet]
-        public async Task<IEnumerable<OrderDTO>> GetOrdersPage([FromQuery]OrderFilter filter)
+        public async Task<IEnumerable<OrderDTO>> GetOrdersPage([FromQuery] OrderFilter filter)
         {
             var orders = await _orderService.GetOrders(filter);
             return orders;
@@ -44,6 +44,13 @@ namespace MMTRShopAPI.Controllers
         {
             await _orderService.Update(orderDTO);
             return Ok(orderDTO);
+        }
+        [Authorize(Roles = "Admin, Operator")]
+        [HttpPut(nameof(PutOrderStatus))]
+        public async Task<IActionResult> PutOrderStatus(Guid orderId, int statusId)
+        {
+            await _orderService.Update(orderId,statusId);
+            return Ok(orderId);
         }
         [Authorize(Roles = "Admin, Client")]
         [HttpDelete("{id}")]
