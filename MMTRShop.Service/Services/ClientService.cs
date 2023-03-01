@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Authentication;
 using System.Security.Claims;
+using Shop.Infrastructure;
 
 namespace MMTRShop.Service.Services
 {
@@ -27,6 +28,7 @@ namespace MMTRShop.Service.Services
         }
         public async Task AddClient(ClientDTO clientDTO)
         {
+            clientDTO.Password = GeneratorHash.GetHash(clientDTO.Password);
             var client = _mapper.Map<Client>(clientDTO);
             _unitOfWork.Clients.Add(client);
             await Save();

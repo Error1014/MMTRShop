@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shop.Infrastructure;
 
 namespace MMTRShop.Service.Services
 {
@@ -30,7 +31,6 @@ namespace MMTRShop.Service.Services
                 throw new DublicateException("Пользователь с таким логином уже существует");
             }
             var user = _mapper.Map<User>(userDTO);
-            
             _unitOfWork.Users.Add(user);
             await Save();
         }
@@ -58,9 +58,10 @@ namespace MMTRShop.Service.Services
             bool isCorrect = false;
             var users = await _unitOfWork.Users.GetAllAsync();
             User? user = null;
+            var password = GeneratorHash.GetHash(loginPassword.Password);
             foreach (var item in users)
             {
-                if (item.Login == loginPassword.Login && item.Password == loginPassword.Password)
+                if (item.Login == loginPassword.Login && item.Password == password)
                 {
                     isCorrect = true;
                     user = item;

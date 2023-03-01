@@ -10,6 +10,8 @@ using Shop.Infrastructure.DTO;
 using MMTRShop.Repository.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
+using System.Security.Cryptography;
 
 namespace MMTRShopAPI.Controllers
 {
@@ -28,7 +30,6 @@ namespace MMTRShopAPI.Controllers
             // находим пользователя 
             var person = await _userService.GetUser(loginPasswordModel);
             var role = person.GetType().Name;
-
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, person.Id.ToString()),
