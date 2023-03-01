@@ -18,7 +18,7 @@ namespace Shop.Infrastructure.DTO
         public Guid CategoryId { get; set; }
         public Guid BrandId { get; set; }
 
-        public string Status 
+        public string? Status 
         {
             get
             {

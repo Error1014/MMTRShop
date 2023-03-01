@@ -8,45 +8,46 @@ using System;
 using MMTRShop.Service.Interface;
 using Shop.Infrastructure.DTO;
 using MMTRShop.Repository.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Text;
 
 namespace MMTRShopAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : BaseApiController
     {
         private readonly IUserService _userService;
-        public AuthenticationController(IUserService userService)
+        private readonly IConfiguration _configuration;
+        public AuthenticationController(IConfiguration configuration,IUserService userService)
         {
             _userService = userService;
+            _configuration = configuration;
         }
-        [HttpPost] 
+        [HttpPost]
         public async Task<IResult> Login(LoginPasswordModel loginPasswordModel)
-{
+        {
             // находим пользователя 
-            var person =await _userService.GetUser(loginPasswordModel);
-            string role = "";
-            if (person is Client) role = "Client";
-            else if (person is Admin) role = "Admin";
-            else if (person is Operator) role = "Operator";
-            var claims = new List<Claim> 
-            { 
+            var person = await _userService.GetUser(loginPasswordModel);
+            var role = person.GetType().Name;
+
+            var claims = new List<Claim>
+            {
                 new Claim(ClaimTypes.Name, person.Id.ToString()),
                 new Claim(ClaimsIdentity.DefaultRoleClaimType,role)
             };
             // создаем JWT-токен
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:key"]);
             var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
+                    issuer: _configuration["Jwt:Issuer"],
+                    audience: _configuration["Jwt:Audience"],
                     claims: claims,
                     expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+                    signingCredentials: new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
             // формируем ответ
             var response = new
             {
-                access_token = encodedJwt,
+                accessToken = encodedJwt,
                 username = person.Login,
                 role = role
             };
