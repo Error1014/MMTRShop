@@ -15,7 +15,7 @@ namespace MMTRShop.Service.Interface
         Task<ClientDTO> GetClient(Guid id);
         Task AddClient(ClientDTO client);
         Task RemoveClient(Guid clientId);
-        Task Update(Guid clientId,ClientDTO client);
+        Task Update(ClientDTO client);
         Task Save();
     }
 }

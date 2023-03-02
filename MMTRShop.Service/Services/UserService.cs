@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Shop.Infrastructure;
+using Microsoft.AspNetCore.Authentication;
 
 namespace MMTRShop.Service.Services
 {

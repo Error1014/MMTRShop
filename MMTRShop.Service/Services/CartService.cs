@@ -18,10 +18,12 @@ namespace MMTRShop.Service.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public CartService(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly UserSession _userSession;
+        public CartService(IUnitOfWork unitOfWork, IMapper mapper, UserSession userSession)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _userSession = userSession;
         }
         private async Task<IEnumerable<Cart>> GetCarts(FilterByClient filter)
         {
@@ -83,16 +85,16 @@ namespace MMTRShop.Service.Services
             item.ProductCount++;
             await Save();
         }
-        public async Task ClearCart(Guid clientId)
+        public async Task ClearCart()
         {
-            var cartsDTO = await _unitOfWork.Carts.GetCartsByClient(clientId);
+            var cartsDTO = await _unitOfWork.Carts.GetCartsByClient(_userSession.Id);
             var carts = _mapper.Map<IEnumerable<Cart>>(cartsDTO);
             _unitOfWork.Carts.RemoveRange(carts.ToList());
             await Save();
         }
-        public async Task RemoveProductInCart(Guid clientId, Guid productId)
+        public async Task RemoveProductInCart(Guid productId)
         {
-            var cartDTO = await _unitOfWork.Carts.GetCartByClientIdAndProductId(clientId, productId);
+            var cartDTO = await _unitOfWork.Carts.GetCartByClientIdAndProductId(_userSession.Id, productId);
             var cart = _mapper.Map<Cart>(cartDTO);
             _unitOfWork.Carts.Remove(cart);
             await Save(); 

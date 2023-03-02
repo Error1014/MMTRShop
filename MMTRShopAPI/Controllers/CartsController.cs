@@ -63,7 +63,7 @@ namespace MMTRShopAPI.Controllers
         [HttpDelete(nameof(ClearCart))]
         public async Task<IActionResult> ClearCart()
         {
-            await _cartService.ClearCart(UserId);
+            await _cartService.ClearCart();
             return Ok($"Корзина успешно очищена"); ;
         }
 
@@ -71,7 +71,7 @@ namespace MMTRShopAPI.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteProductInCart(Guid productId)
         {
-            await _cartService.RemoveProductInCart(UserId, productId);
+            await _cartService.RemoveProductInCart(productId);
             return Ok($"Успешно"); ;
         }
     }

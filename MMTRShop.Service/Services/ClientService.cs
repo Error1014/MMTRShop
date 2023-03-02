@@ -21,10 +21,12 @@ namespace MMTRShop.Service.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public ClientService(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly UserSession _userSession;
+        public ClientService(IUnitOfWork unitOfWork, IMapper mapper, UserSession userSession)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _userSession = userSession;
         }
         public async Task AddClient(ClientDTO clientDTO)
         {
@@ -65,10 +67,10 @@ namespace MMTRShop.Service.Services
             await _unitOfWork.Clients.SaveAsync();
         }
 
-        public async Task Update(Guid clientId,ClientDTO clientDTO)
+        public async Task Update(ClientDTO clientDTO)
         {
             var client = _mapper.Map<Client>(clientDTO);
-            client.Id = clientId;
+            client.Id = _userSession.Id;
             _unitOfWork.Clients.Update(client);
             await Save();
         }

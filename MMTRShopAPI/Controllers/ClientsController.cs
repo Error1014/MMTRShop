@@ -45,7 +45,7 @@ namespace MMTRShopAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> PutClient(ClientDTO clientDTO)
         {
-            await _clientService.Update(UserId,clientDTO);
+            await _clientService.Update(clientDTO);
             return Ok(clientDTO);
         }
         [Authorize(Roles = "Admin")]

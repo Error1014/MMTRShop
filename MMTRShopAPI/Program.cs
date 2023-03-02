@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using MMTRShopAPI.Middleware;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
-
+using Shop.Infrastructure.DTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +38,8 @@ builder.Services
     .AddScoped<IOrderService, OrderService>()
     .AddScoped<IOrderContentService, OrderContentService>()
     .AddScoped<IStatusService, StatusService>();
+builder.Services.AddSingleton<UserSession>();
+//builder.Services.AddScoped<Session>(op => op.GetRequiredService<UserSession>().Session);
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddAuthorization();
@@ -83,6 +85,7 @@ builder.Services.AddSwaggerGen(opt =>
     });
 });
 var app = builder.Build();
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
 

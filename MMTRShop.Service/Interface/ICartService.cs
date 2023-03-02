@@ -17,9 +17,9 @@ namespace MMTRShop.Service.Interface
         Task<CartDTO> GetCartByClientIdAndProductId(Guid clientId,Guid productId);
         Task AddProductInCart(CartDTO cartDTO);
         Task Update(CartDTO cartDTO);
-        Task RemoveProductInCart(Guid ClientId,Guid productId);
+        Task RemoveProductInCart(Guid productId);
         Task CartMinusOneProduct(Guid id);
         Task CartPlusOneProduct(Guid id);
-        Task ClearCart(Guid clientId);
+        Task ClearCart();
     }
 }
