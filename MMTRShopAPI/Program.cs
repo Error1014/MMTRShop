@@ -39,7 +39,7 @@ builder.Services
     .AddScoped<IOrderContentService, OrderContentService>()
     .AddScoped<IStatusService, StatusService>();
 builder.Services.AddSingleton<UserSession>();
-//builder.Services.AddScoped<Session>(op => op.GetRequiredService<UserSession>().Session);
+
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddAuthorization();
@@ -85,7 +85,6 @@ builder.Services.AddSwaggerGen(opt =>
     });
 });
 var app = builder.Build();
-
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
@@ -98,7 +97,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+    
 app.UseHttpsRedirection();
 app.UseStatusCodePages();
 app.UseAuthorization();

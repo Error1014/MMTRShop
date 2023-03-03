@@ -71,6 +71,7 @@ namespace MMTRShop.Service.Services
         {
             var client = _mapper.Map<Client>(clientDTO);
             client.Id = _userSession.Id;
+            client.Password = GeneratorHash.GetHash(clientDTO.Password);
             _unitOfWork.Clients.Update(client);
             await Save();
         }

@@ -32,7 +32,7 @@ namespace MMTRShopAPI.Controllers
             var role = person.GetType().Name;
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, person.Id.ToString()),
+                new Claim("Id", person.Id.ToString()),
                 new Claim(ClaimsIdentity.DefaultRoleClaimType,role)
             };
             // создаем JWT-токен
@@ -48,6 +48,7 @@ namespace MMTRShopAPI.Controllers
             // формируем ответ
             var response = new
             {
+                id = person.Id,
                 accessToken = encodedJwt,
                 username = person.Login,
                 role = role
