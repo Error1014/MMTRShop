@@ -29,11 +29,11 @@ namespace MMTRShopAPI.Middleware
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
             if (token != null) 
-                AttachAccountToContext(context, userService, token);
+                await AttachAccountToContext(context, userService, token);
 
             await _next(context);
         }
-        private void AttachAccountToContext(HttpContext context, IUserService userService, string token)
+        private async Task AttachAccountToContext(HttpContext context, IUserService userService, string token)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace MMTRShopAPI.Middleware
                 }, out SecurityToken validatedToken);
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var accountId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "Id").Value);
-                var user = userService.GetUser(accountId);
+                var user =await userService.GetUser(accountId);
                 context.Items["User"] = user;
                 UserSession.Id = accountId;
                 UserSession.Role = user.GetType().Name;

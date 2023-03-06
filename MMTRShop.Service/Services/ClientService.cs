@@ -30,6 +30,11 @@ namespace MMTRShop.Service.Services
         }
         public async Task AddClient(ClientDTO clientDTO)
         {
+            var chekUser = await _unitOfWork.Users.FindAsync(u => u.Login == clientDTO.Login);
+            if (chekUser != null)
+            {
+                throw new DublicateException("Пользователь с таким логином уже существует");
+            }
             clientDTO.Password = GeneratorHash.GetHash(clientDTO.Password);
             var client = _mapper.Map<Client>(clientDTO);
             _unitOfWork.Clients.Add(client);

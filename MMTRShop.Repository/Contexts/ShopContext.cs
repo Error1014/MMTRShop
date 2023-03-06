@@ -11,18 +11,6 @@ namespace MMTRShop.Repository.Contexts
 {
     public class ShopContext: DbContext
     {
-
-        private static ShopContext Context;
-        public static ShopContext GetContext()
-{
-            if (Context == null) Context = new ShopContext();
-            return Context;
-        }
-
-        public ShopContext() : base(new DbContextOptions<ShopContext>())
-        {
-
-        }
         public ShopContext(DbContextOptions<ShopContext> options) : base(options) 
         {
             

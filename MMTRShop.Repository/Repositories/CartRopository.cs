@@ -12,9 +12,10 @@ namespace MMTRShop.Repositories.Repository
 {
     public class CartRopository : Repository<Cart,Guid>, ICartRepository
     {
+        private readonly ShopContext _shopContext;
         public CartRopository(ShopContext context) : base(context)
         {
-
+            _shopContext = context;
         }
 
         public async Task<IEnumerable<Cart>> GetCarts(FilterByClient filter)
@@ -39,13 +40,13 @@ namespace MMTRShop.Repositories.Repository
         public int GetCountPage(int sizePage)
         {
             int countPage = 0;
-            if (ShopContext.GetContext().Product.Count() % sizePage == 0)
+            if (_shopContext.Product.Count() % sizePage == 0)
             {
-                countPage = ShopContext.GetContext().Product.Count() / sizePage;
+                countPage = _shopContext.Product.Count() / sizePage;
             }
             else
             {
-                countPage = ShopContext.GetContext().Product.Count() / sizePage + 1;
+                countPage = _shopContext.Product.Count() / sizePage + 1;
             }
             return countPage;
         }
