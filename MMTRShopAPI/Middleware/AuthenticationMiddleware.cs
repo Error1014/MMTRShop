@@ -17,23 +17,21 @@ namespace MMTRShopAPI.Middleware
     {
         private readonly RequestDelegate _next; 
         private readonly IConfiguration _configuration;
-        public UserSession UserSession { get; set; }
-        public AuthenticationMiddleware(RequestDelegate next, IConfiguration configuration, UserSession userSession)
+        public AuthenticationMiddleware(RequestDelegate next, IConfiguration configuration)
         {
             _next = next;
             _configuration = configuration;
-            UserSession = userSession;
         }
 
-        public async Task Invoke(HttpContext context, IUserService userService)
+        public async Task Invoke(HttpContext context, IUserService userService, UserSession userSession)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
             if (token != null) 
-                await AttachAccountToContext(context, userService, token);
+                await AttachAccountToContext(context, userService, token, userSession);
 
             await _next(context);
         }
-        private async Task AttachAccountToContext(HttpContext context, IUserService userService, string token)
+        private async Task AttachAccountToContext(HttpContext context, IUserService userService, string token, UserSession userSession)
         {
             try
             {
@@ -53,8 +51,8 @@ namespace MMTRShopAPI.Middleware
                 var accountId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "Id").Value);
                 var user =await userService.GetUser(accountId);
                 context.Items["User"] = user;
-                UserSession.Id = accountId;
-                UserSession.Role = user.GetType().Name;
+                userSession.Id = accountId;
+                userSession.Role = user.GetType().Name;
             }
             catch
             {

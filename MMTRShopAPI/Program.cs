@@ -39,7 +39,7 @@ builder.Services
     .AddScoped<IOrderService, OrderService>()
     .AddScoped<IOrderContentService, OrderContentService>()
     .AddScoped<IStatusService, StatusService>();
-builder.Services.AddSingleton<UserSession>();
+builder.Services.AddScoped<UserSession>();
 
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
