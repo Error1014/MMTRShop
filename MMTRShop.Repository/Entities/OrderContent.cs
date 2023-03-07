@@ -25,8 +25,8 @@ namespace MMTRShop.Repository.Entities
         public OrderContent(Order order, Cart cart)
         {
             OrderId = order.Id;
-            ProductId = cart.ProductId;
-            CountProduct = cart.ProductCount;
+            //ProductId = cart.ProductId;
+            //CountProduct = cart.ProductCount;
         }
 
     }   

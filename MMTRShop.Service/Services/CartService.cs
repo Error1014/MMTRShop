@@ -52,37 +52,37 @@ namespace MMTRShop.Service.Services
             var myKorzine = await _unitOfWork.Carts.GetCartsByClient(cartDTO.ClientId);
             var korzine = myKorzine.ToList();
             bool isNew = true;
-            for (int i = 0; i < korzine.Count; i++)
-            {
-                if (korzine[i].ProductId == cartDTO.ProductId)
-                {
-                    isNew = false;
-                    korzine[i].ProductCount++;
-                }
-            }
-            if (isNew)
-            {
-                _unitOfWork.Carts.Add(new Cart(cartDTO.ClientId, cartDTO.ProductId, 1));
-            }
+            //for (int i = 0; i < korzine.Count; i++)
+            //{
+            //    if (korzine[i].ProductId == cartDTO.ProductId)
+            //    {
+            //        isNew = false;
+            //        korzine[i].ProductCount++;
+            //    }
+            //}
+            //if (isNew)
+            //{
+            //    _unitOfWork.Carts.Add(new Cart(cartDTO.ClientId, cartDTO.ProductId, 1));
+            //}
             await Save();
         }
         public async Task CartMinusOneProduct(Guid id)
         {
             var item = await _unitOfWork.Carts.GetByIdAsync(id);
-            if (item.ProductCount > 0)
-            {
-                item.ProductCount--;
-            }
-            if (item.ProductCount == 0)
-            {
-                _unitOfWork.Carts.Remove(item);
-            }
+            //if (item.ProductCount > 0)
+            //{
+            //    item.ProductCount--;
+            //}
+            //if (item.ProductCount == 0)
+            //{
+            //    _unitOfWork.Carts.Remove(item);
+            //}
             await Save();
         }
         public async Task CartPlusOneProduct(Guid cartId)
         {
             var item = await _unitOfWork.Carts.GetByIdAsync(cartId);
-            item.ProductCount++;
+            //item.ProductCount++;
             await Save();
         }
         public async Task ClearCart()

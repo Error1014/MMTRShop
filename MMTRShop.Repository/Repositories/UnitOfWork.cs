@@ -26,11 +26,13 @@ namespace MMTRShop.Repository.Repositories
             Admins = new AdminRepository(_context);
             Operators = new OperatorRepository(_context);
             Feedbacks = new FeedbackRepository(_context);
+            CartItems = new CartItemRepository(_context);
         }
 
         public IProductRepository Products { get;private set; }
 
         public ICartRepository Carts { get; private set; }
+        public ICartItemRepository CartItems { get; private set; }
 
         public ICategoryRepository Categories { get; private set; }
 
@@ -53,6 +55,7 @@ namespace MMTRShop.Repository.Repositories
         public IAdminRepository Admins { get; private set; }
         public IOperatorRepository Operators { get; private set; }
         public IFeedbackReporitory Feedbacks { get; private set; }
+
 
         public int Complete()
         {
