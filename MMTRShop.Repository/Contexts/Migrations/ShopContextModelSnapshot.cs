@@ -80,7 +80,10 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.Property<Guid>("ClientId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ProductId")
+                    b.Property<int>("ProductCount")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -90,30 +93,6 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Cart");
-                });
-
-            modelBuilder.Entity("MMTRShop.Repository.Entities.CartItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ProductCount")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartItem");
                 });
 
             modelBuilder.Entity("MMTRShop.Repository.Entities.Category", b =>
@@ -380,28 +359,13 @@ namespace MMTRShop.Repository.Contexts.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MMTRShop.Repository.Entities.Product", null)
-                        .WithMany("Cart")
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("MMTRShop.Repository.Entities.CartItem", b =>
-                {
-                    b.HasOne("MMTRShop.Repository.Entities.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MMTRShop.Repository.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("Cart")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Cart");
+                    b.Navigation("Client");
 
                     b.Navigation("Product");
                 });

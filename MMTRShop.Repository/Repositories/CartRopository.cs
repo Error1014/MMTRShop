@@ -34,7 +34,7 @@ namespace MMTRShop.Repositories.Repository
 
         public async Task<Cart> GetCartByClientIdAndProductId(Guid clientId, Guid productId)
         {
-            return await ShopContext.Cart.Where(c => c.ClientId == clientId /*&& c.ProductId == productId*/).FirstOrDefaultAsync();
+            return await ShopContext.Cart.Where(c => c.ClientId == clientId && c.ProductId == productId).FirstOrDefaultAsync();
         }
 
         public int GetCountPage(int sizePage)

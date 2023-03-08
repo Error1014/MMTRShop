@@ -38,7 +38,6 @@ namespace MMTRShop.Service.Services
             clientDTO.Password = GeneratorHash.GetHash(clientDTO.Password);
             var client = _mapper.Map<Client>(clientDTO);
             _unitOfWork.Clients.Add(client);
-            _unitOfWork.Carts.Add(new Cart(client.Id));
             await Save();
         }
 
