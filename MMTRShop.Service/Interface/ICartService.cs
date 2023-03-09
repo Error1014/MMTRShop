@@ -12,11 +12,10 @@ namespace MMTRShop.Service.Interface
 {
     public interface ICartService
     {
-        Task<IEnumerable<CartDTO>> GetCartsDTO(FilterByClient filter);
-        Task<CartDTO> GetCart(Guid cartId);
-        Task<CartDTO> GetCartByClientIdAndProductId(Guid clientId,Guid productId);
-        Task AddProductInCart(CartDTO cartDTO);
-        Task Update(CartDTO cartDTO);
+        Task<IEnumerable<CartItemDTO>> GetCartItemsDTO();
+        Task<CartItemDTO> GetCart(Guid cartId);
+        Task AddProductInCart(Guid productId);
+        Task Update(CartItemDTO cartDTO);
         Task RemoveProductInCart(Guid productId);
         Task CartMinusOneProduct(Guid id);
         Task CartPlusOneProduct(Guid id);

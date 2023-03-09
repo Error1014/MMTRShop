@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Shop.Infrastructure.DTO
 {
-    public class CartDTO
+    public class CartItemDTO
     {
-        public Guid ClientId { get; set; }
         public Guid ProductId { get; set; }
         public int ProductCount { get; set; }
     }

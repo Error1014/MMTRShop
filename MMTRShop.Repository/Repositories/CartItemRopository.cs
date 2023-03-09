@@ -18,37 +18,17 @@ namespace MMTRShop.Repositories.Repository
             _shopContext = context;
         }
 
-        public async Task<IEnumerable<CartItem>> GetCarts(FilterByClient filter)
+        public async Task ClearCart(Guid cartId)
         {
-            var query = ShopContext.CartItem.AsQueryable();
-            if (filter.ClientId.HasValue)
-            {
-                query = query.Where(x => x.ClientId == filter.ClientId);
-            }
-            return await query.ToListAsync();
-        }
-        public async Task<IEnumerable<CartItem>> GetCartsByClient(Guid clientId)
-        {
-            return await ShopContext.CartItem.Where(c=>c.ClientId==clientId).ToListAsync();
+            var cartItem = await GetCartItemsByCart(cartId);
+            _shopContext.CartItem.RemoveRange(cartItem);
         }
 
-        public async Task<CartItem> GetCartByClientIdAndProductId(Guid clientId, Guid productId)
+        public async Task<IEnumerable<CartItem>> GetCartItemsByCart(Guid cartId)
         {
-            return await ShopContext.CartItem.Where(c => c.ClientId == clientId && c.ProductId == productId).FirstOrDefaultAsync();
+            return await _shopContext.CartItem.Where(c=>c.CartId==cartId).ToListAsync();
         }
 
-        public int GetCountPage(int sizePage)
-        {
-            int countPage = 0;
-            if (_shopContext.Product.Count() % sizePage == 0)
-            {
-                countPage = _shopContext.Product.Count() / sizePage;
-            }
-            else
-            {
-                countPage = _shopContext.Product.Count() / sizePage + 1;
-            }
-            return countPage;
-        }
+
     }
 }

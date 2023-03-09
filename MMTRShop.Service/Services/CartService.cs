@@ -25,50 +25,46 @@ namespace MMTRShop.Service.Services
             _mapper = mapper;
             _userSession = userSession;
         }
-        private async Task<IEnumerable<CartItem>> GetCarts(FilterByClient filter)
+        private async Task<Cart> GetCart()
         {
-            return await _unitOfWork.CartItems.GetCarts(filter);
+            return await _unitOfWork.Carts.GetCartByClient(_userSession.Id);
         }
-        public async Task<IEnumerable<CartDTO>> GetCartsDTO(FilterByClient filter)
+        public async Task<IEnumerable<CartItemDTO>> GetCartItemsDTO()
         {
-            var carts = await GetCarts(filter);
-            var result = _mapper.Map<IEnumerable<CartDTO>>(carts);
+            var cart = await GetCart();
+            var items = await _unitOfWork.CartItems.GetCartItemsByCart(cart.Id);
+            var result = _mapper.Map<IEnumerable<CartItemDTO>>(items);
             return result;
         }
-        public async Task<CartDTO> GetCart(Guid id)
+        public async Task<CartItemDTO> GetCart(Guid id)
         {
             var cart = await _unitOfWork.CartItems.GetByIdAsync(id);
-            var result = _mapper.Map<CartDTO>(cart);
+            var result = _mapper.Map<CartItemDTO>(cart);
             return result;
         }
-        public async Task<CartDTO> GetCartByClientIdAndProductId(Guid clientId,Guid productId)
+        public async Task AddProductInCart(Guid productId)
         {
-            var cart = await _unitOfWork.CartItems.GetCartByClientIdAndProductId(clientId,productId);
-            var result = _mapper.Map<CartDTO>(cart);
-            return result;
-        }
-        public async Task AddProductInCart(CartDTO cartDTO)
-        {
-            var myKorzine = await _unitOfWork.CartItems.GetCartsByClient(cartDTO.ClientId);
-            var korzine = myKorzine.ToList();
+            var cart = await GetCart();
+            var items = await _unitOfWork.CartItems.GetCartItemsByCart(cart.Id);
             bool isNew = true;
-            for (int i = 0; i < korzine.Count; i++)
+            for (int i = 0; i < items.ToList().Count; i++)
             {
-                if (korzine[i].ProductId == cartDTO.ProductId)
+                if (items.ToList()[i].ProductId == productId)
                 {
                     isNew = false;
-                    korzine[i].ProductCount++;
+                    items.ToList()[i].ProductCount++;
+                    _unitOfWork.CartItems.Update(items.ToList()[i]);
                 }
             }
             if (isNew)
             {
-                _unitOfWork.CartItems.Add(new CartItem(cartDTO.ClientId, cartDTO.ProductId, 1));
+                _unitOfWork.CartItems.Add(new CartItem(cart.Id, productId, 1));
             }
             await Save();
         }
-        public async Task CartMinusOneProduct(Guid id)
+        public async Task CartMinusOneProduct(Guid cartId)
         {
-            var item = await _unitOfWork.CartItems.GetByIdAsync(id);
+            var item = await _unitOfWork.CartItems.GetByIdAsync(cartId);
             if (item.ProductCount > 0)
             {
                 item.ProductCount--;
@@ -77,29 +73,28 @@ namespace MMTRShop.Service.Services
             {
                 _unitOfWork.CartItems.Remove(item);
             }
+            _unitOfWork.CartItems.Update(item);
             await Save();
         }
         public async Task CartPlusOneProduct(Guid cartId)
         {
             var item = await _unitOfWork.CartItems.GetByIdAsync(cartId);
             item.ProductCount++;
+            _unitOfWork.CartItems.Update(item);
             await Save();
         }
         public async Task ClearCart()
         {
-            var cartsDTO = await _unitOfWork.CartItems.GetCartsByClient(_userSession.Id);
-            var carts = _mapper.Map<IEnumerable<CartItem>>(cartsDTO);
-            _unitOfWork.CartItems.RemoveRange(carts.ToList());
+            var cart = await GetCart();
+            await _unitOfWork.CartItems.ClearCart(cart.Id);
             await Save();
         }
-        public async Task RemoveProductInCart(Guid productId)
+        public async Task RemoveProductInCart(Guid cartId)
         {
-            var cartDTO = await _unitOfWork.CartItems.GetCartByClientIdAndProductId(_userSession.Id, productId);
-            var cart = _mapper.Map<CartItem>(cartDTO);
-            _unitOfWork.CartItems.Remove(cart);
+            _unitOfWork.CartItems.Remove(cartId);
             await Save(); 
         }
-        public async Task Update(CartDTO cartDTO)
+        public async Task Update(CartItemDTO cartDTO)
         {
             var cart = _mapper.Map<CartItem>(cartDTO);
             _unitOfWork.CartItems.Update(cart);

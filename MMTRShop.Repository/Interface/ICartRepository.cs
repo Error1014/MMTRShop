@@ -9,5 +9,6 @@ namespace MMTRShop.Repository.Interface
 {
     public interface ICartRepository : IRepository<Cart, Guid>
     {
+        Task<Cart> GetCartByClient(Guid clientId);
     }
 }

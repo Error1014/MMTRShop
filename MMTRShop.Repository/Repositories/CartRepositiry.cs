@@ -1,4 +1,5 @@
-﻿using MMTRShop.Repository.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using MMTRShop.Repository.Contexts;
 using MMTRShop.Repository.Entities;
 using MMTRShop.Repository.Interface;
 using System;
@@ -15,6 +16,11 @@ namespace MMTRShop.Repository.Repositories
         public CartRepositiry(ShopContext context) : base(context)
         {
             _shopContext = context;
+        }
+
+        public async Task<Cart> GetCartByClient(Guid clientId)
+        {
+            return await _shopContext.Cart.Where(x => x.ClientId == clientId).FirstOrDefaultAsync();
         }
     }
 }

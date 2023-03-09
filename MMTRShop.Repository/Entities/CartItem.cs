@@ -4,7 +4,7 @@ namespace MMTRShop.Repository.Entities
 {
     public class CartItem : BaseEntity<Guid>
     {
-        public Guid ClientId { get; set; }
+        public Guid CartId { get; set; }
         public virtual Cart Cart { get; set; }
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; }
@@ -17,7 +17,7 @@ namespace MMTRShop.Repository.Entities
         }
         public CartItem(Guid clientId, Guid productId, int count)
         {
-            ClientId = clientId;
+            CartId = clientId;
             ProductId = productId;
             ProductCount = count;
         }
