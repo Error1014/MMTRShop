@@ -61,10 +61,13 @@ namespace MMTRShop.Repository.Repositories
         #region Remove
         public void Remove(TEntity entity)
         {
+            ShopContext.Set<TEntity>().AsTracking();
             ShopContext.Set<TEntity>().Remove(entity);
+            ShopContext.Set<TEntity>().AsNoTracking();
         }
         public void Remove(TKey key)
         {
+            ShopContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
             var entity = ShopContext.Set<TEntity>().Find(key);
             ShopContext.Set<TEntity>().Remove(entity);
         }

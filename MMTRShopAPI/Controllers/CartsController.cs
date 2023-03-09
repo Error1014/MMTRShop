@@ -69,9 +69,9 @@ namespace MMTRShopAPI.Controllers
 
         [Authorize(Roles = "Admin, Client")]
         [HttpDelete]
-        public async Task<IActionResult> DeleteProductInCart(Guid productId)
+        public async Task<IActionResult> DeleteProductInCart(Guid cartItemId)
         {
-            await _cartService.RemoveProductInCart(productId);
+            await _cartService.RemoveProductInCart(cartItemId);
             return Ok($"Успешно"); ;
         }
     }

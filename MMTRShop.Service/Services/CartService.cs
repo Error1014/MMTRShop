@@ -36,7 +36,7 @@ namespace MMTRShop.Service.Services
             var result = _mapper.Map<IEnumerable<CartItemDTO>>(items);
             return result;
         }
-        public async Task<CartItemDTO> GetCart(Guid id)
+        public async Task<CartItemDTO> GetCartItem(Guid id)
         {
             var cart = await _unitOfWork.CartItems.GetByIdAsync(id);
             var result = _mapper.Map<CartItemDTO>(cart);
@@ -89,9 +89,9 @@ namespace MMTRShop.Service.Services
             await _unitOfWork.CartItems.ClearCart(cart.Id);
             await Save();
         }
-        public async Task RemoveProductInCart(Guid cartId)
+        public async Task RemoveProductInCart(Guid cartItemId)
         {
-            _unitOfWork.CartItems.Remove(cartId);
+            _unitOfWork.CartItems.Remove(cartItemId);
             await Save(); 
         }
         public async Task Update(CartItemDTO cartDTO)
