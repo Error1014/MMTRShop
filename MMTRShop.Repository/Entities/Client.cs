@@ -12,7 +12,7 @@ namespace MMTRShop.Repository.Entities
         public string Phone { get; set; }
         public string Address { get; set; }
 
-        public virtual List<Cart>? Cart { get; set; }
+        public virtual Cart Cart { get; set; }
         public virtual List<Feedback>? Feedback { get; set; }
         public virtual List<BankCard>? BankCards { get; set; }
         public virtual List<Order>? Order { get; set; }

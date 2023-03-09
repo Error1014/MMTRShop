@@ -5,6 +5,7 @@ namespace MMTRShop.Repository.Interface
     public interface IUnitOfWork:IDisposable
     {
         IProductRepository Products { get; }
+        ICartItemRepository CartItems { get; }
         ICartRepository Carts { get; }
         ICategoryRepository Categories { get; }
         IBrandRepository Brands { get; }

@@ -4,6 +4,7 @@ using MMTRShop.Repository.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MMTRShop.Repository.Contexts.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230309002049_FixCart")]
+    partial class FixCart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,30 +74,10 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.ToTable("Brand");
                 });
 
-            modelBuilder.Entity("MMTRShop.Repository.Entities.Cart", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId")
-                        .IsUnique();
-
-                    b.ToTable("Cart");
-                });
-
             modelBuilder.Entity("MMTRShop.Repository.Entities.CartItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CartId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ClientId")
@@ -108,7 +91,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CartId");
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("ProductId");
 
@@ -371,32 +354,21 @@ namespace MMTRShop.Repository.Contexts.Migrations
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("MMTRShop.Repository.Entities.Cart", b =>
-                {
-                    b.HasOne("MMTRShop.Repository.Entities.Client", "Client")
-                        .WithOne("Cart")
-                        .HasForeignKey("MMTRShop.Repository.Entities.Cart", "ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-                });
-
             modelBuilder.Entity("MMTRShop.Repository.Entities.CartItem", b =>
                 {
-                    b.HasOne("MMTRShop.Repository.Entities.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartId")
+                    b.HasOne("MMTRShop.Repository.Entities.Client", "Client")
+                        .WithMany("Cart")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MMTRShop.Repository.Entities.Product", "Product")
-                        .WithMany("CartItem")
+                        .WithMany("Cart")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Cart");
+                    b.Navigation("Client");
 
                     b.Navigation("Product");
                 });
@@ -535,7 +507,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
 
             modelBuilder.Entity("MMTRShop.Repository.Entities.Product", b =>
                 {
-                    b.Navigation("CartItem");
+                    b.Navigation("Cart");
 
                     b.Navigation("Content");
 
@@ -546,8 +518,7 @@ namespace MMTRShop.Repository.Contexts.Migrations
                 {
                     b.Navigation("BankCards");
 
-                    b.Navigation("Cart")
-                        .IsRequired();
+                    b.Navigation("Cart");
 
                     b.Navigation("Feedback");
 

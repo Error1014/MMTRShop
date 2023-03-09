@@ -21,6 +21,7 @@ namespace MMTRShop.Repository.Contexts
         public DbSet<User> User { get; set; }
         //public DbSet<Admin> Admin { get; set; }
         public DbSet<Cart> Cart { get; set; }
+        public DbSet<CartItem> CartItem { get; set; }
         public DbSet<Brand> Brand { get; set; }
         //public DbSet<Operator> Operator { get; set; }
         //spublic DbSet<Client> Client { get; set; }

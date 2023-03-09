@@ -10,31 +10,31 @@ using System.Linq;
 
 namespace MMTRShop.Repositories.Repository
 {
-    public class CartRopository : Repository<Cart,Guid>, ICartRepository
+    public class CartItemRopository : Repository<CartItem,Guid>, ICartItemRepository
     {
         private readonly ShopContext _shopContext;
-        public CartRopository(ShopContext context) : base(context)
+        public CartItemRopository(ShopContext context) : base(context)
         {
             _shopContext = context;
         }
 
-        public async Task<IEnumerable<Cart>> GetCarts(FilterByClient filter)
+        public async Task<IEnumerable<CartItem>> GetCarts(FilterByClient filter)
         {
-            var query = ShopContext.Cart.AsQueryable();
+            var query = ShopContext.CartItem.AsQueryable();
             if (filter.ClientId.HasValue)
             {
                 query = query.Where(x => x.ClientId == filter.ClientId);
             }
             return await query.ToListAsync();
         }
-        public async Task<IEnumerable<Cart>> GetCartsByClient(Guid clientId)
+        public async Task<IEnumerable<CartItem>> GetCartsByClient(Guid clientId)
         {
-            return await ShopContext.Cart.Where(c=>c.ClientId==clientId).ToListAsync();
+            return await ShopContext.CartItem.Where(c=>c.ClientId==clientId).ToListAsync();
         }
 
-        public async Task<Cart> GetCartByClientIdAndProductId(Guid clientId, Guid productId)
+        public async Task<CartItem> GetCartByClientIdAndProductId(Guid clientId, Guid productId)
         {
-            return await ShopContext.Cart.Where(c => c.ClientId == clientId && c.ProductId == productId).FirstOrDefaultAsync();
+            return await ShopContext.CartItem.Where(c => c.ClientId == clientId && c.ProductId == productId).FirstOrDefaultAsync();
         }
 
         public int GetCountPage(int sizePage)

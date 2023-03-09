@@ -13,7 +13,8 @@ namespace MMTRShop.Repository.Repositories
         {
             _context = context;
             Products = new ProductRepository(_context);
-            Carts = new CartRopository(_context);
+            CartItems = new CartItemRopository(_context);
+            Carts = new CartRepositiry(_context);
             Categories = new CategoryRepository(_context);
             Brands = new BrandRepository(_context);
             Users = new UserRepository(_context);
@@ -30,6 +31,7 @@ namespace MMTRShop.Repository.Repositories
 
         public IProductRepository Products { get;private set; }
 
+        public ICartItemRepository CartItems { get; private set; }
         public ICartRepository Carts { get; private set; }
 
         public ICategoryRepository Categories { get; private set; }

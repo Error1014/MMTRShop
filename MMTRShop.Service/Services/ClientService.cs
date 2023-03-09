@@ -39,6 +39,9 @@ namespace MMTRShop.Service.Services
             var client = _mapper.Map<Client>(clientDTO);
             _unitOfWork.Clients.Add(client);
             await Save();
+            client = await _unitOfWork.Clients.FindAsync(u => u.Login == client.Login);
+            _unitOfWork.Carts.Add(new Cart(client.Id));
+            _unitOfWork.Carts.Save();
         }
 
         public async Task<IEnumerable<ClientDTO>> GetPageClients(BaseFilter filter)
