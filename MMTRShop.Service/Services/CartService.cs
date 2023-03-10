@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shop.Infrastructure.Interface;
 
 namespace MMTRShop.Service.Services
 {
@@ -18,7 +19,7 @@ namespace MMTRShop.Service.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly UserSession _userSession;
+        private readonly IUserSessionGetter _userSession;
         public CartService(IUnitOfWork unitOfWork, IMapper mapper, UserSession userSession)
         {
             _unitOfWork = unitOfWork;
@@ -27,7 +28,7 @@ namespace MMTRShop.Service.Services
         }
         private async Task<Cart> GetCart()
         {
-            return await _unitOfWork.Carts.GetCartByClient(_userSession.Id);
+            return await _unitOfWork.Carts.GetCartByClient(_userSession.GetId());
         }
         public async Task<IEnumerable<CartItemDTO>> GetCartItemsDTO()
         {

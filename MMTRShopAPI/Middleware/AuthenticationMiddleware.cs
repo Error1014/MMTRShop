@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MMTRShop.Service.Interface;
 using Shop.Infrastructure.DTO;
+using Shop.Infrastructure.Interface;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -26,7 +27,7 @@ namespace MMTRShopAPI.Middleware
         public async Task Invoke(HttpContext context, IServiceProvider serviceProvider)
         {
             var userService = serviceProvider.GetService<IUserService>();
-            var userSession = serviceProvider.GetService<UserSession>();
+            var userSession = serviceProvider.GetService<IUserSessionSetter>();
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
             if (token != null)
             {
@@ -48,8 +49,8 @@ namespace MMTRShopAPI.Middleware
                     var accountId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "Id").Value);
                     var user = await userService.GetUser(accountId);
                     context.Items["User"] = user;
-                    userSession.Id = accountId;
-                    userSession.Role = user.GetType().Name;
+                    userSession.SetId(accountId);
+                    userSession.SetRole(user.GetType().Name);
                 }
                 catch
                 {

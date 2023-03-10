@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Security.Authentication;
 using System.Security.Claims;
 using Shop.Infrastructure;
+using Shop.Infrastructure.Interface;
 
 namespace MMTRShop.Service.Services
 {
@@ -21,7 +22,7 @@ namespace MMTRShop.Service.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly UserSession _userSession;
+        private readonly IUserSessionGetter _userSession;
         public ClientService(IUnitOfWork unitOfWork, IMapper mapper, UserSession userSession)
         {
             _unitOfWork = unitOfWork;
@@ -78,7 +79,7 @@ namespace MMTRShop.Service.Services
         public async Task Update(ClientDTO clientDTO)
         {
             var client = _mapper.Map<Client>(clientDTO);
-            client.Id = _userSession.Id;
+            client.Id = _userSession.GetId();
             client.Password = GeneratorHash.GetHash(clientDTO.Password);
             _unitOfWork.Clients.Update(client);
             await Save();
