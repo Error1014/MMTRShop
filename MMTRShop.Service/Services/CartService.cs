@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shop.Infrastructure.Interface;
 
 namespace MMTRShop.Service.Services
 {
@@ -18,96 +19,91 @@ namespace MMTRShop.Service.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly UserSession _userSession;
+        private readonly IUserSessionGetter _userSession;
         public CartService(IUnitOfWork unitOfWork, IMapper mapper, UserSession userSession)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _userSession = userSession;
         }
-        private async Task<IEnumerable<Cart>> GetCarts(FilterByClient filter)
+        private async Task<Cart> GetCart()
         {
-            return await _unitOfWork.Carts.GetCarts(filter);
+            return await _unitOfWork.Carts.GetCartByClient(_userSession.GetId());
         }
-        public async Task<IEnumerable<CartDTO>> GetCartsDTO(FilterByClient filter)
+        public async Task<IEnumerable<CartItemDTO>> GetCartItemsDTO()
         {
-            var carts = await GetCarts(filter);
-            var result = _mapper.Map<IEnumerable<CartDTO>>(carts);
+            var cart = await GetCart();
+            var items = await _unitOfWork.CartItems.GetCartItemsByCart(cart.Id);
+            var result = _mapper.Map<IEnumerable<CartItemDTO>>(items);
             return result;
         }
-        public async Task<CartDTO> GetCart(Guid id)
+        public async Task<CartItemDTO> GetCartItem(Guid id)
         {
-            var cart = await _unitOfWork.Carts.GetByIdAsync(id);
-            var result = _mapper.Map<CartDTO>(cart);
+            var cart = await _unitOfWork.CartItems.GetByIdAsync(id);
+            var result = _mapper.Map<CartItemDTO>(cart);
             return result;
         }
-        public async Task<CartDTO> GetCartByClientIdAndProductId(Guid clientId,Guid productId)
+        public async Task AddProductInCart(Guid productId)
         {
-            var cart = await _unitOfWork.Carts.GetCartByClientIdAndProductId(clientId,productId);
-            var result = _mapper.Map<CartDTO>(cart);
-            return result;
-        }
-        public async Task AddProductInCart(CartDTO cartDTO)
-        {
-            var myKorzine = await _unitOfWork.Carts.GetCartsByClient(cartDTO.ClientId);
-            var korzine = myKorzine.ToList();
+            var cart = await GetCart();
+            var items = await _unitOfWork.CartItems.GetCartItemsByCart(cart.Id);
             bool isNew = true;
-            for (int i = 0; i < korzine.Count; i++)
+            for (int i = 0; i < items.ToList().Count; i++)
             {
-                if (korzine[i].ProductId == cartDTO.ProductId)
+                if (items.ToList()[i].ProductId == productId)
                 {
                     isNew = false;
-                    korzine[i].ProductCount++;
+                    items.ToList()[i].ProductCount++;
+                    _unitOfWork.CartItems.Update(items.ToList()[i]);
                 }
             }
             if (isNew)
             {
-                _unitOfWork.Carts.Add(new Cart(cartDTO.ClientId, cartDTO.ProductId, 1));
+                _unitOfWork.CartItems.Add(new CartItem(cart.Id, productId, 1));
             }
             await Save();
         }
-        public async Task CartMinusOneProduct(Guid id)
+        public async Task CartMinusOneProduct(Guid cartId)
         {
-            var item = await _unitOfWork.Carts.GetByIdAsync(id);
+            var item = await _unitOfWork.CartItems.GetByIdAsync(cartId);
             if (item.ProductCount > 0)
             {
                 item.ProductCount--;
             }
             if (item.ProductCount == 0)
             {
-                _unitOfWork.Carts.Remove(item);
+                _unitOfWork.CartItems.Remove(item);
             }
+            _unitOfWork.CartItems.Update(item);
             await Save();
         }
         public async Task CartPlusOneProduct(Guid cartId)
         {
-            var item = await _unitOfWork.Carts.GetByIdAsync(cartId);
+            var item = await _unitOfWork.CartItems.GetByIdAsync(cartId);
             item.ProductCount++;
+            _unitOfWork.CartItems.Update(item);
             await Save();
         }
         public async Task ClearCart()
         {
-            var cartsDTO = await _unitOfWork.Carts.GetCartsByClient(_userSession.Id);
-            var carts = _mapper.Map<IEnumerable<Cart>>(cartsDTO);
-            _unitOfWork.Carts.RemoveRange(carts.ToList());
+            var cart = await GetCart();
+            await _unitOfWork.CartItems.ClearCart(cart.Id);
             await Save();
         }
-        public async Task RemoveProductInCart(Guid productId)
+        public async Task RemoveProductInCart(Guid cartItemId)
         {
-            var cartDTO = await _unitOfWork.Carts.GetCartByClientIdAndProductId(_userSession.Id, productId);
-            var cart = _mapper.Map<Cart>(cartDTO);
-            _unitOfWork.Carts.Remove(cart);
+            _unitOfWork.CartItems.Remove(cartItemId);
             await Save(); 
         }
-        public async Task Update(CartDTO cartDTO)
+        public async Task Update(CartItemDTO cartDTO)
         {
-            var cart = _mapper.Map<Cart>(cartDTO);
-            _unitOfWork.Carts.Update(cart);
+            var cart = _mapper.Map<CartItem>(cartDTO);
+            _unitOfWork.CartItems.Update(cart);
             await Save();
         }
         private async Task Save()
         {
-            await _unitOfWork.Carts.SaveAsync();
+            await _unitOfWork.CartItems.SaveAsync();
         }
     }
 }

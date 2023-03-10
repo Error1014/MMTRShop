@@ -6,14 +6,16 @@ using MMTRShop.Repository.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.HelperModels;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace MMTRShop.Repository.Repositories
 {
     public class ClientRepository : Repository<Client, Guid>, IClientRepository
     {
+        private readonly ShopContext _shopContext;
         public ClientRepository(ShopContext context) : base(context)
         {
-
+            _shopContext=context;
         }
         public async Task<IEnumerable<Client>> GetClientsPage(BaseFilter filter)
         {

@@ -22,7 +22,7 @@ namespace MMTRShop.Repository.Entities
 
         }
 
-        public OrderContent(Order order, Cart cart)
+        public OrderContent(Order order, CartItem cart)
         {
             OrderId = order.Id;
             ProductId = cart.ProductId;

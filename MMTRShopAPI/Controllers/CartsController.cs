@@ -21,23 +21,23 @@ namespace MMTRShopAPI.Controllers
 
         [Authorize(Roles = "Admin, Client")]
         [HttpGet]
-        public async Task<IEnumerable<CartDTO>> GetCartsPage([FromQuery]FilterByClient filter)
+        public async Task<IEnumerable<CartItemDTO>> GetCarts()
         {
-            var carts = await _cartService.GetCartsDTO(filter);
+            var carts = await _cartService.GetCartItemsDTO();
             return carts;
         }
 
         [Authorize(Roles = "Admin, Client")]
         [HttpPost]
-        public async Task<IActionResult> PostProductInCart(CartDTO cartDTO)
+        public async Task<IActionResult> PostProductInCart(Guid productId)
         {
-            await _cartService.AddProductInCart(cartDTO);
-            return Ok(cartDTO);
+            await _cartService.AddProductInCart(productId);
+            return Ok("Товар добавлен в корзину");
         }
 
         [Authorize(Roles = "Admin, Client")]
         [HttpPut]
-        public async Task<IActionResult> PutProductInCart(CartDTO cartDTO)
+        public async Task<IActionResult> PutProductInCart(CartItemDTO cartDTO)
         {
             await _cartService.Update(cartDTO);
             return Ok(cartDTO);
@@ -69,9 +69,9 @@ namespace MMTRShopAPI.Controllers
 
         [Authorize(Roles = "Admin, Client")]
         [HttpDelete]
-        public async Task<IActionResult> DeleteProductInCart(Guid productId)
+        public async Task<IActionResult> DeleteProductInCart(Guid cartItemId)
         {
-            await _cartService.RemoveProductInCart(productId);
+            await _cartService.RemoveProductInCart(cartItemId);
             return Ok($"Успешно"); ;
         }
     }

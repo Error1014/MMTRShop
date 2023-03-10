@@ -13,6 +13,7 @@ using MMTRShopAPI.Middleware;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
+using Shop.Infrastructure.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,8 @@ builder.Services
     .AddScoped<IOrderContentService, OrderContentService>()
     .AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<UserSession>();
+//builder.Services.AddScoped<IUserSessionGetter,UserSession>();
+//builder.Services.AddScoped<IUserSessionSetter,UserSession>();
 
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
