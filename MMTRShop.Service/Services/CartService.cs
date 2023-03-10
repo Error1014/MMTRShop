@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Shop.Infrastructure.Interface;
+using Shop.Infrastructure.Exceptions;
 
 namespace MMTRShop.Service.Services
 {
@@ -20,11 +21,13 @@ namespace MMTRShop.Service.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IUserSessionGetter _userSession;
-        public CartService(IUnitOfWork unitOfWork, IMapper mapper, IUserSessionGetter userSession)
+        private readonly IClientSettingsService _configurationService;
+        public CartService(IUnitOfWork unitOfWork, IMapper mapper, IUserSessionGetter userSession, IClientSettingsService configuration)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _userSession = userSession;
+            _configurationService = configuration;  
         }
         private async Task<Cart> GetCart()
         {
@@ -53,6 +56,7 @@ namespace MMTRShop.Service.Services
                 if (items.ToList()[i].ProductId == productId)
                 {
                     isNew = false;
+                    await CheckRestriction();
                     items.ToList()[i].ProductCount++;
                     _unitOfWork.CartItems.Update(items.ToList()[i]);
                 }
@@ -80,6 +84,7 @@ namespace MMTRShop.Service.Services
         public async Task CartPlusOneProduct(Guid cartId)
         {
             var item = await _unitOfWork.CartItems.GetByIdAsync(cartId);
+            await CheckRestriction();
             item.ProductCount++;
             _unitOfWork.CartItems.Update(item);
             await Save();
@@ -104,6 +109,17 @@ namespace MMTRShop.Service.Services
         private async Task Save()
         {
             await _unitOfWork.CartItems.SaveAsync();
+        }
+
+        private async Task CheckRestriction()
+        {
+            var cartItems =await GetCartItemsDTO();
+            var count = cartItems.Sum(x=>x.ProductCount);
+            var limit = _configurationService.RestrictionOfGoodsInCart;
+            if (count>= limit)
+            {
+                throw new RestrictionOfGoodsException($"Лимит вместимости корзины {limit} товаров");;
+            }
         }
     }
 }

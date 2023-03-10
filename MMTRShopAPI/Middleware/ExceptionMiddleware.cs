@@ -51,6 +51,10 @@ namespace MMTRShopAPI.Middleware
                     message = exception.Message;
                     code = HttpStatusCode.BadRequest;
                     break;
+                case RestrictionOfGoodsException:
+                    message = exception.Message;
+                    code = HttpStatusCode.BadRequest;
+                    break;
                 default:
                     message = exception.Message;
                     break;
