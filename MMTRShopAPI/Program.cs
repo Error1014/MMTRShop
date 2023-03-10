@@ -41,8 +41,8 @@ builder.Services
     .AddScoped<IOrderContentService, OrderContentService>()
     .AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<UserSession>();
-//builder.Services.AddScoped<IUserSessionGetter,UserSession>();
-//builder.Services.AddScoped<IUserSessionSetter,UserSession>();
+builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
+builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());
 
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
