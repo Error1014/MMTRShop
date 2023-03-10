@@ -22,17 +22,17 @@ namespace MMTRShopAPI.Controllers
         }
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public async Task<IEnumerable<ClientDTO>> GetClientsPage([FromQuery] BaseFilter filter)
+        public async Task<ActionResult<IEnumerable<ClientDTO>>> GetClientsPage([FromQuery] BaseFilter filter)
         {
             var users = await _clientService.GetPageClients(filter);
-            return users;
+            return Ok(users);
         }
         [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
-        public async Task<ClientDTO> GetClient(Guid id)
+        public async Task<ActionResult<ClientDTO>> GetClient(Guid id)
         {
             var client = await _clientService.GetClient(id);
-            return client;
+            return Ok(client);
         }
         [AllowAnonymous]
         [HttpPost]

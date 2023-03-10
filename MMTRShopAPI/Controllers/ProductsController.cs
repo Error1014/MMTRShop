@@ -25,16 +25,16 @@ namespace MMTRShopAPI.Controllers
         }
         [Authorize(Roles = "Admin, Client")]
         [HttpGet]
-        public async Task<IEnumerable<ProductDTO>> GetProductsPage([FromQuery] ProductPageFilter filter)
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProductsPage([FromQuery] ProductPageFilter filter)
         {
             var products = await _productService.GetPageProducts(filter);
-            return products;
+            return Ok(products);
         }
         [HttpGet("{id}")]
-        public async Task<ProductDTO> GetProduct(Guid id)
+        public async Task<ActionResult<ProductDTO>> GetProduct(Guid id)
         {
             var product = await _productService.GetProduct(id);
-            return product;
+            return Ok(product);
         }
         [Authorize(Roles = "Admin")]
         [HttpPost]

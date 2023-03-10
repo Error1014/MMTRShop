@@ -21,10 +21,10 @@ namespace MMTRShopAPI.Controllers
 
         [Authorize(Roles = "Admin, Client")]
         [HttpGet]
-        public async Task<IEnumerable<CartItemDTO>> GetCarts()
+        public async Task<ActionResult<IEnumerable<CartItemDTO>>> GetCarts()
         {
             var carts = await _cartService.GetCartItemsDTO();
-            return carts;
+            return Ok(carts);
         }
 
         [Authorize(Roles = "Admin, Client")]
