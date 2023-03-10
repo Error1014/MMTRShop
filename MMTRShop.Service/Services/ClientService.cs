@@ -79,7 +79,7 @@ namespace MMTRShop.Service.Services
         public async Task Update(ClientDTO clientDTO)
         {
             var client = _mapper.Map<Client>(clientDTO);
-            client.Id = _userSession.GetId();
+            client.Id = _userSession.UserId;
             client.Password = GeneratorHash.GetHash(clientDTO.Password);
             _unitOfWork.Clients.Update(client);
             await Save();

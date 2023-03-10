@@ -49,8 +49,8 @@ namespace MMTRShopAPI.Middleware
                     var accountId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "Id").Value);
                     var user = await userService.GetUser(accountId);
                     context.Items["User"] = user;
-                    userSession.SetId(accountId);
-                    userSession.SetRole(user.GetType().Name);
+                    userSession.UserId = accountId;
+                    userSession.Role = user.GetType().Name;
                 }
                 catch
                 {

@@ -20,7 +20,7 @@ namespace MMTRShop.Service.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IUserSessionGetter _userSession;
-        public CartService(IUnitOfWork unitOfWork, IMapper mapper, UserSession userSession)
+        public CartService(IUnitOfWork unitOfWork, IMapper mapper, IUserSessionGetter userSession)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -28,7 +28,7 @@ namespace MMTRShop.Service.Services
         }
         private async Task<Cart> GetCart()
         {
-            return await _unitOfWork.Carts.GetCartByClient(_userSession.GetId());
+            return await _unitOfWork.Carts.GetCartByClient(_userSession.UserId);
         }
         public async Task<IEnumerable<CartItemDTO>> GetCartItemsDTO()
         {

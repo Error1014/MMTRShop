@@ -9,7 +9,7 @@ namespace Shop.Infrastructure.Interface
 {
     public interface IUserSessionGetter
     {
-        Guid GetId();
-        string GetRole();
+        Guid UserId { get; }
+        string Role { get; }
     }
 }
