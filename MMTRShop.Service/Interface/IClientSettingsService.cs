@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Infrastructure.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,8 @@ namespace MMTRShop.Service.Interface
 {
     public interface IClientSettingsService
     {
-        int RestrictionOfGoodsInCart { get; set; }
-        int QuantityOfProductToDisplay { get; set; }
-
-        void UpdateRestrictionOfGoodsInCart(int value);
-        void UpdateQuantityOfProductToDisplay(int value);
+        SettingsAPI SettingsAPI { get; set; }
+        Task UpdateRestrictionOfGoodsInCart(int value);
+        Task UpdateQuantityOfProductToDisplay(int value);
     }
 }

@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 using System.Security.Cryptography;
+using Newtonsoft.Json;
+using MMTRShop.Service.Services;
 
 namespace MMTRShopAPI.Controllers
 {
@@ -19,10 +21,12 @@ namespace MMTRShopAPI.Controllers
     {
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
-        public AuthenticationController(IConfiguration configuration,IUserService userService)
+        private readonly IClientSettingsService _clientSettingsService;
+        public AuthenticationController(IConfiguration configuration,IUserService userService, IClientSettingsService clientSettingsService)
         {
             _userService = userService;
             _configuration = configuration;
+            _clientSettingsService = clientSettingsService;
         }
         [HttpPost]
         public async Task<IResult> Login(LoginPasswordModel loginPasswordModel)

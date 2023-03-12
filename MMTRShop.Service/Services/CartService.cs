@@ -115,7 +115,7 @@ namespace MMTRShop.Service.Services
         {
             var cartItems =await GetCartItemsDTO();
             var count = cartItems.Sum(x=>x.ProductCount);
-            var limit = _configurationService.RestrictionOfGoodsInCart;
+            var limit = _configurationService.SettingsAPI.RestrictionOfGoodsInCart;
             if (count>= limit)
             {
                 throw new RestrictionOfGoodsException($"Лимит вместимости корзины {limit} товаров");;

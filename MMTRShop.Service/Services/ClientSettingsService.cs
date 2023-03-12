@@ -1,39 +1,38 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using MMTRShop.Service.Interface;
+using Newtonsoft.Json;
 using Shop.Infrastructure.DTO;
-using Shop.Infrastructure.Interface;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MMTRShop.Service.Services
 {
     public class ClientSettingsService:IClientSettingsService
     {
-        private IConfiguration _configuration;
-        public int RestrictionOfGoodsInCart { get; set; }
-        public int QuantityOfProductToDisplay { get; set; }
-        public ClientSettingsService() { 
-
-        }
-        public ClientSettingsService(IConfiguration configuration)
+        private string path = "Settings.json";
+        public SettingsAPI SettingsAPI { get; set; }
+        public ClientSettingsService()
         {
-            _configuration = configuration;
-            RestrictionOfGoodsInCart = int.Parse(_configuration["ClientSettingsService:RestrictionOfGoodsInCart"]);
-            QuantityOfProductToDisplay = int.Parse(_configuration["ClientSettingsService:QuantityOfProductToDisplay"]);
+            string json = File.ReadAllText(path);
+            SettingsAPI = JsonConvert.DeserializeObject<SettingsAPI>(json);
         }
 
-        public void UpdateRestrictionOfGoodsInCart(int value)
+        private async Task WriteData()
         {
-            RestrictionOfGoodsInCart = value;
+            string json = JsonConvert.SerializeObject(SettingsAPI);
+            File.WriteAllText(path,json);
+
         }
 
-        public void UpdateQuantityOfProductToDisplay(int value)
+        public async Task UpdateRestrictionOfGoodsInCart(int value)
         {
-            QuantityOfProductToDisplay = value;
+            SettingsAPI.RestrictionOfGoodsInCart = value;
+            await WriteData();
+        }
+
+        public async Task UpdateQuantityOfProductToDisplay(int value)
+        {
+            SettingsAPI.QuantityOfProductToDisplay = value;
+            await WriteData();
         }
     }
 }
