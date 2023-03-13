@@ -16,13 +16,13 @@ namespace MMTRShopAPI.Controllers
         [HttpPut(nameof(PutRestrictionOfGoodsInCart))]
         public async Task<IActionResult> PutRestrictionOfGoodsInCart(int value)
         {
-            await _configurationService.UpdateRestrictionOfGoodsInCart(value);
+            _configurationService.UpdateRestrictionOfGoodsInCart(value);
             return Ok();
         }
         [HttpPut(nameof(PutQuantityOfProductToDisplay))]
         public async Task<IActionResult> PutQuantityOfProductToDisplay(int value)
         {
-            await _configurationService.UpdateQuantityOfProductToDisplay(value);
+            _configurationService.UpdateQuantityOfProductToDisplay(value);
             return Ok();
         }
     }

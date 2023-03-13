@@ -24,6 +24,8 @@ builder.Services.AddDbContext<ShopContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found."));
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.Configure<SettingsAPI>(
+    builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -41,7 +43,7 @@ builder.Services
     .AddScoped<IOrderService, OrderService>()
     .AddScoped<IOrderContentService, OrderContentService>()
     .AddScoped<IStatusService, StatusService>()
-    .AddSingleton<IClientSettingsService, ClientSettingsService>();
+    .AddScoped<IClientSettingsService, ClientSettingsService>();
 builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());

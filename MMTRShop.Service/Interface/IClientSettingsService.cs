@@ -10,7 +10,7 @@ namespace MMTRShop.Service.Interface
     public interface IClientSettingsService
     {
         SettingsAPI SettingsAPI { get; set; }
-        Task UpdateRestrictionOfGoodsInCart(int value);
-        Task UpdateQuantityOfProductToDisplay(int value);
+        void UpdateRestrictionOfGoodsInCart(int value);
+        void UpdateQuantityOfProductToDisplay(int value);
     }
 }

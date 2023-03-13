@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using MMTRShop.Service.Interface;
 using Newtonsoft.Json;
 using Shop.Infrastructure.DTO;
@@ -8,31 +9,22 @@ namespace MMTRShop.Service.Services
 {
     public class ClientSettingsService:IClientSettingsService
     {
-        private string path = "Settings.json";
+        private readonly SettingsAPI _optionsDelegate;
         public SettingsAPI SettingsAPI { get; set; }
-        public ClientSettingsService()
+        public ClientSettingsService(IOptionsSnapshot<SettingsAPI> optionsDelegate)
         {
-            string json = File.ReadAllText(path);
-            SettingsAPI = JsonConvert.DeserializeObject<SettingsAPI>(json);
+            _optionsDelegate = optionsDelegate.Value;
+            SettingsAPI = _optionsDelegate;
         }
 
-        private async Task WriteData()
+        public void UpdateRestrictionOfGoodsInCart(int value)
         {
-            string json = JsonConvert.SerializeObject(SettingsAPI);
-            File.WriteAllText(path,json);
-
+            _optionsDelegate.RestrictionOfGoodsInCart = value;
         }
 
-        public async Task UpdateRestrictionOfGoodsInCart(int value)
+        public void UpdateQuantityOfProductToDisplay(int value)
         {
-            SettingsAPI.RestrictionOfGoodsInCart = value;
-            await WriteData();
-        }
-
-        public async Task UpdateQuantityOfProductToDisplay(int value)
-        {
-            SettingsAPI.QuantityOfProductToDisplay = value;
-            await WriteData();
+            _optionsDelegate.QuantityOfProductToDisplay = value;
         }
     }
 }
