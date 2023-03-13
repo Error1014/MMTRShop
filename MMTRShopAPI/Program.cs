@@ -9,12 +9,12 @@ using MMTRShop.Service;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using MMTRShopAPI.Middleware;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Microsoft.Extensions.Configuration;
+using MTTRShopAPI.Middleware.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -2,17 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MMTRShop.Service.Interface;
-using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace MMTRShopAPI.Middleware
+namespace MTTRShopAPI.Middleware.Middleware
 {
     public class AuthenticationMiddleware
     {
