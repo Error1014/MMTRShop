@@ -11,7 +11,7 @@ namespace MMTRShop.Service.Services
     {
         private readonly SettingsAPI _optionsDelegate;
         public SettingsAPI SettingsAPI { get; set; }
-        public ClientSettingsService(IOptionsSnapshot<SettingsAPI> optionsDelegate)
+        public ClientSettingsService(IOptions<SettingsAPI> optionsDelegate)
         {
             _optionsDelegate = optionsDelegate.Value;
             SettingsAPI = _optionsDelegate;
