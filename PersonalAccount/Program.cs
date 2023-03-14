@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using MMTRShop.Repository.Entities;
 using MMTRShop.Service.Services;
 using MMTRShop.Repository.Repositories;
 using MMTRShop.Repository.Interface;
@@ -15,6 +13,7 @@ using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Microsoft.Extensions.Configuration;
 using MTTRShopAPI.Middleware.Middleware;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,18 +30,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services
     .AddScoped<IUnitOfWork, UnitOfWork>()
-    .AddScoped<IProductService, ProductService>()
     .AddScoped<IUserService, UserService>()
-    .AddScoped<IBankCardService, BankCardService>()
-    .AddScoped<IBrandService, BrandService>()
-    .AddScoped<ICartService, CartService>()
-    .AddScoped<ICategoryServise, CategoryService>()
     .AddScoped<IClientService, ClientService>()
-    .AddScoped<IFavouriteService, FavouriteService>()
-    .AddScoped<IFeedbackService, FeedbackService>()
-    .AddScoped<IOrderService, OrderService>()
-    .AddScoped<IOrderContentService, OrderContentService>()
-    .AddScoped<IStatusService, StatusService>()
     .AddScoped<IClientSettingsService, ClientSettingsService>();
 builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
@@ -104,7 +93,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-    
+
 app.UseHttpsRedirection();
 app.UseStatusCodePages();
 app.UseAuthorization();
@@ -113,4 +102,3 @@ app.UseMiddleware<AuthenticationMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.Run();
-
