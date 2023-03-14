@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MMTRShop.Service.Interface;
 
-namespace MMTRShopAPI.Controllers
+namespace Microservices.ConfigurationMicroservice.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class ConfigurationSettingsController : BaseApiController

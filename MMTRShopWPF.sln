@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartMicroservice", "CartMic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationMicroservice", "AuthorizationMicroservice\AuthorizationMicroservice.csproj", "{C0DC744F-699C-416C-93A9-4E8D3D1550A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationMicroservice", "ConfigurationMicroservice\ConfigurationMicroservice.csproj", "{77BB6D66-05C8-4AFF-866F-B668733D62CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{C0DC744F-699C-416C-93A9-4E8D3D1550A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0DC744F-699C-416C-93A9-4E8D3D1550A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0DC744F-699C-416C-93A9-4E8D3D1550A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77BB6D66-05C8-4AFF-866F-B668733D62CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77BB6D66-05C8-4AFF-866F-B668733D62CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77BB6D66-05C8-4AFF-866F-B668733D62CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77BB6D66-05C8-4AFF-866F-B668733D62CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{9FE1E55F-9371-416C-B012-12BB7EC9994B} = {3F0F40C1-11F3-4699-813A-F4256A52C577}
 		{2A0E6D22-F855-499F-826A-5D91E801BDF7} = {3F0F40C1-11F3-4699-813A-F4256A52C577}
 		{C0DC744F-699C-416C-93A9-4E8D3D1550A3} = {3F0F40C1-11F3-4699-813A-F4256A52C577}
+		{77BB6D66-05C8-4AFF-866F-B668733D62CD} = {3F0F40C1-11F3-4699-813A-F4256A52C577}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7779F3BC-1A57-4D43-BC24-879C3326E609}
