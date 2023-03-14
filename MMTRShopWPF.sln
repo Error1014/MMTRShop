@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Infrastructure", "Shop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMTRShopAPI.PersonalAccount", "PersonalAccount\MMTRShopAPI.PersonalAccount.csproj", "{9FE1E55F-9371-416C-B012-12BB7EC9994B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTTRShopAPI.Middleware", "MTTRShopAPI.Middleware\MTTRShopAPI.Middleware.csproj", "{741BA14A-C83F-44B5-9B32-9FE438A47E0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMTRShopAPI.Middleware", "MTTRShopAPI.Middleware\MMTRShopAPI.Middleware.csproj", "{741BA14A-C83F-44B5-9B32-9FE438A47E0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{3F0F40C1-11F3-4699-813A-F4256A52C577}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9FE1E55F-9371-416C-B012-12BB7EC9994B} = {3F0F40C1-11F3-4699-813A-F4256A52C577}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7779F3BC-1A57-4D43-BC24-879C3326E609}
