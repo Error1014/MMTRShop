@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using MMTRShop.Repository.Entities;
 
-namespace MMTRShopAPI.Controllers
+namespace Microservices.CartMicroservice
 {
     [Authorize(Roles = "Admin, Client")]
     public class CartsController : BaseApiController
