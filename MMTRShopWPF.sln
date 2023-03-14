@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShopAPI", "MMTRShopAPI\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Infrastructure", "Shop.Infrastructure\Shop.Infrastructure.csproj", "{F5CDA9BC-1813-4171-A7CB-CBC83D4CEBD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMTRShopAPI.PersonalAccount", "PersonalAccount\MMTRShopAPI.PersonalAccount.csproj", "{9FE1E55F-9371-416C-B012-12BB7EC9994B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalAccount", "PersonalAccount\PersonalAccount.csproj", "{9FE1E55F-9371-416C-B012-12BB7EC9994B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMTRShopAPI.Middleware", "MTTRShopAPI.Middleware\MMTRShopAPI.Middleware.csproj", "{741BA14A-C83F-44B5-9B32-9FE438A47E0C}"
 EndProject

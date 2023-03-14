@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Security.Claims;
 
-namespace Microservices.MMTRShopAPI.PersonalAccount.Controllers
+namespace Microservices.PersonalAccount.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

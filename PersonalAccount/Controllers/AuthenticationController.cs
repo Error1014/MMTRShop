@@ -15,7 +15,7 @@ using System.Security.Cryptography;
 using Newtonsoft.Json;
 using MMTRShop.Service.Services;
 
-namespace Microservices.MMTRShopAPI.PersonalAccount.Controllers
+namespace Microservices.PersonalAccount.Controllers
 {
     public class AuthenticationController : BaseApiController
     {

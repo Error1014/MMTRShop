@@ -1,38 +1,42 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using MMTRShop.Repository.Contexts;
-using MMTRShop.Repository.Interface;
-using MMTRShop.Repository.Repositories;
-using MMTRShop.Service;
-using MMTRShop.Service.Interface;
 using MMTRShop.Service.Services;
-using MTTRShopAPI.Middleware.Middleware;
+using MMTRShop.Repository.Repositories;
+using MMTRShop.Repository.Interface;
+using MMTRShop.Service.Interface;
+using MMTRShop.Repository.Contexts;
+using MMTRShop.Service;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
-using System.Text;
+using Microsoft.Extensions.Configuration;
+using MTTRShopAPI.Middleware.Middleware;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 builder.Services.AddDbContext<ShopContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found."));
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-});
+});// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.Configure<SettingsAPI>(
+    builder.Configuration.GetSection("SettingsAPI"));
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
 builder.Services
     .AddScoped<IUnitOfWork, UnitOfWork>()
     .AddScoped<IUserService, UserService>()
+    .AddScoped<IClientService, ClientService>()
     .AddScoped<IClientSettingsService, ClientSettingsService>();
 builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());
 
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -77,6 +81,11 @@ builder.Services.AddSwaggerGen(opt =>
     });
 });
 var app = builder.Build();
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -86,10 +95,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseStatusCodePages();
 app.UseAuthorization();
-
 app.MapControllers();
 app.UseMiddleware<AuthenticationMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
+
 app.Run();
