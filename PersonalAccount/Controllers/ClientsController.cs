@@ -10,7 +10,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.SignalR;
 using System;
 
-namespace Microservices.PersonalAccount.Controllers
+namespace Microservices.PersonalAccountMicroservice.Controllers
 {
 
     public class ClientsController : BaseApiController

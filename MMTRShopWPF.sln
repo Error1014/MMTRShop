@@ -11,13 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShopAPI", "MMTRShopAPI\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Infrastructure", "Shop.Infrastructure\Shop.Infrastructure.csproj", "{F5CDA9BC-1813-4171-A7CB-CBC83D4CEBD0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalAccount", "PersonalAccount\PersonalAccount.csproj", "{9FE1E55F-9371-416C-B012-12BB7EC9994B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalAccountMicroservice", "PersonalAccount\PersonalAccountMicroservice.csproj", "{9FE1E55F-9371-416C-B012-12BB7EC9994B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShopAPI.Middleware", "MTTRShopAPI.Middleware\MMTRShopAPI.Middleware.csproj", "{741BA14A-C83F-44B5-9B32-9FE438A47E0C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{3F0F40C1-11F3-4699-813A-F4256A52C577}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartMicroservice", "CartMicroservice\CartMicroservice.csproj", "{2A0E6D22-F855-499F-826A-5D91E801BDF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationMicroservice", "AuthorizationMicroservice\AuthorizationMicroservice.csproj", "{C0DC744F-699C-416C-93A9-4E8D3D1550A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{2A0E6D22-F855-499F-826A-5D91E801BDF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A0E6D22-F855-499F-826A-5D91E801BDF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A0E6D22-F855-499F-826A-5D91E801BDF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0DC744F-699C-416C-93A9-4E8D3D1550A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0DC744F-699C-416C-93A9-4E8D3D1550A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0DC744F-699C-416C-93A9-4E8D3D1550A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0DC744F-699C-416C-93A9-4E8D3D1550A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9FE1E55F-9371-416C-B012-12BB7EC9994B} = {3F0F40C1-11F3-4699-813A-F4256A52C577}
 		{2A0E6D22-F855-499F-826A-5D91E801BDF7} = {3F0F40C1-11F3-4699-813A-F4256A52C577}
+		{C0DC744F-699C-416C-93A9-4E8D3D1550A3} = {3F0F40C1-11F3-4699-813A-F4256A52C577}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7779F3BC-1A57-4D43-BC24-879C3326E609}
