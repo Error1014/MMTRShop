@@ -19,7 +19,7 @@ namespace MMTRShop.Repository.Repositories
         }
         public async Task<IEnumerable<Client>> GetClientsPage(BaseFilter filter)
         {
-            var query = ShopContext.User.OfType<Client>().AsQueryable();
+            var query = Set;
             query = query
                 .OrderBy(x => x.Id)
                 .Skip((filter.NumPage - 1) * filter.SizePage)

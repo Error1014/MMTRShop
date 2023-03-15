@@ -22,8 +22,6 @@ namespace MMTRShop.Repository.Entities
         public Guid BrandId { get; set; }
         [ForeignKey("BrandId")]
         public virtual Brand? Brand { get; set; }
-        public virtual List<CartItem>? CartItem { get; set; }
-
         public virtual List<OrderContent>? Content { get; set; }
         public virtual List<Feedback>? Feedback { get; set; }
 

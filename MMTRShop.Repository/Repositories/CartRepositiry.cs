@@ -12,15 +12,15 @@ namespace MMTRShop.Repository.Repositories
 {
     public class CartRepositiry : Repository<Cart, Guid>, ICartRepository
     {
-        private readonly ShopContext _shopContext;
-        public CartRepositiry(ShopContext context) : base(context)
+        private readonly CartContext _cartContext;
+        public CartRepositiry(CartContext context) : base(context)
         {
-            _shopContext = context;
+            _cartContext = context;
         }
 
         public async Task<Cart> GetCartByClient(Guid clientId)
         {
-            return await _shopContext.Cart.Where(x => x.ClientId == clientId).FirstOrDefaultAsync();
+            return await _cartContext.Cart.Where(x => x.ClientId == clientId).FirstOrDefaultAsync();
         }
     }
 }

@@ -12,21 +12,21 @@ namespace MMTRShop.Repositories.Repository
 {
     public class CartItemRopository : Repository<CartItem,Guid>, ICartItemRepository
     {
-        private readonly ShopContext _shopContext;
-        public CartItemRopository(ShopContext context) : base(context)
+        private readonly CartContext _cartContext;
+        public CartItemRopository(CartContext context) : base(context)
         {
-            _shopContext = context;
+            _cartContext = context;
         }
 
         public async Task ClearCart(Guid cartId)
         {
             var cartItem = await GetCartItemsByCart(cartId);
-            _shopContext.CartItem.RemoveRange(cartItem);
+            _cartContext.CartItem.RemoveRange(cartItem);
         }
 
         public async Task<IEnumerable<CartItem>> GetCartItemsByCart(Guid cartId)
         {
-            return await _shopContext.CartItem.Where(c=>c.CartId==cartId).ToListAsync();
+            return await _cartContext.CartItem.Where(c=>c.CartId==cartId).ToListAsync();
         }
 
 

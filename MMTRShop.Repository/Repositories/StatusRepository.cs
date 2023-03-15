@@ -3,43 +3,45 @@ using MMTRShop.Repository.Contexts;
 using MMTRShop.Repository.Interface;
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace MMTRShop.Repository.Repositories
 {
     public class StatusRepository:Repository<Status,int>,IStatusRepository
     {
-        public StatusRepository(ShopContext context) : base(context)
+        private readonly ShopContext _shopContext;
+        public StatusRepository(ShopContext shopContext) : base(shopContext)
         {
-
+            _shopContext = shopContext;
         }
 
         //Продумать как это реализовать через enum
         public Status SetStatusWaitingPlaced()
         {
-            return ShopContext.Status.Where(s => s.Title == "Ждёт подтверждения").First();
+            return _shopContext.Status.Where(s => s.Title == "Ждёт подтверждения").First();
         }
         public Status SetStatusPlaced()
         {
-            return ShopContext.Status.Where(s => s.Title == "Оформлен").First();
+            return _shopContext.Status.Where(s => s.Title == "Оформлен").First();
         }
         public Status Delivered()
         {
-            return ShopContext.Status.Where(s => s.Title == "Доставлен").First();
+            return _shopContext.Status.Where(s => s.Title == "Доставлен").First();
         }
 
         public Status SetStatusCancelled()
         {
-            return ShopContext.Status.Where(s => s.Title == "Отменён").First();
+            return _shopContext.Status.Where(s => s.Title == "Отменён").First();
         }
 
         public Status SetStatusOnWay()
         {
-            return ShopContext.Status.Where(s => s.Title == "В пути").First();
+            return _shopContext.Status.Where(s => s.Title == "В пути").First();
         }
 
         public Status SetStatusReceived()
         {
-            return ShopContext.Status.Where(s => s.Title == "Получен").First();
+            return _shopContext.Status.Where(s => s.Title == "Получен").First();
         }
 
         

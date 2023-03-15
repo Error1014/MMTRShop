@@ -8,13 +8,12 @@ namespace MMTRShop.Repository.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ShopContext _context;
+        private readonly CartContext _cartContext;
 
         public UnitOfWork(ShopContext context)
         {
             _context = context;
             Products = new ProductRepository(_context);
-            CartItems = new CartItemRopository(_context);
-            Carts = new CartRepositiry(_context);
             Categories = new CategoryRepository(_context);
             Brands = new BrandRepository(_context);
             Users = new UserRepository(_context);
@@ -27,6 +26,13 @@ namespace MMTRShop.Repository.Repositories
             Admins = new AdminRepository(_context);
             Operators = new OperatorRepository(_context);
             Feedbacks = new FeedbackRepository(_context);
+        }
+
+        public UnitOfWork(CartContext context)
+        {
+            _cartContext = context;
+            CartItems = new CartItemRopository(_cartContext);
+            Carts = new CartRepositiry(_cartContext);
         }
 
         public IProductRepository Products { get;private set; }

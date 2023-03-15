@@ -11,14 +11,15 @@ namespace MMTRShop.Repository.Repositories
 {
     public class OrderRepository:Repository<Order,Guid>,IOrderRepository
     {
+        private readonly ShopContext _shopContext;
         public OrderRepository(ShopContext context) : base(context)
         {
-
+            _shopContext = context;
         }
 
         public async Task<IEnumerable<Order>> GetOrders(OrderFilter filter)
         {
-            var query = ShopContext.Order.AsQueryable();
+            var query = Set;
             if (filter.ClientId.HasValue)
             {
                 query = query.Where(x => x.ClientId == filter.ClientId);

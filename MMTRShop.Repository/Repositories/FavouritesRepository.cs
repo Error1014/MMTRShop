@@ -11,18 +11,19 @@ namespace MMTRShop.Repository.Repositories
 {
     public class FavouritesRepository : Repository<Favourite,Guid>, IFavouritesRepository
     {
+        private readonly ShopContext _shopContext;
         public FavouritesRepository(ShopContext context) : base(context)
         {
-
+            _shopContext = context;
         }
 
         public async Task<IEnumerable<Favourite>> GetFavourites(Guid clientId)
         {
-            return ShopContext.Favourites.Where(k => k.ClientId == clientId);
+            return _shopContext.Favourites.Where(k => k.ClientId == clientId);
         }
         public async Task<IEnumerable<Favourite>> GetFavourites(FilterByClient filter)
         {
-            var query = ShopContext.Favourites.AsQueryable();
+            var query = Set;
             if (filter.ClientId.HasValue)
             {
                 query = query.Where(x => x.ClientId == filter.ClientId);
