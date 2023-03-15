@@ -9,12 +9,10 @@ namespace MMTRShop.Repository.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _context;
-        private readonly UserContext _userContext;
-
+        private readonly DbContext _dbContext;
         public UnitOfWork(ShopContext context)
         {
-            _context = context;
+            _dbContext = context;
             Products = new ProductRepository(context);
             Categories = new CategoryRepository(context);
             Brands = new BrandRepository(context);
@@ -28,28 +26,18 @@ namespace MMTRShop.Repository.Repositories
 
         public UnitOfWork(CartContext context)
         {
-            _context = context;
-            CartItems = new CartItemRopository(_context);
-            Carts = new CartRepositiry(_context);
+            _dbContext = context;
+            CartItems = new CartItemRopository(context);
+            Carts = new CartRepositiry(context);
         }
 
         public UnitOfWork(UserContext context)
         {
-            _context = context;
-            _userContext = context;
-            Users = new UserRepository(_userContext);
-            Clients = new ClientRepository(_context);
-            Admins = new AdminRepository(_context);
-            Operators = new OperatorRepository(_context);
-        }
-        public UnitOfWork(CartContext cartContext, UserContext userContext)
-        {
-            CartItems = new CartItemRopository(cartContext);
-            Carts = new CartRepositiry(cartContext);
-            Users = new UserRepository(userContext);
-            Clients = new ClientRepository(userContext);
-            Admins = new AdminRepository(userContext);
-            Operators = new OperatorRepository(userContext);
+            _dbContext = context;
+            Users = new UserRepository(context);
+            Clients = new ClientRepository(context);
+            Admins = new AdminRepository(context);
+            Operators = new OperatorRepository(context);
         }
         public IProductRepository Products { get; private set; }
 
@@ -80,12 +68,12 @@ namespace MMTRShop.Repository.Repositories
 
         public int Complete()
         {
-            return _context.SaveChanges();
+            return _dbContext.SaveChanges();
         }
 
         public void Dispose()
         {
-            _context.Dispose();
+            _dbContext.Dispose();
         }
     }
 }

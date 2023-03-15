@@ -15,10 +15,6 @@ namespace MMTRShop.Repository.Repositories
         {
             this.context = context;
         }
-        public Repository(UserContext context)
-        {
-            this.context = context;
-        }
         #region Add
         public void Add(TEntity entity)
         {
