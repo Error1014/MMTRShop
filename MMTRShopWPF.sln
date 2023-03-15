@@ -13,15 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Infrastructure", "Shop
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalAccountMicroservice", "PersonalAccount\PersonalAccountMicroservice.csproj", "{9FE1E55F-9371-416C-B012-12BB7EC9994B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShopAPI.Middleware", "MTTRShopAPI.Middleware\MMTRShopAPI.Middleware.csproj", "{741BA14A-C83F-44B5-9B32-9FE438A47E0C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{3F0F40C1-11F3-4699-813A-F4256A52C577}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartMicroservice", "CartMicroservice\CartMicroservice.csproj", "{2A0E6D22-F855-499F-826A-5D91E801BDF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartMicroservice", "CartMicroservice\CartMicroservice.csproj", "{2A0E6D22-F855-499F-826A-5D91E801BDF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationMicroservice", "AuthorizationMicroservice\AuthorizationMicroservice.csproj", "{C0DC744F-699C-416C-93A9-4E8D3D1550A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthorizationMicroservice", "AuthorizationMicroservice\AuthorizationMicroservice.csproj", "{C0DC744F-699C-416C-93A9-4E8D3D1550A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationMicroservice", "ConfigurationMicroservice\ConfigurationMicroservice.csproj", "{77BB6D66-05C8-4AFF-866F-B668733D62CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationMicroservice", "ConfigurationMicroservice\ConfigurationMicroservice.csproj", "{77BB6D66-05C8-4AFF-866F-B668733D62CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +47,6 @@ Global
 		{9FE1E55F-9371-416C-B012-12BB7EC9994B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FE1E55F-9371-416C-B012-12BB7EC9994B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FE1E55F-9371-416C-B012-12BB7EC9994B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{741BA14A-C83F-44B5-9B32-9FE438A47E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{741BA14A-C83F-44B5-9B32-9FE438A47E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{741BA14A-C83F-44B5-9B32-9FE438A47E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{741BA14A-C83F-44B5-9B32-9FE438A47E0C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A0E6D22-F855-499F-826A-5D91E801BDF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A0E6D22-F855-499F-826A-5D91E801BDF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A0E6D22-F855-499F-826A-5D91E801BDF7}.Release|Any CPU.ActiveCfg = Release|Any CPU

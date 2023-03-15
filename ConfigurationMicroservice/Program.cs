@@ -1,20 +1,13 @@
-using Microsoft.EntityFrameworkCore;
-using MMTRShop.Repository.Entities;
-using MMTRShop.Service.Services;
-using MMTRShop.Repository.Repositories;
-using MMTRShop.Repository.Interface;
-using MMTRShop.Service.Interface;
-using MMTRShop.Repository.Contexts;
-using MMTRShop.Service;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
-using Microsoft.Extensions.Configuration;
-using MTTRShopAPI.Middleware.Middleware;
+using Shop.Infrastructure.Middleware.Middleware;
+using MMTRShop.Service.Interface;
+using MMTRShop.Service.Services;
+using MMTRShop.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -15,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MMTRShop.Repository\MMTRShop.Repository.csproj" />
     <ProjectReference Include="..\MMTRShop.Service\MMTRShop.Service.csproj" />
-    <ProjectReference Include="..\MTTRShopAPI.Middleware\MMTRShopAPI.Middleware.csproj" />
     <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
   </ItemGroup>
 

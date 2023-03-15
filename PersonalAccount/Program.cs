@@ -7,13 +7,11 @@ using MMTRShop.Service;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
-using Microsoft.Extensions.Configuration;
-using MTTRShopAPI.Middleware.Middleware;
 using Microsoft.EntityFrameworkCore;
+using Shop.Infrastructure.Middleware.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
