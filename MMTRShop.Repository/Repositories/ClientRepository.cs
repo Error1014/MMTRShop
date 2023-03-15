@@ -12,10 +12,8 @@ namespace MMTRShop.Repository.Repositories
 {
     public class ClientRepository : Repository<Client, Guid>, IClientRepository
     {
-        private readonly ShopContext _shopContext;
-        public ClientRepository(ShopContext context) : base(context)
+        public ClientRepository(DbContext context) : base(context)
         {
-            _shopContext=context;
         }
         public async Task<IEnumerable<Client>> GetClientsPage(BaseFilter filter)
         {

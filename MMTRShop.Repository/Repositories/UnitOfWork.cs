@@ -2,40 +2,56 @@
 using MMTRShop.Repositories.Repository;
 using MMTRShop.Repository.Contexts;
 using MMTRShop.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
+using XAct;
 
 namespace MMTRShop.Repository.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ShopContext _context;
-        private readonly CartContext _cartContext;
+        private readonly DbContext _context;
+        private readonly UserContext _userContext;
 
         public UnitOfWork(ShopContext context)
         {
             _context = context;
-            Products = new ProductRepository(_context);
-            Categories = new CategoryRepository(_context);
-            Brands = new BrandRepository(_context);
-            Users = new UserRepository(_context);
-            Clients = new ClientRepository(_context);
-            Favorites = new FavouritesRepository(_context);
-            BankCards = new BankCardRepository(_context);
-            Orders = new OrderRepository(_context);
-            OrderContents = new OrderContentRepository(_context);
-            Status = new StatusRepository(_context);
-            Admins = new AdminRepository(_context);
-            Operators = new OperatorRepository(_context);
-            Feedbacks = new FeedbackRepository(_context);
+            Products = new ProductRepository(context);
+            Categories = new CategoryRepository(context);
+            Brands = new BrandRepository(context);
+            Favorites = new FavouritesRepository(context);
+            BankCards = new BankCardRepository(context);
+            Orders = new OrderRepository(context);
+            OrderContents = new OrderContentRepository(context);
+            Status = new StatusRepository(context);
+            Feedbacks = new FeedbackRepository(context);
         }
 
         public UnitOfWork(CartContext context)
         {
-            _cartContext = context;
-            CartItems = new CartItemRopository(_cartContext);
-            Carts = new CartRepositiry(_cartContext);
+            _context = context;
+            CartItems = new CartItemRopository(_context);
+            Carts = new CartRepositiry(_context);
         }
 
-        public IProductRepository Products { get;private set; }
+        public UnitOfWork(UserContext context)
+        {
+            _context = context;
+            _userContext = context;
+            Users = new UserRepository(_userContext);
+            Clients = new ClientRepository(_context);
+            Admins = new AdminRepository(_context);
+            Operators = new OperatorRepository(_context);
+        }
+        public UnitOfWork(CartContext cartContext, UserContext userContext)
+        {
+            CartItems = new CartItemRopository(cartContext);
+            Carts = new CartRepositiry(cartContext);
+            Users = new UserRepository(userContext);
+            Clients = new ClientRepository(userContext);
+            Admins = new AdminRepository(userContext);
+            Operators = new OperatorRepository(userContext);
+        }
+        public IProductRepository Products { get; private set; }
 
         public ICartItemRepository CartItems { get; private set; }
         public ICartRepository Carts { get; private set; }

@@ -13,9 +13,8 @@ namespace MMTRShop.Repositories.Repository
     public class CartItemRopository : Repository<CartItem,Guid>, ICartItemRepository
     {
         private readonly CartContext _cartContext;
-        public CartItemRopository(CartContext context) : base(context)
+        public CartItemRopository(DbContext context) : base(context)
         {
-            _cartContext = context;
         }
 
         public async Task ClearCart(Guid cartId)
@@ -26,7 +25,7 @@ namespace MMTRShop.Repositories.Repository
 
         public async Task<IEnumerable<CartItem>> GetCartItemsByCart(Guid cartId)
         {
-            return await _cartContext.CartItem.Where(c=>c.CartId==cartId).ToListAsync();
+            return await Set.Where(c=>c.CartId==cartId).ToListAsync();
         }
 
 

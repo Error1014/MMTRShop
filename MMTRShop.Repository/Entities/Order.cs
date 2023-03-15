@@ -9,7 +9,6 @@ namespace MMTRShop.Repository.Entities
     public class Order : BaseEntity<Guid>
     {
         public Guid ClientId { get; set; }
-        public virtual Client Client { get; set; }
         public string Address { get; set; }
         public DateTime DateOrder { get; set; }
         public DateTime DateDelivery { get; set; }

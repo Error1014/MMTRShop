@@ -6,6 +6,8 @@ using Shop.Infrastructure.Interface;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using System.Security.Claims;
+using MMTRShop.Repository.Entities;
 
 namespace MTTRShopAPI.Middleware.Middleware
 {
@@ -42,13 +44,14 @@ namespace MTTRShopAPI.Middleware.Middleware
                     }, out SecurityToken validatedToken);
                     var jwtToken = (JwtSecurityToken)validatedToken;
                     var accountId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "Id").Value);
-                    var user = await userService.GetUser(accountId);
-                    context.Items["User"] = user;
+                    var role = jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
+                    //context.Items["User"] = new User(accountId);
                     userSession.UserId = accountId;
-                    userSession.Role = user.GetType().Name;
+                    userSession.Role = role;
                 }
                 catch
                 {
+                    throw new Exception("Error");
                 }
             } 
 

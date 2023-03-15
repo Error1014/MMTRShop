@@ -18,13 +18,13 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ShopContext>(options =>
+builder.Services.AddDbContext<UserContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found."));
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-});// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+});
 builder.Services.Configure<SettingsAPI>(
-    builder.Configuration.GetSection("SettingsAPI"));
+builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();

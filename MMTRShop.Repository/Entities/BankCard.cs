@@ -15,7 +15,6 @@ namespace MMTRShop.Repository.Entities
         public string Code { get; set; }
 
         public Guid? ClientId { get; set; }
-        public virtual Client Client { get; set; }
 
 
     }
