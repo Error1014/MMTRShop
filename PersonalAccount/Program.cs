@@ -12,15 +12,12 @@ using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.Middleware.Middleware;
+using Shop.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<UserContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found."));
-    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-});// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.RegistrationDbContext<UserContext>(builder.Configuration);
 builder.Services.Configure<SettingsAPI>(
     builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.AddEndpointsApiExplorer();

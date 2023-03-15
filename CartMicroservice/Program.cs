@@ -12,15 +12,12 @@ using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Shop.Infrastructure.Middleware.Middleware;
+using Shop.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<CartContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CartDb") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found."));
-    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-});
+builder.Services.RegistrationDbContext<CartContext>(builder.Configuration);
 builder.Services.Configure<SettingsAPI>(
     builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.AddEndpointsApiExplorer();

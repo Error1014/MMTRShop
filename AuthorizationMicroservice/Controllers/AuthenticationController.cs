@@ -10,10 +10,11 @@ using Shop.Infrastructure.DTO;
 using MMTRShop.Repository.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Text;
-using static System.Net.Mime.MediaTypeNames;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
 using MMTRShop.Service.Services;
+using Shop.Infrastructure.Extensions;
+using MMTRShop.Repository.Contexts;
 
 namespace Microservices.AuthorizationMicroservice.Controllers
 {
@@ -21,12 +22,10 @@ namespace Microservices.AuthorizationMicroservice.Controllers
     {
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
-        private readonly IClientSettingsService _clientSettingsService;
-        public AuthenticationController(IConfiguration configuration,IUserService userService, IClientSettingsService clientSettingsService)
+        public AuthenticationController(IConfiguration configuration,IUserService userService)
         {
             _userService = userService;
             _configuration = configuration;
-            _clientSettingsService = clientSettingsService;
         }
         [HttpPost]
         public async Task<IResult> Login(LoginPasswordModel loginPasswordModel)
