@@ -15,12 +15,8 @@ namespace MMTRShop.Repository.Contexts
         {
             
         }
-
         public DbSet<Category> Category { get; set; }
         public DbSet<Product> Product { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<Cart> Cart { get; set; }
-        public DbSet<CartItem> CartItem { get; set; }
         public DbSet<Brand> Brand { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<Order> Order { get; set; }
@@ -29,11 +25,5 @@ namespace MMTRShop.Repository.Contexts
         public DbSet<Favourite> Favourites { get; set; }
         public DbSet<BankCard> BankCard { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Admin>().ToTable("Admin");
-            modelBuilder.Entity<Client>().ToTable("Client");
-            modelBuilder.Entity<Operator>().ToTable("Operator");
-        }
     }
 }
