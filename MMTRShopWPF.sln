@@ -11,9 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMTRShopAPI", "MMTRShopAPI\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Infrastructure", "Shop.Infrastructure\Shop.Infrastructure.csproj", "{F5CDA9BC-1813-4171-A7CB-CBC83D4CEBD0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalAccountMicroservice", "PersonalAccount\PersonalAccountMicroservice.csproj", "{9FE1E55F-9371-416C-B012-12BB7EC9994B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{3F0F40C1-11F3-4699-813A-F4256A52C577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalAccount.Api", "PersonalAccount\PersonalAccount.Api.csproj", "{9FE1E55F-9371-416C-B012-12BB7EC9994B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carts.Api", "CartMicroservice\Carts.Api.csproj", "{2A0E6D22-F855-499F-826A-5D91E801BDF7}"
 EndProject
@@ -36,6 +34,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConfigurationMicroservice", "ConfigurationMicroservice", "{BE0580E8-EB39-4365-9BED-3CB2D2558EA2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configuration.Services", "Configuration.Services\Configuration.Services.csproj", "{12EA2844-06B4-4F8F-A186-5F0407B94A9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PersonalAccountMicroservice", "PersonalAccountMicroservice", "{54E2DABA-8103-4B00-AFA6-C8E11F7B6116}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,7 +100,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9FE1E55F-9371-416C-B012-12BB7EC9994B} = {3F0F40C1-11F3-4699-813A-F4256A52C577}
+		{9FE1E55F-9371-416C-B012-12BB7EC9994B} = {54E2DABA-8103-4B00-AFA6-C8E11F7B6116}
 		{2A0E6D22-F855-499F-826A-5D91E801BDF7} = {2175EDAE-EAE1-4343-96BF-1CC827F504CE}
 		{C0DC744F-699C-416C-93A9-4E8D3D1550A3} = {4C65B566-D423-4C1B-8804-FA9040854BA3}
 		{77BB6D66-05C8-4AFF-866F-B668733D62CD} = {BE0580E8-EB39-4365-9BED-3CB2D2558EA2}

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Security.Claims;
 
-namespace Microservices.PersonalAccountMicroservice.Controllers
+namespace PersonalAccountMicroservice.PersonalAccount.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
