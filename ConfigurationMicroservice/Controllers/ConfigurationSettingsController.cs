@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ConfigurationMicroservice.Configuration.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MMTRShop.Service.Interface;
 
-namespace Microservices.ConfigurationMicroservice.Controllers
+namespace ConfigurationMicroservice.Configuration.Api.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class ConfigurationSettingsController : BaseApiController

@@ -5,9 +5,7 @@ using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Shop.Infrastructure.Middleware.Middleware;
-using MMTRShop.Service.Interface;
-using MMTRShop.Service.Services;
-using MMTRShop.Service;
+using ConfigurationMicroservice.Configuration.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,8 +21,6 @@ builder.Services
 builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());
-
-builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

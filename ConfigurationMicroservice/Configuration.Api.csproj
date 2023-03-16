@@ -13,8 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MMTRShop.Repository\MMTRShop.Repository.csproj" />
-    <ProjectReference Include="..\MMTRShop.Service\MMTRShop.Service.csproj" />
+    <ProjectReference Include="..\Configuration.Services\Configuration.Services.csproj" />
     <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
   </ItemGroup>
 
