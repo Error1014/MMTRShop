@@ -1,18 +1,15 @@
-using MMTRShop.Service.Services;
-using MMTRShop.Repository.Repositories;
-using MMTRShop.Repository.Interface;
-using MMTRShop.Service.Interface;
-using MMTRShop.Repository.Contexts;
-using MMTRShop.Service;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
-using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.Middleware.Middleware;
 using Shop.Infrastructure.Extensions;
+using PersonalAccountMicroservice.PersonalAccount.Repository;
+using PersonalAccountMicroservice.PersonalAccount.Repository.Interfaces;
+using PersonalAccountMicroservice.PersonalAccount.Repository.Repositories;
+using PersonalAccountMicroservice.PersonalAccount.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,9 +22,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services
     .AddScoped<IUnitOfWork, UnitOfWork>()
-    .AddScoped<IUserService, UserService>()
-    .AddScoped<IClientService, ClientService>()
-    .AddScoped<IClientSettingsService, ClientSettingsService>();
+    .AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());

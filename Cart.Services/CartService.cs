@@ -22,11 +22,20 @@ namespace CartMicroservice.Carts.Services
         }
         private async Task<Cart> GetCart()
         {
+            var cart = await _unitOfWork.Carts.GetCartByClient(_userSession.UserId);
+            if (cart == null)
+            {
+                await _unitOfWork.Carts.AddAsync(new Cart(_userSession.UserId));
+            }
             return await _unitOfWork.Carts.GetCartByClient(_userSession.UserId);
         }
         public async Task<IEnumerable<CartItemDTO>> GetCartItemsDTO()
         {
             var cart = await GetCart();
+            if (cart == null)
+            {
+                await _unitOfWork.Carts.AddAsync(new Cart(_userSession.UserId));
+            }
             var items = await _unitOfWork.CartItems.GetCartItemsByCart(cart.Id);
             var result = _mapper.Map<IEnumerable<CartItemDTO>>(items);
             return result;

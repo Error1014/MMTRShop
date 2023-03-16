@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Authorization.Repository.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20230316111643_Init")]
+    [Migration("20230316190826_Init")]
     partial class Init
     {
         /// <inheritdoc />

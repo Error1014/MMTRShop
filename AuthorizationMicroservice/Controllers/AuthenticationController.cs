@@ -1,6 +1,7 @@
 ﻿using AuthorizationMicroservice.Authorization.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -16,6 +17,12 @@ namespace AuthorizationMicroservice.Authorization.Api.Controllers
         {
             _userService = userService;
             _configuration = configuration;
+        }
+        [HttpPost(nameof(Registration))]
+        public async Task<IActionResult> Registration(UserDTO userDTO)
+        {
+            await _userService.AddUser(userDTO);
+            return Ok();
         }
         [HttpPost]
         public async Task<IResult> Login(LoginPasswordModel loginPasswordModel)

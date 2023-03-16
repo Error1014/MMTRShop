@@ -25,6 +25,7 @@ namespace AuthorizationMicroservice.Authorization.Services
                 throw new DublicateException("Пользователь с таким логином уже существует");
             }
             var user = _mapper.Map<User>(userDTO);
+            user.Password = GeneratorHash.GetHash(userDTO.Password);
             _unitOfWork.Users.Add(user);
             await Save();
         }

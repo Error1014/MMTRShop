@@ -1,14 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
-using MMTRShop.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
-using System.Data;
-using System.Security.Authentication;
-using System.Security.Claims;
-using Microsoft.AspNetCore.SignalR;
-using System;
+using PersonalAccountMicroservice.PersonalAccount.Services;
 
 namespace PersonalAccountMicroservice.PersonalAccount.Api.Controllers
 {
