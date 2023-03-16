@@ -26,16 +26,13 @@ namespace CartMicroservice.Carts.Services
             if (cart == null)
             {
                 await _unitOfWork.Carts.AddAsync(new Cart(_userSession.UserId));
+                await _unitOfWork.Carts.SaveAsync();
             }
             return await _unitOfWork.Carts.GetCartByClient(_userSession.UserId);
         }
         public async Task<IEnumerable<CartItemDTO>> GetCartItemsDTO()
         {
             var cart = await GetCart();
-            if (cart == null)
-            {
-                await _unitOfWork.Carts.AddAsync(new Cart(_userSession.UserId));
-            }
             var items = await _unitOfWork.CartItems.GetCartItemsByCart(cart.Id);
             var result = _mapper.Map<IEnumerable<CartItemDTO>>(items);
             return result;
@@ -48,6 +45,7 @@ namespace CartMicroservice.Carts.Services
         }
         public async Task AddProductInCart(Guid productId)
         {
+            //b0d4ce5d-2757-4699-948c-cfa72b494f86
             var cart = await GetCart();
             var items = await _unitOfWork.CartItems.GetCartItemsByCart(cart.Id);
             bool isNew = true;
