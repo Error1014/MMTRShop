@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace AuthorizationMicroservice.Authorization.Repository.Entities
 {
-    public class Operator:User
+    public class Role:BaseEntity<int>
     {
-
+        public string Name { get; set; }
+        public virtual List<User>? Users { get; set; }
     }
 }

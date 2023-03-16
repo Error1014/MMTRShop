@@ -22,7 +22,9 @@ namespace AuthorizationMicroservice.Authorization.Api.Controllers
         {
             // находим пользователя 
             var person = await _userService.GetUser(loginPasswordModel);
-            var role = person.GetType().Name;
+
+            var role = await _userService.GetRole(person.Id);
+
             var claims = new List<Claim>
             {
                 new Claim("Id", person.Id.ToString()),

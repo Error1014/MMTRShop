@@ -5,6 +5,7 @@ namespace AuthorizationMicroservice.Authorization.Repository.Interfaces
 {
     public interface IUserRepository: IRepository<User,Guid>
     {
+        Task<string> GetRole(Guid userId);
         Task<IEnumerable<User>> GetUsersPage(BaseFilter filter);
     }
 }

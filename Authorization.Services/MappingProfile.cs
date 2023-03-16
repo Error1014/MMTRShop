@@ -10,8 +10,6 @@ namespace AuthorizationMicroservice.Authorization.Services
         {
             CreateMap<User, UserDTO>();
             CreateMap<User, UserDTO>().ReverseMap();
-            CreateMap<Client, ClientDTO>();
-            CreateMap<Client, ClientDTO>().ReverseMap();
         }
     }
 }

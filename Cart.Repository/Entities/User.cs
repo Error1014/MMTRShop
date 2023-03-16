@@ -9,19 +9,21 @@ using System.Threading.Tasks;
 
 namespace AuthorizationMicroservice.Authorization.Repository.Entities
 {
-    public abstract class User : BaseEntity<Guid>
+    public class User : BaseEntity<Guid>
     {
         public string Login { get; set; }
         public string Password { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Patronymic { get; set; }
+        public int? RoleId { get; set; }
+        public virtual Role? Role { get; set; }
 
         public User()
         {
 
         }
-        public User(string login, string password,string lastName,string firstName,string patronymic)
+        public User(string login, string password,string lastName,string firstName,string patronymic, int Role)
         {
             Login = login;
             Password = password;

@@ -36,6 +36,11 @@ namespace AuthorizationMicroservice.Authorization.Services
             return result;
         }
 
+        public async Task<string> GetRole(Guid userId)
+        {
+            return await _unitOfWork.Users.GetRole(userId);
+        }
+
         public async Task<UserDTO> GetUser(Guid userId)
         {
             var user = await _unitOfWork.Users.GetByIdAsync(userId);

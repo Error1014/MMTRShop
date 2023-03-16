@@ -9,6 +9,7 @@ namespace AuthorizationMicroservice.Authorization.Services
         Task<IEnumerable<UserDTO>> GetPageUser(BaseFilter filter);
         Task<UserDTO> GetUser(Guid id);
         Task<User> GetUser(LoginPasswordModel loginPassword);
+        Task<string> GetRole(Guid userId);
         Task AddUser(UserDTO user);
         Task RemoveUser(Guid userId);
         Task Update(UserDTO user);

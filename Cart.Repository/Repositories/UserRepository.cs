@@ -12,6 +12,10 @@ namespace AuthorizationMicroservice.Authorization.Repository.Repositories
             this.context = context;
         }
 
+        public async Task<string> GetRole(Guid userId)
+        {
+            return Set.Where(x=>x.Id == userId).Select(x=>x.Role.Name).FirstOrDefault();
+        } 
         public async Task<IEnumerable<User>> GetUsersPage(BaseFilter filter)
         {
             var query = Set;

@@ -11,17 +11,9 @@ namespace AuthorizationMicroservice.Authorization.Repository.Repositories
         {
             _dbContext = context;
             Users = new UserRepository(context);
-            Clients = new ClientRepository(context);
-            Admins = new AdminRepository(context);
-            Operators = new OperatorRepository(context);
         }
 
         public IUserRepository Users { get; private set; }
-
-        public IClientRepository Clients { get; private set; }
-
-        public IAdminRepository Admins { get; private set; }
-        public IOperatorRepository Operators { get; private set; }
 
         public int Complete()
         {
