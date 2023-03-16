@@ -12,9 +12,7 @@ namespace PersonalAccountMicroservice.PersonalAccount.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Admin>().ToTable("Admin");
             modelBuilder.Entity<Client>().ToTable("Client");
-            modelBuilder.Entity<Operator>().ToTable("Operator");
         }
 
     }

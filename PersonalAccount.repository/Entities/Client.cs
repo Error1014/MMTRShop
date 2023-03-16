@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonalAccountMicroservice.PersonalAccount.Repository.Entities
 {
-    public class Client: User
+    public class Client: BaseEntity<Guid>
     {
         public string Email { get; set; }
         public string Phone { get; set; }
@@ -17,10 +17,13 @@ namespace PersonalAccountMicroservice.PersonalAccount.Repository.Entities
         {
 
         }
-
+        public Client(Guid userId)
+        {
+            UserId = userId;
+        }
         public Client(Guid userId,string email, string phone, string address)
         {
-            //UserId = userId;
+            UserId = userId;
             Email = email;
             Phone = phone;
             Address = address;

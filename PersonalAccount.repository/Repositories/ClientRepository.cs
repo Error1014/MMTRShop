@@ -14,7 +14,7 @@ namespace PersonalAccountMicroservice.PersonalAccount.Repository.Repositories
         {
             var query = Set;
             query = query
-                .OrderBy(x => x.Id)
+                .OrderBy(x => x.UserId)
                 .Skip((filter.NumPage - 1) * filter.SizePage)
                 .Take(filter.SizePage);
             return await query.ToListAsync();

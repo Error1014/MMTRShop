@@ -10,7 +10,7 @@ namespace PersonalAccountMicroservice.PersonalAccount.Repository.Entities
 {
     public abstract class BaseEntity<TKey> where TKey : struct
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public TKey Id { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public TKey UserId { get; set; }
     }
 }

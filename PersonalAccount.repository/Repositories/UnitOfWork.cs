@@ -12,14 +12,11 @@ namespace PersonalAccountMicroservice.PersonalAccount.Repository.Repositories
         {
             _dbContext = context;
             Clients = new ClientRepository(context);
-            Admins = new AdminRepository(context);
-            Operators = new OperatorRepository(context);
         }
 
 
         public IClientRepository Clients { get; private set; }
-        public IAdminRepository Admins { get; private set; }
-        public IOperatorRepository Operators { get; private set; }
+
 
         public int Complete()
         {

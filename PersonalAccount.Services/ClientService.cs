@@ -9,7 +9,7 @@ using AutoMapper;
 
 namespace PersonalAccountMicroservice.PersonalAccount.Services
 {
-    public class ClientService: IClientService
+    public class ClientService : IClientService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -22,17 +22,10 @@ namespace PersonalAccountMicroservice.PersonalAccount.Services
         }
         public async Task AddClient(ClientDTO clientDTO)
         {
-            //var chekUser = await _unitOfWork.Users.FindAsync(u => u.Login == clientDTO.Login);
-            //if (chekUser != null)
-            //{
-            //    throw new DublicateException("Пользователь с таким логином уже существует");
-            //}
-            clientDTO.Password = GeneratorHash.GetHash(clientDTO.Password);
             var client = _mapper.Map<Client>(clientDTO);
-            client.Id = _userSession.UserId;
+            client.UserId = _userSession.UserId;
             _unitOfWork.Clients.Add(client);
             await Save();
-            client = await _unitOfWork.Clients.FindAsync(u => u.Login == client.Login);
         }
 
         public async Task<IEnumerable<ClientDTO>> GetPageClients(BaseFilter filter)
@@ -45,11 +38,6 @@ namespace PersonalAccountMicroservice.PersonalAccount.Services
         public async Task<ClientDTO> GetClient(Guid clientId)
         {
             var client = await _unitOfWork.Clients.GetByIdAsync(clientId);
-            if (client==null)
-            {
-                await _unitOfWork.Clients.AddAsync(new Client() { Id = _userSession.UserId });
-            }
-            client = await _unitOfWork.Clients.GetByIdAsync(clientId);
             if (client == null)
             {
                 throw new NotFoundException("Клиент не найден");
@@ -58,7 +46,7 @@ namespace PersonalAccountMicroservice.PersonalAccount.Services
             return result;
         }
 
-        
+
         public async Task RemoveClient(Guid clientId)
         {
             var client = GetClient(clientId);
@@ -66,18 +54,25 @@ namespace PersonalAccountMicroservice.PersonalAccount.Services
             await Save();
         }
 
-        public async Task Save() 
+        public async Task Save()
         {
             await _unitOfWork.Clients.SaveAsync();
         }
 
         public async Task Update(ClientDTO clientDTO)
         {
-            var client = _mapper.Map<Client>(clientDTO);
-            client.Id = _userSession.UserId;
-            client.Password = GeneratorHash.GetHash(clientDTO.Password);
-            _unitOfWork.Clients.Update(client);
-            await Save();
+            var client = await _unitOfWork.Clients.GetByIdAsync(_userSession.UserId);
+            if (client==null)
+            {
+               await AddClient(clientDTO);
+            }
+            else
+            {
+                client = _mapper.Map<Client>(clientDTO);
+                client.UserId = _userSession.UserId;
+                _unitOfWork.Clients.Update(client);
+                await Save();
+            }
         }
     }
 }

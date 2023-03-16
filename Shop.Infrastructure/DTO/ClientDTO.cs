@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Infrastructure.DTO
 {
-    public class ClientDTO:UserDTO
+    public class ClientDTO
     {
         public string? Email { get; set; }
         public string? Phone { get; set; }

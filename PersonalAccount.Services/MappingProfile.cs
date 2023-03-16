@@ -8,12 +8,8 @@ namespace PersonalAccountMicroservice.PersonalAccount.Services
     {
         public MappingProfile()
         {
-
-            CreateMap<User, UserDTO>();
-            CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<Client, ClientDTO>();
             CreateMap<Client, ClientDTO>().ReverseMap();
-
         }
     }
 }

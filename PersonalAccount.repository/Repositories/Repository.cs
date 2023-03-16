@@ -45,9 +45,9 @@ namespace PersonalAccountMicroservice.PersonalAccount.Repository.Repositories
         }
         public async Task<IEnumerable<TEntity>> GetPageElements(BaseFilter filter)
         {
-            var query = context.Set<TEntity>().AsQueryable();
+            var query = context.Set<TEntity>().AsQueryable().AsNoTracking();
             query = query
-                .OrderBy(x => x.Id)
+                .OrderBy(x => x.UserId)
                 .Skip((filter.NumPage - 1) * filter.SizePage)
                 .Take(filter.SizePage);
             return await query.ToListAsync();
