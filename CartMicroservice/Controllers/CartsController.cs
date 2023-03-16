@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Infrastructure.DTO;
-using Shop.Infrastructure.Exceptions;
-using Shop.Infrastructure.HelperModels;
-using MMTRShop.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
-using System.Data;
-using MMTRShop.Repository.Entities;
+using CartMicroservice.Carts.Services;
 
-namespace Microservices.CartMicroservice
+namespace CartMicroservice.Carts.Api.Controllers
 {
     [Authorize(Roles = "Admin, Client")]
     public class CartsController : BaseApiController

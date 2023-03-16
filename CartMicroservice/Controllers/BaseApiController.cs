@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Data;
-using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Microservices.CartMicroservice
+namespace CartMicroservice.Carts.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
