@@ -1,9 +1,3 @@
-using MMTRShop.Service.Services;
-using MMTRShop.Repository.Repositories;
-using MMTRShop.Repository.Interface;
-using MMTRShop.Service.Interface;
-using MMTRShop.Repository.Contexts;
-using MMTRShop.Service;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.Middleware.Middleware;
 using Microsoft.Extensions.Configuration;
 using Shop.Infrastructure.Extensions;
+using AuthorizationMicroservice.Authorization.Repository;
+using AuthorizationMicroservice.Authorization.Repository.Interfaces;
+using AuthorizationMicroservice.Authorization.Repository.Repositories;
+using AuthorizationMicroservice.Authorization.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,8 +24,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services
     .AddScoped<IUnitOfWork, UnitOfWork>()
-    .AddScoped<IUserService, UserService>()
-    .AddScoped<IClientSettingsService, ClientSettingsService>();
+    .AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());

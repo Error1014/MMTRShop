@@ -1,22 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AuthorizationMicroservice.Authorization.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Shop.Infrastructure.HelperModels;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System;
-using MMTRShop.Service.Interface;
-using Shop.Infrastructure.DTO;
-using MMTRShop.Repository.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Text;
-using System.Security.Cryptography;
-using Newtonsoft.Json;
-using MMTRShop.Service.Services;
-using Shop.Infrastructure.Extensions;
-using MMTRShop.Repository.Contexts;
 
-namespace Microservices.AuthorizationMicroservice.Controllers
+namespace AuthorizationMicroservice.Authorization.Api.Controllers
 {
     public class AuthenticationController : BaseApiController
     {
