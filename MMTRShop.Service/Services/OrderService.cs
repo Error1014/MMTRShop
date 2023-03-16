@@ -68,7 +68,7 @@ namespace MMTRShop.Service.Services
         public async Task Remove(Guid orderId)
         {
             var user = await GetOrder(orderId);
-            _unitOfWork.Users.Remove(orderId);
+            _unitOfWork.Orders.Remove(orderId);
             await Save();
         }
         public async Task Save()

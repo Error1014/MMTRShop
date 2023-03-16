@@ -26,18 +26,14 @@ builder.Services.AddControllers();
 builder.Services
     .AddScoped<IUnitOfWork, UnitOfWork>()
     .AddScoped<IProductService, ProductService>()
-    .AddScoped<IUserService, UserService>()
     .AddScoped<IBankCardService, BankCardService>()
     .AddScoped<IBrandService, BrandService>()
-    .AddScoped<ICartService, CartService>()
     .AddScoped<ICategoryServise, CategoryService>()
-    .AddScoped<IClientService, ClientService>()
     .AddScoped<IFavouriteService, FavouriteService>()
     .AddScoped<IFeedbackService, FeedbackService>()
     .AddScoped<IOrderService, OrderService>()
     .AddScoped<IOrderContentService, OrderContentService>()
-    .AddScoped<IStatusService, StatusService>()
-    .AddScoped<IClientSettingsService, ClientSettingsService>();
+    .AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());

@@ -22,9 +22,9 @@ namespace MMTRShop.Repository.Entities
         }
 
 
-        public Order(Client client, string address, bool isPaid, int statusId)
+        public Order(Guid clientId, string address, bool isPaid, int statusId)
         {
-            ClientId = client.Id;
+            ClientId = clientId;
             Address = address;
             DateOrder = DateTime.Now;
             DateDelivery = DateOrder;

@@ -22,11 +22,11 @@ namespace MMTRShop.Repository.Entities
 
         }
 
-        public OrderContent(Order order, CartItem cart)
+        public OrderContent(Order order, Guid productId, int productCount)
         {
             OrderId = order.Id;
-            ProductId = cart.ProductId;
-            CountProduct = cart.ProductCount;
+            ProductId = productId;
+            CountProduct = productCount;
         }
 
     }   
