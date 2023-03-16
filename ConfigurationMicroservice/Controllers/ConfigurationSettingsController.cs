@@ -1,10 +1,10 @@
 ﻿using ConfigurationMicroservice.Configuration.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shop.Infrastructure.DTO;
 
 namespace ConfigurationMicroservice.Configuration.Api.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class ConfigurationSettingsController : BaseApiController
     {
         private readonly IClientSettingsService _configurationService;
@@ -12,12 +12,19 @@ namespace ConfigurationMicroservice.Configuration.Api.Controllers
         {
             _configurationService = configurationService;
         }
+        [HttpGet(nameof(GetConfiguration))]
+        public async Task<ActionResult<SettingsAPI>> GetConfiguration()
+        {
+            return Ok(_configurationService.SettingsAPI);
+        }
+        [Authorize(Roles = "Admin")]
         [HttpPut(nameof(PutRestrictionOfGoodsInCart))]
         public async Task<IActionResult> PutRestrictionOfGoodsInCart(int value)
         {
             _configurationService.UpdateRestrictionOfGoodsInCart(value);
             return Ok();
         }
+        [Authorize(Roles = "Admin")]
         [HttpPut(nameof(PutQuantityOfProductToDisplay))]
         public async Task<IActionResult> PutQuantityOfProductToDisplay(int value)
         {
