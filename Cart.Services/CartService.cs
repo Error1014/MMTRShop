@@ -12,13 +12,11 @@ namespace CartMicroservice.Carts.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IUserSessionGetter _userSession;
-        //private readonly IClientSettingsService _configurationService;
-        public CartService(IUnitOfWork unitOfWork, IMapper mapper, IUserSessionGetter userSession/*, IClientSettingsService configuration*/)
+        public CartService(IUnitOfWork unitOfWork, IMapper mapper, IUserSessionGetter userSession)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _userSession = userSession;
-            //_configurationService = configuration;  
         }
         private async Task<Cart> GetCart()
         {
@@ -113,7 +111,8 @@ namespace CartMicroservice.Carts.Services
         {
             var cartItems =await GetCartItemsDTO();
             var count = cartItems.Sum(x=>x.ProductCount);
-            var limit = 10; /*_configurationService.SettingsAPI.RestrictionOfGoodsInCart;*/
+            
+            var limit = 10;
             if (count>= limit)
             {
                 throw new RestrictionOfGoodsException($"Лимит вместимости корзины {limit} товаров");;

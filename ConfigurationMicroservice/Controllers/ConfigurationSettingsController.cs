@@ -17,6 +17,11 @@ namespace ConfigurationMicroservice.Configuration.Api.Controllers
         {
             return Ok(_configurationService.SettingsAPI);
         }
+        [HttpGet(nameof(GetRestrictionOfGoodsInCart))]
+        public async Task<ActionResult<SettingsAPI>> GetRestrictionOfGoodsInCart()
+        {
+            return Ok(_configurationService.SettingsAPI);
+        }
         [Authorize(Roles = "Admin")]
         [HttpPut(nameof(PutRestrictionOfGoodsInCart))]
         public async Task<IActionResult> PutRestrictionOfGoodsInCart(int value)
