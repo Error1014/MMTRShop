@@ -1,6 +1,7 @@
 ﻿using AuthorizationMicroservice.Authorization.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Shop.Infrastructure;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
 using System.IdentityModel.Tokens.Jwt;

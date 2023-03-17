@@ -3,6 +3,7 @@ using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
 using Microsoft.AspNetCore.Authorization;
 using PersonalAccountMicroservice.PersonalAccount.Services;
+using Shop.Infrastructure;
 
 namespace PersonalAccountMicroservice.PersonalAccount.Api.Controllers
 {

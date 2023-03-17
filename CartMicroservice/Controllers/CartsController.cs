@@ -2,6 +2,7 @@
 using Shop.Infrastructure.DTO;
 using Microsoft.AspNetCore.Authorization;
 using CartMicroservice.Carts.Services;
+using Shop.Infrastructure;
 
 namespace CartMicroservice.Carts.Api.Controllers
 {

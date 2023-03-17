@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Security.Claims;
 
-namespace MMTRShopAPI.Controllers
+namespace Shop.Infrastructure
 {
     [Route("api/[controller]")]
     [ApiController]

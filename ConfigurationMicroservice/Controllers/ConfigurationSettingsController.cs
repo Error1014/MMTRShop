@@ -1,6 +1,7 @@
 ﻿using ConfigurationMicroservice.Configuration.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shop.Infrastructure;
 using Shop.Infrastructure.DTO;
 
 namespace ConfigurationMicroservice.Configuration.Api.Controllers
