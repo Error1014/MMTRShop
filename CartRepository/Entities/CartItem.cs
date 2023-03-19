@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Infrastructure.Repository;
+using System;
 
 namespace CartMicroservice.Carts.Repository.Entities
 {

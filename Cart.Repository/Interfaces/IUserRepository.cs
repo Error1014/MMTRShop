@@ -1,5 +1,6 @@
 ﻿using AuthorizationMicroservice.Authorization.Repository.Entities;
 using Shop.Infrastructure.HelperModels;
+using Shop.Infrastructure.Repository;
 
 namespace AuthorizationMicroservice.Authorization.Repository.Interfaces
 {

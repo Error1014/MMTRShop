@@ -2,6 +2,7 @@
 using AuthorizationMicroservice.Authorization.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.HelperModels;
+using Shop.Infrastructure.Repository;
 
 namespace AuthorizationMicroservice.Authorization.Repository.Repositories
 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Shop.Infrastructure.Repository;
 
 namespace AuthorizationMicroservice.Authorization.Repository.Interfaces
 {

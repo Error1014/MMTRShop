@@ -1,5 +1,6 @@
 ﻿using Configuration.Repository.Entities;
 using Configuration.Repository.Repository;
+using Shop.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

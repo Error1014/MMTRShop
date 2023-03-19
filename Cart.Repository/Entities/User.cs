@@ -1,4 +1,5 @@
 ﻿using Shop.Infrastructure;
+using Shop.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuthorizationMicroservice.Authorization.Repository.Entities
+namespace Shop.Infrastructure.Repository
 {
     public abstract class BaseEntity<TKey> where TKey : struct
     {

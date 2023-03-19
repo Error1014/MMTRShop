@@ -1,8 +1,7 @@
 ﻿using Shop.Infrastructure.HelperModels;
 using System.Linq.Expressions;
-using CartMicroservice.Carts.Repository.Entities;
 
-namespace CartMicroservice.Carts.Repository.Interfaces
+namespace Shop.Infrastructure.Repository
 {
     public interface IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : struct
     {

@@ -1,4 +1,5 @@
 ﻿using CartMicroservice.Carts.Repository.Entities;
+using Shop.Infrastructure.Repository;
 
 namespace CartMicroservice.Carts.Repository.Interfaces
 {

@@ -5,6 +5,7 @@ using Shop.Infrastructure;
 using AuthorizationMicroservice.Authorization.Repository.Interfaces;
 using AuthorizationMicroservice.Authorization.Repository.Entities;
 using AutoMapper;
+using Shop.Infrastructure.Repository;
 
 namespace AuthorizationMicroservice.Authorization.Services
 {

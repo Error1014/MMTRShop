@@ -1,10 +1,8 @@
-﻿using CartMicroservice.Carts.Repository.Entities;
-using CartMicroservice.Carts.Repository.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.HelperModels;
 using System.Linq.Expressions;
 
-namespace CartMicroservice.Carts.Repository.Repositories
+namespace Shop.Infrastructure.Repository
 {
     public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : struct
     {
