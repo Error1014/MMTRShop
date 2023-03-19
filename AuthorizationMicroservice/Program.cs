@@ -17,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.RegistrationDbContext<UserContext>(builder.Configuration);
 
-builder.Services.Configure<SettingsAPI>(
+builder.Services.Configure<SettingsConfiguration>(
 builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -6,18 +6,23 @@ using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Shop.Infrastructure.Middleware.Middleware;
 using ConfigurationMicroservice.Configuration.Services;
+using Shop.Infrastructure.Extensions;
+using Configuration.Repository;
+using Configuration.Repository.Interfaces;
+using Configuration.Repository.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.RegistrationDbContext<ConfigurationDbContext>(builder.Configuration);
 
-builder.Services.Configure<SettingsAPI>(
+builder.Services.Configure<SettingsConfiguration>(
     builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services
-    .AddScoped<IClientSettingsService, ClientSettingsService>();
+    .AddScoped<IConfigurationService, ConfigurationService>()
+    .AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());

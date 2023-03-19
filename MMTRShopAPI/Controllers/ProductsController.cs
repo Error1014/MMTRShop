@@ -12,6 +12,7 @@ using MMTRShop.Service.Services;
 using System.Net.Mail;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using Shop.Infrastructure;
 
 namespace MMTRShopAPI.Controllers
 {

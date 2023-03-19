@@ -18,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.RegistrationDbContext<ShopContext>(builder.Configuration);
-builder.Services.Configure<SettingsAPI>(
+builder.Services.Configure<SettingsConfiguration>(
     builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -6,6 +6,7 @@ using Shop.Infrastructure.HelperModels;
 using MMTRShop.Repository.Entities;
 using MMTRShop.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
+using Shop.Infrastructure;
 
 namespace MMTRShopAPI.Controllers
 {   
