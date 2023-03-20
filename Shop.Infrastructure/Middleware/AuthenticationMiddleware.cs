@@ -6,6 +6,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
+using Microsoft.Extensions.Options;
+using Shop.Infrastructure.HelperModels;
 
 namespace Shop.Infrastructure.Middleware.Middleware
 {
@@ -13,10 +15,12 @@ namespace Shop.Infrastructure.Middleware.Middleware
     {
         private readonly RequestDelegate _next; 
         private readonly IConfiguration? _configuration;
-        public AuthenticationMiddleware(RequestDelegate next, IConfiguration configuration)
+        private readonly IOptions<JwtOptions> _jwtOptions;
+        public AuthenticationMiddleware(RequestDelegate next, IConfiguration configuration, IOptions<JwtOptions> options)
         {
             _next = next;
             _configuration = configuration;
+            _jwtOptions = options;
         }
 
         public async Task Invoke(HttpContext context, IServiceProvider serviceProvider)
@@ -28,7 +32,7 @@ namespace Shop.Infrastructure.Middleware.Middleware
                 try
                 {
                     var tokenHandler = new JwtSecurityTokenHandler();
-                    var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+                    var key = Encoding.ASCII.GetBytes(_jwtOptions.Value.Key);
                     tokenHandler.ValidateToken(token, new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
@@ -36,8 +40,8 @@ namespace Shop.Infrastructure.Middleware.Middleware
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ClockSkew = TimeSpan.Zero,
-                        ValidIssuer = _configuration["Jwt:Issuer"],
-                        ValidAudience = _configuration["Jwt:Audience"]
+                        ValidIssuer = _jwtOptions.Value.Issuer,
+                        ValidAudience = _jwtOptions.Value.Audience
                     }, out SecurityToken validatedToken);
                     var jwtToken = (JwtSecurityToken)validatedToken;
                     var accountId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "Id").Value);

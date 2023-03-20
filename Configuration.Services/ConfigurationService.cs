@@ -2,22 +2,21 @@
 using Configuration.Repository.Interfaces;
 using Microsoft.Extensions.Options;
 using Shop.Infrastructure.DTO;
+using Shop.Infrastructure.HelperModels;
 
 namespace Configuration.Services
 {
     public class ConfigurationService : IConfigurationService
     {
-        private readonly IOptions<SettingsConfiguration> _optionsDelegate;
         public readonly IUnitOfWork _unitOfWork;
-        public ConfigurationService(IOptions<SettingsConfiguration> optionsDelegate, IUnitOfWork unitOfWork)
+        public ConfigurationService( IUnitOfWork unitOfWork)
         {
-            _optionsDelegate = optionsDelegate;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IOptions<SettingsConfiguration>> GetConfiguration()
+        public async Task<IEnumerable<ConfigurationItem>> GetConfiguration()
         {
-            return _optionsDelegate;
+            return await _unitOfWork.ConfigurationItems.GetAllAsync();
 
         }
 

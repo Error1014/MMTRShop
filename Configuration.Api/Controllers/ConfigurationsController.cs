@@ -5,18 +5,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Shop.Infrastructure;
 using Shop.Infrastructure.DTO;
+using Shop.Infrastructure.HelperModels;
 
 namespace Configuration.Api.Controllers
 {
     public class ConfigurationsController : BaseApiController
     {
         private readonly IConfigurationService _configurationService;
-        public ConfigurationsController(IConfigurationService configurationService)
+        private readonly IOptions<JwtOptions> _jwtOptions;
+        public ConfigurationsController(IConfigurationService configurationService, IOptions<JwtOptions> options)
         {
             _configurationService = configurationService;
+            _jwtOptions = options;
+        }
+        [HttpGet(nameof(GetJwtOptions))]
+        public async Task<IOptions<JwtOptions>> GetJwtOptions()
+        {
+            return _jwtOptions;
         }
         [HttpGet(nameof(GetConfiguration))]
-        public async Task<IOptions<SettingsConfiguration>> GetConfiguration()
+        public async Task<IEnumerable<ConfigurationItem>> GetConfiguration()
         {
             return await _configurationService.GetConfiguration();
         }

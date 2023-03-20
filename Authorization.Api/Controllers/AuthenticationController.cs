@@ -1,5 +1,6 @@
 ﻿using Authorization.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Shop.Infrastructure;
 using Shop.Infrastructure.DTO;
@@ -14,10 +15,12 @@ namespace Authorization.Api.Controllers
     {
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
-        public AuthenticationController(IConfiguration configuration, IUserService userService)
+        private readonly IOptions<JwtOptions> _jwtOptions;
+        public AuthenticationController(IConfiguration configuration, IUserService userService, IOptions<JwtOptions> jwtOptions)
         {
             _userService = userService;
             _configuration = configuration;
+            _jwtOptions = jwtOptions;
         }
         [HttpPost(nameof(Registration))]
         public async Task<IActionResult> Registration(UserDTO userDTO)
@@ -39,10 +42,10 @@ namespace Authorization.Api.Controllers
                 new Claim(ClaimsIdentity.DefaultRoleClaimType,role)
             };
             // создаем JWT-токен
-            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:key"]);
+            var key = Encoding.ASCII.GetBytes(_jwtOptions.Value.Key);
             var jwt = new JwtSecurityToken(
-                    issuer: _configuration["Jwt:Issuer"],
-                    audience: _configuration["Jwt:Audience"],
+                    issuer: _jwtOptions.Value.Issuer,
+                    audience: _jwtOptions.Value.Audience,
                     claims: claims,
                     expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
                     signingCredentials: new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256));

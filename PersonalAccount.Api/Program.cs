@@ -10,13 +10,30 @@ using PersonalAccount.Repository.Repositories;
 using PersonalAccount.Repository;
 using PersonalAccount.Repository.Interfaces;
 using PersonalAccount.Services;
+using Shop.Infrastructure.HelperModels;
+using Configuration.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.RegistrationDbContext<UserContext>(builder.Configuration);
+builder.Host
+       .ConfigureAppConfiguration((context,
+                                   builder) =>
+       {
+           var config = builder.Build();
+           string conectionString = "Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true";
+           builder.AddEfConfiguration(optionsBuilder =>
+           {
+               optionsBuilder.UseSqlServer(conectionString);
+
+           });
+       });
+builder.Services.Configure<JwtOptions>(
+builder.Configuration.GetSection("JwtOptions"));
 builder.Services.Configure<SettingsConfiguration>(
-    builder.Configuration.GetSection("SettingsAPI"));
+builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -35,11 +52,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidIssuer = builder.Configuration["JwtOptions:Issuer"],
             ValidateAudience = true,
-            ValidAudience = builder.Configuration["Jwt:Audience"],
+            ValidAudience = builder.Configuration["JwtOptions:Audience"],
             ValidateLifetime = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtOptions:Key"])),
             ValidateIssuerSigningKey = true
         };
     });

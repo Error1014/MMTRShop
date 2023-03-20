@@ -13,6 +13,7 @@ using Configuration.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using Shop.Infrastructure.HelperModels;
 //FFF
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.RegistrationDbContext<ConfigurationDbContext>(builder.Configuration);
@@ -28,8 +29,10 @@ builder.Host
 
            });
        });
+builder.Services.Configure<JwtOptions>(
+builder.Configuration.GetSection("JwtOptions"));
 builder.Services.Configure<SettingsConfiguration>(
-    builder.Configuration.GetSection("SettingsConfiguration"));
+builder.Configuration.GetSection("SettingsAPI"));
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -48,11 +51,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidIssuer = builder.Configuration["JwtOptions:Issuer"],
             ValidateAudience = true,
-            ValidAudience = builder.Configuration["Jwt:Audience"],
+            ValidAudience = builder.Configuration["JwtOptions:Audience"],
             ValidateLifetime = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtOptions:Key"])),
             ValidateIssuerSigningKey = true
         };
     });

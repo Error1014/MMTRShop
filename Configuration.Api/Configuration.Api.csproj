@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Configuration.Repository\Configuration.Repository.csproj" />
     <ProjectReference Include="..\Configuration.Services\Configuration.Services.csproj" />
+    <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

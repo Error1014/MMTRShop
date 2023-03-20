@@ -13,6 +13,7 @@ using Carts.Repository.Interfaces;
 using Carts.Repository.Repositories;
 using Carts.Repository;
 using Carts.Services;
+using Shop.Infrastructure.HelperModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +33,9 @@ builder.Host
            });
        });
 builder.Services.Configure<SettingsConfiguration>(
-    builder.Configuration.GetSection("SettingsConfiguration"));
+builder.Configuration.GetSection("SettingsAPI"));
+builder.Services.Configure<JwtOptions>(
+builder.Configuration.GetSection("JwtOptions"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -52,11 +55,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidIssuer = builder.Configuration["JwtOptions:Issuer"],
             ValidateAudience = true,
-            ValidAudience = builder.Configuration["Jwt:Audience"],
+            ValidAudience = builder.Configuration["JwtOptions:Audience"],
             ValidateLifetime = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtOptions:Key"])),
             ValidateIssuerSigningKey = true
         };
     });

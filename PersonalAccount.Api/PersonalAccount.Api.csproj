@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Configuration.Services\Configuration.Services.csproj" />
     <ProjectReference Include="..\PersonalAccount.repository\PersonalAccount.Repository.csproj" />
     <ProjectReference Include="..\PersonalAccount.Services\PersonalAccount.Services.csproj" />
   </ItemGroup>
