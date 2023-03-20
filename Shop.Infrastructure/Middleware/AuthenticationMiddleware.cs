@@ -14,12 +14,10 @@ namespace Shop.Infrastructure.Middleware.Middleware
     public class AuthenticationMiddleware
     {
         private readonly RequestDelegate _next; 
-        private readonly IConfiguration? _configuration;
         private readonly IOptions<JwtOptions> _jwtOptions;
         public AuthenticationMiddleware(RequestDelegate next, IConfiguration configuration, IOptions<JwtOptions> options)
         {
             _next = next;
-            _configuration = configuration;
             _jwtOptions = options;
         }
 

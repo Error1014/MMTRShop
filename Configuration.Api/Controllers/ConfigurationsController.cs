@@ -12,16 +12,9 @@ namespace Configuration.Api.Controllers
     public class ConfigurationsController : BaseApiController
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IOptions<JwtOptions> _jwtOptions;
-        public ConfigurationsController(IConfigurationService configurationService, IOptions<JwtOptions> options)
+        public ConfigurationsController(IConfigurationService configurationService)
         {
             _configurationService = configurationService;
-            _jwtOptions = options;
-        }
-        [HttpGet(nameof(GetJwtOptions))]
-        public async Task<IOptions<JwtOptions>> GetJwtOptions()
-        {
-            return _jwtOptions;
         }
         [HttpGet(nameof(GetConfiguration))]
         public async Task<IEnumerable<ConfigurationItem>> GetConfiguration()

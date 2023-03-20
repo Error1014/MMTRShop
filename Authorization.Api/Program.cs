@@ -21,18 +21,7 @@ using Microsoft.Extensions.Options;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.RegistrationDbContext<UserContext>(builder.Configuration);
-builder.Host
-       .ConfigureAppConfiguration((context,
-                                   builder) =>
-       {
-           var config = builder.Build();
-           string conectionString = "Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true";
-           builder.AddEfConfiguration(optionsBuilder =>
-           {
-               optionsBuilder.UseSqlServer(conectionString);
-
-           });
-       });
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 builder.Services.Configure<SettingsConfiguration>(
 builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.Configure<JwtOptions>(
@@ -51,21 +40,8 @@ builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<U
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddAuthorization();
+builder.Services.SetJwtOptions(builder.Configuration);
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidIssuer = builder.Configuration["JwtOptions:Issuer"],
-            ValidateAudience = true,
-            ValidAudience = builder.Configuration["JwtOptions:Audience"],
-            ValidateLifetime = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtOptions:Key"])),
-            ValidateIssuerSigningKey = true
-        };
-    });
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });

@@ -42,27 +42,14 @@ builder.Services.AddControllers();
 builder.Services
     .AddScoped<IUnitOfWork, UnitOfWork>()
     .AddScoped<ICartService, CartService>();
-    //.AddScoped<IClientSettingsService, ClientSettingsService>();
 builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidIssuer = builder.Configuration["JwtOptions:Issuer"],
-            ValidateAudience = true,
-            ValidAudience = builder.Configuration["JwtOptions:Audience"],
-            ValidateLifetime = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtOptions:Key"])),
-            ValidateIssuerSigningKey = true
-        };
-    });
+builder.Services.SetJwtOptions(builder.Configuration);
+
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
@@ -90,6 +77,7 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
+
 var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
