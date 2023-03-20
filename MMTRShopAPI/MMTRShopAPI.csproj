@@ -23,7 +23,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MMTRShop.Repository\MMTRShop.Repository.csproj" />
     <ProjectReference Include="..\MMTRShop.Service\MMTRShop.Service.csproj" />
-    <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

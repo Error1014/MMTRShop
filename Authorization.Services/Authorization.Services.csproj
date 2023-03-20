@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cart.Repository\Authorization.Repository.csproj" />
+    <ProjectReference Include="..\Authorization.Repository\Authorization.Repository.csproj" />
     <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
   </ItemGroup>
 

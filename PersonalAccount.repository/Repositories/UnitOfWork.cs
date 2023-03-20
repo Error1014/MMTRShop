@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonalAccount.Repository.Interfaces;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Repositories;
 
 namespace PersonalAccount.Repository.Repositories
 {

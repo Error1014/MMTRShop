@@ -3,10 +3,9 @@ using Shop.Infrastructure.Exceptions;
 using Shop.Infrastructure.HelperModels;
 using Shop.Infrastructure;
 using AutoMapper;
-using Shop.Infrastructure.Repository;
+using Authorization.Services.Interfaces;
 using Authorization.Repository.Interfaces;
 using Authorization.Repository.Entities;
-using Authorization.Services.Interfaces;
 
 namespace Authorization.Services.Services
 {

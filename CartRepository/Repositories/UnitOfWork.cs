@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Carts.Repository.Interfaces;
-using CartMicroservice.Carts.Repository.Repositories;
 
 namespace Carts.Repository.Repositories
 {
