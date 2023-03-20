@@ -3,9 +3,9 @@ using Configuration.Repository.Interfaces;
 using Microsoft.Extensions.Options;
 using Shop.Infrastructure.DTO;
 
-namespace ConfigurationMicroservice.Configuration.Services
+namespace Configuration.Services
 {
-    public class ConfigurationService:IConfigurationService
+    public class ConfigurationService : IConfigurationService
     {
         private readonly IOptions<SettingsConfiguration> _optionsDelegate;
         public readonly IUnitOfWork _unitOfWork;
@@ -18,7 +18,7 @@ namespace ConfigurationMicroservice.Configuration.Services
         public async Task<IOptions<SettingsConfiguration>> GetConfiguration()
         {
             return _optionsDelegate;
-            
+
         }
 
         public async Task AddConfiguration(ConfigurationItem configurationItem)

@@ -6,13 +6,13 @@ using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Shop.Infrastructure.Middleware.Middleware;
 using Shop.Infrastructure.Extensions;
-using CartMicroservice.Carts.Repository;
-using CartMicroservice.Carts.Repository.Repositories;
-using CartMicroservice.Carts.Repository.Interfaces;
-using CartMicroservice.Carts.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Configuration.Services;
+using Carts.Repository.Interfaces;
+using Carts.Repository.Repositories;
+using Carts.Repository;
+using Carts.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

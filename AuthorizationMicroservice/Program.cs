@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.Middleware.Middleware;
 using Microsoft.Extensions.Configuration;
 using Shop.Infrastructure.Extensions;
-using AuthorizationMicroservice.Authorization.Repository;
-using AuthorizationMicroservice.Authorization.Repository.Interfaces;
-using AuthorizationMicroservice.Authorization.Repository.Repositories;
-using AuthorizationMicroservice.Authorization.Services;
+using Authorization.Repository.Interfaces;
+using Authorization.Repository.Repositories;
+using Authorization.Repository;
+using Authorization.Services.Interfaces;
+using Authorization.Services;
+using Authorization.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

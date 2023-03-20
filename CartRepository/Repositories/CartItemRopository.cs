@@ -1,11 +1,11 @@
-﻿using CartMicroservice.Carts.Repository.Entities;
-using CartMicroservice.Carts.Repository.Interfaces;
+﻿using Carts.Repository.Entities;
+using Carts.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.Repository;
 
-namespace CartMicroservice.Carts.Repository.Repositories
+namespace Carts.Repository.Repositories
 {
-    public class CartItemRopository : Repository<CartItem,Guid>, ICartItemRepository
+    public class CartItemRopository : Repository<CartItem, Guid>, ICartItemRepository
     {
         private readonly CartContext _cartContext;
         public CartItemRopository(DbContext context) : base(context)
@@ -20,7 +20,7 @@ namespace CartMicroservice.Carts.Repository.Repositories
 
         public async Task<IEnumerable<CartItem>> GetCartItemsByCart(Guid cartId)
         {
-            return await Set.Where(c=>c.CartId==cartId).ToListAsync();
+            return await Set.Where(c => c.CartId == cartId).ToListAsync();
         }
 
 

@@ -1,9 +1,9 @@
-﻿using CartMicroservice.Carts.Repository.Entities;
-using CartMicroservice.Carts.Repository.Interfaces;
+﻿using Carts.Repository.Entities;
+using Carts.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.Repository;
 
-namespace CartMicroservice.Carts.Repository.Repositories
+namespace Carts.Repository.Repositories
 {
     public class CartRepositiry : Repository<Cart, Guid>, ICartRepository
     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalAccountMicroservice.PersonalAccount.Repository.Entities
+namespace PersonalAccount.Repository.Entities
 {
-    public class Client: BaseEntity<Guid>
+    public class Client : BaseEntity<Guid>
     {
         public string Email { get; set; }
         public string Phone { get; set; }
@@ -21,7 +21,7 @@ namespace PersonalAccountMicroservice.PersonalAccount.Repository.Entities
         {
             UserId = userId;
         }
-        public Client(Guid userId,string email, string phone, string address)
+        public Client(Guid userId, string email, string phone, string address)
         {
             UserId = userId;
             Email = email;

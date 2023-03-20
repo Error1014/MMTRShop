@@ -1,8 +1,8 @@
 ﻿using Shop.Infrastructure.HelperModels;
 using System.Linq.Expressions;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Entities;
+using PersonalAccount.Repository.Entities;
 
-namespace PersonalAccountMicroservice.PersonalAccount.Repository.Interfaces
+namespace PersonalAccount.Repository.Interfaces
 {
     public interface IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : struct
     {

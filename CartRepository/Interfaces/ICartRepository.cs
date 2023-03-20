@@ -1,7 +1,7 @@
-﻿using CartMicroservice.Carts.Repository.Entities;
+﻿using Carts.Repository.Entities;
 using Shop.Infrastructure.Repository;
 
-namespace CartMicroservice.Carts.Repository.Interfaces
+namespace Carts.Repository.Interfaces
 {
     public interface ICartRepository : IRepository<Cart, Guid>
     {

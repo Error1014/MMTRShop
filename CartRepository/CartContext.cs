@@ -1,7 +1,7 @@
-﻿using CartMicroservice.Carts.Repository.Entities;
+﻿using Carts.Repository.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CartMicroservice.Carts.Repository
+namespace Carts.Repository
 {
     public class CartContext : DbContext
     {

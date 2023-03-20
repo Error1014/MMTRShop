@@ -2,12 +2,13 @@
 using Shop.Infrastructure.Exceptions;
 using Shop.Infrastructure.HelperModels;
 using Shop.Infrastructure;
-using AuthorizationMicroservice.Authorization.Repository.Interfaces;
-using AuthorizationMicroservice.Authorization.Repository.Entities;
 using AutoMapper;
 using Shop.Infrastructure.Repository;
+using Authorization.Repository.Interfaces;
+using Authorization.Repository.Entities;
+using Authorization.Services.Interfaces;
 
-namespace AuthorizationMicroservice.Authorization.Services
+namespace Authorization.Services.Services
 {
     public class UserService : IUserService
     {
@@ -69,7 +70,7 @@ namespace AuthorizationMicroservice.Authorization.Services
                     break;
                 }
             }
-            if (isCorrect==false)
+            if (isCorrect == false)
             {
                 throw new ValidationException("Вы ввели неверный логин или пароль!");
             }

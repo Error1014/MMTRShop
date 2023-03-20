@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Entities;
+using PersonalAccount.Repository.Entities;
 
-namespace PersonalAccountMicroservice.PersonalAccount.Repository
+namespace PersonalAccount.Repository
 {
-    public class UserContext:DbContext
+    public class UserContext : DbContext
     {
         public UserContext(DbContextOptions<UserContext> options) : base(options)
         {

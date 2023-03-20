@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace CartMicroservice.Carts.Repository.Interfaces
+namespace Carts.Repository.Interfaces
 {
-    public interface IUnitOfWork:IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         ICartItemRepository CartItems { get; }
         ICartRepository Carts { get; }

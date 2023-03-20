@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using CartMicroservice.Carts.Repository.Interfaces;
+using Carts.Repository.Interfaces;
+using CartMicroservice.Carts.Repository.Repositories;
 
-namespace CartMicroservice.Carts.Repository.Repositories
+namespace Carts.Repository.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

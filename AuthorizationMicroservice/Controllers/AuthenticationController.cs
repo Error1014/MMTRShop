@@ -1,4 +1,4 @@
-﻿using AuthorizationMicroservice.Authorization.Services;
+﻿using Authorization.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Shop.Infrastructure;
@@ -8,13 +8,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace AuthorizationMicroservice.Authorization.Api.Controllers
+namespace Authorization.Api.Controllers
 {
     public class AuthenticationController : BaseApiController
     {
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
-        public AuthenticationController(IConfiguration configuration,IUserService userService)
+        public AuthenticationController(IConfiguration configuration, IUserService userService)
         {
             _userService = userService;
             _configuration = configuration;
@@ -54,7 +54,7 @@ namespace AuthorizationMicroservice.Authorization.Api.Controllers
                 id = person.Id,
                 accessToken = encodedJwt,
                 username = person.Login,
-                role = role
+                role
             };
 
             return Results.Json(response);

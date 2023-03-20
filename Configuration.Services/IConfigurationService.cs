@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConfigurationMicroservice.Configuration.Services
+namespace Configuration.Services
 {
     public interface IConfigurationService
     {

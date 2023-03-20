@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuthorizationMicroservice.Authorization.Repository.Entities
+namespace Authorization.Repository.Entities
 {
     public class User : BaseEntity<Guid>
     {
@@ -24,7 +24,7 @@ namespace AuthorizationMicroservice.Authorization.Repository.Entities
         {
 
         }
-        public User(string login, string password,string lastName,string firstName,string patronymic, int Role)
+        public User(string login, string password, string lastName, string firstName, string patronymic, int Role)
         {
             Login = login;
             Password = password;

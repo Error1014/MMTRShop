@@ -6,10 +6,10 @@ using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Shop.Infrastructure.Middleware.Middleware;
 using Shop.Infrastructure.Extensions;
-using PersonalAccountMicroservice.PersonalAccount.Repository;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Interfaces;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Repositories;
-using PersonalAccountMicroservice.PersonalAccount.Services;
+using PersonalAccount.Repository.Repositories;
+using PersonalAccount.Repository;
+using PersonalAccount.Repository.Interfaces;
+using PersonalAccount.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

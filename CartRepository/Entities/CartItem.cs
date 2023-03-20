@@ -1,7 +1,7 @@
 ﻿using Shop.Infrastructure.Repository;
 using System;
 
-namespace CartMicroservice.Carts.Repository.Entities
+namespace Carts.Repository.Entities
 {
     public class CartItem : BaseEntity<Guid>
     {

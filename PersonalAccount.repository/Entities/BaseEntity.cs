@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalAccountMicroservice.PersonalAccount.Repository.Entities
+namespace PersonalAccount.Repository.Entities
 {
     public abstract class BaseEntity<TKey> where TKey : struct
     {

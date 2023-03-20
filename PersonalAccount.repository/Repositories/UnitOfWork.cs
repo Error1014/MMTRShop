@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Interfaces;
+using PersonalAccount.Repository.Interfaces;
+using PersonalAccountMicroservice.PersonalAccount.Repository.Repositories;
 
-namespace PersonalAccountMicroservice.PersonalAccount.Repository.Repositories
+namespace PersonalAccount.Repository.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DbContext _dbContext;
-       
+
 
         public UnitOfWork(UserContext context)
         {

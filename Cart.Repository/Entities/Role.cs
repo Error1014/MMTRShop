@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuthorizationMicroservice.Authorization.Repository.Entities
+namespace Authorization.Repository.Entities
 {
-    public class Role:BaseEntity<int>
+    public class Role : BaseEntity<int>
     {
         public string Name { get; set; }
         public virtual List<User>? Users { get; set; }

@@ -2,10 +2,10 @@
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
 using Microsoft.AspNetCore.Authorization;
-using PersonalAccountMicroservice.PersonalAccount.Services;
 using Shop.Infrastructure;
+using PersonalAccount.Services;
 
-namespace PersonalAccountMicroservice.PersonalAccount.Api.Controllers
+namespace PersonalAccount.Api.Controllers
 {
 
     public class ClientsController : BaseApiController

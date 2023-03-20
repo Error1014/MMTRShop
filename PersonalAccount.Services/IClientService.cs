@@ -1,7 +1,7 @@
 ﻿using Shop.Infrastructure.HelperModels;
 using Shop.Infrastructure.DTO;
 
-namespace PersonalAccountMicroservice.PersonalAccount.Services
+namespace PersonalAccount.Services
 {
     public interface IClientService
     {

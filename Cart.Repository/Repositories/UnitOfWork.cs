@@ -1,8 +1,7 @@
-﻿using AuthorizationMicroservice.Authorization.Repository.Interfaces;
+﻿using Authorization.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Shop.Infrastructure.Repository;
 
-namespace AuthorizationMicroservice.Authorization.Repository.Repositories
+namespace Authorization.Repository.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

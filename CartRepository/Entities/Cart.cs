@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CartMicroservice.Carts.Repository.Entities
+namespace Carts.Repository.Entities
 {
     public class Cart : BaseEntity<Guid>
     {

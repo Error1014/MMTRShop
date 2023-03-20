@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Infrastructure.DTO;
 using Microsoft.AspNetCore.Authorization;
-using CartMicroservice.Carts.Services;
 using Shop.Infrastructure;
+using Carts.Services;
 
-namespace CartMicroservice.Carts.Api.Controllers
+namespace Carts.Api.Controllers
 {
     [Authorize(Roles = "Admin, Client")]
     public class CartsController : BaseApiController

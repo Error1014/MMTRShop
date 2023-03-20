@@ -1,6 +1,6 @@
 ﻿using Shop.Infrastructure.DTO;
 
-namespace CartMicroservice.Carts.Services
+namespace Carts.Services
 {
     public interface ICartService
     {

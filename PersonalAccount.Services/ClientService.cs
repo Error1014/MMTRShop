@@ -3,11 +3,11 @@ using Shop.Infrastructure.Exceptions;
 using Shop.Infrastructure.HelperModels;
 using Shop.Infrastructure;
 using Shop.Infrastructure.Interface;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Interfaces;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Entities;
 using AutoMapper;
+using PersonalAccount.Repository.Interfaces;
+using PersonalAccount.Repository.Entities;
 
-namespace PersonalAccountMicroservice.PersonalAccount.Services
+namespace PersonalAccount.Services
 {
     public class ClientService : IClientService
     {
@@ -62,9 +62,9 @@ namespace PersonalAccountMicroservice.PersonalAccount.Services
         public async Task Update(ClientDTO clientDTO)
         {
             var client = await _unitOfWork.Clients.GetByIdAsync(_userSession.UserId);
-            if (client==null)
+            if (client == null)
             {
-               await AddClient(clientDTO);
+                await AddClient(clientDTO);
             }
             else
             {

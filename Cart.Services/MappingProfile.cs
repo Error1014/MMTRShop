@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CartMicroservice.Carts.Repository.Entities;
+using Carts.Repository.Entities;
 using Shop.Infrastructure.DTO;
 
-namespace CartMicroservice.Carts.Services
+namespace Carts.Services
 {
     public class MappingProfile : Profile
     {

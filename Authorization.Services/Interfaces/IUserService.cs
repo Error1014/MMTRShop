@@ -1,8 +1,8 @@
-﻿using AuthorizationMicroservice.Authorization.Repository.Entities;
+﻿using Authorization.Repository.Entities;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
 
-namespace AuthorizationMicroservice.Authorization.Services
+namespace Authorization.Services.Interfaces
 {
     public interface IUserService
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.HelperModels;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Interfaces;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Entities;
+using PersonalAccount.Repository.Interfaces;
+using PersonalAccount.Repository.Entities;
 
-namespace PersonalAccountMicroservice.PersonalAccount.Repository.Repositories
+namespace PersonalAccount.Repository.Repositories
 {
     public class ClientRepository : Repository<Client, Guid>, IClientRepository
     {

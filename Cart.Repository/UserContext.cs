@@ -1,9 +1,9 @@
-﻿using AuthorizationMicroservice.Authorization.Repository.Entities;
+﻿using Authorization.Repository.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuthorizationMicroservice.Authorization.Repository
+namespace Authorization.Repository
 {
-    public class UserContext:DbContext
+    public class UserContext : DbContext
     {
         public UserContext(DbContextOptions<UserContext> options) : base(options)
         {

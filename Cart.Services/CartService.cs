@@ -1,12 +1,12 @@
 ﻿using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Shop.Infrastructure.Exceptions;
-using CartMicroservice.Carts.Repository.Interfaces;
-using CartMicroservice.Carts.Repository.Entities;
 using AutoMapper;
 using Microsoft.Extensions.Options;
+using Carts.Repository.Entities;
+using Carts.Repository.Interfaces;
 
-namespace CartMicroservice.Carts.Services
+namespace Carts.Services
 {
     public class CartService : ICartService
     {
@@ -97,7 +97,7 @@ namespace CartMicroservice.Carts.Services
         public async Task RemoveProductInCart(Guid cartItemId)
         {
             _unitOfWork.CartItems.Remove(cartItemId);
-            await Save(); 
+            await Save();
         }
         public async Task Update(CartItemDTO cartDTO)
         {
@@ -112,13 +112,13 @@ namespace CartMicroservice.Carts.Services
 
         private async Task CheckRestriction()
         {
-            var cartItems =await GetCartItemsDTO();
-            var count = cartItems.Sum(x=>x.ProductCount);
-            
+            var cartItems = await GetCartItemsDTO();
+            var count = cartItems.Sum(x => x.ProductCount);
+
             var limit = _options.Value.RestrictionOfGoodsInCart;
-            if (count>= limit)
+            if (count >= limit)
             {
-                throw new RestrictionOfGoodsException($"Лимит вместимости корзины {limit} товаров");;
+                throw new RestrictionOfGoodsException($"Лимит вместимости корзины {limit} товаров"); ;
             }
         }
     }

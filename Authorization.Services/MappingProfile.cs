@@ -1,8 +1,8 @@
-﻿using AuthorizationMicroservice.Authorization.Repository.Entities;
+﻿using Authorization.Repository.Entities;
 using AutoMapper;
 using Shop.Infrastructure.DTO;
 
-namespace AuthorizationMicroservice.Authorization.Services
+namespace Authorization.Services
 {
     public class MappingProfile : Profile
     {

@@ -1,12 +1,12 @@
 ﻿using Configuration.Repository.Entities;
-using ConfigurationMicroservice.Configuration.Services;
+using Configuration.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Shop.Infrastructure;
 using Shop.Infrastructure.DTO;
 
-namespace ConfigurationMicroservice.Configuration.Api.Controllers
+namespace Configuration.Api.Controllers
 {
     public class ConfigurationsController : BaseApiController
     {

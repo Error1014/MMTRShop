@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Entities;
-using PersonalAccountMicroservice.PersonalAccount.Repository.Interfaces;
+using PersonalAccount.Repository.Entities;
+using PersonalAccount.Repository.Interfaces;
 using Shop.Infrastructure.HelperModels;
 using System.Linq.Expressions;
 
-namespace PersonalAccountMicroservice.PersonalAccount.Repository.Repositories
+namespace PersonalAccount.Repository.Repositories
 {
     public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : struct
     {

@@ -5,7 +5,6 @@ using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Shop.Infrastructure.Middleware.Middleware;
-using ConfigurationMicroservice.Configuration.Services;
 using Shop.Infrastructure.Extensions;
 using Configuration.Repository;
 using Configuration.Repository.Interfaces;
@@ -14,7 +13,7 @@ using Configuration.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-
+//FFF
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.RegistrationDbContext<ConfigurationDbContext>(builder.Configuration);
 builder.Host
