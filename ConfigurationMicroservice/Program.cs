@@ -10,13 +10,29 @@ using Shop.Infrastructure.Extensions;
 using Configuration.Repository;
 using Configuration.Repository.Interfaces;
 using Configuration.Repository.Repository;
+using Configuration.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.RegistrationDbContext<ConfigurationDbContext>(builder.Configuration);
+builder.Host
+       .ConfigureAppConfiguration((context,
+                                   builder) =>
+       {
+           var config = builder.Build();
+           string conectionString = "Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true";
+           builder.AddEfConfiguration(optionsBuilder =>
+           {
+               optionsBuilder.UseSqlServer(conectionString);
 
+           });
+       });
 builder.Services.Configure<SettingsConfiguration>(
-    builder.Configuration.GetSection("SettingsAPI"));
+    builder.Configuration.GetSection("SettingsConfiguration"));
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -69,6 +85,7 @@ builder.Services.AddSwaggerGen(opt =>
     });
 });
 var app = builder.Build();
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
 

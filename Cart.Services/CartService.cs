@@ -4,6 +4,7 @@ using Shop.Infrastructure.Exceptions;
 using CartMicroservice.Carts.Repository.Interfaces;
 using CartMicroservice.Carts.Repository.Entities;
 using AutoMapper;
+using Microsoft.Extensions.Options;
 
 namespace CartMicroservice.Carts.Services
 {
@@ -12,11 +13,13 @@ namespace CartMicroservice.Carts.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IUserSessionGetter _userSession;
-        public CartService(IUnitOfWork unitOfWork, IMapper mapper, IUserSessionGetter userSession)
+        private readonly IOptions<SettingsConfiguration> _options;
+        public CartService(IUnitOfWork unitOfWork, IMapper mapper, IUserSessionGetter userSession, IOptions<SettingsConfiguration> options)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _userSession = userSession;
+            _options = options;
         }
         private async Task<Cart> GetCart()
         {
@@ -112,7 +115,7 @@ namespace CartMicroservice.Carts.Services
             var cartItems =await GetCartItemsDTO();
             var count = cartItems.Sum(x=>x.ProductCount);
             
-            var limit = 10;
+            var limit = _options.Value.RestrictionOfGoodsInCart;
             if (count>= limit)
             {
                 throw new RestrictionOfGoodsException($"Лимит вместимости корзины {limit} товаров");;

@@ -1,4 +1,5 @@
 ﻿using Configuration.Repository.Entities;
+using Microsoft.Extensions.Options;
 using Shop.Infrastructure.DTO;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace ConfigurationMicroservice.Configuration.Services
 {
     public interface IConfigurationService
     {
-        Task<IEnumerable<ConfigurationItem>> GetConfiguration();
+        Task<IOptions<SettingsConfiguration>> GetConfiguration();
         Task AddConfiguration(ConfigurationItem configurationItem);
         Task UpdateConfiguration(ConfigurationItem configurationItem);
     }

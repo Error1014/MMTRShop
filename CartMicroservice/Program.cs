@@ -10,13 +10,29 @@ using CartMicroservice.Carts.Repository;
 using CartMicroservice.Carts.Repository.Repositories;
 using CartMicroservice.Carts.Repository.Interfaces;
 using CartMicroservice.Carts.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Configuration.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.RegistrationDbContext<CartContext>(builder.Configuration);
+
+builder.Host
+       .ConfigureAppConfiguration((context,
+                                   builder) =>
+       {
+           var config = builder.Build();
+           string conectionString = "Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true";
+           builder.AddEfConfiguration(optionsBuilder =>
+           {
+               optionsBuilder.UseSqlServer(conectionString);
+
+           });
+       });
 builder.Services.Configure<SettingsConfiguration>(
-    builder.Configuration.GetSection("SettingsAPI"));
+    builder.Configuration.GetSection("SettingsConfiguration"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();

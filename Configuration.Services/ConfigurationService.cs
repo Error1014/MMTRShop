@@ -7,17 +7,18 @@ namespace ConfigurationMicroservice.Configuration.Services
 {
     public class ConfigurationService:IConfigurationService
     {
-        private readonly SettingsConfiguration _optionsDelegate;
+        private readonly IOptions<SettingsConfiguration> _optionsDelegate;
         public readonly IUnitOfWork _unitOfWork;
         public ConfigurationService(IOptions<SettingsConfiguration> optionsDelegate, IUnitOfWork unitOfWork)
         {
-            _optionsDelegate = optionsDelegate.Value;
+            _optionsDelegate = optionsDelegate;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<ConfigurationItem>> GetConfiguration()
+        public async Task<IOptions<SettingsConfiguration>> GetConfiguration()
         {
-            return await _unitOfWork.ConfigurationItems.GetAllAsync();
+            return _optionsDelegate;
+            
         }
 
         public async Task AddConfiguration(ConfigurationItem configurationItem)

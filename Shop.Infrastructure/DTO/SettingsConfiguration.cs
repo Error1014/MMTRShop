@@ -8,7 +8,7 @@ namespace Shop.Infrastructure.DTO
 {
     public class SettingsConfiguration
     {
-        public string Key { get; set; }
-        public string Value { get; set; }
+        public int RestrictionOfGoodsInCart { get; set; }
+        public int QuantityOfProductToDisplay { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using ConfigurationMicroservice.Configuration.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Shop.Infrastructure;
 using Shop.Infrastructure.DTO;
 
@@ -15,7 +16,7 @@ namespace ConfigurationMicroservice.Configuration.Api.Controllers
             _configurationService = configurationService;
         }
         [HttpGet(nameof(GetConfiguration))]
-        public async Task<IEnumerable<ConfigurationItem>> GetConfiguration()
+        public async Task<IOptions<SettingsConfiguration>> GetConfiguration()
         {
             return await _configurationService.GetConfiguration();
         }

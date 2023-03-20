@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Cart.Services\Carts.Services.csproj" />
     <ProjectReference Include="..\CartRepository\Carts.Repository.csproj" />
+    <ProjectReference Include="..\Configuration.Services\Configuration.Services.csproj" />
     <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
   </ItemGroup>
 
