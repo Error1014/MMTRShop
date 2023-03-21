@@ -5,75 +5,81 @@ using Shop.Infrastructure;
 using Carts.Services;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http;
+using System.Net.Http;
+using XAct;
+using Newtonsoft.Json.Linq;
+
 
 namespace Carts.Api.Controllers
 {
-    [Authorize(Roles = "Admin, Client")]
     public class CartsController : BaseApiController
     {
         private readonly ICartService _cartService;
-        private static readonly HttpClient client = new HttpClient();
         public CartsController(ICartService cartService)
         {
             _cartService = cartService;
+            
         }
-
-        [Authorize(Roles = "Admin, Client")]
-        [HttpGet]
+        private async void Autorization(string role)
+        {
+            var token = ViewData["Authorization"];
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            HttpResponseMessage response = await client.PostAsJsonAsync($"https://localhost:7226/api/Authentication/Autorize?role=Client", JsonContent.Create(""));
+            string responseBody = await response.Content.ReadAsStringAsync();
+            response.EnsureSuccessStatusCode();
+        }
+        [HttpGet(nameof(GetCarts))]
         public async Task<ActionResult<IEnumerable<CartItemDTO>>> GetCarts()
         {
-            using HttpResponseMessage response = await client.GetAsync("https://localhost:7226/api/Authentication/Autorize?role=Client");
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            return Ok(responseBody);
+            Autorization("Client");
             var carts = await _cartService.GetCartItemsDTO();
             return Ok(carts);
         }
 
-        [Authorize(Roles = "Admin, Client")]
-        [HttpPost]
+        [HttpPost(nameof(PostProductInCart))]
         public async Task<IActionResult> PostProductInCart(Guid productId)
         {
+            Autorization("Client");
             await _cartService.AddProductInCart(productId);
             return Ok("Товар добавлен в корзину");
         }
 
-        [Authorize(Roles = "Admin, Client")]
         [HttpPut]
         public async Task<IActionResult> PutProductInCart(CartItemDTO cartDTO)
         {
+            Autorization("Client");
             await _cartService.Update(cartDTO);
             return Ok(cartDTO);
         }
 
-        [Authorize(Roles = "Admin, Client")]
         [HttpPut(nameof(AddCountProductInCart))]
         public async Task<IActionResult> AddCountProductInCart(Guid cartId)
         {
+            Autorization("Client");
             await _cartService.CartPlusOneProduct(cartId);
             return Ok("+1");
         }
 
-        [Authorize(Roles = "Admin, Client")]
         [HttpPut(nameof(RemoveCountProductInCart))]
         public async Task<IActionResult> RemoveCountProductInCart(Guid cartId)
         {
+            Autorization("Client");
             await _cartService.CartMinusOneProduct(cartId);
             return Ok("-1");
         }
 
-        [Authorize(Roles = "Admin, Client")]
         [HttpDelete(nameof(ClearCart))]
         public async Task<IActionResult> ClearCart()
         {
+            Autorization("Client");
             await _cartService.ClearCart();
             return Ok($"Корзина успешно очищена"); ;
         }
 
-        [Authorize(Roles = "Admin, Client")]
         [HttpDelete]
         public async Task<IActionResult> DeleteProductInCart(Guid cartItemId)
         {
+            Autorization("Client");
             await _cartService.RemoveProductInCart(cartItemId);
             return Ok($"Успешно"); ;
         }

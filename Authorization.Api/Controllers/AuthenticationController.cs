@@ -66,10 +66,14 @@ namespace Authorization.Api.Controllers
             return Results.Json(response);
         }
 
-        [HttpGet(nameof(Autorize))]
-        public async Task<bool> Autorize(string role)
+        [HttpPost(nameof(Autorize))]
+        public async Task<IActionResult> Autorize([FromQuery]string? role)
         {
-            return role == _userSession.Role;
+            if (role != _userSession.Role)
+            {
+                return BadRequest();
+            }
+            return Ok();
         }
     }
 }

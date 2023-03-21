@@ -34,7 +34,6 @@ builder.Services.Configure<SettingsConfiguration>(
 builder.Configuration.GetSection("SettingsConfiguration"));
 builder.Services.Configure<JwtOptions>(
 builder.Configuration.GetSection("JwtOptions"));
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services
@@ -44,10 +43,7 @@ builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddMemoryCache();
-builder.Services.AddSession();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-builder.Services.AddAuthorization();
-builder.Services.SetJwtOptions(builder.Configuration);
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
@@ -87,7 +83,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseSession();
 app.UseHttpsRedirection();
 app.UseStatusCodePages();
 app.MapControllers();
