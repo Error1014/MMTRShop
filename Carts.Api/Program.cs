@@ -1,12 +1,8 @@
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Shop.Infrastructure.Middleware.Middleware;
 using Shop.Infrastructure.Extensions;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Configuration.Services;
 using Carts.Repository.Interfaces;
@@ -32,8 +28,9 @@ builder.Host
 
            });
        });
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 builder.Services.Configure<SettingsConfiguration>(
-builder.Configuration.GetSection("SettingsAPI"));
+builder.Configuration.GetSection("SettingsConfiguration"));
 builder.Services.Configure<JwtOptions>(
 builder.Configuration.GetSection("JwtOptions"));
 builder.Services.AddEndpointsApiExplorer();

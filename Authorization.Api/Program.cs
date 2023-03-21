@@ -21,9 +21,13 @@ using Microsoft.Extensions.Options;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.RegistrationDbContext<UserContext>(builder.Configuration);
+builder.Host
+       .ConfigureAppConfiguration((hostingContext, config) =>
+       {
+           config.AddEfConfiguration(
+               options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true"));
+       });
 builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-builder.Services.Configure<SettingsConfiguration>(
-builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.Configure<JwtOptions>(
 builder.Configuration.GetSection("JwtOptions"));
 

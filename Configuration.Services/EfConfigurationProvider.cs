@@ -1,4 +1,5 @@
 ﻿using Configuration.Repository;
+using Configuration.Repository.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -24,8 +25,37 @@ namespace Configuration.Services
 
             OptionsAction(builder);
 
-            using var dbContext = new ConfigurationDbContext(builder.Options);
-            Data = dbContext.ConfigurationItem.ToDictionary(x => x.Key, v => v.Value);
+            using (var dbContext = new ConfigurationDbContext(builder.Options))
+            {
+                
+
+                Data = !dbContext.ConfigurationItem.Any()
+                    ? CreateAndSaveDefaultValues(dbContext)
+                    : dbContext.ConfigurationItem.ToDictionary(c => c.Key, c => c.Value);
+            }
+        }
+        private static IDictionary<string, string> CreateAndSaveDefaultValues(
+        ConfigurationDbContext dbContext)
+        {
+            var configValues = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "JwtOptions:Key", "111" },
+                { "JwtOptions:Issuer", "111" },
+                { "JwtOptions:Audience", "111" }
+            };
+
+
+            dbContext.ConfigurationItem.AddRange(configValues
+                .Select(kvp => new ConfigurationItem
+                {
+                    Key = kvp.Key,
+                    Value = kvp.Value
+                })
+                .ToArray());
+
+            dbContext.SaveChanges();
+
+            return configValues;
         }
     }
 }

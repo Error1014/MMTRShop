@@ -11,16 +11,16 @@ namespace Configuration.Services
 {
     public class EfConfigurationSource : IConfigurationSource
     {
-        private readonly Action<DbContextOptionsBuilder> _context;
+        private readonly Action<DbContextOptionsBuilder> _optionsAction;
 
-        public EfConfigurationSource(Action<DbContextOptionsBuilder> context)
+        public EfConfigurationSource(Action<DbContextOptionsBuilder> optionsAction)
         {
-            _context = context;
+            _optionsAction = optionsAction;
         }
 
         public IConfigurationProvider Build(IConfigurationBuilder builder)
         {
-            return new EfConfigurationProvider(_context);
+            return new EfConfigurationProvider(_optionsAction);
         }
     }
 }

@@ -30,8 +30,6 @@ builder.Host
 
            });
        });
-builder.Services.Configure<JwtOptions>(
-builder.Configuration.GetSection("JwtOptions"));
 builder.Services.Configure<SettingsConfiguration>(
 builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.AddEndpointsApiExplorer();

@@ -3,6 +3,7 @@ using Shop.Infrastructure.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Shop.Infrastructure;
 using Carts.Services;
+using Microsoft.Extensions.Options;
 
 namespace Carts.Api.Controllers
 {
