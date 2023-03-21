@@ -51,8 +51,7 @@ namespace Shop.Infrastructure.Middleware.Middleware
                 {
                     throw new Exception("Error");
                 }
-            } 
-
+            }
             await _next(context);
         }
     }

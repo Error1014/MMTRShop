@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Shop.Infrastructure;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
+using Shop.Infrastructure.Interface;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -16,11 +17,13 @@ namespace Authorization.Api.Controllers
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
         private readonly IOptions<JwtOptions> _jwtOptions;
-        public AuthenticationController(IConfiguration configuration, IUserService userService, IOptions<JwtOptions> jwtOptions)
+        private readonly IUserSessionGetter _userSession;
+        public AuthenticationController(IConfiguration configuration, IUserService userService, IOptions<JwtOptions> jwtOptions, IUserSessionGetter userSession)
         {
             _userService = userService;
             _configuration = configuration;
             _jwtOptions = jwtOptions;
+            _userSession = userSession;
         }
         [HttpPost(nameof(Registration))]
         public async Task<IActionResult> Registration(UserDTO userDTO)
@@ -61,6 +64,12 @@ namespace Authorization.Api.Controllers
             };
 
             return Results.Json(response);
+        }
+
+        [HttpGet(nameof(Autorize))]
+        public async Task<bool> Autorize(string role)
+        {
+            return role == _userSession.Role;
         }
     }
 }

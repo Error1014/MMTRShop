@@ -39,9 +39,7 @@ namespace Configuration.Services
         {
             var configValues = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
-                { "JwtOptions:Key", "111" },
-                { "JwtOptions:Issuer", "111" },
-                { "JwtOptions:Audience", "111" }
+                
             };
 
 

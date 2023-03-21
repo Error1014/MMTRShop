@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Shop.Infrastructure;
 using Carts.Services;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace Carts.Api.Controllers
 {
@@ -11,6 +12,7 @@ namespace Carts.Api.Controllers
     public class CartsController : BaseApiController
     {
         private readonly ICartService _cartService;
+        private static readonly HttpClient client = new HttpClient();
         public CartsController(ICartService cartService)
         {
             _cartService = cartService;
@@ -20,6 +22,10 @@ namespace Carts.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CartItemDTO>>> GetCarts()
         {
+            using HttpResponseMessage response = await client.GetAsync("https://localhost:7226/api/Authentication/Autorize?role=Client");
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+            return Ok(responseBody);
             var carts = await _cartService.GetCartItemsDTO();
             return Ok(carts);
         }

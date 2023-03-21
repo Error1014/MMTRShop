@@ -1,12 +1,8 @@
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
 using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.Middleware.Middleware;
-using Microsoft.Extensions.Configuration;
 using Shop.Infrastructure.Extensions;
 using Authorization.Repository.Interfaces;
 using Authorization.Repository.Repositories;
@@ -16,7 +12,6 @@ using Authorization.Services;
 using Authorization.Services.Services;
 using Configuration.Services;
 using Shop.Infrastructure.HelperModels;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,7 +71,7 @@ builder.Services.AddSwaggerGen(opt =>
 var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
-
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -89,9 +84,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStatusCodePages();
-app.UseAuthorization();
 app.MapControllers();
 app.UseMiddleware<AuthenticationMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
-
 app.Run();

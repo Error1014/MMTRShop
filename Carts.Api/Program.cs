@@ -10,6 +10,7 @@ using Carts.Repository.Repositories;
 using Carts.Repository;
 using Carts.Services;
 using Shop.Infrastructure.HelperModels;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,11 +43,11 @@ builder.Services
 builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());
-
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddAuthorization();
 builder.Services.SetJwtOptions(builder.Configuration);
-
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
@@ -74,27 +75,23 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
-
 var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
-
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseSession();
 app.UseHttpsRedirection();
 app.UseStatusCodePages();
-app.UseAuthorization();
 app.MapControllers();
-app.UseMiddleware<AuthenticationMiddleware>();
+//app.UseMiddleware<AuthenticationMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
-
 app.Run();
 
