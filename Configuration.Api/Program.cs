@@ -66,7 +66,6 @@ builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddAuthorization();
-builder.Services.SetJwtOptions(builder.Configuration);
 
 var app = builder.Build();
 

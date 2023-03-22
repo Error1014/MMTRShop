@@ -44,7 +44,6 @@ builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<U
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddAuthorization();
-builder.Services.SetJwtOptions(builder.Configuration);
 
 builder.Services.AddSwaggerGen(opt =>
 {
