@@ -24,7 +24,7 @@ namespace Carts.Api.Controllers
         {
             var token = ViewData["Authorization"];
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
-            HttpResponseMessage response = await client.PostAsJsonAsync($"https://localhost:7226/api/Authentication/Autorize?role=Client", JsonContent.Create(""));
+            HttpResponseMessage response = await client.PostAsJsonAsync($"https://localhost:7226/api/Authentication/Autorize?role={role}", JsonContent.Create(""));
             string responseBody = await response.Content.ReadAsStringAsync();
             response.EnsureSuccessStatusCode();
         }
