@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Options;
-using Carts.Repository.Entities;
-using Carts.Repository.Interfaces;
 using Shop.Infrastructure.Interface;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Exceptions;
+using Carts.Repository.Interfaces;
+using Carts.Repository.Entities;
 
 namespace Carts.Services
 {

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,12 +9,11 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CartRepository\Carts.Repository.csproj" />
-    <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
+    <ProjectReference Include="..\Authorization.Repository\Authorization.Repository.csproj" />
   </ItemGroup>
 
 </Project>

@@ -23,10 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Configuration\Configuration.Services\Configuration.Services.csproj" />
     <ProjectReference Include="..\Authorization.Repository\Authorization.Repository.csproj" />
     <ProjectReference Include="..\Authorization.Services\Authorization.Services.csproj" />
-    <ProjectReference Include="..\Configuration.Services\Configuration.Services.csproj" />
-    <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

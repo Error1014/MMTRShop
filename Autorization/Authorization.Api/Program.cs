@@ -10,8 +10,8 @@ using Authorization.Repository;
 using Authorization.Services.Interfaces;
 using Authorization.Services;
 using Authorization.Services.Services;
-using Configuration.Services;
 using Shop.Infrastructure.HelperModels;
+using Configuration.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

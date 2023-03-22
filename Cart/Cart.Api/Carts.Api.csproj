@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -17,9 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Configuration.Repository\Configuration.Repository.csproj" />
-    <ProjectReference Include="..\Configuration.Services\Configuration.Services.csproj" />
-    <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Configuration\Configuration.Services\Configuration.Services.csproj" />
+    <ProjectReference Include="..\..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
+    <ProjectReference Include="..\Cart.Repository\Carts.Repository.csproj" />
+    <ProjectReference Include="..\Cart.Services\Carts.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Authorization.Repository\Authorization.Repository.csproj" />
-    <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
+    <ProjectReference Include="..\PersonalAccount.Repository\PersonalAccount.Repository.csproj" />
   </ItemGroup>
 
 </Project>
