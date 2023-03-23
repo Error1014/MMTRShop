@@ -62,6 +62,7 @@ namespace Carts.Api.Controllers
             return Ok($"Корзина успешно очищена"); ;
         }
 
+        [Authorize(Roles = "Client")]
         [HttpDelete]
         public async Task<IActionResult> DeleteProductInCart(Guid cartItemId)
         {

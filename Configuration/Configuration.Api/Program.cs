@@ -23,6 +23,8 @@ builder.Host
            config.AddEfConfiguration(
                options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true"));
        });
+builder.Services.Configure<UriEndPoint>(
+    builder.Configuration.GetSection("AuthorizationService"));
 builder.Services.Configure<SettingsConfiguration>(
 builder.Configuration.GetSection("SettingsConfiguration"));
 builder.Services.Configure<JwtOptions>(
@@ -68,9 +70,6 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-app.UseDefaultFiles();
-app.UseStaticFiles();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -81,8 +80,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.UseStatusCodePages();
 app.UseAuthorization();
 app.MapControllers();
 app.UseMiddleware<AuthenticationMiddleware>();

@@ -9,6 +9,7 @@ using Shop.Infrastructure.Interface;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 using XAct;
 
 namespace Authorization.Api.Controllers
@@ -68,10 +69,11 @@ namespace Authorization.Api.Controllers
         }
 
         [HttpPost(nameof(Autorize))]
-        public async Task<IActionResult> Autorize([FromQuery]string? role)
+        public async Task<IActionResult> Autorize([FromQuery] string? role)
         {
             var token = ViewData["Authorization"].ToString();
-            if (token != null)
+            UserSession userSession = new UserSession();
+            if (token != "Bearer")
             {
                 try
                 {
@@ -93,17 +95,19 @@ namespace Authorization.Api.Controllers
                     if (role != myRole) return Ok();
                     _userSession.UserId = accountId;
                     _userSession.Role = myRole;
+                    userSession.Role = role;
+                    userSession.UserId = accountId;
                 }
                 catch
                 {
-                    return BadRequest("Ошибка токена");
+                    return StatusCode(403);
                 }
             }
             else
             {
-                return NotFound("Нет токена");
+                return StatusCode(401);
             }
-            return Ok();
+            return Ok(JsonSerializer.Serialize(userSession));
         }
     }
 }

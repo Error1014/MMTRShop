@@ -30,6 +30,8 @@ builder.Host
 
            });
        });
+builder.Services.Configure<UriEndPoint>(
+    builder.Configuration.GetSection("AuthorizationService"));
 builder.Services.Configure<SettingsConfiguration>(
 builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.AddEndpointsApiExplorer();
@@ -73,8 +75,7 @@ builder.Services.AddSwaggerGen(opt =>
     });
 });
 var app = builder.Build();
-app.UseDefaultFiles();
-app.UseStaticFiles();
+
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -86,8 +87,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.UseStatusCodePages();
+
 app.UseAuthorization();
 app.MapControllers();
 app.UseMiddleware<AuthenticationMiddleware>();

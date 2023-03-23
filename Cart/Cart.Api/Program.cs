@@ -29,10 +29,12 @@ builder.Host
 
            });
        });
+builder.Services.Configure<UriEndPoint>(
+    builder.Configuration.GetSection("AuthorizationService")); 
 builder.Services.Configure<SettingsConfiguration>(
-builder.Configuration.GetSection("SettingsConfiguration"));
+     builder.Configuration.GetSection("SettingsConfiguration"));
 builder.Services.Configure<JwtOptions>(
-builder.Configuration.GetSection("JwtOptions"));
+    builder.Configuration.GetSection("JwtOptions"));
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services
@@ -71,8 +73,7 @@ builder.Services.AddSwaggerGen(opt =>
     });
 });
 var app = builder.Build();
-app.UseDefaultFiles();
-app.UseStaticFiles();
+
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
@@ -82,8 +83,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseHttpsRedirection();
-app.UseStatusCodePages();
+
 app.MapControllers();
 app.UseMiddleware<AuthenticationMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
