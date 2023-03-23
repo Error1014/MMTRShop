@@ -23,7 +23,6 @@ builder.Host
            config.AddEfConfiguration(
                options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true"));
        });
-builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 builder.Services.Configure<SettingsConfiguration>(
 builder.Configuration.GetSection("SettingsConfiguration"));
 builder.Services.Configure<JwtOptions>(
@@ -86,7 +85,7 @@ app.UseHttpsRedirection();
 app.UseStatusCodePages();
 app.UseAuthorization();
 app.MapControllers();
-//app.UseMiddleware<AuthenticationMiddleware>();
+app.UseMiddleware<AuthenticationMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.Run();

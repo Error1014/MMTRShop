@@ -29,7 +29,6 @@ builder.Host
 
            });
        });
-builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 builder.Services.Configure<SettingsConfiguration>(
 builder.Configuration.GetSection("SettingsConfiguration"));
 builder.Services.Configure<JwtOptions>(
@@ -86,7 +85,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStatusCodePages();
 app.MapControllers();
-//app.UseMiddleware<AuthenticationMiddleware>();
+app.UseMiddleware<AuthenticationMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
 app.Run();
 

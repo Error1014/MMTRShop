@@ -20,26 +20,16 @@ namespace Carts.Api.Controllers
             _cartService = cartService;
             
         }
-        private async void Autorization(string role)
-        {
-            var token = ViewData["Authorization"];
-            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
-            HttpResponseMessage response = await client.PostAsJsonAsync($"https://localhost:7226/api/Authentication/Autorize?role={role}", JsonContent.Create(""));
-            string responseBody = await response.Content.ReadAsStringAsync();
-            response.EnsureSuccessStatusCode();
-        }
         [HttpGet(nameof(GetCarts))]
-        public async Task<ActionResult<IEnumerable<CartItemDTO>>> GetCarts()
+        public async Task<IEnumerable<CartItemDTO>> GetCarts()
         {
-            Autorization("Client");
             var carts = await _cartService.GetCartItemsDTO();
-            return Ok(carts);
+            return carts;
         }
 
         [HttpPost(nameof(PostProductInCart))]
         public async Task<IActionResult> PostProductInCart(Guid productId)
         {
-            Autorization("Client");
             await _cartService.AddProductInCart(productId);
             return Ok("Товар добавлен в корзину");
         }
@@ -47,7 +37,6 @@ namespace Carts.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> PutProductInCart(CartItemDTO cartDTO)
         {
-            Autorization("Client");
             await _cartService.Update(cartDTO);
             return Ok(cartDTO);
         }
@@ -55,7 +44,6 @@ namespace Carts.Api.Controllers
         [HttpPut(nameof(AddCountProductInCart))]
         public async Task<IActionResult> AddCountProductInCart(Guid cartId)
         {
-            Autorization("Client");
             await _cartService.CartPlusOneProduct(cartId);
             return Ok("+1");
         }
@@ -63,7 +51,6 @@ namespace Carts.Api.Controllers
         [HttpPut(nameof(RemoveCountProductInCart))]
         public async Task<IActionResult> RemoveCountProductInCart(Guid cartId)
         {
-            Autorization("Client");
             await _cartService.CartMinusOneProduct(cartId);
             return Ok("-1");
         }
@@ -71,7 +58,6 @@ namespace Carts.Api.Controllers
         [HttpDelete(nameof(ClearCart))]
         public async Task<IActionResult> ClearCart()
         {
-            Autorization("Client");
             await _cartService.ClearCart();
             return Ok($"Корзина успешно очищена"); ;
         }
@@ -79,7 +65,6 @@ namespace Carts.Api.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteProductInCart(Guid cartItemId)
         {
-            Autorization("Client");
             await _cartService.RemoveProductInCart(cartItemId);
             return Ok($"Успешно"); ;
         }

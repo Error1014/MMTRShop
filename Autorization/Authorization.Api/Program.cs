@@ -22,7 +22,6 @@ builder.Host
            config.AddEfConfiguration(
                options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true"));
        });
-builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 builder.Services.Configure<JwtOptions>(
 builder.Configuration.GetSection("JwtOptions"));
 
@@ -38,7 +37,6 @@ builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<U
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-builder.Services.AddAuthorization();
 builder.Services.SetJwtOptions(builder.Configuration);
 
 builder.Services.AddSwaggerGen(opt =>
@@ -72,8 +70,6 @@ var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -84,6 +80,4 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStatusCodePages();
 app.MapControllers();
-app.UseMiddleware<AuthenticationMiddleware>();
-app.UseMiddleware<ExceptionMiddleware>();
 app.Run();

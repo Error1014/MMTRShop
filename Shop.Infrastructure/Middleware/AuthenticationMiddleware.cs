@@ -8,50 +8,30 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
 using Microsoft.Extensions.Options;
 using Shop.Infrastructure.HelperModels;
+using System.Net.Http.Json;
+using System.Net.Http;
+using XAct;
 
 namespace Shop.Infrastructure.Middleware.Middleware
 {
     public class AuthenticationMiddleware
     {
         private readonly RequestDelegate _next; 
-        private readonly IOptions<JwtOptions> _jwtOptions;
-        public AuthenticationMiddleware(RequestDelegate next, IConfiguration configuration, IOptions<JwtOptions> options)
+        private HttpClient _httpClient = new HttpClient();
+        public AuthenticationMiddleware(RequestDelegate next)
         {
             _next = next;
-            _jwtOptions = options;
         }
 
-        public async Task Invoke(HttpContext context, IServiceProvider serviceProvider)
+        public async Task Invoke(HttpContext context)
         {
-            var userSession = serviceProvider.GetService<IUserSessionSetter>();
+            _httpClient = new HttpClient();
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-            if (token != null)
-            {
-                try
-                {
-                    var tokenHandler = new JwtSecurityTokenHandler();
-                    var key = Encoding.ASCII.GetBytes(_jwtOptions.Value.Key);
-                    tokenHandler.ValidateToken(token, new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(key),
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ClockSkew = TimeSpan.Zero,
-                        ValidIssuer = _jwtOptions.Value.Issuer,
-                        ValidAudience = _jwtOptions.Value.Audience
-                    }, out SecurityToken validatedToken);
-                    var jwtToken = (JwtSecurityToken)validatedToken;
-                    var accountId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "Id").Value);
-                    var role = jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
-                    userSession.UserId = accountId;
-                    userSession.Role = role;
-                }
-                catch
-                {
-                    throw new Exception("Error");
-                }
-            }
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            HttpResponseMessage response = await _httpClient.PostAsync($"https://localhost:7226/api/Authentication/Autorize?role=Client", JsonContent.Create(""));
+            string responseBody = await response.Content.ReadAsStringAsync();
+            response.EnsureSuccessStatusCode();
             await _next(context);
         }
     }

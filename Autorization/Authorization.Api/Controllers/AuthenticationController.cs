@@ -9,6 +9,7 @@ using Shop.Infrastructure.Interface;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using XAct;
 
 namespace Authorization.Api.Controllers
 {
@@ -17,8 +18,8 @@ namespace Authorization.Api.Controllers
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
         private readonly IOptions<JwtOptions> _jwtOptions;
-        private readonly IUserSessionGetter _userSession;
-        public AuthenticationController(IConfiguration configuration, IUserService userService, IOptions<JwtOptions> jwtOptions, IUserSessionGetter userSession)
+        private readonly IUserSessionSetter _userSession;
+        public AuthenticationController(IConfiguration configuration, IUserService userService, IOptions<JwtOptions> jwtOptions, IUserSessionSetter userSession)
         {
             _userService = userService;
             _configuration = configuration;
@@ -69,9 +70,38 @@ namespace Authorization.Api.Controllers
         [HttpPost(nameof(Autorize))]
         public async Task<IActionResult> Autorize([FromQuery]string? role)
         {
-            if (role != _userSession.Role)
+            var token = ViewData["Authorization"].ToString();
+            if (token != null)
             {
-                return BadRequest();
+                try
+                {
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var key = Encoding.ASCII.GetBytes(_jwtOptions.Value.Key);
+                    tokenHandler.ValidateToken(token, new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ClockSkew = TimeSpan.Zero,
+                        ValidIssuer = _jwtOptions.Value.Issuer,
+                        ValidAudience = _jwtOptions.Value.Audience
+                    }, out SecurityToken validatedToken);
+                    var jwtToken = (JwtSecurityToken)validatedToken;
+                    var accountId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "Id").Value);
+                    var myRole = jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
+                    if (role != myRole) return Ok();
+                    _userSession.UserId = accountId;
+                    _userSession.Role = myRole;
+                }
+                catch
+                {
+                    return BadRequest("Ошибка токена");
+                }
+            }
+            else
+            {
+                return NotFound("Нет токена");
             }
             return Ok();
         }
