@@ -4,6 +4,7 @@ using Shop.Infrastructure.HelperModels;
 using Microsoft.AspNetCore.Authorization;
 using Shop.Infrastructure;
 using PersonalAccount.Services;
+using Shop.Infrastructure.Attributes;
 
 namespace PersonalAccount.Api.Controllers
 {
@@ -15,14 +16,14 @@ namespace PersonalAccount.Api.Controllers
         {
             _clientService = clientService;
         }
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClientDTO>>> GetClientsPage([FromQuery] BaseFilter filter)
         {
             var users = await _clientService.GetPageClients(filter);
             return Ok(users);
         }
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpGet("{id}")]
         public async Task<ActionResult<ClientDTO>> GetClient(Guid id)
         {
@@ -36,14 +37,14 @@ namespace PersonalAccount.Api.Controllers
             await _clientService.AddClient(clientDTO);
             return Ok(clientDTO);
         }
-        [Authorize(Roles = "Client")]
+        [RoleAuthorize("Client")]
         [HttpPut]
         public async Task<IActionResult> PutClient(ClientDTO clientDTO)
         {
             await _clientService.Update(clientDTO);
             return Ok(clientDTO);
         }
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClient(Guid id)
         {

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using System.Net.Http;
 using XAct;
 using Newtonsoft.Json.Linq;
-
+using Shop.Infrastructure.Attributes;
 
 namespace Carts.Api.Controllers
 {
@@ -20,6 +20,7 @@ namespace Carts.Api.Controllers
             _cartService = cartService;
             
         }
+        [RoleAuthorize("Client")]
         [HttpGet(nameof(GetCarts))]
         public async Task<IEnumerable<CartItemDTO>> GetCarts()
         {
@@ -27,6 +28,7 @@ namespace Carts.Api.Controllers
             return carts;
         }
 
+        [RoleAuthorize("Client")]
         [HttpPost(nameof(PostProductInCart))]
         public async Task<IActionResult> PostProductInCart(Guid productId)
         {
@@ -34,6 +36,7 @@ namespace Carts.Api.Controllers
             return Ok("Товар добавлен в корзину");
         }
 
+        [RoleAuthorize("Client")]
         [HttpPut]
         public async Task<IActionResult> PutProductInCart(CartItemDTO cartDTO)
         {
@@ -41,6 +44,7 @@ namespace Carts.Api.Controllers
             return Ok(cartDTO);
         }
 
+        [RoleAuthorize("Client")]
         [HttpPut(nameof(AddCountProductInCart))]
         public async Task<IActionResult> AddCountProductInCart(Guid cartId)
         {
@@ -48,6 +52,7 @@ namespace Carts.Api.Controllers
             return Ok("+1");
         }
 
+        [RoleAuthorize("Client")]
         [HttpPut(nameof(RemoveCountProductInCart))]
         public async Task<IActionResult> RemoveCountProductInCart(Guid cartId)
         {
@@ -55,6 +60,7 @@ namespace Carts.Api.Controllers
             return Ok("-1");
         }
 
+        [RoleAuthorize("Client")]
         [HttpDelete(nameof(ClearCart))]
         public async Task<IActionResult> ClearCart()
         {
@@ -62,7 +68,7 @@ namespace Carts.Api.Controllers
             return Ok($"Корзина успешно очищена"); ;
         }
 
-        [Authorize(Roles = "Client")]
+        [RoleAuthorize("Client")]
         [HttpDelete]
         public async Task<IActionResult> DeleteProductInCart(Guid cartItemId)
         {

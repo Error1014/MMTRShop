@@ -17,7 +17,7 @@ namespace Shop.Infrastructure
         public override void OnActionExecuting(ActionExecutingContext ctx)
         {
             base.OnActionExecuting(ctx);
-            ViewData["Authorization"] = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last(); ;
+            ViewData["Authorization"] = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
         }
     }
 }

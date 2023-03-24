@@ -27,8 +27,6 @@ builder.Services.Configure<UriEndPoint>(
     builder.Configuration.GetSection("AuthorizationService"));
 builder.Services.Configure<SettingsConfiguration>(
 builder.Configuration.GetSection("SettingsConfiguration"));
-builder.Services.Configure<JwtOptions>(
-builder.Configuration.GetSection("JwtOptions"));
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });

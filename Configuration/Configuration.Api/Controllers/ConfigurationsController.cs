@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Shop.Infrastructure;
+using Shop.Infrastructure.Attributes;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
 
@@ -22,14 +23,14 @@ namespace Configuration.Api.Controllers
         {
             return await _configurationService.GetConfiguration();
         }
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpPost(nameof(PostConfiguration))]
         public async Task<IActionResult> PostConfiguration(ConfigurationItem configurationItem)
         {
             await _configurationService.AddConfiguration(configurationItem);
             return Ok();
         }
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpPut(nameof(PutConfiguration))]
         public async Task<IActionResult> PutConfiguration(ConfigurationItem configurationItem)
         {

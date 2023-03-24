@@ -1,4 +1,5 @@
-﻿using Authorization.Services.Interfaces;
+﻿using Authorization.Repository.Entities;
+using Authorization.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -11,6 +12,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using XAct;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Authorization.Api.Controllers
 {
@@ -69,9 +71,10 @@ namespace Authorization.Api.Controllers
         }
 
         [HttpPost(nameof(Autorize))]
-        public async Task<IActionResult> Autorize([FromQuery] string? role)
+        public async Task<IActionResult> Autorize([FromQuery] string role)
         {
             var token = ViewData["Authorization"].ToString();
+            var roles = role.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             UserSession userSession = new UserSession();
             if (token != "Bearer")
             {
@@ -92,15 +95,23 @@ namespace Authorization.Api.Controllers
                     var jwtToken = (JwtSecurityToken)validatedToken;
                     var accountId = Guid.Parse(jwtToken.Claims.FirstOrDefault(x => x.Type == "Id").Value);
                     var myRole = jwtToken.Claims.FirstOrDefault(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
-                    if (role != myRole) return Ok();
-                    _userSession.UserId = accountId;
-                    _userSession.Role = myRole;
-                    userSession.Role = role;
-                    userSession.UserId = accountId;
+                    bool isAuthorize = false;
+                    foreach (var item in roles)
+                    {
+                        if (item == myRole)
+                        {
+                            userSession.Role = myRole;
+                            userSession.UserId = accountId;
+                            isAuthorize = true;
+                            break;
+                        }
+                    }
+
+                    if (!isAuthorize) StatusCode(403);
                 }
                 catch
                 {
-                    return StatusCode(403);
+                    return StatusCode(401);
                 }
             }
             else
