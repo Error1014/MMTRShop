@@ -1,8 +1,6 @@
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
-using Microsoft.EntityFrameworkCore;
-using Shop.Infrastructure.Middleware.Middleware;
 using Shop.Infrastructure.Extensions;
 using Authorization.Repository.Interfaces;
 using Authorization.Repository.Repositories;
@@ -11,18 +9,20 @@ using Authorization.Services.Interfaces;
 using Authorization.Services;
 using Authorization.Services.Services;
 using Shop.Infrastructure.HelperModels;
+
+using Shop.Infrastructure.Middleware;
 using Configuration.Services;
-using Microsoft.AspNetCore.Connections;
-using System.Net.Http;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.RegistrationDbContext<UserContext>(builder.Configuration);
-builder.Host
-       .ConfigureAppConfiguration((hostingContext, config) =>
-       {
-           config.AddEfConfiguration(
-               options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true"));
-       });
+//builder.Host
+//       .ConfigureAppConfiguration((hostingContext, config) =>
+//       {
+//           config.AddEfConfiguration(
+//               options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true"));
+//       });
+await builder.Configuration.ConectionToConfiguration();
 builder.Services.Configure<JwtOptions>(
 builder.Configuration.GetSection("JwtOptions"));
 

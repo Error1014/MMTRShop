@@ -1,7 +1,6 @@
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
-using Shop.Infrastructure.Middleware.Middleware;
 using Shop.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Configuration.Services;
@@ -11,6 +10,7 @@ using Carts.Repository;
 using Carts.Services;
 using Shop.Infrastructure.HelperModels;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Shop.Infrastructure.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Shop.Infrastructure;
 using Shop.Infrastructure.Exceptions;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Shop.Infrastructure.Middleware.Middleware
+namespace Shop.Infrastructure.Middleware
 {
     public class ExceptionMiddleware
     {

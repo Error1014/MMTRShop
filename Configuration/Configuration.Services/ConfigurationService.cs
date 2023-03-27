@@ -1,5 +1,8 @@
-﻿using Configuration.Repository.Entities;
+﻿using Configuration.Repository;
+using Configuration.Repository.Entities;
 using Configuration.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;

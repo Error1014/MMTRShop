@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
-using Shop.Infrastructure.Middleware.Middleware;
 using Shop.Infrastructure.Extensions;
 using PersonalAccount.Repository.Repositories;
 using PersonalAccount.Repository;
@@ -13,6 +12,7 @@ using PersonalAccount.Services;
 using Shop.Infrastructure.HelperModels;
 using Configuration.Services;
 using Microsoft.EntityFrameworkCore;
+using Shop.Infrastructure.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 

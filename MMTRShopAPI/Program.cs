@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Interface;
-using Shop.Infrastructure.Middleware.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.Extensions;
+using Shop.Infrastructure.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -17,12 +17,11 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Http.Features;
 using Shop.Infrastructure.Attributes;
 
-namespace Shop.Infrastructure.Middleware.Middleware
+namespace Shop.Infrastructure.Middleware
 {
     public class AuthenticationMiddleware
     {
         private readonly RequestDelegate _next;
-        private HttpClient _httpClient = new HttpClient();
         private readonly UriEndPoint uriEndPoint;
         public AuthenticationMiddleware(RequestDelegate next, IOptions<UriEndPoint> options)
         {
@@ -33,17 +32,17 @@ namespace Shop.Infrastructure.Middleware.Middleware
 
         public async Task Invoke(HttpContext context, IUserSessionSetter userSession)
         {
-            _httpClient = new HttpClient();
+            HttpClient _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri(uriEndPoint.BaseAddress);
 
             var endpoint = context.Features.Get<IEndpointFeature>()?.Endpoint;
             var attribute = endpoint?.Metadata.GetMetadata<RoleAuthorizeAttribute>();
             var roles = attribute?.Roles;
-            
+
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
-            HttpResponseMessage response = await _httpClient.PostAsync(uriEndPoint.Uri+ roles, JsonContent.Create(""));
+            HttpResponseMessage response = await _httpClient.PostAsync(uriEndPoint.Uri + roles, JsonContent.Create(""));
 
             string responseBody = await response.Content.ReadAsStringAsync();
             var session = JsonSerializer.Deserialize<UserSession>(responseBody);

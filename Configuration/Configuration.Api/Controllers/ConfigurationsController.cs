@@ -1,7 +1,9 @@
-﻿using Configuration.Repository.Entities;
+﻿using Configuration.Repository;
+using Configuration.Repository.Entities;
 using Configuration.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Shop.Infrastructure;
 using Shop.Infrastructure.Attributes;
@@ -16,7 +18,6 @@ namespace Configuration.Api.Controllers
         public ConfigurationsController(IConfigurationService configurationService, IOptions<JwtOptions> options)
         {
             _configurationService = configurationService;
-            var s = options;
         }
         [HttpGet(nameof(GetConfiguration))]
         public async Task<IEnumerable<ConfigurationItem>> GetConfiguration()
