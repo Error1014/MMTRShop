@@ -12,9 +12,10 @@ using Authorization.Services;
 using Authorization.Services.Services;
 using Shop.Infrastructure.HelperModels;
 using Configuration.Services;
+using Microsoft.AspNetCore.Connections;
+using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.RegistrationDbContext<UserContext>(builder.Configuration);
 builder.Host
        .ConfigureAppConfiguration((hostingContext, config) =>

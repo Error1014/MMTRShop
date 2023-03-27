@@ -71,11 +71,13 @@ namespace Authorization.Api.Controllers
         }
 
         [HttpPost(nameof(Autorize))]
-        public async Task<IActionResult> Autorize([FromQuery] string role)
+        public async Task<IActionResult> Autorize([FromQuery] string? role)
         {
-            var token = ViewData["Authorization"].ToString();
-            var roles = role.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             UserSession userSession = new UserSession();
+            var token = ViewData["Authorization"].ToString();
+            if (role==null) return Ok(JsonSerializer.Serialize(userSession));
+            var roles = role.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            
             if (token != "Bearer")
             {
                 try
@@ -106,7 +108,6 @@ namespace Authorization.Api.Controllers
                             break;
                         }
                     }
-
                     if (!isAuthorize) StatusCode(403);
                 }
                 catch
@@ -116,6 +117,7 @@ namespace Authorization.Api.Controllers
             }
             else
             {
+                
                 return StatusCode(401);
             }
             return Ok(JsonSerializer.Serialize(userSession));
