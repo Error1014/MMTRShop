@@ -18,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.RegistrationDbContext<CartContext>(builder.Configuration);
 
 
-await builder.Configuration.ConectionToConfiguration();
+await builder.Configuration.AddConfigurationApiSource(builder.Configuration);
 builder.Services.Configure<UriEndPoint>(
     builder.Configuration.GetSection("AuthorizationService")); 
 builder.Services.Configure<SettingsConfiguration>(

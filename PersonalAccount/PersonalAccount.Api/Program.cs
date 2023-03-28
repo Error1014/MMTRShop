@@ -18,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.RegistrationDbContext<UserContext>(builder.Configuration);
-await builder.Configuration.ConectionToConfiguration();
+await builder.Configuration.AddConfigurationApiSource(builder.Configuration);
 builder.Services.Configure<UriEndPoint>(
     builder.Configuration.GetSection("AuthorizationService"));
 builder.Services.Configure<SettingsConfiguration>(
