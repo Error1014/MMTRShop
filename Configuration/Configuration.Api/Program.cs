@@ -14,14 +14,15 @@ using Microsoft.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.HelperModels;
 using Shop.Infrastructure.Middleware;
-//FFF
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.RegistrationDbContext<ConfigurationDbContext>(builder.Configuration);
+var configuration = builder.Configuration;
 builder.Host
        .ConfigureAppConfiguration((hostingContext, config) =>
        {
            config.AddEfConfiguration(
-               options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true"));
+               options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
        });
 builder.Services.Configure<UriEndPoint>(
     builder.Configuration.GetSection("AuthorizationService"));

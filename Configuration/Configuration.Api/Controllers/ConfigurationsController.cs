@@ -15,7 +15,7 @@ namespace Configuration.Api.Controllers
     public class ConfigurationsController : BaseApiController
     {
         private readonly IConfigurationService _configurationService;
-        public ConfigurationsController(IConfigurationService configurationService, IOptions<JwtOptions> options)
+        public ConfigurationsController(IConfigurationService configurationService)
         {
             _configurationService = configurationService;
         }

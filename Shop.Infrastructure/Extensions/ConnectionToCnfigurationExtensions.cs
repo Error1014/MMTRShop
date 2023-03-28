@@ -18,11 +18,15 @@ namespace Shop.Infrastructure.Extensions
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://localhost:7079/api/");
             var response = await httpClient.GetAsync("Configurations/GetConfiguration");
-
             string responseBody = await response.Content.ReadAsStringAsync();
             var configuration = JsonSerializer.Deserialize<IEnumerable<ConfigurationItemDTO>>(responseBody);
+            Dictionary<string, string> dictonary = new Dictionary<string, string>();
+            foreach (var item in configuration)
+            {
+                dictonary.Add(item.key,item.value);
+            }
             response.EnsureSuccessStatusCode();
-            builder.Add((IConfigurationSource)configuration);
+            builder.AddSimpleConfiguration(dictonary);
         }
     }
 }

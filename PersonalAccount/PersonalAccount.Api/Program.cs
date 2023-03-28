@@ -18,18 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.RegistrationDbContext<UserContext>(builder.Configuration);
-builder.Host
-       .ConfigureAppConfiguration((context,
-                                   builder) =>
-       {
-           var config = builder.Build();
-           string conectionString = "Server=(localdb)\\mssqllocaldb;Database=MMTRShopConfiguration;Trusted_Connection=True;MultipleActiveResultSets=true";
-           builder.AddEfConfiguration(optionsBuilder =>
-           {
-               optionsBuilder.UseSqlServer(conectionString);
-
-           });
-       });
+await builder.Configuration.ConectionToConfiguration();
 builder.Services.Configure<UriEndPoint>(
     builder.Configuration.GetSection("AuthorizationService"));
 builder.Services.Configure<SettingsConfiguration>(

@@ -12,7 +12,6 @@ namespace Configuration.Services
 {
     public static class EfExtensions
     {
-
         public static IConfigurationBuilder AddEfConfiguration(this IConfigurationBuilder builder,
         Action<DbContextOptionsBuilder> optionsAction)
         {
