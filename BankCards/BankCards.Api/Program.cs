@@ -1,7 +1,7 @@
-using Favourites.Repository.Context;
-using Favourites.Repository.Interfaces;
-using Favourites.Repository.Repositories;
-using Favourites.Services;
+using BankCards.Repository.Context;
+using BankCards.Repository.Interfaces;
+using BankCards.Repository.Repositories;
+using BankCards.Service;
 using Microsoft.OpenApi.Models;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Extensions;
@@ -11,7 +11,7 @@ using Shop.Infrastructure.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.RegistrationDbContext<FavouritesContext>(builder.Configuration);
+builder.Services.RegistrationDbContext<BankCardContext>(builder.Configuration);
 
 
 await builder.Configuration.AddConfigurationApiSource(builder.Configuration);
@@ -22,12 +22,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services
     .AddScoped<IUnitOfWork, UnitOfWork>()
-    .AddScoped<IFavouriteService, FavouriteService>();
+    .AddScoped<IBankCardService, BankCardService>();
 builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddMemoryCache();
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+//builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
