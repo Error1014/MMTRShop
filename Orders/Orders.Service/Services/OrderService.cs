@@ -1,22 +1,11 @@
 ﻿using AutoMapper;
+using Orders.Repository.Entities;
+using Orders.Repository.Interfaces;
+using Orders.Service.Interfaces;
 using Shop.Infrastructure.DTO;
-using Shop.Infrastructure.Exceptions;
-using MMTRShop.Repository;
 using Shop.Infrastructure.HelperModels;
-using MMTRShop.Repository.Entities;
-using MMTRShop.Repository.Interface;
-using MMTRShop.Repository.Repositories;
-using MMTRShop.Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
-namespace MMTRShop.Service.Services
+namespace Orders.Service.Services
 {
     public class OrderService : IOrderService
     {
@@ -61,7 +50,7 @@ namespace MMTRShop.Service.Services
         public async Task Update(Guid orderId, int statusId)
         {
             var order = await _unitOfWork.Orders.GetByIdAsync(orderId);
-            order.StatusId=statusId;
+            order.StatusId = statusId;
             _unitOfWork.Orders.Update(order);
             await Save();
         }

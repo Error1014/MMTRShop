@@ -13,10 +13,6 @@ namespace MMTRShop.Service
             CreateMap<BankCard, BankCardDTO>().ReverseMap();
             CreateMap<Favourite, FavouriteDTO>();
             CreateMap<Favourite, FavouriteDTO>().ReverseMap();
-            CreateMap<Order, OrderDTO>();
-            CreateMap<Order, OrderDTO>().ReverseMap();
-            CreateMap<OrderContent, OrderContentDTO>();
-            CreateMap<OrderContent, OrderContentDTO>().ReverseMap();
             CreateMap<Feedback, FeedbackDTO>();
             CreateMap<Feedback, FeedbackDTO>().ReverseMap();
         }

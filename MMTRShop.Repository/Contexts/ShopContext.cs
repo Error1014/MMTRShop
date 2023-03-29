@@ -15,9 +15,6 @@ namespace MMTRShop.Repository.Contexts
         {
             
         }
-        public DbSet<Status> Status { get; set; }
-        public DbSet<Order> Order { get; set; }
-        public DbSet<OrderContent> OrderContent { get; set; }
         public DbSet<Feedback> Feedback { get; set; }
         public DbSet<Favourite> Favourites { get; set; }
         public DbSet<BankCard> BankCard { get; set; }

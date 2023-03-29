@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shop.Infrastructure.Repository;
 
-namespace MMTRShop.Repository.Entities
+namespace Orders.Repository.Entities
 {
     public class Order : BaseEntity<Guid>
     {

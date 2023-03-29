@@ -1,18 +1,12 @@
 ﻿using AutoMapper;
+using Orders.Repository.Entities;
+using Orders.Repository.Interfaces;
+using Orders.Service.Interfaces;
 using Shop.Infrastructure.DTO;
-using MMTRShop.Repository.Entities;
-using MMTRShop.Repository.Interface;
-using MMTRShop.Repository.Repositories;
-using MMTRShop.Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MMTRShop.Service.Services
+namespace Orders.Service.Services
 {
-    public class OrderContentService: IOrderContentService
+    public class OrderContentService : IOrderContentService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -27,7 +21,7 @@ namespace MMTRShop.Service.Services
             _unitOfWork.OrderContents.Add(orderContent);
             await Save();
         }
-        
+
         public async Task<IEnumerable<OrderContentDTO>> GetOrderContents(Guid orderId)
         {
             var orderContents = await _unitOfWork.OrderContents.GetOrderContentsByOrderId(orderId);

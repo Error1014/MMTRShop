@@ -1,13 +1,6 @@
 ﻿using Shop.Infrastructure.DTO;
-using MMTRShop.Repository.Entities;
-using MMTRShop.Service.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MMTRShop.Service.Interface
+namespace Orders.Service.Interfaces
 {
     public interface IOrderContentService
     {

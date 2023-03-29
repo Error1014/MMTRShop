@@ -1,9 +1,9 @@
-﻿using MMTRShop.Repository.Entities;
-using System;
+﻿using Orders.Repository.Entities;
+using Shop.Infrastructure.Repository;
 
-namespace MMTRShop.Repository.Interface
+namespace Orders.Repository.Interfaces
 {
-    public interface IStatusRepository:IRepository<Status, int>
+    public interface IStatusRepository : IRepository<Status, int>
     {
         Status SetStatusWaitingPlaced();
         Status SetStatusPlaced();

@@ -1,20 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Orders.Repository.Context;
+using Orders.Repository.Entities;
+using Orders.Repository.Interfaces;
 using Shop.Infrastructure.HelperModels;
-using MMTRShop.Repository.Entities;
-using MMTRShop.Repository.Contexts;
-using MMTRShop.Repository.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Shop.Infrastructure.Repository;
 
-namespace MMTRShop.Repository.Repositories
+namespace Orders.Repository.Repositories
 {
-    public class OrderRepository:Repository<Order,Guid>,IOrderRepository
+    public class OrderRepository : Repository<Order, Guid>, IOrderRepository
     {
-        private readonly ShopContext _shopContext;
-        public OrderRepository(ShopContext context) : base(context)
+        private readonly OrderContext _orderContext;
+        public OrderRepository(OrderContext context) : base(context)
         {
-            _shopContext = context;
+            _orderContext = context;
         }
 
         public async Task<IEnumerable<Order>> GetOrders(OrderFilter filter)

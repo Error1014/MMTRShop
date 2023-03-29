@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shop.Infrastructure.Repository;
 
-namespace MMTRShop.Repository.Entities
+namespace Orders.Repository.Entities
 {
-    public class OrderContent:BaseEntity<Guid>
+    public class OrderContent : BaseEntity<Guid>
     {
         public Guid OrderId { get; set; }
 
@@ -28,5 +24,5 @@ namespace MMTRShop.Repository.Entities
             CountProduct = productCount;
         }
 
-    }   
+    }
 }

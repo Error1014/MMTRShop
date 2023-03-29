@@ -12,21 +12,12 @@ namespace MMTRShop.Repository.Repositories
             _dbContext = context;
             Favorites = new FavouritesRepository(context);
             BankCards = new BankCardRepository(context);
-            Orders = new OrderRepository(context);
-            OrderContents = new OrderContentRepository(context);
-            Status = new StatusRepository(context);
             Feedbacks = new FeedbackRepository(context);
         }
 
         public IFavouritesRepository Favorites { get; private set; }
 
         public IBankCardRepository BankCards { get; private set; }
-
-        public IOrderRepository Orders { get; private set; }
-
-        public IOrderContentRepository OrderContents { get; private set; }
-
-        public IStatusRepository Status { get; private set; }
 
         public IFeedbackReporitory Feedbacks { get; private set; }
 
