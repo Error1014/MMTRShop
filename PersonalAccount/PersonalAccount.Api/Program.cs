@@ -21,8 +21,6 @@ builder.Services.RegistrationDbContext<UserContext>(builder.Configuration);
 await builder.Configuration.AddConfigurationApiSource(builder.Configuration);
 builder.Services.Configure<UriEndPoint>(
     builder.Configuration.GetSection("AuthorizationService"));
-builder.Services.Configure<SettingsConfiguration>(
-builder.Configuration.GetSection("SettingsAPI"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();

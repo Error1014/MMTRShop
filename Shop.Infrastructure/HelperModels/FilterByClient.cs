@@ -9,5 +9,15 @@ namespace Shop.Infrastructure.HelperModels
     public class FilterByClient:BaseFilter
     {
         public Guid? ClientId { get; set; }
+        public FilterByClient()
+        {
+
+        }
+        public FilterByClient(BaseFilter filter, Guid clientId)
+        {
+            ClientId = clientId;
+            NumPage = filter.NumPage;
+            SizePage = filter.SizePage;
+        }
     }
 }

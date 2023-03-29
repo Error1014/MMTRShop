@@ -16,19 +16,19 @@ namespace Favourites.Api.Controllers
             _favouriteService = favouriteService;
         }
 
-        [RoleAuthorize("Admin  Client")]
+        [RoleAuthorize("Admin Client")]
         [HttpGet]
-        public async Task<IEnumerable<FavouriteDTO>> GetFavourites([FromQuery] FilterByClient filter)
+        public async Task<IEnumerable<FavouriteDTO>> GetFavourites([FromQuery] BaseFilter filter)
         {
             var carts = await _favouriteService.GetFavourites(filter);
             return carts;
         }
-        [RoleAuthorize("Admin  Client")]
+        [RoleAuthorize("Admin Client")]
         [HttpPost]
-        public async Task<IActionResult> PostFavourite(FavouriteDTO cartDTO)
+        public async Task<IActionResult> PostFavourite(Guid productId)
         {
-            await _favouriteService.AddFavourite(cartDTO);
-            return Ok(cartDTO);
+            await _favouriteService.AddFavourite(productId);
+            return Ok(productId);
         }
 
         [HttpPut]
@@ -37,11 +37,12 @@ namespace Favourites.Api.Controllers
             await _favouriteService.Update(cartDTO);
             return Ok(cartDTO);
         }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFavourite(Guid id)
+        [RoleAuthorize("Admin Client")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteFavourite(Guid productId)
         {
-            await _favouriteService.RemoveFavourite(id);
-            return Ok($"Избраное с id={id} успешно удалено"); ;
+            await _favouriteService.RemoveFavourite(productId);
+            return Ok($"Избраное с id={productId} успешно удалено"); ;
         }
     }
 }

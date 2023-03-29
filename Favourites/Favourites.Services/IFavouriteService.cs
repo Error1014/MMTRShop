@@ -5,11 +5,11 @@ namespace Favourites.Services
 {
     public interface IFavouriteService
     {
-        Task<IEnumerable<FavouriteDTO>> GetFavouritesByClientId(Guid clientId);
-        Task<IEnumerable<FavouriteDTO>> GetFavourites(FilterByClient filter);
+        Task<IEnumerable<FavouriteDTO>> GetFavouritesByClient();
+        Task<IEnumerable<FavouriteDTO>> GetFavourites(BaseFilter filter);
         Task<FavouriteDTO> GetFavourite(Guid favouriteId);
-        Task RemoveFavourite(Guid id);
-        Task AddFavourite(FavouriteDTO favourite);
+        Task RemoveFavourite(Guid productId);
+        Task AddFavourite(Guid productId);
         Task Update(FavouriteDTO favourite);
         Task Save();
     }

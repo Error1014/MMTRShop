@@ -27,7 +27,7 @@ builder.Services.AddScoped<UserSession>();
 builder.Services.AddScoped<IUserSessionGetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddScoped<IUserSessionSetter>(serv => serv.GetRequiredService<UserSession>());
 builder.Services.AddMemoryCache();
-//builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
