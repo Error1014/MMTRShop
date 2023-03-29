@@ -1,15 +1,12 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Infrastructure.DTO;
-using Shop.Infrastructure.HelperModels;
-using MMTRShop.Repository.Entities;
-using MMTRShop.Service.Interface;
-using Microsoft.AspNetCore.Authorization;
+using Products.Service.Interfaces;
 using Shop.Infrastructure;
+using Shop.Infrastructure.Attributes;
+using Shop.Infrastructure.DTO;
 
-namespace MMTRShopAPI.Controllers
-{   
+namespace Products.Api.Controllers
+{
     public class BrandsController : BaseApiController
     {
         private readonly IBrandService _brandService;
@@ -29,7 +26,7 @@ namespace MMTRShopAPI.Controllers
             var brand = await _brandService.GetBrand(id);
             return brand;
         }
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpPost]
         public async Task<IActionResult> PostBrands(BrandDTO brandDTO)
         {
@@ -37,7 +34,7 @@ namespace MMTRShopAPI.Controllers
             return Ok(brandDTO);
         }
 
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpPut]
         public async Task<IActionResult> Put(BrandDTO brandDTO)
         {
@@ -45,7 +42,7 @@ namespace MMTRShopAPI.Controllers
             return Ok(brandDTO);
         }
 
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

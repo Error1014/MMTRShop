@@ -15,7 +15,6 @@ namespace MMTRShop.Repository.Entities
         public int CountProduct { get; set; }
 
         public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
 
         public OrderContent()
         {

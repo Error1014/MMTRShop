@@ -1,21 +1,13 @@
 ﻿using AutoMapper;
+using Products.Repository.Entities;
+using Products.Repository.Interfaces;
+using Products.Service.Interfaces;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Exceptions;
-using MMTRShop.Repository.Entities;
-using MMTRShop.Repository.Interface;
-using MMTRShop.Repository.Repositories;
-using MMTRShop.Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using System.Data;
 
-namespace MMTRShop.Service.Services
+namespace Products.Service.Services
 {
-    public class BrandService: IBrandService
+    public class BrandService : IBrandService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

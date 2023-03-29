@@ -1,20 +1,12 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
-using MMTRShop.Repository.Entities;
-using MMTRShop.Repository.Interface;
-using MMTRShop.Repository.Repositories;
-using MMTRShop.Service.Interface;
-using MMTRShop.Service.Services;
-using System.Net.Mail;
 using Microsoft.AspNetCore.Authorization;
-using System.Data;
 using Shop.Infrastructure;
+using Products.Service.Interfaces;
+using Shop.Infrastructure.Attributes;
 
-namespace MMTRShopAPI.Controllers
+namespace Products.Api.Controllers
 {
 
     public class ProductController : BaseApiController
@@ -24,7 +16,6 @@ namespace MMTRShopAPI.Controllers
         {
             _productService = productService;
         }
-        [Authorize(Roles = "Admin, Client")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProductsPage([FromQuery] ProductPageFilter filter)
         {
@@ -37,21 +28,21 @@ namespace MMTRShopAPI.Controllers
             var product = await _productService.GetProduct(id);
             return Ok(product);
         }
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpPost]
         public async Task<IActionResult> PostProducts(ProductDTO productDTO)
         {
             await _productService.AddProduct(productDTO);
             return Ok(productDTO);
         }
-        [Authorize(Roles = "Admin, Operator")]
+        [RoleAuthorize("Admin Operator")]
         [HttpPut]
         public async Task<IActionResult> PutProduct(ProductDTO productDTO)
         {
             await _productService.Update(productDTO);
             return Ok(productDTO);
         }
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {

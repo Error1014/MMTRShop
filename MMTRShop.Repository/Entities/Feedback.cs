@@ -13,7 +13,6 @@ namespace MMTRShop.Repository.Entities
         public byte Rating { get; set; }
         
         public Guid ClientId { get; set; }
-        public virtual Product Product { get; set; }
 
 
         public Feedback()

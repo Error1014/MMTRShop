@@ -8,14 +8,9 @@ namespace MMTRShop.Service
     {
         public MappingProfile()
         {
-            CreateMap<Product, ProductDTO>(); 
-            CreateMap<Product, ProductDTO>().ReverseMap();
-            CreateMap<Brand, BrandDTO>();
-            CreateMap<Brand, BrandDTO>().ReverseMap();
+
             CreateMap<BankCard, BankCardDTO>();
             CreateMap<BankCard, BankCardDTO>().ReverseMap();
-            CreateMap<Category, CategoryDTO>();
-            CreateMap<Category, CategoryDTO>().ReverseMap();
             CreateMap<Favourite, FavouriteDTO>();
             CreateMap<Favourite, FavouriteDTO>().ReverseMap();
             CreateMap<Order, OrderDTO>();

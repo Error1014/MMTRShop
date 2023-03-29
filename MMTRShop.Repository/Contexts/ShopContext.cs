@@ -15,9 +15,6 @@ namespace MMTRShop.Repository.Contexts
         {
             
         }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<Product> Product { get; set; }
-        public DbSet<Brand> Brand { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderContent> OrderContent { get; set; }

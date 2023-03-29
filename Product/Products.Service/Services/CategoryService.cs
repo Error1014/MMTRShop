@@ -1,21 +1,14 @@
 ﻿using AutoMapper;
+using Products.Repository.Entities;
+using Products.Repository.Interfaces;
+using Products.Service.Interfaces;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.Exceptions;
 using Shop.Infrastructure.HelperModels;
-using MMTRShop.Repository.Entities;
-using MMTRShop.Repository.Interface;
-using MMTRShop.Repository.Repositories;
-using MMTRShop.Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MMTRShop.Service.Services
+namespace Products.Service.Services
 {
-    public class CategoryService: ICategoryServise
+    public class CategoryService : ICategoryServise
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

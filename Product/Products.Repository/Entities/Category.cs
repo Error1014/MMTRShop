@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Infrastructure.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMTRShop.Repository.Entities
+namespace Products.Repository.Entities
 {
     public class Category : BaseEntity<Guid>
     {

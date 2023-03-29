@@ -10,9 +10,6 @@ namespace MMTRShop.Repository.Repositories
         public UnitOfWork(ShopContext context)
         {
             _dbContext = context;
-            Products = new ProductRepository(context);
-            Categories = new CategoryRepository(context);
-            Brands = new BrandRepository(context);
             Favorites = new FavouritesRepository(context);
             BankCards = new BankCardRepository(context);
             Orders = new OrderRepository(context);
@@ -20,12 +17,6 @@ namespace MMTRShop.Repository.Repositories
             Status = new StatusRepository(context);
             Feedbacks = new FeedbackRepository(context);
         }
-
-        public IProductRepository Products { get; private set; }
-
-        public ICategoryRepository Categories { get; private set; }
-
-        public IBrandRepository Brands { get; private set; }
 
         public IFavouritesRepository Favorites { get; private set; }
 

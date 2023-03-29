@@ -10,7 +10,6 @@ namespace MMTRShop.Repository.Entities
     {
         public Guid ClientId { get; set; }
         public Guid ProductId { get; set; }
-        public virtual Product Product { get; set; }
         public Favourite()
         {
         }

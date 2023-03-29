@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Products.Service.Interfaces;
+using Shop.Infrastructure;
+using Shop.Infrastructure.Attributes;
 using Shop.Infrastructure.DTO;
 using Shop.Infrastructure.HelperModels;
-using MMTRShop.Service.Interface;
-using Microsoft.AspNetCore.Authorization;
-using System.Data;
-using Shop.Infrastructure;
 
-namespace MMTRShopAPI.Controllers
+namespace Products.Api.Controllers
 {
 
     public class CategoriesController : BaseApiController
@@ -19,10 +18,10 @@ namespace MMTRShopAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CategoryDTO>> GetCategories([FromQuery]BaseFilter filter)
+        public async Task<IEnumerable<CategoryDTO>> GetCategories([FromQuery] BaseFilter filter)
         {
             var brand = await _categoryService.GetPageCategories(filter);
-            if (brand==null)
+            if (brand == null)
             {
                 throw new NullReferenceException();
             }
@@ -34,21 +33,21 @@ namespace MMTRShopAPI.Controllers
             var brand = await _categoryService.GetCategory(id);
             return brand;
         }
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpPost]
         public async Task<IActionResult> PostBrands(CategoryDTO brandDTO)
         {
             await _categoryService.AddCategory(brandDTO);
             return Ok(brandDTO);
         }
-        [Authorize(Roles = "Admin, Operator")]
+        [RoleAuthorize("Admin Operator")]
         [HttpPut]
         public async Task<IActionResult> Put(CategoryDTO brandDTO)
         {
             await _categoryService.Update(brandDTO);
             return Ok(brandDTO);
         }
-        [Authorize(Roles = "Admin")]
+        [RoleAuthorize("Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

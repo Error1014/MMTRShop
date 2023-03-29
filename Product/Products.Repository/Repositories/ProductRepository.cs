@@ -1,17 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure.HelperModels;
-using MMTRShop.Repository.Entities;
-using MMTRShop.Repository.Contexts;
-using MMTRShop.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Products.Repository.Interfaces;
+using Products.Repository.Entities;
+using Products.Repository.Context;
+using Shop.Infrastructure.Repository;
 
-namespace MMTRShop.Repository.Repositories
+namespace Products.Repository.Repositories
 {
-    public class ProductRepository : Repository<Product,Guid>, IProductRepository
+    public class ProductRepository : Repository<Product, Guid>, IProductRepository
     {
-        public ProductRepository(ShopContext context) : base(context)
+        public ProductRepository(ProductContext context) : base(context)
         {
 
         }
